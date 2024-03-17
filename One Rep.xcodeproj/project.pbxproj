@@ -78,13 +78,11 @@
 				37A655212BA5F86600B96BEB /* MotherView.swift */,
 				37A6551D2BA5F80300B96BEB /* ViewRouter.swift */,
 				37A655232BA5F88200B96BEB /* TabHolderView.swift */,
-				37A655252BA5F8A700B96BEB /* LoginView.swift */,
-				37A655292BA5F8E400B96BEB /* SignInWithApple.swift */,
-				37A6551F2BA5F84800B96BEB /* UserSettingsModel.swift */,
-				37A655272BA5F8C200B96BEB /* RepsLogo.swift */,
-				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
-				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
 				37A6552F2BA5F98C00B96BEB /* StringEnums.swift */,
+				37A655312BA745A300B96BEB /* Login */,
+				37A655332BA745CF00B96BEB /* Movements */,
+				37A655322BA745C700B96BEB /* Models */,
+				37A655342BA745D400B96BEB /* Settings */,
 				37A6550D2BA5385800B96BEB /* Assets.xcassets */,
 				37A6550F2BA5385800B96BEB /* One_Rep.entitlements */,
 				37A655102BA5385800B96BEB /* Preview Content */,
@@ -98,6 +96,40 @@
 				37A655112BA5385800B96BEB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		37A655312BA745A300B96BEB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				37A655272BA5F8C200B96BEB /* RepsLogo.swift */,
+				37A655292BA5F8E400B96BEB /* SignInWithApple.swift */,
+				37A655252BA5F8A700B96BEB /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		37A655322BA745C700B96BEB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				37A6551F2BA5F84800B96BEB /* UserSettingsModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		37A655332BA745CF00B96BEB /* Movements */ = {
+			isa = PBXGroup;
+			children = (
+				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
+			);
+			path = Movements;
+			sourceTree = "<group>";
+		};
+		37A655342BA745D400B96BEB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
