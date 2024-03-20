@@ -130,3 +130,23 @@ enum Icons: CustomStringConvertible {
         }
     }
 }
+
+enum Muscles: CustomStringConvertible {
+    case Arms
+    case Back
+    case Chest
+    case Core
+    case Legs
+    case Shoulders
+    
+    var description: String {
+        switch self {
+        case .Arms: return "Arms"
+        case .Back: return "Back"
+        case .Chest: return "Chest"
+        case .Core: return "Core"
+        case .Legs: return "Legs"
+        case .Shoulders: return "Shoulders"
+        }
+    }
+}

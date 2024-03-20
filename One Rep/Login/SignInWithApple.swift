@@ -54,7 +54,11 @@ struct SignInWithApple: View {
                case .failure(let error):
                    print("Login to Realm failed: \(error.localizedDescription)")
                case .success(let user):
-                   viewRouter.currentPage = .main
+                   DispatchQueue.main.async {
+                       withAnimation {
+                           viewRouter.currentPage = .main
+                       }
+                   }
                    print("Successfully logged into Realm as \(user.id).")
                }
                isLoggingIn = false

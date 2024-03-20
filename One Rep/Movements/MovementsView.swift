@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct MovementsView: View {
+    
+    @State var showAddMovementPopup = false
+    
     var body: some View {
-        Text("Movements")
+        NavigationView {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 32) {
+                    AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
+                }
+                /// Add new Movement view
+                .sheet(isPresented: $showAddMovementPopup) {
+                    AddMovementView()
+                        .dynamicTypeSize(.xSmall)
+                }
+            }
+        }
     }
-}
-
-#Preview {
-    MovementsView()
 }

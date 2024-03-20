@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 /// Class to handle whether to show login or app page
-class ViewRouter: ObservableObject {
+@MainActor class ViewRouter: ObservableObject {
     @Published var currentPage: Page = .login
 }
 
