@@ -10,17 +10,22 @@ import RealmSwift
 
 struct MovementsView: View {
     
-    @State var showAddMovementPopup = false
+    @ObservedRealmObject var movementModel: MovementViewModel
+    @State private var showAddMovementPopup = false
+    @State private var selectedMovement: Movement?
     
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 32) {
+                VStack(spacing: 16) {
                     AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
+                    ForEach(movementModel.movements) { movement in
+                        MovementCard(movement: movement, selectedMovement: $selectedMovement)
+                    }
                 }
-                /// Add new Movement view
+                .padding(.vertical, 16)
                 .sheet(isPresented: $showAddMovementPopup) {
-                    AddMovementView()
+                    AddMovementView(movementModel: movementModel)
                         .dynamicTypeSize(.xSmall)
                 }
             }

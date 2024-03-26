@@ -12,7 +12,7 @@ struct RepsLogo: View {
     var size: CGFloat
     
     var body: some View {
-        Text("One Rep")
+        Text("1 Rep")
             .font(.title.weight(.heavy))
             .foregroundColor(.white)
             .kerning(-1)

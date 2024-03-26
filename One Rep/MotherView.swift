@@ -35,8 +35,8 @@ struct MotherView: View {
     
     // MARK: - Functions
     
-    /// Function checks if user is logged in and redirects the user to the appropriate view
     func checkLogIn() {
+        /// Function checks if user is logged in and redirects the user to the appropriate view
         if app.currentUser != nil {
             viewRouter.currentPage = .main
         } else {

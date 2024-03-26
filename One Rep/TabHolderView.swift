@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct TabHolderView: View {
-        
+    
+    @ObservedResults(MovementViewModel.self) var movementsCollection
+    
     @State var loadingUser = true
     @State var showUserError = false
     @State var loadingMovementData = true
@@ -20,9 +23,10 @@ struct TabHolderView: View {
     @State var errorMessage = ""
     
     var body: some View {
-            /// TabView holds 2 tabs: Movements and Settings
+        /// TabView holds 2 tabs: Movements and Settings
+        if let movements = movementsCollection.first {
             TabView() {
-                MovementsView()
+                MovementsView(movementModel: movements)
                     .tabItem {
                         Image(systemName: Icons.FigureStrengthTraining.description)
                     }
@@ -35,14 +39,12 @@ struct TabHolderView: View {
             }
             .font(.headline)
             .accentColor(.primary)
+        } else {
+            ProgressView()
+                .onAppear {
+                    $movementsCollection.append(MovementViewModel())
+                }
+        }
     }
-
-}
-
-// MARK: - Preview
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabHolderView()
-    }
+    
 }

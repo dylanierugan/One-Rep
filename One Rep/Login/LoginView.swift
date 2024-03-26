@@ -31,7 +31,7 @@ struct LoginView: View {
                 
                 VStack(spacing: 8) {
                     RepsLogo(size: 28)
-                    Text("A simple gym log app to help do one more rep than last time")
+                    Text("A gym log app to help you do one more rep than last time")
                         .font(.caption.weight(.regular))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)

@@ -22,9 +22,8 @@ struct AddMovementCardButton: View {
                         VStack {
                             Spacer()
                             Image(systemName: Icons.PlusCircle.description)
-                                .resizable()
                                 .foregroundColor(.black)
-                                .frame(width: 25, height: 25)
+                                .font(Font.title2.weight(.medium))
                             Spacer()
                         }
                         Spacer()

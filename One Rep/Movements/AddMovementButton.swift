@@ -9,26 +9,32 @@ import SwiftUI
 
 struct AddMovementButton: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
     @State var addMovementClicked = false
     var isFormValid: Bool
+    
+    var addMovementToRealm: () -> Void
     
     var body: some View {
         Button {
             withAnimation {
                 addMovementClicked = true
+                addMovementToRealm()
+                dismiss()
             }
         } label: {
             HStack {
                 Text("Add Movement")
-                    .foregroundColor(isFormValid ? Color(Color.green): Color.gray)
+                    .foregroundColor(isFormValid ? Color(Color.black): Color.gray)
                     .font(.body.weight(.regular))
                 if addMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.SquareAndPencil.description)
-                        .foregroundColor(isFormValid ? Color(.green): Color.gray)
-                        .font(.body.weight(.regular))
+                        .foregroundColor(isFormValid ? Color(.black): Color.gray)
+                        .font(.body.weight(.medium))
                 }
             }
             .padding(.vertical, 8)
