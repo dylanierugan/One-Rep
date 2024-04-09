@@ -30,12 +30,10 @@ struct TabHolderView: View {
                     .tabItem {
                         Image(systemName: Icons.FigureStrengthTraining.description)
                     }
-                    .dynamicTypeSize(.xSmall)
                 SettingsView()
                     .tabItem {
                         Image(systemName: Icons.PersonFill.description)
                     }
-                    .dynamicTypeSize(.xSmall)
             }
             .font(.headline)
             .accentColor(.primary)

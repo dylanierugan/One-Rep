@@ -8,6 +8,6 @@
 import Foundation
 import RealmSwift
 
-class Weight: Object {
+class Log: Object {
     @Persisted(primaryKey: true) var id: ObjectId
 }

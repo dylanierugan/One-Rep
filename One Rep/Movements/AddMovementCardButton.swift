@@ -21,9 +21,14 @@ struct AddMovementCardButton: View {
                         Spacer()
                         VStack {
                             Spacer()
-                            Image(systemName: Icons.PlusCircle.description)
-                                .foregroundColor(.black)
-                                .font(Font.title2.weight(.medium))
+                            HStack {
+                                Image(systemName: Icons.Plus.description)
+                                    .font(Font.body.weight(.medium))
+                                    .foregroundColor(.secondary.opacity(0.5))
+                                Text("New Movement")
+                                    .customFont(size: .body, weight: .medium, kerning: 1, design: .rounded)
+                                    .foregroundColor(.secondary.opacity(0.5))
+                            }
                             Spacer()
                         }
                         Spacer()
@@ -31,10 +36,11 @@ struct AddMovementCardButton: View {
                 }
                 Spacer()
             }
-            .frame(height: 84)
+            .frame(height: 70)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(style: StrokeStyle(lineWidth: 2, dash: [6]))
+                    .foregroundColor(.secondary.opacity(0.6))
                     .opacity(0.4)
             )
             .padding(.horizontal, 16)

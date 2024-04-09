@@ -13,18 +13,16 @@ struct One_RepApp: SwiftUI.App {
     
     @StateObject var app = RealmSwift.App(id: "one-rep-hpeel")
     @StateObject var viewRouter = ViewRouter()
-    @StateObject var userSettingsModel = UserSettingsModel()
+    @StateObject var themeColor = ThemeColorModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.Green.description)
     
     var body: some Scene {
         WindowGroup {
             MotherView()
+                .preferredColorScheme(.dark)
+                .environment(\.sizeCategory, .extraSmall)
                 .environmentObject(app)
                 .environmentObject(viewRouter)
-                .environmentObject(userSettingsModel)
-                .task {
-                    userSettingsModel.darkMode = UserDefaults.standard.bool(forKey: "darkMode")
-                    userSettingsModel.accentColor = UserDefaults.standard.string(forKey: "accentColor") ?? "logoGreen"
-                }
+                .environmentObject(themeColor)
         }
     }
 }

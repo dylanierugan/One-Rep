@@ -1,0 +1,59 @@
+//
+//  AddMovementView.swift
+//  One Rep
+//
+//  Created by Dylan Ierugan on 3/19/24.
+//
+
+import SwiftUI
+import RealmSwift
+
+struct AddMovementView: View {
+    
+    @ObservedRealmObject var movement: Movement = Movement()
+    @ObservedRealmObject var movementModel: MovementViewModel
+    
+    @EnvironmentObject var themeColor: ThemeColorModel
+    
+    @State private var movementName = ""
+    @State private var muscleGroup = Muscles.Arms.description
+    var muscles = [Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    private var isFormValid: Bool {
+        !movementName.isEmpty
+    }
+    
+    func addMovementToRealm() {
+        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>())
+        $movementModel.movements.append(newMovement)
+    }
+    
+    var body: some View {
+        ZStack {
+            Color(themeColor.Background)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 36) {
+                /// Movement name textfield
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Movement Name")
+                        .customFont(size: .caption, weight: .regular, kerning: 1, design: .rounded)
+                        .foregroundColor(.secondary).opacity(0.5)
+                    MovementNameTextField(text: "", binding: $movementName, focus: true)
+                }
+                .padding(.horizontal, 16)
+                
+                /// Muscle group picker wheel
+                VStack(alignment: .leading,  spacing: 4) {
+                    Text("Muscle Group")
+                        .customFont(size: .caption, weight: .regular, kerning: 1.2, design: .rounded)
+                        .foregroundColor(.secondary).opacity(0.5)
+                    MusclePicker(muscles: muscles, muscleGroup: $muscleGroup)
+                }
+                .padding(.horizontal, 16)
+                
+                /// Add movement button
+                SaveMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
+            }
+        }
+    }
+}

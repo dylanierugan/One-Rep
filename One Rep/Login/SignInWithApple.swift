@@ -11,6 +11,7 @@ import SwiftUI
 
 struct SignInWithApple: View {
     
+    @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
     
@@ -37,8 +38,9 @@ struct SignInWithApple: View {
                     print("Sign in with Apple failed: \(error.localizedDescription)")
                 }
             })
-            .signInWithAppleButtonStyle(.white)
+            .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
             .disabled(isLoggingIn)
+            .cornerRadius(16)
         }
     }
     

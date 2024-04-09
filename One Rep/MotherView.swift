@@ -23,13 +23,11 @@ struct MotherView: View {
         switch viewRouter.currentPage {
         case .main:
             TabHolderView()
-                .dynamicTypeSize(.xSmall)
         case .login:
             LoginView()
                 .onAppear {
                     checkLogIn()
                 }
-                .dynamicTypeSize(.xSmall)
         }
     }
     

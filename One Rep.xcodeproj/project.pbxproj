@@ -11,7 +11,6 @@
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
 		37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6551D2BA5F80300B96BEB /* ViewRouter.swift */; };
-		37A655202BA5F84800B96BEB /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6551F2BA5F84800B96BEB /* UserSettingsModel.swift */; };
 		37A655222BA5F86600B96BEB /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655212BA5F86600B96BEB /* MotherView.swift */; };
 		37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655232BA5F88200B96BEB /* TabHolderView.swift */; };
 		37A655262BA5F8A700B96BEB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655252BA5F8A700B96BEB /* LoginView.swift */; };
@@ -21,16 +20,24 @@
 		37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552D2BA5F91100B96BEB /* SettingsView.swift */; };
 		37A655302BA5F98C00B96BEB /* StringEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552F2BA5F98C00B96BEB /* StringEnums.swift */; };
 		37A655362BA7466300B96BEB /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655352BA7466300B96BEB /* Movement.swift */; };
-		37A655382BA7470B00B96BEB /* Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655372BA7470B00B96BEB /* Weight.swift */; };
+		37A655382BA7470B00B96BEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655372BA7470B00B96BEB /* Log.swift */; };
 		37A6553D2BA9E8F300B96BEB /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */; };
 		37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */; };
 		37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655402BAA8DD500B96BEB /* MovementNameTextField.swift */; };
 		37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655422BAA902300B96BEB /* AddMovementCardButton.swift */; };
 		37A655452BAA965C00B96BEB /* MusclePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655442BAA965C00B96BEB /* MusclePicker.swift */; };
-		37A655472BAA98AC00B96BEB /* AddMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655462BAA98AC00B96BEB /* AddMovementButton.swift */; };
+		37A655472BAA98AC00B96BEB /* SaveMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655462BAA98AC00B96BEB /* SaveMovementButton.swift */; };
 		37A6554C2BB0C07B00B96BEB /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 37A6554B2BB0C07B00B96BEB /* Realm */; };
 		37A6554E2BB0C07B00B96BEB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 37A6554D2BB0C07B00B96BEB /* RealmSwift */; };
-		37A655502BB2830200B96BEB /* MovementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6554F2BB2830200B96BEB /* MovementCard.swift */; };
+		37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6554F2BB2830200B96BEB /* MovementCardButton.swift */; };
+		37A655522BB30DDA00B96BEB /* HorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */; };
+		37A655542BB30E1200B96BEB /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655532BB30E1200B96BEB /* HapticManager.swift */; };
+		37A655562BBDAD4F00B96BEB /* EditMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655552BBDAD4F00B96BEB /* EditMovementView.swift */; };
+		37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6555A2BBDADD100B96BEB /* DeleteMovementButton.swift */; };
+		37A6555D2BBE3DF800B96BEB /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6555C2BBE3DF800B96BEB /* Demo.swift */; };
+		37A655602BC1B95A00B96BEB /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6555F2BC1B95A00B96BEB /* FontModifier.swift */; };
+		37A655622BC1EF6A00B96BEB /* ThemesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655612BC1EF6A00B96BEB /* ThemesView.swift */; };
+		37A655642BC1F00A00B96BEB /* ThemeColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655632BC1F00A00B96BEB /* ThemeColorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +47,6 @@
 		37A6550F2BA5385800B96BEB /* One_Rep.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = One_Rep.entitlements; sourceTree = "<group>"; };
 		37A655112BA5385800B96BEB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		37A6551D2BA5F80300B96BEB /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
-		37A6551F2BA5F84800B96BEB /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
 		37A655212BA5F86600B96BEB /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		37A655232BA5F88200B96BEB /* TabHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHolderView.swift; sourceTree = "<group>"; };
 		37A655252BA5F8A700B96BEB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -50,14 +56,22 @@
 		37A6552D2BA5F91100B96BEB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		37A6552F2BA5F98C00B96BEB /* StringEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEnums.swift; sourceTree = "<group>"; };
 		37A655352BA7466300B96BEB /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
-		37A655372BA7470B00B96BEB /* Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weight.swift; sourceTree = "<group>"; };
+		37A655372BA7470B00B96BEB /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
 		37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementView.swift; sourceTree = "<group>"; };
 		37A655402BAA8DD500B96BEB /* MovementNameTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementNameTextField.swift; sourceTree = "<group>"; };
 		37A655422BAA902300B96BEB /* AddMovementCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementCardButton.swift; sourceTree = "<group>"; };
 		37A655442BAA965C00B96BEB /* MusclePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusclePicker.swift; sourceTree = "<group>"; };
-		37A655462BAA98AC00B96BEB /* AddMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementButton.swift; sourceTree = "<group>"; };
-		37A6554F2BB2830200B96BEB /* MovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementCard.swift; sourceTree = "<group>"; };
+		37A655462BAA98AC00B96BEB /* SaveMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMovementButton.swift; sourceTree = "<group>"; };
+		37A6554F2BB2830200B96BEB /* MovementCardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementCardButton.swift; sourceTree = "<group>"; };
+		37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalScroller.swift; sourceTree = "<group>"; };
+		37A655532BB30E1200B96BEB /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		37A655552BBDAD4F00B96BEB /* EditMovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovementView.swift; sourceTree = "<group>"; };
+		37A6555A2BBDADD100B96BEB /* DeleteMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMovementButton.swift; sourceTree = "<group>"; };
+		37A6555C2BBE3DF800B96BEB /* Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
+		37A6555F2BC1B95A00B96BEB /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
+		37A655612BC1EF6A00B96BEB /* ThemesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesView.swift; sourceTree = "<group>"; };
+		37A655632BC1F00A00B96BEB /* ThemeColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,16 +106,17 @@
 		37A655082BA5385600B96BEB /* One Rep */ = {
 			isa = PBXGroup;
 			children = (
-				37A6553B2BA9E8DA00B96BEB /* New Group */,
 				37A655092BA5385600B96BEB /* One_RepApp.swift */,
 				37A655212BA5F86600B96BEB /* MotherView.swift */,
 				37A6551D2BA5F80300B96BEB /* ViewRouter.swift */,
 				37A655232BA5F88200B96BEB /* TabHolderView.swift */,
 				37A6552F2BA5F98C00B96BEB /* StringEnums.swift */,
+				37A655532BB30E1200B96BEB /* HapticManager.swift */,
 				37A655312BA745A300B96BEB /* Login */,
 				37A655332BA745CF00B96BEB /* Movements */,
-				37A655322BA745C700B96BEB /* Models */,
 				37A655342BA745D400B96BEB /* Settings */,
+				37A655322BA745C700B96BEB /* Models */,
+				37A6555E2BC1B94000B96BEB /* Modifiers */,
 				37A6550D2BA5385800B96BEB /* Assets.xcassets */,
 				37A6550F2BA5385800B96BEB /* One_Rep.entitlements */,
 				37A655102BA5385800B96BEB /* Preview Content */,
@@ -121,8 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				37A655272BA5F8C200B96BEB /* RepsLogo.swift */,
-				37A655292BA5F8E400B96BEB /* SignInWithApple.swift */,
 				37A655252BA5F8A700B96BEB /* LoginView.swift */,
+				37A655292BA5F8E400B96BEB /* SignInWithApple.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -132,8 +147,8 @@
 			children = (
 				37A655352BA7466300B96BEB /* Movement.swift */,
 				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
-				37A655372BA7470B00B96BEB /* Weight.swift */,
-				37A6551F2BA5F84800B96BEB /* UserSettingsModel.swift */,
+				37A655372BA7470B00B96BEB /* Log.swift */,
+				37A655632BC1F00A00B96BEB /* ThemeColorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,13 +156,13 @@
 		37A655332BA745CF00B96BEB /* Movements */ = {
 			isa = PBXGroup;
 			children = (
+				37A6555C2BBE3DF800B96BEB /* Demo.swift */,
 				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
+				37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */,
 				37A655422BAA902300B96BEB /* AddMovementCardButton.swift */,
-				37A6554F2BB2830200B96BEB /* MovementCard.swift */,
-				37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */,
-				37A655402BAA8DD500B96BEB /* MovementNameTextField.swift */,
-				37A655442BAA965C00B96BEB /* MusclePicker.swift */,
-				37A655462BAA98AC00B96BEB /* AddMovementButton.swift */,
+				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
+				37A655572BBDAD5300B96BEB /* AddMovement */,
+				37A655592BBDADAD00B96BEB /* Edit Movement */,
 			);
 			path = Movements;
 			sourceTree = "<group>";
@@ -156,15 +171,37 @@
 			isa = PBXGroup;
 			children = (
 				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
+				37A655612BC1EF6A00B96BEB /* ThemesView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		37A6553B2BA9E8DA00B96BEB /* New Group */ = {
+		37A655572BBDAD5300B96BEB /* AddMovement */ = {
 			isa = PBXGroup;
 			children = (
+				37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */,
+				37A655402BAA8DD500B96BEB /* MovementNameTextField.swift */,
+				37A655442BAA965C00B96BEB /* MusclePicker.swift */,
+				37A655462BAA98AC00B96BEB /* SaveMovementButton.swift */,
 			);
-			path = "New Group";
+			path = AddMovement;
+			sourceTree = "<group>";
+		};
+		37A655592BBDADAD00B96BEB /* Edit Movement */ = {
+			isa = PBXGroup;
+			children = (
+				37A655552BBDAD4F00B96BEB /* EditMovementView.swift */,
+				37A6555A2BBDADD100B96BEB /* DeleteMovementButton.swift */,
+			);
+			path = "Edit Movement";
+			sourceTree = "<group>";
+		};
+		37A6555E2BC1B94000B96BEB /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				37A6555F2BC1B95A00B96BEB /* FontModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,21 +285,28 @@
 				37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */,
 				37A655262BA5F8A700B96BEB /* LoginView.swift in Sources */,
 				37A655282BA5F8C200B96BEB /* RepsLogo.swift in Sources */,
+				37A655622BC1EF6A00B96BEB /* ThemesView.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
 				37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */,
+				37A655602BC1B95A00B96BEB /* FontModifier.swift in Sources */,
+				37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */,
 				37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */,
+				37A655542BB30E1200B96BEB /* HapticManager.swift in Sources */,
 				37A655452BAA965C00B96BEB /* MusclePicker.swift in Sources */,
-				37A655472BAA98AC00B96BEB /* AddMovementButton.swift in Sources */,
+				37A655472BAA98AC00B96BEB /* SaveMovementButton.swift in Sources */,
 				37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */,
+				37A655642BC1F00A00B96BEB /* ThemeColorModel.swift in Sources */,
 				37A6552C2BA5F8FA00B96BEB /* MovementsView.swift in Sources */,
-				37A655382BA7470B00B96BEB /* Weight.swift in Sources */,
+				37A655382BA7470B00B96BEB /* Log.swift in Sources */,
 				37A655302BA5F98C00B96BEB /* StringEnums.swift in Sources */,
+				37A6555D2BBE3DF800B96BEB /* Demo.swift in Sources */,
 				37A655362BA7466300B96BEB /* Movement.swift in Sources */,
 				37A6553D2BA9E8F300B96BEB /* MovementViewModel.swift in Sources */,
-				37A655202BA5F84800B96BEB /* UserSettingsModel.swift in Sources */,
 				37A6552A2BA5F8E400B96BEB /* SignInWithApple.swift in Sources */,
-				37A655502BB2830200B96BEB /* MovementCard.swift in Sources */,
+				37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */,
+				37A655562BBDAD4F00B96BEB /* EditMovementView.swift in Sources */,
+				37A655522BB30DDA00B96BEB /* HorizontalScroller.swift in Sources */,
 				37A655222BA5F86600B96BEB /* MotherView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

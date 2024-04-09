@@ -14,7 +14,7 @@ struct RepsLogo: View {
     var body: some View {
         Text("1 Rep")
             .font(.title.weight(.heavy))
-            .foregroundColor(.white)
+            .foregroundColor(.primary)
             .kerning(-1)
     }
 }

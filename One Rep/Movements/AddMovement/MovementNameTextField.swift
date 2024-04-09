@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MovementNameTextField: View {
     
+    @EnvironmentObject var themeColor: ThemeColorModel
+    
     var text: String
     @Binding var binding: String
     @FocusState var isFocused: Bool
@@ -19,8 +21,8 @@ struct MovementNameTextField: View {
             TextField(text, text: $binding)
                 .font(.body.weight(.regular))
                 .padding(12)
-                .background(.thinMaterial)
-                .cornerRadius(12)
+                .background(Color(themeColor.BackgroundElement))
+                .cornerRadius(16)
                 .textInputAutocapitalization(.words)
                 .accentColor(.green)
                 .focused($isFocused)

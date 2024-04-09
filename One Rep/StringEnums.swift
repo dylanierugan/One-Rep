@@ -7,22 +7,54 @@
 
 import Foundation
 
-enum Colors: CustomStringConvertible {
-    case AlertRed
-    case BackgroundColor
-    case Green
-    case LightGreen
-    case Yellow
-    case White
+enum DefaultKeys: CustomStringConvertible {
+    case AccentColor
     
     var description : String {
         switch self {
-        case .AlertRed: return "alertRed"
+        case .AccentColor: return "AccentColor"
+        }
+    }
+}
+
+enum ErrorMessage: CustomStringConvertible {
+    case DeleteMovmentConfirmation
+    case NoWayToUndo
+    
+    var description : String {
+        switch self {
+        case .DeleteMovmentConfirmation: return "Are you sure you want to delete this movement and all the logged data associated with it?"
+        case .NoWayToUndo: return "There is no way to undo this action."
+        }
+    }
+}
+
+enum Colors: CustomStringConvertible {
+    case BackgroundElementColor
+    case BackgroundColor
+    case Green
+    case GreenBase
+    case GreenCyan
+    case GreenNeon
+    case Pink
+    case PinkBase
+    case PinkLight
+    case PinkPurple
+    case SecondaryBackgroundColor
+    
+    var description : String {
+        switch self {
+        case .BackgroundElementColor: return "BackgroundElementColor"
         case .BackgroundColor: return "BackgroundColor"
         case .Green: return "Green"
-        case .LightGreen: return "LightGreen"
-        case .Yellow: return "Yellow"
-        case .White: return "White"
+        case .GreenBase: return "GreenBase"
+        case .GreenCyan: return "GreenCyan"
+        case .GreenNeon: return "GreenNeon"
+        case .Pink: return "Pink"
+        case .PinkBase: return "PinkBase"
+        case .PinkLight: return "PinkLight"
+        case .PinkPurple: return "PinkPurple"
+        case .SecondaryBackgroundColor: return "SecondaryBackgroundColor"
         }
     }
 }
@@ -58,7 +90,8 @@ enum Icons: CustomStringConvertible {
     case PaperPlaneFill
     case PencilAndOutline
     case PersonFill
-    case PlusApp
+    case Plus
+    case PlusAppFill
     case PlusCircle
     case PlusCircleFill
     case RectangleAndPencilAndEllipsis
@@ -103,7 +136,8 @@ enum Icons: CustomStringConvertible {
         case .PaperPlaneFill: return "paperplane.fill"
         case .PencilAndOutline: return "pencil.and.outline"
         case .PersonFill: return "person.fill"
-        case .PlusApp: return "plus.app"
+        case .Plus: return "plus"
+        case .PlusAppFill: return "plus.app.fill"
         case .PlusCircle: return "plus.circle"
         case .PlusCircleFill: return "plus.circle.fill"
         case .RectangleAndPencilAndEllipsis: return "rectangle.and.pencil.and.ellipsis"

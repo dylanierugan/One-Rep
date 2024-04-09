@@ -20,6 +20,8 @@ struct SettingsView: View {
                     
                     Spacer()
                     
+                    ThemesView()
+                    
                     Text(app.currentUser?.profile.email ?? "No user")
                     
                     Button {

@@ -14,6 +14,7 @@ struct LoginView: View {
     
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var themeColor: ThemeColorModel
     
     @State private var email = ""
     @State private var password = ""
@@ -25,21 +26,22 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color(Color.black).ignoresSafeArea()
-            
-            VStack(spacing: 64) {
-                
+            Color(themeColor.Background)
+                .ignoresSafeArea()
+            VStack {
+                Spacer()
                 VStack(spacing: 8) {
                     RepsLogo(size: 28)
-                    Text("A gym log app to help you do one more rep than last time")
+                    Text("Do one more rep than last time")
                         .font(.caption.weight(.regular))
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                 }
-                
+                Spacer()
                 SignInWithApple(isLoggingIn: isLoggingIn)
                     .frame(height: 32)
                     .padding(.horizontal, 32)
+                    .padding(.bottom, 32)
             }
         }
     }
