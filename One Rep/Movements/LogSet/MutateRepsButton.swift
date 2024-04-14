@@ -21,7 +21,7 @@ struct MutateRepsButton: View {
         } label: {
             Image(systemName: icon)
                 .foregroundColor(color)
-                .font(.body.weight(.bold))
+                .font(.title3.weight(.bold))
         }
     }
 }
