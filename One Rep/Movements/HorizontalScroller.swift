@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HorizontalScroller: View {
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     @Binding var muscleSelection: String
     @State var muscleGroups = ["All", Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
@@ -24,41 +24,33 @@ struct HorizontalScroller: View {
                         muscleSelection = muscleGroup
                     } label: {
                         HStack {
-                            Text(muscleGroup)
-                                .padding(.trailing, 16)
-                            if muscleGroup == "All" {
-                                Image(systemName: Icons.Infinity.description)
-                                    .font(.body.weight(.bold))
-                            } else {
-                                Image(muscleGroup.lowercased())
-                                    .font(.body.weight(.regular))
+                            HStack {
+                                if muscleGroup == "All" {
+                                    Image(systemName: Icons.Infinity.description)
+                                        .font(.caption.weight(.bold))
+                                        .padding(.trailing, 16)
+                                } else {
+                                    Image(muscleGroup.lowercased())
+                                        .font(.caption.weight(.regular))
+                                        .padding(.trailing, 16)
+                                }
                             }
+                            .foregroundColor(muscleSelection == muscleGroup ? Color(theme.BaseColor) : Color(theme.BaseColor).opacity(0.2))
+                            Text(muscleGroup)
+                                .foregroundColor(muscleSelection == muscleGroup ? .primary : .secondary.opacity(0.5))
                         }
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 16)
-                        .foregroundColor(muscleSelection == muscleGroup ? Color(themeColor.Base) : Color(themeColor.Base).opacity(0.3))
-                        .customFont(size: .body, weight: .semibold, kerning: 1, design: .rounded)
-                        .background(Color(themeColor.BackgroundElement))
-                        .cornerRadius(16)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(muscleSelection == muscleGroup ? .linearGradient(colors: [
-                                    Color(themeColor.BaseLight),
-                                    Color(themeColor.Base),
-                                    Color(themeColor.BaseDark)
-                                ], startPoint: .topLeading, endPoint: .bottomTrailing) : .linearGradient(colors: [
-                                    .clear
-                                ], startPoint: .top, endPoint: .bottom), lineWidth: 5)
-                        )
-                        .cornerRadius(16)
-                        .shadow(color: .black.opacity(0.1), radius: 5, x: 3, y: 3)
+                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                     }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 16)
+                    .background(muscleSelection == muscleGroup ? Color(theme.BackgroundElementColor) : Color(theme.BackgroundElementColor).opacity(0.3))
+                    .cornerRadius(16)
                 }
             }
-            .padding(16)
-            .onChange(of: muscleSelection) { newValue, _ in
-                HapticManager.instance.impact(style: .soft)
-            }
+        }
+        .padding(.horizontal, 16)
+        .onChange(of: muscleSelection) { newValue, _ in
+            HapticManager.instance.impact(style: .soft)
         }
     }
 }

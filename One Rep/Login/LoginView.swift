@@ -14,7 +14,7 @@ struct LoginView: View {
     
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     @State private var email = ""
     @State private var password = ""
@@ -26,7 +26,7 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color(themeColor.Background)
+            Color(theme.BackgroundColor)
                 .ignoresSafeArea()
             VStack {
                 Spacer()

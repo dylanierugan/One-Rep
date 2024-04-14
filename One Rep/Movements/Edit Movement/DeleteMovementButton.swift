@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeleteMovementButton: View {
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     @Binding var deleteConfirmedClicked: Bool
     @Binding var showingDeleteMovementAlert: Bool
     
@@ -26,7 +26,7 @@ struct DeleteMovementButton: View {
             .foregroundColor(.primary)
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
-            .background(Color(themeColor.BackgroundElement))
+            .background(Color(theme.BackgroundElementColor))
             .cornerRadius(16)
         }
         /// Alert to delete movement (asks for confirmation)

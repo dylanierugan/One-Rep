@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ThemesView: View {
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Appearance")
-                .customFont(size: .caption, weight: .regular, kerning: 1, design: .rounded)
+                .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary.opacity(0.5))
             VStack(alignment: .leading) {
                 HStack(spacing: 24) {
@@ -24,7 +24,7 @@ struct ThemesView: View {
                 }
                 .padding(16)
             }
-            .background(Color(themeColor.BackgroundElement))
+            .background(Color(theme.BackgroundElementColor))
             .cornerRadius(16)
         }
         .padding(.horizontal, 16)
@@ -33,7 +33,7 @@ struct ThemesView: View {
 
 struct ColorButton: View {
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var themeColor: ThemeModel
     var stringColor: String
     var base: String
     var baseLight: String
@@ -56,7 +56,7 @@ struct ColorButton: View {
                 ], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(themeColor.accent == stringColor ? Color(.white) : Color.clear, lineWidth: 3)
+                        .stroke(themeColor.accent == stringColor ?  .primary : Color.clear, lineWidth: 3)
                 )
         }
     }

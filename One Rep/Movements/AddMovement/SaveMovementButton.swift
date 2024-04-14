@@ -10,7 +10,7 @@ import SwiftUI
 struct SaveMovementButton: View {
     
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     @State var addMovementClicked = false
     var isFormValid: Bool
@@ -27,26 +27,25 @@ struct SaveMovementButton: View {
         } label: {
             HStack {
                 Text("Add Movement")
-                    .foregroundColor(isFormValid ? Color(themeColor.Base): Color.secondary)
-                    .customFont(size: .body, weight: .regular, kerning: 1, design: .rounded)
+                    .foregroundColor(isFormValid ? Color(theme.BaseColor): Color.secondary)
+                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                 if addMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.SquareAndPencil.description)
-                        .foregroundColor(isFormValid ? Color(themeColor.Base): Color.secondary)
-                        .font(.body.weight(.medium))
+                        .foregroundColor(isFormValid ? Color(theme.BaseColor): Color.secondary)
+                        .font(.body.weight(.regular))
                 }
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(isFormValid ? .linearGradient(colors: [
-                Color(themeColor.BaseLight).opacity(0.1),
-                Color(themeColor.Base).opacity(0.1),
-                Color(themeColor.BaseDark.description).opacity(0.1)
-            ], startPoint: .topLeading, endPoint: .bottomTrailing) :
+                Color(theme.BaseLightColor).opacity(0.1),
+                Color(theme.BaseColor).opacity(0.1),
+            ], startPoint: .top, endPoint: .bottom) :
                     .linearGradient(colors: [
-                        Color(themeColor.BackgroundElement)
+                        .clear
                     ], startPoint: .topLeading, endPoint: .bottomTrailing))
             .cornerRadius(16)
         }

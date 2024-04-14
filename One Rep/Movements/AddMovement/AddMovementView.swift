@@ -13,7 +13,7 @@ struct AddMovementView: View {
     @ObservedRealmObject var movement: Movement = Movement()
     @ObservedRealmObject var movementModel: MovementViewModel
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     @State private var movementName = ""
     @State private var muscleGroup = Muscles.Arms.description
@@ -29,15 +29,15 @@ struct AddMovementView: View {
     
     var body: some View {
         ZStack {
-            Color(themeColor.Background)
+            Color(theme.BackgroundColor)
                 .ignoresSafeArea()
             
             VStack(spacing: 36) {
                 /// Movement name textfield
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Movement Name")
-                        .customFont(size: .caption, weight: .regular, kerning: 1, design: .rounded)
-                        .foregroundColor(.secondary).opacity(0.5)
+                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                        .foregroundColor(.secondary)
                     MovementNameTextField(text: "", binding: $movementName, focus: true)
                 }
                 .padding(.horizontal, 16)
@@ -45,8 +45,8 @@ struct AddMovementView: View {
                 /// Muscle group picker wheel
                 VStack(alignment: .leading,  spacing: 4) {
                     Text("Muscle Group")
-                        .customFont(size: .caption, weight: .regular, kerning: 1.2, design: .rounded)
-                        .foregroundColor(.secondary).opacity(0.5)
+                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                        .foregroundColor(.secondary)
                     MusclePicker(muscles: muscles, muscleGroup: $muscleGroup)
                 }
                 .padding(.horizontal, 16)

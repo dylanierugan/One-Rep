@@ -5,21 +5,15 @@
 //  Created by Dylan Ierugan on 4/4/24
 //
 
+import Combine
 import SwiftUI
 
 struct Demo: View {
     
-    @State var activateGlassMorphism: Bool = false
     var body: some View {
-        VStack {
-            
-        }
-        .
+        VStack {}
     }
-
 }
-
-
 
 #Preview {
     Demo()

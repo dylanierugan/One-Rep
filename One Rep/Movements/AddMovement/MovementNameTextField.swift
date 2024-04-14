@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovementNameTextField: View {
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     var text: String
     @Binding var binding: String
@@ -21,7 +21,7 @@ struct MovementNameTextField: View {
             TextField(text, text: $binding)
                 .font(.body.weight(.regular))
                 .padding(12)
-                .background(Color(themeColor.BackgroundElement))
+                .background(Color(theme.BackgroundElementColor))
                 .cornerRadius(16)
                 .textInputAutocapitalization(.words)
                 .accentColor(.green)

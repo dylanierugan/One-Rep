@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MusclePicker: View {
     
-    @EnvironmentObject var themeColor: ThemeColorModel
+    @EnvironmentObject var theme: ThemeModel
     
     var muscles: [String]
     @Binding var muscleGroup: String
@@ -19,13 +19,11 @@ struct MusclePicker: View {
             ForEach(muscles, id: \.self) {
                 Text($0)
                     .customFont(size: .body, weight: .medium, kerning: 1, design: .rounded)
+                    .foregroundColor(.primary)
             }
         }
         .pickerStyle(.wheel)
-        .overlay(
-        RoundedRectangle(cornerRadius: 12)
-            .stroke(Color(themeColor.BackgroundElement), lineWidth: 5)
-            .allowsHitTesting(false))
+        .background(Color(theme.BackgroundElementColor))
         .cornerRadius(12)
     }
 }

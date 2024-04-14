@@ -12,18 +12,18 @@ struct SettingsView: View {
     
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var theme: ThemeModel
     
     var body: some View {
         
         NavigationView {
+            ZStack {
+                Color(theme.BackgroundColor)
+                    .ignoresSafeArea()
+                
                 ScrollView {
-                    
-                    Spacer()
-                    
                     ThemesView()
-                    
                     Text(app.currentUser?.profile.email ?? "No user")
-                    
                     Button {
                         app.currentUser?.logOut { (error) in
                             if error != nil {
@@ -39,8 +39,9 @@ struct SettingsView: View {
                     } label: {
                         Text("Log Out")
                     }
-                    Spacer()
                 }
             }
+            .navigationTitle("Settings")
+        }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddMovementCardButton: View {
     
+    @EnvironmentObject var theme: ThemeModel
     @Binding var showAddMovementPopup: Bool
     
     var body: some View {
@@ -16,34 +17,10 @@ struct AddMovementCardButton: View {
             showAddMovementPopup = true
         } label: {
             HStack {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Image(systemName: Icons.Plus.description)
-                                    .font(Font.body.weight(.medium))
-                                    .foregroundColor(.secondary.opacity(0.5))
-                                Text("New Movement")
-                                    .customFont(size: .body, weight: .medium, kerning: 1, design: .rounded)
-                                    .foregroundColor(.secondary.opacity(0.5))
-                            }
-                            Spacer()
-                        }
-                        Spacer()
-                    }
-                }
-                Spacer()
+                Image(systemName: Icons.Plus.description)
+                    .font(.body.bold())
+                    .foregroundStyle(.primary)
             }
-            .frame(height: 70)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(style: StrokeStyle(lineWidth: 2, dash: [6]))
-                    .foregroundColor(.secondary.opacity(0.6))
-                    .opacity(0.4)
-            )
-            .padding(.horizontal, 16)
         }
     }
 }

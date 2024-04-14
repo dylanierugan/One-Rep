@@ -32,29 +32,35 @@ enum ErrorMessage: CustomStringConvertible {
 enum Colors: CustomStringConvertible {
     case BackgroundElementColor
     case BackgroundColor
+    case BlueBase
     case Green
     case GreenBase
     case GreenCyan
     case GreenNeon
+    case OrangeBase
     case Pink
     case PinkBase
     case PinkLight
     case PinkPurple
     case SecondaryBackgroundColor
+    case YellowBase
     
     var description : String {
         switch self {
         case .BackgroundElementColor: return "BackgroundElementColor"
         case .BackgroundColor: return "BackgroundColor"
+        case .BlueBase: return "BlueBase"
         case .Green: return "Green"
         case .GreenBase: return "GreenBase"
         case .GreenCyan: return "GreenCyan"
         case .GreenNeon: return "GreenNeon"
+        case .OrangeBase: return "OrangeBase"
         case .Pink: return "Pink"
         case .PinkBase: return "PinkBase"
         case .PinkLight: return "PinkLight"
         case .PinkPurple: return "PinkPurple"
         case .SecondaryBackgroundColor: return "SecondaryBackgroundColor"
+        case .YellowBase: return "YellowBase"
         }
     }
 }
@@ -83,6 +89,7 @@ enum Icons: CustomStringConvertible {
     case HeartFill
     case Infinity
     case InfoCircle
+    case Minus
     case MinusCircleFill
     case NoteTextBadgePlus
     case ListBullet
@@ -129,6 +136,7 @@ enum Icons: CustomStringConvertible {
         case .HeartFill: return "heart.fill"
         case .Infinity: return "infinity"
         case .InfoCircle: return "info.circle"
+        case .Minus: return "minus"
         case .MinusCircleFill: return "minus.circle.fill"
         case .NoteTextBadgePlus: return "note.text.badge.plus"
         case .ListBullet: return "list.bullet.rectangle.portrait.fill"
