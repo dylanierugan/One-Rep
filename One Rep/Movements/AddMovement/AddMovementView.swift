@@ -31,18 +31,17 @@ struct AddMovementView: View {
         ZStack {
             Color(theme.BackgroundColor)
                 .ignoresSafeArea()
-            
+        
             VStack(spacing: 36) {
-                /// Movement name textfield
+                
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Movement Name")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MovementNameTextField(text: "", binding: $movementName, focus: true)
+                    MovementNameTextField(text: "", movementName: $movementName, focus: true)
                 }
                 .padding(.horizontal, 16)
                 
-                /// Muscle group picker wheel
                 VStack(alignment: .leading,  spacing: 4) {
                     Text("Muscle Group")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -51,8 +50,7 @@ struct AddMovementView: View {
                 }
                 .padding(.horizontal, 16)
                 
-                /// Add movement button
-                SaveMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
+                AddMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
             }
         }
     }

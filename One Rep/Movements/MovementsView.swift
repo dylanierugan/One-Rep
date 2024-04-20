@@ -41,7 +41,7 @@ struct MovementsView: View {
                         HorizontalScroller(muscleSelection: $menuSelection)
                         ForEach(filteredMovements) { movement in
                             if (movement.muscleGroup == menuSelection) || (menuSelection == "All") {
-                                MovementCardButton(movement: movement, selectedMovement: $selectedMovement)
+                                MovementCardButton(movementModel: movementModel, movement: movement, selectedMovement: $selectedMovement)
                             }
                         }
                     }
@@ -87,4 +87,13 @@ extension UINavigationController {
         navigationBar.standardAppearance = appearance
         navigationBar.compactAppearance = appearance
     }
+}
+
+extension UINavigationController {
+
+  open override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    navigationBar.topItem?.backButtonDisplayMode = .minimal
+  }
+
 }

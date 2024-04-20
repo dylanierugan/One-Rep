@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LogSetButton: View {
     
-    @EnvironmentObject var theme: ThemeModel
     @Binding var setTypeSelection: String
     @Binding var setTypeColor: Color
     
@@ -22,6 +21,9 @@ struct LogSetButton: View {
                     .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
                     .foregroundColor(Color(setTypeColor))
             }
+            .padding(.vertical, 12)
+            .padding(.horizontal, 16)
+            .background(Color(setTypeColor).opacity(0.1))
             .cornerRadius(16)
             .customFont(size: .caption, weight: .medium, kerning: 0, design: .rounded)
             .foregroundColor(.white)

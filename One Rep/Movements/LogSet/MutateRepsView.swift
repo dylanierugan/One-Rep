@@ -15,6 +15,7 @@ struct MutateRepsView: View {
     var color: Color
     @Binding var reps: Int
     @Binding var repsStr: String
+    @FocusState var isInputActive: Bool
     
     var body: some View {
         VStack {
@@ -22,8 +23,8 @@ struct MutateRepsView: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary).opacity(0.7)
             
-            HStack(spacing: 16)  {
-                MutateRepsButton(color: .primary, icon: Icons.MinusCircleFill.description, mutatingValue: -1, mutateRep: mutateReps)
+            HStack(spacing: 8)  {
+                MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
                 
                 TextField("", text: $repsStr)
                     .onChange(of: repsStr) { newText, _ in
@@ -39,8 +40,9 @@ struct MutateRepsView: View {
                     .cornerRadius(10)
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                     .onReceive(Just(reps)) { _ in limitText(3) }
+                    .focused($isInputActive)
                 
-                MutateRepsButton(color: .primary, icon: Icons.PlusCircleFill.description, mutatingValue: 1, mutateRep: mutateReps)
+                MutateRepsButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 1, mutateRep: mutateReps)
             }
         }
     }

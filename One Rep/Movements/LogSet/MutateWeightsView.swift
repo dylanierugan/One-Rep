@@ -13,6 +13,7 @@ struct MutateWeightView: View {
     var color: Color
     @Binding var weight: Double
     @Binding var weightStr: String
+    @FocusState var isInputActive: Bool
     
     var body: some View {
         VStack {
@@ -20,8 +21,8 @@ struct MutateWeightView: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary).opacity(0.7)
             
-            HStack(spacing: 16) {
-                MutateWieghtButton(color: .primary, icon: Icons.MinusCircleFill.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
+            HStack(spacing: 8) {
+                MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
                 
                 TextField("", text: $weightStr)
                     .onChange(of: weightStr) { newText, _ in
@@ -37,26 +38,39 @@ struct MutateWeightView: View {
                     .cornerRadius(10)
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                     .onReceive(Just(weight)) { _ in limitText(5) }
+                    .focused($isInputActive)
                 
-                MutateWieghtButton(color: .primary, icon: Icons.PlusCircleFill.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
                 
             }
         }
     }
     
-    
     func mutateWeight(_ mutatingValue: Double) {
-        if weight > 0 || weight < 999 {
+        if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
             weight += mutatingValue
-            weightStr = String(format: "%.1f", weight)
+            updateWeightString()
         }
     }
-    
+
     func bindValues() {
         if let value = Double(weightStr) {
             weight = value
+            updateWeightString()
         } else {
-            weightStr = String(format: "%.00f", weight)
+            weightStr = formatWeightString(weight)
+        }
+    }
+
+    private func updateWeightString() {
+        weightStr = formatWeightString(weight)
+    }
+
+    private func formatWeightString(_ weight: Double) -> String {
+        if weight.truncatingRemainder(dividingBy: 1) == 0 {
+            return String(format: "%.0f", weight)
+        } else {
+            return String(format: "%.1f", weight)
         }
     }
     

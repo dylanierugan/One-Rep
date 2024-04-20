@@ -11,6 +11,8 @@ import RealmSwift
 struct MovementCardButton: View {
     
     @EnvironmentObject var theme: ThemeModel
+    @ObservedRealmObject var movementModel: MovementViewModel
+
     
     var movement: Movement
     @Binding var selectedMovement: Movement?
@@ -18,7 +20,7 @@ struct MovementCardButton: View {
     var body: some View {
         ZStack(alignment: .trailing) {
             NavigationLink {
-                LogSetView()
+                MovementSetView(movementModel: movementModel, movement: movement)
             } label: {
                 HStack {
                     HStack(spacing: 16) {

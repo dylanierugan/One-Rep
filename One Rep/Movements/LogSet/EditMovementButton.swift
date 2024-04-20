@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct EditMovementButton: View {
+    
+    @Binding var showEditMovementPopup: Bool
+    
     var body: some View {
         Button {
-            
+            showEditMovementPopup.toggle()
         } label: {
             HStack {
                 Image(systemName: Icons.RectangleAndPencilAndEllipsis.description)

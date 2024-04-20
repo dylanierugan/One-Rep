@@ -18,15 +18,14 @@ struct DeleteMovementButton: View {
             showingDeleteMovementAlert = true
         } label: {
             HStack {
-                Text("Delete Movement")
-                    .font(.body.weight(.regular))
+                Text("Delete")
                 Image(systemName: Icons.Trash.description)
-                    .font(.body.weight(.medium))
             }
-            .foregroundColor(.primary)
+            .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+            .foregroundColor(.red)
             .padding(.vertical, 12)
-            .padding(.horizontal, 16)
-            .background(Color(theme.BackgroundElementColor))
+            .padding(.horizontal, 32)
+            .background(Color(.red).opacity(0.1))
             .cornerRadius(16)
         }
         /// Alert to delete movement (asks for confirmation)
