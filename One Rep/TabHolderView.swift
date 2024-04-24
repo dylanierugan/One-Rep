@@ -10,21 +10,16 @@ import RealmSwift
 
 struct TabHolderView: View {
     
+    // MARK: - ObservedResults
+    
     @ObservedResults(MovementViewModel.self) var movementsCollection
     
-    @State var loadingUser = true
-    @State var showUserError = false
-    @State var loadingMovementData = true
-    @State var loadingRoutineData = true
-    @State var showLoadDataError = false
-    @State var movementsLoading = true
-    @State var showMovementLoadingError = true
-    @State var movementLoadingErrorMessage = ""
-    @State var errorMessage = ""
+    // MARK: - View
     
     var body: some View {
-        /// TabView holds 2 tabs: Movements and Settings
+        /// Initialize movements
         if let movements = movementsCollection.first {
+            /// TabView holds 2 tabs: Movements and Settings
             TabView() {
                 MovementsView(movementModel: movements)
                     .tabItem {
@@ -44,5 +39,4 @@ struct TabHolderView: View {
                 }
         }
     }
-    
 }

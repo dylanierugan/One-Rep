@@ -9,11 +9,17 @@ import SwiftUI
 
 struct EditMovementButton: View {
     
+    // MARK: - Varibles
+    
     @Binding var showEditMovementPopup: Bool
+    @Binding var showDoneToolBar: Bool
+    
+    // MARK: - View
     
     var body: some View {
         Button {
             showEditMovementPopup.toggle()
+            showDoneToolBar = false
         } label: {
             HStack {
                 Image(systemName: Icons.RectangleAndPencilAndEllipsis.description)

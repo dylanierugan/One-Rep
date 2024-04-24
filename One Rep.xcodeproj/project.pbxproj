@@ -45,12 +45,10 @@
 		37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6556E2BC60D4700B96BEB /* MutateWeightsView.swift */; };
 		37A655712BC60DFF00B96BEB /* SetTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655702BC60DFF00B96BEB /* SetTypeButton.swift */; };
 		37A655732BC60E1400B96BEB /* SetTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655722BC60E1400B96BEB /* SetTypePicker.swift */; };
-		37A655752BC60E2800B96BEB /* ManualLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655742BC60E2800B96BEB /* ManualLogButton.swift */; };
 		37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655762BC60E4400B96BEB /* EditMovementButton.swift */; };
 		37A655792BC60E5D00B96BEB /* LogSetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655782BC60E5D00B96BEB /* LogSetButton.swift */; };
 		37A6557B2BC6206700B96BEB /* BodyWeightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6557A2BC6206700B96BEB /* BodyWeightButton.swift */; };
 		37C70C2E2BD4504E00B0375A /* UpdateMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */; };
-		37C70C302BD453EE00B0375A /* MuscleCircleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C2F2BD453EE00B0375A /* MuscleCircleIcon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,12 +90,10 @@
 		37A6556E2BC60D4700B96BEB /* MutateWeightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutateWeightsView.swift; sourceTree = "<group>"; };
 		37A655702BC60DFF00B96BEB /* SetTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTypeButton.swift; sourceTree = "<group>"; };
 		37A655722BC60E1400B96BEB /* SetTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTypePicker.swift; sourceTree = "<group>"; };
-		37A655742BC60E2800B96BEB /* ManualLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLogButton.swift; sourceTree = "<group>"; };
 		37A655762BC60E4400B96BEB /* EditMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovementButton.swift; sourceTree = "<group>"; };
 		37A655782BC60E5D00B96BEB /* LogSetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSetButton.swift; sourceTree = "<group>"; };
 		37A6557A2BC6206700B96BEB /* BodyWeightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightButton.swift; sourceTree = "<group>"; };
 		37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMovementButton.swift; sourceTree = "<group>"; };
-		37C70C2F2BD453EE00B0375A /* MuscleCircleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleCircleIcon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +137,6 @@
 				37A655312BA745A300B96BEB /* Login */,
 				37A655332BA745CF00B96BEB /* Movements */,
 				37A655342BA745D400B96BEB /* Settings */,
-				37C70C2F2BD453EE00B0375A /* MuscleCircleIcon.swift */,
 				37A655322BA745C700B96BEB /* Models */,
 				37A6555E2BC1B94000B96BEB /* Modifiers */,
 				37A6550D2BA5385800B96BEB /* Assets.xcassets */,
@@ -244,7 +239,6 @@
 				37A655702BC60DFF00B96BEB /* SetTypeButton.swift */,
 				37A655722BC60E1400B96BEB /* SetTypePicker.swift */,
 				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
-				37A655742BC60E2800B96BEB /* ManualLogButton.swift */,
 				37A6557A2BC6206700B96BEB /* BodyWeightButton.swift */,
 				37A655782BC60E5D00B96BEB /* LogSetButton.swift */,
 			);
@@ -329,7 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
-				37A655752BC60E2800B96BEB /* ManualLogButton.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,
@@ -349,7 +342,6 @@
 				37A655542BB30E1200B96BEB /* HapticManager.swift in Sources */,
 				37A655792BC60E5D00B96BEB /* LogSetButton.swift in Sources */,
 				37A655452BAA965C00B96BEB /* MusclePicker.swift in Sources */,
-				37C70C302BD453EE00B0375A /* MuscleCircleIcon.swift in Sources */,
 				37A655472BAA98AC00B96BEB /* AddMovementButton.swift in Sources */,
 				37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */,
 				37A655642BC1F00A00B96BEB /* ThemeModel.swift in Sources */,

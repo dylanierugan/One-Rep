@@ -10,12 +10,17 @@ import RealmSwift
 
 struct MovementCardButton: View {
     
-    @EnvironmentObject var theme: ThemeModel
-    @ObservedRealmObject var movementModel: MovementViewModel
-
+    // MARK: - Variables
     
-    var movement: Movement
+    @EnvironmentObject var theme: ThemeModel
+    
+    @ObservedRealmObject var movementModel: MovementViewModel
+    
     @Binding var selectedMovement: Movement?
+
+    var movement: Movement
+    
+    // MARK: - View
     
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -27,12 +32,12 @@ struct MovementCardButton: View {
                         ZStack {
                             Circle()
                                 .frame(width: 36, height: 36)
-                                .foregroundStyle(Color(theme.BaseColor).opacity(0.1))
+                                .foregroundStyle(Color(theme.lightBaseColor).opacity(0.1))
                             Image(movement.muscleGroup.lowercased())
                                 .font(.body.weight(.regular))
                                 .foregroundStyle(.linearGradient(colors: [
-                                    Color(theme.BaseLightColor),
-                                    Color(theme.BaseColor)
+                                    Color(theme.lightBaseColor),
+                                    Color(theme.darkBaseColor)
                                 ], startPoint: .top, endPoint: .bottom))
                         }
                         Text(movement.name)
@@ -42,7 +47,7 @@ struct MovementCardButton: View {
                     }
                     Spacer()
                     Image(systemName: Icons.ChevronForward.description)
-                        .font(.caption.weight(.regular))
+                        .font(.caption.weight(.bold))
                         .foregroundColor(.secondary)
                 }
                 .padding(20)

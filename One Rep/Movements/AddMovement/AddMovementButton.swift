@@ -9,13 +9,18 @@ import SwiftUI
 
 struct AddMovementButton: View {
     
-    @Environment(\.dismiss) private var dismiss
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
+    @Environment(\.dismiss) private var dismiss
     
     @State var addMovementClicked = false
+    
     var isFormValid: Bool
     
     var addMovementToRealm: () -> Void
+    
+    // MARK: - View
     
     var body: some View {
         Button {
@@ -27,25 +32,25 @@ struct AddMovementButton: View {
         } label: {
             HStack {
                 Text("Add Movement")
-                    .foregroundColor(isFormValid ? Color(theme.BaseColor): Color.secondary)
-                    .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
+                    .foregroundColor(isFormValid ? Color(theme.lightBaseColor): Color.secondary)
+                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                 if addMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.SquareAndPencil.description)
-                        .foregroundColor(isFormValid ? Color(theme.BaseColor): Color.secondary)
-                        .font(.caption.weight(.regular))
+                        .foregroundColor(isFormValid ? Color(theme.lightBaseColor): Color.secondary)
+                        .font(.body.weight(.regular))
                 }
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(isFormValid ? .linearGradient(colors: [
-                Color(theme.BaseLightColor).opacity(0.1),
-                Color(theme.BaseColor).opacity(0.1),
+                Color(theme.lightBaseColor).opacity(0.1),
+                Color(theme.darkBaseColor).opacity(0.1),
             ], startPoint: .top, endPoint: .bottom) :
                     .linearGradient(colors: [
-                        .clear
+                        .secondary.opacity(0.1)
                     ], startPoint: .topLeading, endPoint: .bottomTrailing))
             .cornerRadius(16)
         }

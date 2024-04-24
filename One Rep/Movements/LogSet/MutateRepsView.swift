@@ -10,12 +10,18 @@ import SwiftUI
 
 struct MutateRepsView: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
     
-    var color: Color
     @Binding var reps: Int
     @Binding var repsStr: String
+    
     @FocusState var isInputActive: Bool
+    
+    var color: Color
+    
+    // MARK: - View
     
     var body: some View {
         VStack {
@@ -24,7 +30,7 @@ struct MutateRepsView: View {
                 .foregroundColor(.secondary).opacity(0.7)
             
             HStack(spacing: 8)  {
-                MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
+                MutateRepsButton(color: .primary.opacity(0.75), icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
                 
                 TextField("", text: $repsStr)
                     .onChange(of: repsStr) { newText, _ in
@@ -42,19 +48,21 @@ struct MutateRepsView: View {
                     .onReceive(Just(reps)) { _ in limitText(3) }
                     .focused($isInputActive)
                 
-                MutateRepsButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 1, mutateRep: mutateReps)
+                MutateRepsButton(color: .primary.opacity(0.75), icon: Icons.Plus.description, mutatingValue: 1, mutateRep: mutateReps)
             }
         }
     }
     
-    func mutateReps(_ mutatingValue: Int) {
+    // MARK: - Functions
+    
+    private func mutateReps(_ mutatingValue: Int) {
         if reps > 0 || reps < 999 {
             reps += mutatingValue
             repsStr = String(reps)
         }
     }
     
-    func bindValues() {
+    private func bindValues() {
         if let value = Int(repsStr) {
             reps = value
         } else {
@@ -62,7 +70,7 @@ struct MutateRepsView: View {
         }
     }
     
-    func limitText(_ upper: Int) {
+    private func limitText(_ upper: Int) {
         if repsStr.count > upper {
             repsStr = String(repsStr.prefix(upper))
         }

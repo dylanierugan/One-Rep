@@ -9,10 +9,14 @@ import SwiftUI
 
 struct MutateRepsButton: View {
     
+    // MARK: - Variables
+    
     var color: Color
     var icon: String
     var mutatingValue: Int
     var mutateRep:(Int) -> Void
+    
+    // MARK: - View
     
     var body: some View {
         Button {

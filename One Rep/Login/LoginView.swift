@@ -12,6 +12,8 @@ import AuthenticationServices
 
 struct LoginView: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var theme: ThemeModel
@@ -19,10 +21,10 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var isSecure = true
-    @State var isLoggingIn = false
-    @State var showResetPassword = false
+    @State private var isLoggingIn = false
+    @State private var showResetPassword = false
     
-    // MARK: - Views
+    // MARK: - View
     
     var body: some View {
         ZStack {

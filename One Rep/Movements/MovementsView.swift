@@ -11,16 +11,19 @@ import UIKit
 
 struct MovementsView: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
+    
     @ObservedRealmObject var movementModel: MovementViewModel
     
-    @State private var showAddMovementPopup = false
-    @State private var selectedMovement: Movement?
-    @State private var menuSelection = "All"
     @State private var searchText = ""
+    @State private var menuSelection = "All"
+    @State private var selectedMovement: Movement?
+    @State private var showAddMovementPopup = false
 
     /// Search Bar
-    var filteredMovements: Results<Movement> {
+    private var filteredMovements: Results<Movement> {
         if searchText.isEmpty {
             return movementModel.movements.sorted(by: \Movement.name, ascending: true)
         } else {
@@ -30,6 +33,8 @@ struct MovementsView: View {
             return filteredMovements
         }
     }
+    
+    // MARK: - View
     
     var body: some View {
         NavigationView {            
@@ -41,7 +46,7 @@ struct MovementsView: View {
                         HorizontalScroller(muscleSelection: $menuSelection)
                         ForEach(filteredMovements) { movement in
                             if (movement.muscleGroup == menuSelection) || (menuSelection == "All") {
-                                MovementCardButton(movementModel: movementModel, movement: movement, selectedMovement: $selectedMovement)
+                                MovementCardButton(movementModel: movementModel, selectedMovement: $selectedMovement, movement: movement)
                             }
                         }
                     }
@@ -61,6 +66,9 @@ struct MovementsView: View {
     }
 }
 
+// MARK: - Extensions
+
+/// Allows for custom font on the navigation title
 extension UINavigationController {
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -89,11 +97,10 @@ extension UINavigationController {
     }
 }
 
+/// Removes navigation back buttont text
 extension UINavigationController {
-
   open override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     navigationBar.topItem?.backButtonDisplayMode = .minimal
   }
-
 }

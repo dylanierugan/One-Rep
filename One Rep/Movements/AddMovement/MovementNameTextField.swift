@@ -9,12 +9,19 @@ import SwiftUI
 
 struct MovementNameTextField: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
     
-    var text: String
-    @Binding var movementName: String
-    @FocusState var isFocused: Bool
     @State var focus: Bool
+    
+    @Binding var movementName: String
+    
+    @FocusState var isFocused: Bool
+    
+    var text: String
+    
+    // MARK: - View
 
     var body: some View {
         ZStack {
@@ -24,7 +31,7 @@ struct MovementNameTextField: View {
                 .background(Color(theme.BackgroundElementColor))
                 .cornerRadius(16)
                 .textInputAutocapitalization(.words)
-                .accentColor(Color(theme.BaseColor))
+                .accentColor(Color(theme.lightBaseColor))
                 .focused($isFocused)
                 .task {
                     if focus {
@@ -45,5 +52,3 @@ struct MovementNameTextField: View {
         }
     }
 }
-
-

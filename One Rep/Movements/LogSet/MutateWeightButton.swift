@@ -9,10 +9,14 @@ import SwiftUI
 
 struct MutateWieghtButton: View {
     
+    // MARK: - Variables
+    
     var color: Color
     var icon: String
     var mutatingValue: Double
     var mutateWeight:(Double) -> Void
+    
+    // MARK: - View
     
     var body: some View {
         Button {

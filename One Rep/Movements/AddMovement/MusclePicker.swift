@@ -9,10 +9,15 @@ import SwiftUI
 
 struct MusclePicker: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
     
-    var muscles: [String]
     @Binding var muscleGroup: String
+    
+    var muscles: [String]
+    
+    // MARK: - View
     
     var body: some View {
         Picker("Muscle Group", selection: $muscleGroup) {

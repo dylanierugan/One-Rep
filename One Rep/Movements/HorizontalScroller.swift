@@ -9,13 +9,17 @@ import SwiftUI
 
 struct HorizontalScroller: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var muscleSelection: String
-    @State var muscleGroups = ["All", Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    
+    var muscleGroups = ["All", Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    
+    // MARK: - View
     
     var body: some View {
-        
         /// Horizontal scrollview to allow for muscle group selection
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
@@ -35,7 +39,7 @@ struct HorizontalScroller: View {
                                         .padding(.trailing, 16)
                                 }
                             }
-                            .foregroundColor(muscleSelection == muscleGroup ? Color(theme.BaseColor) : Color(theme.BaseColor).opacity(0.2))
+                            .foregroundColor(muscleSelection == muscleGroup ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor).opacity(0.2))
                             Text(muscleGroup)
                                 .foregroundColor(muscleSelection == muscleGroup ? .primary : .secondary.opacity(0.5))
                         }

@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ThemesView: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - View
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,8 +22,8 @@ struct ThemesView: View {
                 .foregroundColor(.secondary.opacity(0.5))
             VStack(alignment: .leading) {
                 HStack(spacing: 24) {
-                    ColorButton(stringColor: Colors.Green.description, base: Colors.GreenBase.description, baseLight: Colors.GreenNeon.description, baseDark: Colors.GreenCyan.description)
-                    ColorButton(stringColor: Colors.Pink.description, base: Colors.PinkBase.description, baseLight: Colors.PinkLight.description, baseDark: Colors.PinkPurple.description)
+                    ColorButton(stringColor: Colors.LightGreen.description, darkBase: Colors.LightGreen.description, lightBase: Colors.DarkGreen.description)
+                    ColorButton(stringColor: Colors.LightPink.description, darkBase: Colors.DarkPink.description, lightBase: Colors.LightPink.description)
                     Spacer()
                 }
                 .padding(16)
@@ -32,16 +36,19 @@ struct ThemesView: View {
 }
 
 struct ColorButton: View {
+    // MARK: - Variables
     
     @EnvironmentObject var themeColor: ThemeModel
+    
     var stringColor: String
-    var base: String
-    var baseLight: String
-    var baseDark: String
+    var darkBase: String
+    var lightBase: String
+    
+    // MARK: - View
     
     var body: some View {
         Button {
-            // Set choice in defaults
+            /// Set choice in defaults
             UserDefaults.standard.set(stringColor, forKey: DefaultKeys.AccentColor.description)
             themeColor.accent = stringColor
             themeColor.changeColor(color: stringColor)
@@ -50,9 +57,8 @@ struct ColorButton: View {
                 .frame(width: 24, height: 24)
                 .cornerRadius(8)
                 .foregroundStyle(.linearGradient(colors: [
-                    Color(base),
-                    Color(baseLight),
-                    Color(baseDark)
+                    Color(lightBase),
+                    Color(darkBase)
                 ], startPoint: .topLeading, endPoint: .bottomTrailing))
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)

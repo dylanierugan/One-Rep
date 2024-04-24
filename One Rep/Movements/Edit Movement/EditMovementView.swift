@@ -10,30 +10,24 @@ import RealmSwift
 
 struct EditMovementView: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
+    @Environment(\.realm) var realm
+    
+    @ObservedRealmObject var movement: Movement
     @ObservedRealmObject var movementModel: MovementViewModel
     
-    @Binding var movement: Movement
-    @State var newMovementName = ""
-    private var isFormValid: Bool {
-        !newMovementName.isEmpty && newMovementName != movement.name
-    }
-    
+    @State private var newMovementName = ""
     @State private var newMuscleGroup = ""
-    var muscles = [Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
-    
     @State private var deleteConfirmedClicked = false
     @State private var showingDeleteMovementAlert = false
     
-    func updateMovementInRealm() {
-//        if let movement = movementViewModel[0].movements.first(where: {$0.id == movement.id}) {
-//            let realm = try! Realm()
-//            try! realm.write {
-//                movement.thaw()?.name = newMovementName
-//                movement.thaw()?.muscleGroup = newMuscleGroup
-//            }
-//        }
-    }
+    @Binding var showDoneToolBar: Bool
+    
+    var muscles = [Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    
+    // MARK: - View
     
     var body: some View {
         ZStack {
@@ -49,7 +43,7 @@ struct EditMovementView: View {
                     Text("Edit name")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MovementNameTextField(text: movement.name, movementName: $newMovementName, focus: false)
+                    MovementNameTextField(focus: false, movementName: $newMovementName, text: movement.name)
                 }
                 .padding(.horizontal, 16)
                 
@@ -57,20 +51,50 @@ struct EditMovementView: View {
                     Text("Edit muscle group")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MusclePicker(muscles: muscles, muscleGroup: $newMuscleGroup)
+                    MusclePicker(muscleGroup: $newMuscleGroup, muscles: muscles)
                 }
                 .padding(.horizontal, 16)
                 
                 HStack(spacing: 32) {
-                    DeleteMovementButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteMovementAlert: $showingDeleteMovementAlert)
-                    UpdateMovementButton(isFormValid: isFormValid, updateMovementInRealm: { self.updateMovementInRealm() })
+                    DeleteMovementButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteMovementAlert: $showingDeleteMovementAlert, deleteMovementInRealm: { self.deleteMovementInRealm() })
+                    UpdateMovementButton(updateMovementInRealm: { self.updateMovementInRealm() })
                 }
             }
-            .padding(.top, 36)
+            .padding(.vertical, 24)
         }
         .onAppear {
             newMovementName = movement.name
             newMuscleGroup = movement.muscleGroup
+        }
+        .onDisappear {
+            showDoneToolBar = true
+        }
+    }
+    
+    // MARK: - Functions
+    
+    func updateMovementInRealm() {
+        if let thawedMovement = movement.thaw() {
+            do {
+                try realm.write {
+                    thawedMovement.name = newMovementName
+                    thawedMovement.muscleGroup = newMuscleGroup
+                }
+            } catch  {
+                /// Handle error
+            }
+        }
+    }
+    
+    func deleteMovementInRealm() {
+        if let thawedMovement = movement.thaw() {
+            do {
+                try realm.write {
+                    realm.delete(thawedMovement)
+                }
+            } catch  {
+                /// Handle error
+            }
         }
     }
 }

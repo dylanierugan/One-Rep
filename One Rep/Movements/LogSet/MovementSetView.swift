@@ -10,26 +10,27 @@ import RealmSwift
 
 struct MovementSetView: View {
     
-    @ObservedRealmObject var movementModel: MovementViewModel
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
     
-    @State var movement: Movement
+    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movement: Movement
     
-    @State var reps: Int = 12
-    @State var repsStr = "12"
-    
-    @State var weight: Double = 135
-    @State var weightStr = "135"
-    
-    @State var setTypeSelection = "Working Set"
-    @State var setTypeColor = Color("BlueLight")
-    
-    @State var bodyWeight = 185
-    @State var isBodyWeightSelected = false
+    @State private var reps: Int = 12
+    @State private var repsStr = "12"
+    @State private var weight: Double = 135
+    @State private var weightStr = "135"
+    @State private var setTypeSelection = "Working Set"
+    @State private var setTypeColorDark = Color(Colors.DarkBlue.description)
+    @State private var setTypeColorLight = Color(Colors.LightBlue.description)
+    @State private var isBodyWeightSelected = false
+    @State private var showEditMovementPopup = false
+    @State private var showDoneToolBar = true
     
     @FocusState var isInputActive: Bool
     
-    @State var showEditMovementPopup = false
+    // MARK: - View
     
     var body: some View {
         ZStack {
@@ -39,26 +40,28 @@ struct MovementSetView: View {
                 VStack(alignment: .center, spacing: 16) {
                     HStack {
                         Spacer()
-                        SetTypePicker(setTypeSelection: $setTypeSelection, setTypeColor: $setTypeColor)
+                        SetTypePicker(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight)
                         Spacer()
                     }
                     HStack(spacing: 8) {
-                        MutateWeightView(color: Color(setTypeColor), weight: $weight, weightStr: $weightStr, isInputActive: _isInputActive)
+                        MutateWeightView(weight: $weight, weightStr: $weightStr, isInputActive: _isInputActive, color: Color(setTypeColorLight))
                         if setTypeSelection != "PR" {
                             Spacer()
-                            MutateRepsView(color: Color(setTypeColor), reps: $reps, repsStr: $repsStr, isInputActive: _isInputActive)
+                            MutateRepsView(reps: $reps, repsStr: $repsStr, isInputActive: _isInputActive, color: Color(setTypeColorLight))
                         }
                     }
                     .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button("Done") {
-                                isInputActive = false
+                        if showDoneToolBar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+                                Button("Done") {
+                                    isInputActive = false
+                                }
                             }
                         }
                     }
                     .padding(.horizontal, 24)
-                    LogSetButton(setTypeSelection: $setTypeSelection, setTypeColor: $setTypeColor)
+                    LogSetButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight)
                         .padding(.top, 8)
                 }
                 .padding(.vertical, 24)
@@ -69,15 +72,21 @@ struct MovementSetView: View {
                 Spacer()
             }
             .sheet(isPresented: $showEditMovementPopup) {
-                EditMovementView(movementModel: movementModel, movement: $movement)
+                EditMovementView(movement: movement, movementModel: movementModel, showDoneToolBar: $showDoneToolBar)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    EditMovementButton(showEditMovementPopup: $showEditMovementPopup)
+                    EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
                 }
                 ToolbarItem(placement: .principal) {
-                    HStack {
-                        MuscleCircleIcon(movement: movement, size: 32, font: .caption2.weight(.regular))
+                    HStack(spacing: 14) {
+                        Image(movement.muscleGroup.lowercased())
+                            .font(.caption2)
+                            .frame(width: 4, height: 4)
+                            .foregroundStyle(.linearGradient(colors: [
+                                Color(theme.lightBaseColor),
+                                Color(theme.darkBaseColor)
+                            ], startPoint: .top, endPoint: .bottom))
                         Text(movement.name)
                     }
                 }

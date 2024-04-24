@@ -9,8 +9,13 @@ import SwiftUI
 
 struct BodyWeightButton: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
+    
     @Binding var isBodyWeightSelected: Bool
+    
+    // MARK: - View
     
     var body: some View {
         Button {
@@ -21,14 +26,14 @@ struct BodyWeightButton: View {
             ZStack {
                 Rectangle()
                     .cornerRadius(16)
-                    .foregroundColor(isBodyWeightSelected ? Color(theme.BaseBlue).opacity(0.05) : .secondary.opacity(0.05))
+                    .foregroundColor(isBodyWeightSelected ? Color(theme.darkBlue).opacity(0.05) : .secondary.opacity(0.05))
                     .frame(width: 40, height: 36)
                 
                 HStack {
                     Image(systemName: "figure.stand")
                 }
                 .customFont(size: .caption, weight: .medium, kerning: 0, design: .rounded)
-                .foregroundColor(isBodyWeightSelected ? Color(theme.BaseBlue) : .secondary)
+                .foregroundColor(isBodyWeightSelected ? Color(theme.darkBlue) : .secondary)
             }
         }
     }

@@ -32,35 +32,33 @@ enum ErrorMessage: CustomStringConvertible {
 enum Colors: CustomStringConvertible {
     case BackgroundElementColor
     case BackgroundColor
-    case BlueBase
-    case Green
-    case GreenBase
-    case GreenCyan
-    case GreenNeon
-    case OrangeBase
-    case Pink
-    case PinkBase
-    case PinkLight
-    case PinkPurple
+    case DarkBlue
+    case DarkGreen
+    case DarkOrange
+    case DarkPink
+    case DarkYellow
+    case LightBlue
+    case LightGreen
+    case LightOrange
+    case LightPink
+    case LightYellow
     case SecondaryBackgroundColor
-    case YellowBase
     
     var description : String {
         switch self {
         case .BackgroundElementColor: return "BackgroundElementColor"
         case .BackgroundColor: return "BackgroundColor"
-        case .BlueBase: return "BlueBase"
-        case .Green: return "Green"
-        case .GreenBase: return "GreenBase"
-        case .GreenCyan: return "GreenCyan"
-        case .GreenNeon: return "GreenNeon"
-        case .OrangeBase: return "OrangeBase"
-        case .Pink: return "Pink"
-        case .PinkBase: return "PinkBase"
-        case .PinkLight: return "PinkLight"
-        case .PinkPurple: return "PinkPurple"
+        case .DarkBlue: return "DarkBlue"
+        case .DarkGreen: return "DarkGreen"
+        case .DarkOrange: return "DarkOrange"
+        case .DarkPink: return "DarkPink"
+        case .DarkYellow: return "DarkYellow"
+        case .LightBlue: return "LightBlue"
+        case .LightGreen: return "LightGreen"
+        case .LightOrange: return "LightOrange"
+        case .LightPink: return "LightPink"
+        case .LightYellow: return "LightYellow"
         case .SecondaryBackgroundColor: return "SecondaryBackgroundColor"
-        case .YellowBase: return "YellowBase"
         }
     }
 }

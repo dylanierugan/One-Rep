@@ -11,9 +11,13 @@ import RealmSwift
 @main
 struct One_RepApp: SwiftUI.App {
     
+    // MARK: - StateObject
+    
     @StateObject var app = RealmSwift.App(id: "one-rep-hpeel")
     @StateObject var viewRouter = ViewRouter()
-    @StateObject var themeColor = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.Green.description)
+    @StateObject var themeColor = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.LightGreen.description)
+    
+    // MARK: - Scene
     
     var body: some Scene {
         WindowGroup {

@@ -11,14 +11,16 @@ import SwiftUI
 
 struct SignInWithApple: View {
     
+    // MARK: - Variables
+    
     @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
-    
-    @Environment(\.colorScheme) var colorScheme
-    
+
     @State var isLoggingIn: Bool
-    @State var identityTokenString = ""
+    @State private var identityTokenString = ""
+    
+    // MARK: - View
     
     var body: some View {
         VStack {
@@ -44,6 +46,8 @@ struct SignInWithApple: View {
         }
     }
     
+    // MARK: - Functions
+    
     private func login() -> Void {
            var credentials: Credentials
            if self.identityTokenString != "" {
@@ -66,6 +70,4 @@ struct SignInWithApple: View {
                isLoggingIn = false
            }
        }
-    
 }
-

@@ -10,10 +10,16 @@ import SwiftUI
 
 struct MutateWeightView: View {
     
-    var color: Color
+    // MARK: - Variables
+    
     @Binding var weight: Double
     @Binding var weightStr: String
+    
     @FocusState var isInputActive: Bool
+    
+    var color: Color
+    
+    // MARK: - View
     
     var body: some View {
         VStack {
@@ -22,7 +28,7 @@ struct MutateWeightView: View {
                 .foregroundColor(.secondary).opacity(0.7)
             
             HStack(spacing: 8) {
-                MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary.opacity(0.75), icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
                 
                 TextField("", text: $weightStr)
                     .onChange(of: weightStr) { newText, _ in
@@ -40,20 +46,22 @@ struct MutateWeightView: View {
                     .onReceive(Just(weight)) { _ in limitText(5) }
                     .focused($isInputActive)
                 
-                MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary.opacity(0.75), icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
                 
             }
         }
     }
     
-    func mutateWeight(_ mutatingValue: Double) {
+    // MARK: - Functions
+    
+    private func mutateWeight(_ mutatingValue: Double) {
         if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
             weight += mutatingValue
             updateWeightString()
         }
     }
 
-    func bindValues() {
+    private func bindValues() {
         if let value = Double(weightStr) {
             weight = value
             updateWeightString()
@@ -74,7 +82,7 @@ struct MutateWeightView: View {
         }
     }
     
-    func limitText(_ upper: Int) {
+    private func limitText(_ upper: Int) {
         if weightStr.count > upper {
             weightStr = String(weightStr.prefix(upper))
         }

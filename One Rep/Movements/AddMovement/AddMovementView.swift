@@ -10,35 +10,37 @@ import RealmSwift
 
 struct AddMovementView: View {
     
-    @ObservedRealmObject var movement: Movement = Movement()
-    @ObservedRealmObject var movementModel: MovementViewModel
+    // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
     
+    @ObservedRealmObject var movementModel: MovementViewModel
+    
     @State private var movementName = ""
     @State private var muscleGroup = Muscles.Arms.description
+    
     var muscles = [Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
     private var isFormValid: Bool {
         !movementName.isEmpty
     }
     
-    func addMovementToRealm() {
-        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>())
-        $movementModel.movements.append(newMovement)
-    }
+    // MARK: - View
     
     var body: some View {
         ZStack {
             Color(theme.BackgroundColor)
                 .ignoresSafeArea()
-        
+            
             VStack(spacing: 36) {
+                
+                Text("New Movement")
+                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Movement Name")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MovementNameTextField(text: "", movementName: $movementName, focus: true)
+                    MovementNameTextField(focus: true, movementName: $movementName, text: "")
                 }
                 .padding(.horizontal, 16)
                 
@@ -46,12 +48,20 @@ struct AddMovementView: View {
                     Text("Muscle Group")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MusclePicker(muscles: muscles, muscleGroup: $muscleGroup)
+                    MusclePicker(muscleGroup: $muscleGroup, muscles: muscles)
                 }
                 .padding(.horizontal, 16)
                 
                 AddMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
             }
+            .padding(.vertical, 24)
         }
+    }
+    
+    // MARK: - Functions
+    
+    private func addMovementToRealm() {
+        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>())
+        $movementModel.movements.append(newMovement)
     }
 }
