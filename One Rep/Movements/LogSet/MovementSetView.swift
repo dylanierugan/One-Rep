@@ -82,7 +82,6 @@ struct MovementSetView: View {
                     HStack(spacing: 14) {
                         Image(movement.muscleGroup.lowercased())
                             .font(.caption2)
-                            .frame(width: 4, height: 4)
                             .foregroundStyle(.linearGradient(colors: [
                                 Color(theme.lightBaseColor),
                                 Color(theme.darkBaseColor)
