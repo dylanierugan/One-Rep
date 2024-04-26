@@ -21,7 +21,7 @@ struct MovementsView: View {
     @State private var menuSelection = "All"
     @State private var selectedMovement: Movement?
     @State private var showAddMovementPopup = false
-
+    
     /// Search Bar
     private var filteredMovements: Results<Movement> {
         if searchText.isEmpty {
@@ -37,7 +37,7 @@ struct MovementsView: View {
     // MARK: - View
     
     var body: some View {
-        NavigationView {            
+        NavigationView {
             ZStack {
                 Color(theme.BackgroundColor)
                     .ignoresSafeArea()
@@ -48,6 +48,14 @@ struct MovementsView: View {
                             if (movement.muscleGroup == menuSelection) || (menuSelection == "All") {
                                 MovementCardButton(movementModel: movementModel, selectedMovement: $selectedMovement, movement: movement)
                             }
+                        }
+                        if (movementModel.movements.count == 0) || (menuSelection != "All" && movementModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
+                            Text(InfoText.CreateNewMovement.description)
+                                .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.secondary)
+                                .padding(.horizontal, 32)
+                                .padding(.top, 16)
                         }
                     }
                     .sheet(isPresented: $showAddMovementPopup) {
@@ -99,8 +107,8 @@ extension UINavigationController {
 
 /// Removes navigation back buttont text
 extension UINavigationController {
-  open override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    navigationBar.topItem?.backButtonDisplayMode = .minimal
-  }
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationBar.topItem?.backButtonDisplayMode = .minimal
+    }
 }

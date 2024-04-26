@@ -171,6 +171,16 @@ enum Icons: CustomStringConvertible {
     }
 }
 
+enum InfoText: CustomStringConvertible {
+    case CreateNewMovement
+    
+    var description: String {
+        switch self {
+            case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
+        }
+    }
+}
+
 enum Muscles: CustomStringConvertible {
     case Arms
     case Back

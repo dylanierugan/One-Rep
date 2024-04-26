@@ -168,8 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				37A655352BA7466300B96BEB /* Movement.swift */,
-				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				37A655372BA7470B00B96BEB /* Log.swift */,
+				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
 			);
 			path = Models;
