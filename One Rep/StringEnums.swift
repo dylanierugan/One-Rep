@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 enum DefaultKeys: CustomStringConvertible {
     case AccentColor
@@ -181,22 +182,18 @@ enum InfoText: CustomStringConvertible {
     }
 }
 
-enum Muscles: CustomStringConvertible {
-    case Arms
-    case Back
-    case Chest
-    case Core
-    case Legs
-    case Shoulders
-    
-    var description: String {
-        switch self {
-        case .Arms: return "Arms"
-        case .Back: return "Back"
-        case .Chest: return "Chest"
-        case .Core: return "Core"
-        case .Legs: return "Legs"
-        case .Shoulders: return "Shoulders"
-        }
-    }
+enum RepType: String, PersistableEnum {
+  case WarmUp = "Warm Up"
+  case WorkingSet = "Working Set"
+  case PR = "PR"
+}
+
+enum MuscleType: String, PersistableEnum {
+    case All = "All"
+    case Arms = "Arms"
+    case Back = "Back"
+    case Chest = "Chest"
+    case Core = "Core"
+    case Legs = "Legs"
+    case Shoulders = "Shoulders"
 }

@@ -17,9 +17,9 @@ struct AddMovementView: View {
     @ObservedRealmObject var movementModel: MovementViewModel
     
     @State private var movementName = ""
-    @State private var muscleGroup = Muscles.Arms.description
+    @State private var muscleGroup: MuscleType = .All
     
-    var muscles = [Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    var muscleGroups: [MuscleType] = [.All, .Arms, .Back, .Chest, .Core, .Legs, .Shoulders]
     private var isFormValid: Bool {
         !movementName.isEmpty
     }
@@ -48,7 +48,7 @@ struct AddMovementView: View {
                     Text("Muscle Group")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MusclePicker(muscleGroup: $muscleGroup, muscles: muscles)
+                    MusclePicker(muscleGroup: $muscleGroup)
                 }
                 .padding(.horizontal, 16)
                 

@@ -18,7 +18,7 @@ struct MovementsView: View {
     @ObservedRealmObject var movementModel: MovementViewModel
     
     @State private var searchText = ""
-    @State private var menuSelection = "All"
+    @State private var menuSelection: MuscleType = .All
     @State private var selectedMovement: Movement?
     @State private var showAddMovementPopup = false
     
@@ -45,11 +45,11 @@ struct MovementsView: View {
                     VStack(spacing: 16) {
                         HorizontalScroller(muscleSelection: $menuSelection)
                         ForEach(filteredMovements) { movement in
-                            if (movement.muscleGroup == menuSelection) || (menuSelection == "All") {
+                            if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
                                 MovementCardButton(movementModel: movementModel, selectedMovement: $selectedMovement, movement: movement)
                             }
                         }
-                        if (movementModel.movements.count == 0) || (menuSelection != "All" && movementModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
+                        if (movementModel.movements.count == 0) || (menuSelection != .All && movementModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
                             Text(InfoText.CreateNewMovement.description)
                                 .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
                                 .multilineTextAlignment(.center)

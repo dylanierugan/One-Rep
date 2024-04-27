@@ -19,13 +19,13 @@ struct EditMovementView: View {
     @ObservedRealmObject var movementModel: MovementViewModel
     
     @State private var newMovementName = ""
-    @State private var newMuscleGroup = ""
+    @State private var newMuscleGroup: MuscleType = .Arms
     @State private var deleteConfirmedClicked = false
     @State private var showingDeleteMovementAlert = false
     
     @Binding var showDoneToolBar: Bool
     
-    var muscles = [Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    var muscleGroups: [MuscleType] = [.All, .Arms, .Back, .Chest, .Core, .Legs, .Shoulders]
     
     // MARK: - View
     
@@ -51,7 +51,7 @@ struct EditMovementView: View {
                     Text("Edit muscle group")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
-                    MusclePicker(muscleGroup: $newMuscleGroup, muscles: muscles)
+                    MusclePicker(muscleGroup: $newMuscleGroup)
                 }
                 .padding(.horizontal, 16)
                 

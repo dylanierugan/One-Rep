@@ -21,7 +21,7 @@ struct MovementSetView: View {
     @State private var repsStr = "12"
     @State private var weight: Double = 135
     @State private var weightStr = "135"
-    @State private var setTypeSelection = "Working Set"
+    @State private var setTypeSelection: RepType = .WorkingSet
     @State private var setTypeColorDark = Color(Colors.DarkBlue.description)
     @State private var setTypeColorLight = Color(Colors.LightBlue.description)
     @State private var isBodyWeightSelected = false
@@ -45,7 +45,7 @@ struct MovementSetView: View {
                     }
                     HStack(spacing: 8) {
                         MutateWeightView(weight: $weight, weightStr: $weightStr, isInputActive: _isInputActive, color: Color(setTypeColorLight))
-                        if setTypeSelection != "PR" {
+                        if setTypeSelection != .PR {
                             Spacer()
                             MutateRepsView(reps: $reps, repsStr: $repsStr, isInputActive: _isInputActive, color: Color(setTypeColorLight))
                         }
@@ -61,7 +61,11 @@ struct MovementSetView: View {
                         }
                     }
                     .padding(.horizontal, 24)
-                    LogSetButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight)
+                    LogSetButton(movement: movement, 
+                                 log: Log(reps: reps, weight: weight, isBodyWeight: false, repType: setTypeSelection),
+                                 setTypeSelection: $setTypeSelection,
+                                 setTypeColorDark: $setTypeColorDark,
+                                 setTypeColorLight: $setTypeColorLight)
                         .padding(.top, 8)
                 }
                 .padding(.vertical, 24)
@@ -80,7 +84,7 @@ struct MovementSetView: View {
                 }
                 ToolbarItem(placement: .principal) {
                     HStack(spacing: 14) {
-                        Image(movement.muscleGroup.lowercased())
+                        Image(movement.muscleGroup.rawValue.lowercased())
                             .font(.caption2)
                             .foregroundStyle(.linearGradient(colors: [
                                 Color(theme.lightBaseColor),

@@ -13,16 +13,14 @@ struct MusclePicker: View {
     
     @EnvironmentObject var theme: ThemeModel
     
-    @Binding var muscleGroup: String
-    
-    var muscles: [String]
+    @Binding var muscleGroup: MuscleType
     
     // MARK: - View
     
     var body: some View {
         Picker("Muscle Group", selection: $muscleGroup) {
-            ForEach(muscles, id: \.self) {
-                Text($0)
+            ForEach(MuscleType.allCases, id: \.rawValue) { muscle in
+                Text(muscle.rawValue)
                     .customFont(size: .body, weight: .medium, kerning: 1, design: .rounded)
                     .foregroundColor(.primary)
             }

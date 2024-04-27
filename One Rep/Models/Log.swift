@@ -13,9 +13,9 @@ class Log: Object, ObjectKeyIdentifiable{
     @Persisted var reps: Int
     @Persisted var weight: Double
     @Persisted var isBodyWeight: Bool
-    @Persisted var repType: String
+    @Persisted var repType: RepType
     
-    convenience init(reps: Int = 0, weight: Double = 0, isBodyWeight: Bool, repType: String) {
+    convenience init(reps: Int = 0, weight: Double = 0, isBodyWeight: Bool, repType: RepType) {
         self.init()
         self.reps = reps
         self.weight = weight

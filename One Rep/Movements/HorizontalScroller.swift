@@ -13,9 +13,7 @@ struct HorizontalScroller: View {
     
     @EnvironmentObject var theme: ThemeModel
     
-    @Binding var muscleSelection: String
-    
-    var muscleGroups = ["All", Muscles.Arms.description, Muscles.Back.description, Muscles.Chest.description, Muscles.Core.description, Muscles.Legs.description, Muscles.Shoulders.description]
+    @Binding var muscleSelection: MuscleType
     
     // MARK: - View
     
@@ -23,24 +21,24 @@ struct HorizontalScroller: View {
         /// Horizontal scrollview to allow for muscle group selection
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                ForEach(muscleGroups, id: \.self) { muscleGroup in
+                ForEach(MuscleType.allCases, id: \.rawValue) { muscleGroup in
                     Button {
                         muscleSelection = muscleGroup
                     } label: {
                         HStack {
                             HStack {
-                                if muscleGroup == "All" {
+                                if muscleGroup.rawValue == "All" {
                                     Image(systemName: Icons.Infinity.description)
                                         .font(.caption.weight(.bold))
                                         .padding(.trailing, 16)
                                 } else {
-                                    Image(muscleGroup.lowercased())
+                                    Image(muscleGroup.rawValue.lowercased())
                                         .font(.caption.weight(.regular))
                                         .padding(.trailing, 16)
                                 }
                             }
                             .foregroundColor(muscleSelection == muscleGroup ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor).opacity(0.2))
-                            Text(muscleGroup)
+                            Text(muscleGroup.rawValue)
                                 .foregroundColor(muscleSelection == muscleGroup ? .primary : .secondary.opacity(0.5))
                         }
                         .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)

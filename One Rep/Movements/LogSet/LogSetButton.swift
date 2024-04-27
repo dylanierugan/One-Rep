@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct LogSetButton: View {
     
     // MARK: - Variables
+    @ObservedRealmObject var movement: Movement
+    var log: Log
     
-    @Binding var setTypeSelection: String
+    @Binding var setTypeSelection: RepType
     @Binding var setTypeColorDark: Color
     @Binding var setTypeColorLight: Color
     
@@ -19,10 +22,10 @@ struct LogSetButton: View {
     
     var body: some View {
         Button {
-            /// TODO
+            //movement.logs.append(<#T##object: Log##Log#>)
         } label: {
             HStack {
-                Text("Log \(setTypeSelection)")
+                Text("Log \(setTypeSelection.rawValue)")
                     .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
                     .foregroundStyle(
                         .linearGradient(colors:

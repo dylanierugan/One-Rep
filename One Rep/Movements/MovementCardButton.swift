@@ -33,7 +33,7 @@ struct MovementCardButton: View {
                             Circle()
                                 .frame(width: 36, height: 36)
                                 .foregroundStyle(Color(theme.lightBaseColor).opacity(0.1))
-                            Image(movement.muscleGroup.lowercased())
+                            Image(movement.muscleGroup.rawValue.lowercased())
                                 .font(.body.weight(.regular))
                                 .foregroundStyle(.linearGradient(colors: [
                                     Color(theme.lightBaseColor),

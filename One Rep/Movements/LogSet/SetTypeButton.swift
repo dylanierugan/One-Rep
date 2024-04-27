@@ -11,7 +11,7 @@ struct SetTypeButton: View {
     
     // MARK: - Variables
     
-    @Binding var setTypeSelection: String
+    @Binding var setTypeSelection: RepType
     @Binding var setTypeColorDark: Color
     @Binding var setTypeColorLight: Color
     
@@ -19,7 +19,7 @@ struct SetTypeButton: View {
     var lightColor: Color
     var icon: String
     var iconFilled: String
-    var setType: String
+    var setType: RepType
     
     // MARK: - View
     
