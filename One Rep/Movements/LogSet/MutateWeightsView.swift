@@ -42,12 +42,11 @@ struct MutateWeightView: View {
                     .background(.secondary.opacity(0.05))
                     .frame(width: 80, alignment: .center)
                     .cornerRadius(10)
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                    .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
                     .onReceive(Just(weight)) { _ in limitText(5) }
                     .focused($isInputActive)
                 
                 MutateWieghtButton(color: .primary.opacity(0.75), icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
-                
             }
         }
     }

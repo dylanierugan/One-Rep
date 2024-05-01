@@ -11,18 +11,21 @@ import RealmSwift
 struct LogSetButton: View {
     
     // MARK: - Variables
+    
     @ObservedRealmObject var movement: Movement
-    var log: Log
     
     @Binding var setTypeSelection: RepType
     @Binding var setTypeColorDark: Color
     @Binding var setTypeColorLight: Color
     
+    var addLogToRealm:() -> Void
+    
     // MARK: - View
     
     var body: some View {
         Button {
-            //movement.logs.append(<#T##object: Log##Log#>)
+            addLogToRealm()
+            HapticManager.instance.impact(style: .light)
         } label: {
             HStack {
                 Text("Log \(setTypeSelection.rawValue)")

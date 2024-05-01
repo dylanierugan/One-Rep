@@ -27,7 +27,7 @@ struct HorizontalScroller: View {
                     } label: {
                         HStack {
                             HStack {
-                                if muscleGroup.rawValue == "All" {
+                                if muscleGroup == .All {
                                     Image(systemName: Icons.Infinity.description)
                                         .font(.caption.weight(.bold))
                                         .padding(.trailing, 16)

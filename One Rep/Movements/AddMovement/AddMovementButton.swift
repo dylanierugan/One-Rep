@@ -32,26 +32,20 @@ struct AddMovementButton: View {
         } label: {
             HStack {
                 Text("Add Movement")
-                    .foregroundColor(isFormValid ? Color(theme.lightBaseColor): Color.secondary)
+                    .foregroundColor(isFormValid ? Color(theme.darkBaseColor): Color.secondary)
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                 if addMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.SquareAndPencil.description)
-                        .foregroundColor(isFormValid ? Color(theme.lightBaseColor): Color.secondary)
+                        .foregroundColor(isFormValid ? Color(theme.darkBaseColor): Color.secondary)
                         .font(.body.weight(.regular))
                 }
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
-            .background(isFormValid ? .linearGradient(colors: [
-                Color(theme.lightBaseColor).opacity(0.1),
-                Color(theme.darkBaseColor).opacity(0.1),
-            ], startPoint: .top, endPoint: .bottom) :
-                    .linearGradient(colors: [
-                        .secondary.opacity(0.1)
-                    ], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .background(isFormValid ? Color(theme.darkBaseColor).opacity(0.1) : .secondary.opacity(0.1))
             .cornerRadius(16)
         }
         .disabled(isFormValid ? false : true)

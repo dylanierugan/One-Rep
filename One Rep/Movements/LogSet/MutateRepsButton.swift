@@ -23,12 +23,15 @@ struct MutateRepsButton: View {
             mutateRep(mutatingValue)
             HapticManager.instance.impact(style: .soft)
         } label: {
-            Image(systemName: icon)
-                .foregroundColor(color)
-                .font(.body.weight(.bold))
+            ZStack {
+                Rectangle()
+                    .foregroundColor(.secondary.opacity(0.05))
+                    .frame(width: 32, height: 32)
+                    .cornerRadius(8)
+                Image(systemName: icon)
+                    .foregroundColor(color)
+                    .font(.title3.weight(.bold))
+            }
         }
-        .frame(width: 32, height: 32)
-        .background(Color(color).opacity(0.05))
-        .cornerRadius(8)
     }
 }

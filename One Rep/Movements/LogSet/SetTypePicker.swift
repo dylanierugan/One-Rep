@@ -21,9 +21,9 @@ struct SetTypePicker: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 32) {
-            SetTypeButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight, darkColor: Color(theme.darkOrange), lightColor: Color(theme.lightOrange), icon: "flame", iconFilled: "flame.fill", setType: .WarmUp)
-            SetTypeButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight, darkColor: Color(theme.darkBlue), lightColor: Color(theme.lightBlue), icon: "dumbbell", iconFilled: "dumbbell.fill", setType: .WorkingSet)
-            SetTypeButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight, darkColor: Color(theme.darkYellow), lightColor: Color(theme.lightYellow), icon: "medal", iconFilled: "medal.fill", setType: .PR)
+            SetTypeButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight, darkColor: Color(theme.darkOrange), lightColor: Color(theme.lightOrange), icon: Icons.Flame.description, iconFilled: Icons.FlameFill.description, setType: .WarmUp)
+            SetTypeButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight, darkColor: Color(theme.darkBlue), lightColor: Color(theme.lightBlue), icon: Icons.Dumbell.description, iconFilled: Icons.DumbellFill.description, setType: .WorkingSet)
+            SetTypeButton(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight, darkColor: Color(theme.darkYellow), lightColor: Color(theme.lightYellow), icon: Icons.Medal.description, iconFilled: Icons.MedalFill.description, setType: .PR)
         }
     }
 }

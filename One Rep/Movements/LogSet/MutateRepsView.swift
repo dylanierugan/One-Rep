@@ -44,7 +44,7 @@ struct MutateRepsView: View {
                     .background(.secondary.opacity(0.05))
                     .frame(width: 80, alignment: .center)
                     .cornerRadius(10)
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                    .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
                     .onReceive(Just(reps)) { _ in limitText(3) }
                     .focused($isInputActive)
                 

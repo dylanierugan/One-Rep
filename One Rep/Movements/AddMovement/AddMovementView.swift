@@ -17,9 +17,8 @@ struct AddMovementView: View {
     @ObservedRealmObject var movementModel: MovementViewModel
     
     @State private var movementName = ""
-    @State private var muscleGroup: MuscleType = .All
+    @State private var muscleGroup: MuscleType = .Arms
     
-    var muscleGroups: [MuscleType] = [.All, .Arms, .Back, .Chest, .Core, .Legs, .Shoulders]
     private var isFormValid: Bool {
         !movementName.isEmpty
     }

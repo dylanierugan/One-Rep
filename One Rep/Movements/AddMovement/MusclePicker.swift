@@ -20,9 +20,12 @@ struct MusclePicker: View {
     var body: some View {
         Picker("Muscle Group", selection: $muscleGroup) {
             ForEach(MuscleType.allCases, id: \.rawValue) { muscle in
-                Text(muscle.rawValue)
-                    .customFont(size: .body, weight: .medium, kerning: 1, design: .rounded)
-                    .foregroundColor(.primary)
+                if muscle != .All {
+                    Text(muscle.rawValue)
+                        .customFont(size: .body, weight: .medium, kerning: 1, design: .rounded)
+                        .foregroundColor(.primary)
+                        .tag(muscle)
+                }
             }
         }
         .pickerStyle(.wheel)

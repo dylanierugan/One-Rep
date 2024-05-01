@@ -29,6 +29,7 @@ struct SetTypeButton: View {
                 setTypeSelection = setType
                 setTypeColorDark = darkColor
                 setTypeColorLight = lightColor
+                HapticManager.instance.impact(style: .soft)
             }
         } label: {
             ZStack {

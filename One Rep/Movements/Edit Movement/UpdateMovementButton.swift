@@ -30,23 +30,20 @@ struct UpdateMovementButton: View {
         } label: {
             HStack {
                 Text("Update")
-                    .foregroundColor(Color(theme.lightBaseColor))
+                    .foregroundColor(Color(theme.darkBaseColor))
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                 if updateMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.RectangleAndPencilAndEllipsis.description)
-                        .foregroundColor(Color(theme.lightBaseColor))
+                        .foregroundColor(Color(theme.darkBaseColor))
                         .font(.body.weight(.semibold))
                 }
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 24)
-            .background(.linearGradient(colors: [
-                Color(theme.lightBaseColor).opacity(0.1),
-                Color(theme.darkBaseColor).opacity(0.1),
-            ], startPoint: .top, endPoint: .bottom))
+            .background(Color(theme.darkBaseColor).opacity(0.1))
             .cornerRadius(16)
         }
         .disabled(updateMovementClicked ? true : false)

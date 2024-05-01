@@ -14,12 +14,14 @@ class Log: Object, ObjectKeyIdentifiable{
     @Persisted var weight: Double
     @Persisted var isBodyWeight: Bool
     @Persisted var repType: RepType
+    @Persisted var date: Double
     
-    convenience init(reps: Int = 0, weight: Double = 0, isBodyWeight: Bool, repType: RepType) {
+    convenience init(reps: Int = 0, weight: Double = 0, isBodyWeight: Bool, repType: RepType, date: Double) {
         self.init()
         self.reps = reps
         self.weight = weight
         self.isBodyWeight = isBodyWeight
         self.repType = repType
+        self.date = date
     }
 }

@@ -75,6 +75,7 @@ enum Icons: CustomStringConvertible {
     case ChevronForward
     case CircleFill
     case CircleHexagongrid
+    case Dumbell
     case DumbellFill
     case ErrorTriangle
     case Eye
@@ -85,9 +86,13 @@ enum Icons: CustomStringConvertible {
     case FigureStrengthTraining
     case FigureStrengthTrainingFunctional
     case FigureRower
+    case Flame
+    case FlameFill
     case HeartFill
     case Infinity
     case InfoCircle
+    case Medal
+    case MedalFill
     case Minus
     case MinusCircleFill
     case NoteTextBadgePlus
@@ -122,6 +127,7 @@ enum Icons: CustomStringConvertible {
         case .ChevronForward: return "chevron.forward"
         case .CircleFill: return "circle.fill"
         case .CircleHexagongrid: return "circle.hexagongrid"
+        case .Dumbell: return "dumbbell"
         case .DumbellFill: return "dumbbell.fill"
         case .ErrorTriangle: return "exclamationmark.triangle"
         case .Eye: return "eye"
@@ -131,12 +137,16 @@ enum Icons: CustomStringConvertible {
         case .FigureHighIntensityIntervaltraining: return "figure.highintensity.intervaltraining"
         case .FigureStrengthTraining: return "figure.strengthtraining.traditional"
         case .FigureStrengthTrainingFunctional: return "figure.strengthtraining.functional"
+        case .Flame: return "flame"
+        case .FlameFill: return "flame.fill"
         case .FigureRower: return "figure.rower"
         case .HeartFill: return "heart.fill"
         case .Infinity: return "infinity"
         case .InfoCircle: return "info.circle"
         case .Minus: return "minus"
         case .MinusCircleFill: return "minus.circle.fill"
+        case .Medal: return "medal"
+        case .MedalFill: return "medal.fill"
         case .NoteTextBadgePlus: return "note.text.badge.plus"
         case .ListBullet: return "list.bullet.rectangle.portrait.fill"
         case .LockFill: return "lock.fill"
@@ -188,7 +198,13 @@ enum RepType: String, PersistableEnum {
   case PR = "PR"
 }
 
-enum MuscleType: String, PersistableEnum {
+struct RepTypeObject {
+    var repType: RepType
+    var image: String
+}
+
+enum MuscleType: String, PersistableEnum, Identifiable {
+    var id: MuscleType { self }
     case All = "All"
     case Arms = "Arms"
     case Back = "Back"
