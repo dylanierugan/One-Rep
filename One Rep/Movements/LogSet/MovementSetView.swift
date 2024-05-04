@@ -20,14 +20,16 @@ struct MovementSetView: View {
     
     @State private var reps: Int = 12
     @State private var repsStr = "12"
+    
     @State private var weight: Double = 135
     @State private var weightStr = "135"
+    @State private var weightSelection = "All"
+    @State private var listOfWeights = [String]()
+    @State private var recentLog: Log? = nil
+    
     @State private var listOfDates = [String]()
     @State private var logsByDate = [String: [Log]]()
-    @State private var setTypeSelection: RepType = .WorkingSet
-    @State private var setTypeColorDark = Color(Colors.DarkBlue.description)
-    @State private var setTypeColorLight = Color(Colors.LightBlue.description)
-    @State private var isBodyWeightSelected = false
+    
     @State private var showEditMovementPopup = false
     @State private var showDoneToolBar = true
     @State private var showLogSetView = true
@@ -43,17 +45,9 @@ struct MovementSetView: View {
             VStack {
                 if showLogSetView {
                     VStack(alignment: .center, spacing: 16) {
-                        HStack {
-                            Spacer()
-                            SetTypePicker(setTypeSelection: $setTypeSelection, setTypeColorDark: $setTypeColorDark, setTypeColorLight: $setTypeColorLight)
-                            Spacer()
-                        }
                         HStack(spacing: 8) {
-                            MutateWeightView(weight: $weight, weightStr: $weightStr, isInputActive: _isInputActive, color: Color(setTypeColorLight))
-                            if setTypeSelection != .PR {
-                                Spacer()
-                                MutateRepsView(reps: $reps, repsStr: $repsStr, isInputActive: _isInputActive, color: Color(setTypeColorLight))
-                            }
+                            MutateWeightView(weight: $weight, weightStr: $weightStr, isInputActive: _isInputActive)
+                            MutateRepsView(reps: $reps, repsStr: $repsStr, isInputActive: _isInputActive)
                         }
                         .toolbar {
                             if showDoneToolBar {
@@ -66,48 +60,57 @@ struct MovementSetView: View {
                             }
                         }
                         .padding(.horizontal, 24)
-                        LogSetButton(movement: movement,
-                                     setTypeSelection: $setTypeSelection,
-                                     setTypeColorDark: $setTypeColorDark,
-                                     setTypeColorLight: $setTypeColorLight,
-                                     addLogToRealm: addLogToRealm)
-                        .padding(.top, 8)
+                        
+                        LogSetButton(movement: movement, addLogToRealm: addLogToRealm, setMostRecentLog: setMostRecentLog)
+                            .padding(.top, 8)
                     }
                     .padding(.vertical, 24)
-                    .background(Color(Colors.BackgroundElementColor.description))
+                    .background(Color(theme.BackgroundElementColor))
                     Divider()
-                        .frame(height: 1.5)
                         .padding(.top, -8)
                 }
+                
                 ScrollView(showsIndicators: false) {
-                    ForEach(0..<listOfDates.count, id: \.self) { i in
-                        let date = listOfDates[i]
-                        Section(header:
-                                    HStack {
-                            if i == 0 {
-                                ShowScrollViewButton(showLogSetView: $showLogSetView)
-                            }
-                            Spacer()
+                    
+                    if movement.logs.count != 0 {
+                        WeightHorizontalScroller(weightSelection: $weightSelection, listOfWeights: $listOfWeights, filterWeightAndPopulateData: filterWeightAndPopulateData, setMostRecentLog: setMostRecentLog)
+                    } else {
+                        Text(InfoText.NoData.description)
+                            .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 32)
+                    }
+                    
+                    ForEach(0..<listOfDates.count, id: \.self) { index in
+                        let date = listOfDates[index]
+                        Section(header: HStack {
                             Text(date)
                                 .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                .foregroundColor(.primary)}
+                                .foregroundColor(.primary)
+                            Spacer()
+                            if index == 0 {
+                                ShowFullScreenButton(showLogSetView: $showLogSetView)
+                            }
+                        }
                             .padding(.horizontal, 16)
-                            .padding(.bottom, 8)) {
+                            .padding(.vertical, 8)
+                        ){
                                 ForEach(logsByDate[date] ?? [], id: \.id) { log in
-                                    let weightStr = convertWeightDoubleToString(weight: log.weight)
-                                    LogCard(repType: log.repType,
-                                            weight: weightStr,
-                                            reps: String(log.reps))
+                                    let weightStr = convertWeightDoubleToString(log.weight)
+                                    LogCard(weight: weightStr,
+                                            reps: String(log.reps),
+                                            date: log.date)
                                     .padding(.horizontal, 16)
                                     .padding(.bottom, 8)
                                 }
-                                /// Delete log
-                                .onDelete { offsets in
-                                    /// isScreenDisabled = true
-                                    let logItem = (logsByDate[date] ?? [])[offsets.first ?? 0]
-                                    /// deleteLog(logItem: logItem)
-                                }
+                            /// Delete log
+                            .onDelete { offsets in
+                                /// isScreenDisabled = true
+                                let logItem = (logsByDate[date] ?? [])[offsets.first ?? 0]
+                                /// deleteLog(logItem: logItem)
                             }
+                        }
                     }
                 }
                 .padding(.top, showLogSetView ? 0 : 16)
@@ -134,22 +137,23 @@ struct MovementSetView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .onAppear {
-            populatelistOfDates()
-            populateLogsByDate()
+            populateListOfWeights()
+            filterWeightAndPopulateData()
+            setMostRecentLog()
         }
     }
     
     // MARK: - Functions
     
     private func addLogToRealm() {
-        let log = Log(reps: reps, weight: weight, isBodyWeight: false, repType: setTypeSelection, date: Date().timeIntervalSince1970 + 86400)
+        let log = Log(reps: reps, weight: weight, isBodyWeight: false, date: Date().timeIntervalSince1970 + 86400)
         if let thawedMovementLogList = movement.logs.thaw() {
             do {
                 try realm.write {
                     thawedMovementLogList.append(log)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                        populatelistOfDates()
-                        populateLogsByDate()
+                        populateListOfWeights()
+                        filterWeightAndPopulateData()
                     }
                 }
             } catch  {
@@ -168,9 +172,9 @@ struct MovementSetView: View {
     }
     
     /// Populate listOfDates with unique dates and sort
-    private func populatelistOfDates() {
+    private func populatelistOfDates(_ logs: Results<Log>) {
         listOfDates = []
-        for log in movement.logs.sorted(by: \Log.date, ascending: false) {
+        for log in logs {
             let stringDate = formatDate(date: log.date)
             if !self.listOfDates.contains(stringDate) {
                 self.listOfDates.append(stringDate)
@@ -179,12 +183,12 @@ struct MovementSetView: View {
     }
     
     /// Populate logsByDate where the key = date and val = array of logs
-    private func populateLogsByDate() {
+    private func populateLogsByDate(_ logs: Results<Log>) {
         logsByDate = [:]
         for date in self.listOfDates { /// Create all dict keys with empty lists
             self.logsByDate[date] = []
         }
-        for log in movement.logs.sorted(by: \Log.date, ascending: false) {
+        for log in logs {
             let stringDate = formatDate(date: log.date)
             if self.listOfDates.contains(stringDate) {
                 self.logsByDate[stringDate]?.append(log)
@@ -192,8 +196,50 @@ struct MovementSetView: View {
         }
     }
     
+    /// Populate list of weights with all unique weights
+    private func populateListOfWeights() {
+        listOfWeights = []
+        for log in movement.logs {
+            let weight = convertWeightDoubleToString(log.weight)
+            if !listOfWeights.contains(weight) {
+                listOfWeights.append(weight)
+            }
+        }
+        listOfWeights.sort{$0.localizedStandardCompare($1) == .orderedAscending}
+        listOfWeights.insert("All", at: 0)
+    }
+    
+    /// Populate data based on filter for weight
+    private func filterWeightAndPopulateData() {
+        if weightSelection != "All" {
+            let weight = (weightSelection as NSString).doubleValue
+            let filteredLogs = movement.logs.sorted(by: \Log.date, ascending: false).where {
+                ($0.weight == weight)
+            }
+            populatelistOfDates(filteredLogs)
+            populateLogsByDate(filteredLogs)
+        } else {
+            populatelistOfDates(movement.logs.sorted(by: \Log.date, ascending: false))
+            populateLogsByDate(movement.logs.sorted(by: \Log.date, ascending: false))
+        }
+    }
+    
+    private func setMostRecentLog() {
+        var logs = movement.logs.sorted(by: \Log.date, ascending: false)
+        if weightSelection != "All" {
+            logs = movement.logs.sorted(by: \Log.date, ascending: false).where {
+                ($0.weight == Double(weightSelection) ?? 0)
+            }
+        }
+        recentLog = logs.first
+        reps = recentLog?.reps ?? 12
+        repsStr = String(recentLog?.reps ?? 12)
+        weight = recentLog?.weight ?? 135
+        weightStr = String(recentLog?.weight ?? 135)
+    }
+    
     /// Take float and convert to 0 or 1 decimal string
-    private func convertWeightDoubleToString(weight: Double) -> String {
+    private func convertWeightDoubleToString(_ weight: Double) -> String {
         if weight.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", weight)
         } else {
@@ -202,7 +248,7 @@ struct MovementSetView: View {
     }
 }
 
-struct ShowScrollViewButton: View {
+struct ShowFullScreenButton: View {
     
     @EnvironmentObject var theme: ThemeModel
     
@@ -224,11 +270,11 @@ struct ShowScrollViewButton: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(Color(theme.BackgroundElementColor))
-                    .frame(width: 36, height: 24)
+                    .frame(width: 40, height: 28)
                     .cornerRadius(8)
                 Image(systemName: icon)
                     .foregroundColor(.primary)
-                    .font(.title3.weight(.bold))
+                    .font(.title3.weight(.semibold))
             }
         })
     }

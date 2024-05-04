@@ -11,13 +11,12 @@ import SwiftUI
 struct MutateWeightView: View {
     
     // MARK: - Variables
+    @EnvironmentObject var theme: ThemeModel
     
     @Binding var weight: Double
     @Binding var weightStr: String
     
     @FocusState var isInputActive: Bool
-    
-    var color: Color
     
     // MARK: - View
     
@@ -34,7 +33,7 @@ struct MutateWeightView: View {
                     .onChange(of: weightStr) { newText, _ in
                         bindValues()
                     }
-                    .accentColor(color)
+                    .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)
                     .padding(.vertical, 8)

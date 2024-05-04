@@ -31,14 +31,14 @@ struct UpdateMovementButton: View {
             HStack {
                 Text("Update")
                     .foregroundColor(Color(theme.darkBaseColor))
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                    .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
                 if updateMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.RectangleAndPencilAndEllipsis.description)
                         .foregroundColor(Color(theme.darkBaseColor))
-                        .font(.body.weight(.semibold))
+                        .font(.caption.weight(.semibold))
                 }
             }
             .padding(.vertical, 12)

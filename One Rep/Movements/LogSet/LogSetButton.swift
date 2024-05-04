@@ -14,34 +14,29 @@ struct LogSetButton: View {
     
     @ObservedRealmObject var movement: Movement
     
-    @Binding var setTypeSelection: RepType
-    @Binding var setTypeColorDark: Color
-    @Binding var setTypeColorLight: Color
+    @EnvironmentObject var theme: ThemeModel
     
     var addLogToRealm:() -> Void
+    var setMostRecentLog:() -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
             addLogToRealm()
-            HapticManager.instance.impact(style: .light)
+            setMostRecentLog()
+            HapticManager.instance.impact(style: .soft)
         } label: {
             HStack {
-                Text("Log \(setTypeSelection.rawValue)")
-                    .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
-                    .foregroundStyle(
-                        .linearGradient(colors:
-                                            [Color(setTypeColorLight),
-                                             Color(setTypeColorDark)],
-                                        startPoint: .top, endPoint: .bottom)
-                    )
+                Text("Log set")
+                Image(systemName: Icons.Pencil.description)
             }
+            .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
+            .foregroundStyle(Color(theme.darkBaseColor))
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
-            .background(Color(setTypeColorLight).opacity(0.1))
+            .background(Color(theme.darkBaseColor).opacity(0.1))
             .cornerRadius(16)
-            .customFont(size: .caption, weight: .medium, kerning: 0, design: .rounded)
             .foregroundColor(.white)
         }
     }

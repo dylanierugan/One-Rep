@@ -19,8 +19,6 @@ struct MutateRepsView: View {
     
     @FocusState var isInputActive: Bool
     
-    var color: Color
-    
     // MARK: - View
     
     var body: some View {
@@ -36,7 +34,7 @@ struct MutateRepsView: View {
                     .onChange(of: repsStr) { newText, _ in
                         bindValues()
                     }
-                    .accentColor(color)
+                    .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.numberPad)
                     .padding(.vertical, 8)

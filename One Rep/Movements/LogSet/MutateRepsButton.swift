@@ -26,7 +26,7 @@ struct MutateRepsButton: View {
             ZStack {
                 Rectangle()
                     .foregroundColor(.secondary.opacity(0.05))
-                    .frame(width: 32, height: 32)
+                    .frame(width: 36, height: 36)
                     .cornerRadius(8)
                 Image(systemName: icon)
                     .foregroundColor(color)

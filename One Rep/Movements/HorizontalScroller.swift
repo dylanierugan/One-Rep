@@ -24,6 +24,7 @@ struct HorizontalScroller: View {
                 ForEach(MuscleType.allCases, id: \.rawValue) { muscleGroup in
                     Button {
                         muscleSelection = muscleGroup
+                        HapticManager.instance.impact(style: .soft)
                     } label: {
                         HStack {
                             HStack {
@@ -45,7 +46,7 @@ struct HorizontalScroller: View {
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal, 16)
-                    .background(muscleSelection == muscleGroup ? Color(theme.BackgroundElementColor) : Color(theme.BackgroundElementColor).opacity(0.3))
+                    .background(muscleSelection == muscleGroup ? Color(theme.BackgroundElementColor) : Color(theme.BackgroundElementColor).opacity(0.5))
                     .cornerRadius(16)
                 }
             }

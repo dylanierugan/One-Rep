@@ -29,7 +29,7 @@ struct DeleteMovementButton: View {
                 Text("Delete")
                 Image(systemName: Icons.Trash.description)
             }
-            .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+            .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
             .foregroundColor(.red)
             .padding(.vertical, 12)
             .padding(.horizontal, 32)

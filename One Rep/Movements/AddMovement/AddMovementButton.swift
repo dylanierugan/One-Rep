@@ -33,14 +33,14 @@ struct AddMovementButton: View {
             HStack {
                 Text("Add Movement")
                     .foregroundColor(isFormValid ? Color(theme.darkBaseColor): Color.secondary)
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                    .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
                 if addMovementClicked {
                     ProgressView()
                         .padding(.leading, 4)
                 } else {
                     Image(systemName: Icons.SquareAndPencil.description)
                         .foregroundColor(isFormValid ? Color(theme.darkBaseColor): Color.secondary)
-                        .font(.body.weight(.regular))
+                        .font(.caption.weight(.regular))
                 }
             }
             .padding(.vertical, 12)

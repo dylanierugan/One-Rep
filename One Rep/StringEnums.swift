@@ -99,6 +99,7 @@ enum Icons: CustomStringConvertible {
     case ListBullet
     case LockFill
     case PaperPlaneFill
+    case Pencil
     case PencilAndOutline
     case PersonFill
     case Plus
@@ -151,6 +152,7 @@ enum Icons: CustomStringConvertible {
         case .ListBullet: return "list.bullet.rectangle.portrait.fill"
         case .LockFill: return "lock.fill"
         case .PaperPlaneFill: return "paperplane.fill"
+        case .Pencil: return "pencil"
         case .PencilAndOutline: return "pencil.and.outline"
         case .PersonFill: return "person.fill"
         case .Plus: return "plus"
@@ -184,23 +186,14 @@ enum Icons: CustomStringConvertible {
 
 enum InfoText: CustomStringConvertible {
     case CreateNewMovement
+    case NoData
     
     var description: String {
         switch self {
             case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
+            case .NoData: return "No data"
         }
     }
-}
-
-enum RepType: String, PersistableEnum {
-  case WarmUp = "Warm Up"
-  case WorkingSet = "Working Set"
-  case PR = "PR"
-}
-
-struct RepTypeObject {
-    var repType: RepType
-    var image: String
 }
 
 enum MuscleType: String, PersistableEnum, Identifiable {
