@@ -11,7 +11,6 @@ import RealmSwift
 class Movement: Object, ObjectKeyIdentifiable {
     
     @Persisted(primaryKey: true) var id: ObjectId
-    @Persisted var userId: ObjectId
     @Persisted var name: String
     @Persisted var logs: List<Log>
     @Persisted var routine: String
@@ -21,6 +20,7 @@ class Movement: Object, ObjectKeyIdentifiable {
     
     /// Backlink
     @Persisted(originProperty: "movements") var group: LinkingObjects<MovementViewModel>
+    @Persisted(originProperty: "rotuines") var assignee: LinkingObjects<Routine>
     
     convenience init(name: String = "", muscleGroup: MuscleType = .Arms, logs: List<Log> = List<Log>(), routine: String, timeAdded: Double = 0, isPremium: Bool = false) {
         self.init()
@@ -31,5 +31,4 @@ class Movement: Object, ObjectKeyIdentifiable {
         self.timeAdded = timeAdded
         self.isPremium = isPremium
     }
-
 }

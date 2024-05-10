@@ -27,7 +27,7 @@ struct AddMovementView: View {
     
     var body: some View {
         ZStack {
-            Color(theme.BackgroundColor)
+            Color(theme.backgroundColor)
                 .ignoresSafeArea()
             
             VStack(spacing: 36) {

@@ -30,10 +30,15 @@ struct DeleteMovementButton: View {
                 Image(systemName: Icons.Trash.description)
             }
             .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
-            .foregroundColor(.red)
+            .foregroundColor(.black)
             .padding(.vertical, 12)
             .padding(.horizontal, 32)
-            .background(Color(.red).opacity(0.1))
+            .background(
+                .linearGradient(colors: [
+                    Color(theme.lightRed),
+                    Color(theme.darkRed)
+                ], startPoint: .top, endPoint: .bottom)
+            )
             .cornerRadius(16)
         }
         /// Alert to delete movement (asks for confirmation)

@@ -28,7 +28,7 @@ struct ThemesView: View {
                 }
                 .padding(16)
             }
-            .background(Color(theme.BackgroundElementColor))
+            .background(Color(theme.backgroundElementColor))
             .cornerRadius(16)
         }
         .padding(.horizontal, 16)

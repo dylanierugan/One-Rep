@@ -39,7 +39,7 @@ struct MovementsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(theme.BackgroundColor)
+                Color(theme.backgroundColor)
                     .ignoresSafeArea()
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {

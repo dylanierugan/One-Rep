@@ -28,7 +28,7 @@ struct MovementNameTextField: View {
             TextField(text, text: $movementName)
                 .font(.body.weight(.regular))
                 .padding(12)
-                .background(Color(theme.BackgroundElementColor))
+                .background(Color(theme.backgroundElementColor))
                 .cornerRadius(16)
                 .textInputAutocapitalization(.words)
                 .accentColor(Color(theme.lightBaseColor))

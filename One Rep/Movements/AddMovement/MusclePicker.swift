@@ -29,7 +29,7 @@ struct MusclePicker: View {
             }
         }
         .pickerStyle(.wheel)
-        .background(Color(theme.BackgroundElementColor))
+        .background(Color(theme.backgroundElementColor))
         .cornerRadius(12)
     }
 }

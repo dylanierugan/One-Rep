@@ -28,22 +28,18 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color(theme.BackgroundColor)
+            Color(theme.backgroundColor)
                 .ignoresSafeArea()
-            VStack {
-                Spacer()
-                VStack(spacing: 8) {
-                    RepsLogo(size: 28)
-                    Text("Do one more rep than last time")
-                        .font(.caption.weight(.regular))
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.center)
-                }
-                Spacer()
+            VStack(spacing: 8) {
+                RepsLogo(size: 28)
+                Text("Do one more rep than last time")
+                    .font(.caption.weight(.regular))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
                 SignInWithApple(isLoggingIn: isLoggingIn)
                     .frame(height: 32)
+                    .padding(.top, 8)
                     .padding(.horizontal, 32)
-                    .padding(.bottom, 32)
             }
         }
     }

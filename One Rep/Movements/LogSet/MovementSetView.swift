@@ -39,9 +39,6 @@ struct MovementSetView: View {
     // MARK: - View
     
     var body: some View {
-        ZStack {
-            Color(theme.BackgroundColor)
-                .ignoresSafeArea()
             VStack {
                 if showLogSetView {
                     VStack(alignment: .center, spacing: 16) {
@@ -65,7 +62,7 @@ struct MovementSetView: View {
                             .padding(.top, 8)
                     }
                     .padding(.vertical, 24)
-                    .background(Color(theme.BackgroundElementColor))
+                    .background(Color(theme.backgroundElementColor))
                     Divider()
                         .padding(.top, -8)
                 }
@@ -74,6 +71,7 @@ struct MovementSetView: View {
                     
                     if movement.logs.count != 0 {
                         WeightHorizontalScroller(weightSelection: $weightSelection, listOfWeights: $listOfWeights, filterWeightAndPopulateData: filterWeightAndPopulateData, setMostRecentLog: setMostRecentLog)
+                            .padding(.top, 16)
                     } else {
                         Text(InfoText.NoData.description)
                             .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
@@ -102,18 +100,11 @@ struct MovementSetView: View {
                                             reps: String(log.reps),
                                             date: log.date)
                                     .padding(.horizontal, 16)
-                                    .padding(.bottom, 8)
                                 }
-                            /// Delete log
-                            .onDelete { offsets in
-                                /// isScreenDisabled = true
-                                let logItem = (logsByDate[date] ?? [])[offsets.first ?? 0]
-                                /// deleteLog(logItem: logItem)
-                            }
                         }
                     }
                 }
-                .padding(.top, showLogSetView ? 0 : 16)
+                .padding(.top, showLogSetView ? -15 : 16)
             }
             .sheet(isPresented: $showEditMovementPopup) {
                 EditMovementView(movement: movement, movementModel: movementModel, showDoneToolBar: $showDoneToolBar)
@@ -135,18 +126,17 @@ struct MovementSetView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-        }
-        .onAppear {
-            populateListOfWeights()
-            filterWeightAndPopulateData()
-            setMostRecentLog()
-        }
+            .onAppear {
+                populateListOfWeights()
+                filterWeightAndPopulateData()
+                setMostRecentLog()
+            }
     }
     
     // MARK: - Functions
     
     private func addLogToRealm() {
-        let log = Log(reps: reps, weight: weight, isBodyWeight: false, date: Date().timeIntervalSince1970 + 86400)
+        let log = Log(reps: reps, weight: weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970 + 86400)
         if let thawedMovementLogList = movement.logs.thaw() {
             do {
                 try realm.write {
@@ -224,6 +214,7 @@ struct MovementSetView: View {
         }
     }
     
+    /// Set weight and rep fields to most recent log
     private func setMostRecentLog() {
         var logs = movement.logs.sorted(by: \Log.date, ascending: false)
         if weightSelection != "All" {
@@ -236,6 +227,10 @@ struct MovementSetView: View {
         repsStr = String(recentLog?.reps ?? 12)
         weight = recentLog?.weight ?? 135
         weightStr = String(recentLog?.weight ?? 135)
+    }
+    
+    private func deleteLog() {
+        
     }
     
     /// Take float and convert to 0 or 1 decimal string
@@ -268,10 +263,6 @@ struct ShowFullScreenButton: View {
             }
         }, label: {
             ZStack {
-                Rectangle()
-                    .foregroundColor(Color(theme.BackgroundElementColor))
-                    .frame(width: 40, height: 28)
-                    .cornerRadius(8)
                 Image(systemName: icon)
                     .foregroundColor(.primary)
                     .font(.title3.weight(.semibold))

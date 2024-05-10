@@ -21,7 +21,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color(theme.BackgroundColor)
+                Color(theme.backgroundColor)
                     .ignoresSafeArea()
                 
                 ScrollView {

@@ -11,8 +11,11 @@ class ThemeModel: ObservableObject {
     
     init(accent: String) {
         self.accent = accent
-        self.BackgroundColor = Colors.BackgroundColor.description
-        self.BackgroundElementColor = Colors.BackgroundElementColor.description
+        self.backgroundColor = Colors.BackgroundColor.description
+        self.backgroundElementColor = Colors.BackgroundElementColor.description
+        
+        self.darkRed = Colors.DarkRed.description
+        self.lightRed = Colors.LightRed.description
         
         self.lightBlue = Colors.LightBlue.description
         self.darkBlue = Colors.DarkBlue.description
@@ -49,8 +52,11 @@ class ThemeModel: ObservableObject {
     @Published var darkYellow: String
     @Published var lightYellow: String
     
-    @Published var BackgroundColor: String
-    @Published var BackgroundElementColor: String
+    @Published var backgroundColor: String
+    @Published var backgroundElementColor: String
+    
+    @Published var darkRed: String
+    @Published var lightRed: String
     
     func changeColor(color: String) {
         if color == Colors.LightGreen.description {

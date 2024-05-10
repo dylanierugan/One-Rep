@@ -38,7 +38,15 @@ struct HorizontalScroller: View {
                                         .padding(.trailing, 16)
                                 }
                             }
-                            .foregroundColor(muscleSelection == muscleGroup ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor).opacity(0.2))
+                            .foregroundStyle(muscleSelection == muscleGroup ?
+                                .linearGradient(colors: [
+                                    Color(theme.lightBaseColor),
+                                    Color(theme.darkBaseColor)
+                                ], startPoint: .top, endPoint: .bottom) :
+                                .linearGradient(colors: [
+                                    Color(theme.lightBaseColor).opacity(0.5),
+                                    Color(theme.darkBaseColor).opacity(0.5)
+                                ], startPoint: .top, endPoint: .bottom))
                             Text(muscleGroup.rawValue)
                                 .foregroundColor(muscleSelection == muscleGroup ? .primary : .secondary.opacity(0.5))
                         }
@@ -46,7 +54,7 @@ struct HorizontalScroller: View {
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal, 16)
-                    .background(muscleSelection == muscleGroup ? Color(theme.BackgroundElementColor) : Color(theme.BackgroundElementColor).opacity(0.5))
+                    .background(muscleSelection == muscleGroup ? Color(theme.backgroundElementColor) : Color(theme.backgroundElementColor).opacity(0.5))
                     .cornerRadius(16)
                 }
             }

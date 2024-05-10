@@ -30,7 +30,7 @@ struct MutateWieghtButton: View {
                     .cornerRadius(8)
                 Image(systemName: icon)
                     .foregroundColor(color)
-                    .font(.title3.weight(.bold))
+                    .font(.title3.weight(.semibold))
             }
         }
     }

@@ -27,9 +27,9 @@ struct LogCard: View {
                 DataLabel(data: reps, dataType: "reps")
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 16)
+            .padding(.vertical, 12)
         }
-        .background(Color(theme.BackgroundElementColor))
+        .background(Color(theme.backgroundElementColor))
         .cornerRadius(16)
     }
 }
@@ -43,7 +43,7 @@ struct DataLabel: View {
                 .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                 .foregroundStyle(.primary)
             Text(dataType)
-                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundStyle(.secondary)
         }
     }

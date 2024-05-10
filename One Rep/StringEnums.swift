@@ -37,12 +37,15 @@ enum Colors: CustomStringConvertible {
     case DarkGreen
     case DarkOrange
     case DarkPink
+    case DarkRed
     case DarkYellow
     case LightBlue
     case LightGreen
     case LightOrange
     case LightPink
+    case LightRed
     case LightYellow
+    case ReversePrimary
     case SecondaryBackgroundColor
     
     var description : String {
@@ -53,12 +56,15 @@ enum Colors: CustomStringConvertible {
         case .DarkGreen: return "DarkGreen"
         case .DarkOrange: return "DarkOrange"
         case .DarkPink: return "DarkPink"
+        case .DarkRed: return "DarkRed"
         case .DarkYellow: return "DarkYellow"
         case .LightBlue: return "LightBlue"
         case .LightGreen: return "LightGreen"
         case .LightOrange: return "LightOrange"
         case .LightPink: return "LightPink"
+        case .LightRed: return "LightRed"
         case .LightYellow: return "LightYellow"
+        case .ReversePrimary: return "ReversePrimary"
         case .SecondaryBackgroundColor: return "SecondaryBackgroundColor"
         }
     }
@@ -205,4 +211,10 @@ enum MuscleType: String, PersistableEnum, Identifiable {
     case Core = "Core"
     case Legs = "Legs"
     case Shoulders = "Shoulders"
+}
+
+enum RepType: String, PersistableEnum {
+  case WarmUp = "Warm Up"
+  case WorkingSet = "Working Set"
+  case PR = "PR"
 }

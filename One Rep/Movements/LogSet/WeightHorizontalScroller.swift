@@ -40,16 +40,16 @@ struct WeightHorizontalScroller: View {
                             if weight == "All" {
                                 Text(weight)
                                     .foregroundColor(weightSelection == weight ? .primary : .secondary.opacity(0.5))
-                                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             } else {
                                 Text("\(weight) lbs")
                                     .foregroundColor(weightSelection == weight ? .primary : .secondary.opacity(0.5))
-                                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             }
                         }
                         .padding(.vertical, 10)
                         .padding(.horizontal, 16)
-                        .background(weightSelection == weight ? Color(theme.BackgroundElementColor) : Color(theme.BackgroundElementColor).opacity(0.5))
+                        .background(weightSelection == weight ? Color(theme.backgroundElementColor) : Color(theme.backgroundElementColor).opacity(0.5))
                         .cornerRadius(16)
                     }
                 }

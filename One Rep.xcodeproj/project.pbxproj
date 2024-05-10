@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3707305C2BEE7DA600E95989 /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707305B2BEE7DA600E95989 /* Routine.swift */; };
 		37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655092BA5385600B96BEB /* One_RepApp.swift */; };
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
@@ -52,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3707305B2BEE7DA600E95989 /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		37A655062BA5385600B96BEB /* One Rep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "One Rep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A655092BA5385600B96BEB /* One_RepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_RepApp.swift; sourceTree = "<group>"; };
 		37A6550D2BA5385800B96BEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				37A655352BA7466300B96BEB /* Movement.swift */,
+				3707305B2BEE7DA600E95989 /* Routine.swift */,
 				37A655372BA7470B00B96BEB /* Log.swift */,
 				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
@@ -336,6 +339,7 @@
 				37A6556B2BC602F000B96BEB /* MutateWeightButton.swift in Sources */,
 				37C70C2E2BD4504E00B0375A /* UpdateMovementButton.swift in Sources */,
 				37A655602BC1B95A00B96BEB /* FontModifier.swift in Sources */,
+				3707305C2BEE7DA600E95989 /* Routine.swift in Sources */,
 				37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */,
 				37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */,
 				37A655542BB30E1200B96BEB /* HapticManager.swift in Sources */,

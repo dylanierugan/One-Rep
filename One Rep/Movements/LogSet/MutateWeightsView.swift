@@ -27,7 +27,7 @@ struct MutateWeightView: View {
                 .foregroundColor(.secondary).opacity(0.7)
             
             HStack(spacing: 8) {
-                MutateWieghtButton(color: .primary.opacity(0.75), icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
                 
                 TextField("", text: $weightStr)
                     .onChange(of: weightStr) { newText, _ in
@@ -45,7 +45,7 @@ struct MutateWeightView: View {
                     .onReceive(Just(weight)) { _ in limitText(5) }
                     .focused($isInputActive)
                 
-                MutateWieghtButton(color: .primary.opacity(0.75), icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
             }
         }
     }
