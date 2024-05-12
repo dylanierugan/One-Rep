@@ -21,7 +21,7 @@ struct TabHolderView: View {
         if let movements = movementsCollection.first {
             /// TabView holds 2 tabs: Movements and Settings
             TabView() {
-                MovementsView(movementModel: movements)
+                MovementsListView(movementModel: movements)
                     .tabItem {
                         Image(systemName: Icons.FigureStrengthTraining.description)
                     }

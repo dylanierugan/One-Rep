@@ -78,6 +78,8 @@ enum Icons: CustomStringConvertible {
     case BookMarkFill
     case Calendar
     case ChartXYAxis
+    case ChevronCompactDown
+    case ChevronCompactUp
     case ChevronForward
     case CircleFill
     case CircleHexagongrid
@@ -94,6 +96,7 @@ enum Icons: CustomStringConvertible {
     case FigureRower
     case Flame
     case FlameFill
+    case GearshapeFill
     case HeartFill
     case Infinity
     case InfoCircle
@@ -115,12 +118,12 @@ enum Icons: CustomStringConvertible {
     case RectangleAndPencilAndEllipsis
     case RectanglePlus
     case RectanglePortraitAndArrowRight
-    case GearshapeFill
     case SquareFill
     case SquareAndPencil
     case TableCells
     case TextBadgePlus
     case Trash
+    case TrashCircleFill
     case TriangleFill
     
     var description : String {
@@ -132,6 +135,8 @@ enum Icons: CustomStringConvertible {
         case .BookMarkFill: return "bookmark.fill"
         case .Calendar: return "calendar"
         case .ChartXYAxis: return "chart.xyaxis.line"
+        case .ChevronCompactDown: return "chevron.compact.down"
+        case .ChevronCompactUp: return "chevron.compact.up"
         case .ChevronForward: return "chevron.forward"
         case .CircleFill: return "circle.fill"
         case .CircleHexagongrid: return "circle.hexagongrid"
@@ -148,6 +153,7 @@ enum Icons: CustomStringConvertible {
         case .Flame: return "flame"
         case .FlameFill: return "flame.fill"
         case .FigureRower: return "figure.rower"
+        case .GearshapeFill: return "gearshape.fill"
         case .HeartFill: return "heart.fill"
         case .Infinity: return "infinity"
         case .InfoCircle: return "info.circle"
@@ -169,12 +175,12 @@ enum Icons: CustomStringConvertible {
         case .RectangleAndPencilAndEllipsis: return "rectangle.and.pencil.and.ellipsis"
         case .RectanglePlus: return "rectangle.stack.fill.badge.plus"
         case .RectanglePortraitAndArrowRight: return "rectangle.portrait.and.arrow.right"
-        case .GearshapeFill: return "gearshape.fill"
         case .SquareFill: return "square.fill"
         case .SquareAndPencil: return "square.and.pencil"
         case .TableCells: return "tablecells"
         case .TextBadgePlus: return "text.badge.plus"
         case .Trash: return "trash"
+        case .TrashCircleFill: return "trash.circle.fill"
         case .TriangleFill: return "triangle.fill"
         }
     }

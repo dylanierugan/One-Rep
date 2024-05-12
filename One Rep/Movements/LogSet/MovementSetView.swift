@@ -17,6 +17,7 @@ struct MovementSetView: View {
     
     @ObservedRealmObject var movementModel: MovementViewModel
     @ObservedRealmObject var movement: Movement
+    @State var selectedLog: Log = Log()
     
     @State private var reps: Int = 12
     @State private var repsStr = "12"
@@ -33,6 +34,7 @@ struct MovementSetView: View {
     @State private var showEditMovementPopup = false
     @State private var showDoneToolBar = true
     @State private var showLogSetView = true
+    @State private var isEditingLogs = false
     
     @FocusState var isInputActive: Bool
     
@@ -87,18 +89,28 @@ struct MovementSetView: View {
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                                     .foregroundColor(.primary)
                                 Spacer()
+                                EditLogButton(isEditingLogs: $isEditingLogs)
+                                    .padding(.horizontal, 8)
                                 if index == 0 {
                                     ShowFullScreenButton(showLogSetView: $showLogSetView)
                                 }
                             }
                                 .padding(.horizontal, 16)
-                                //.padding(.vertical, 8)
                             ){
                                 ForEach(logsByDate[date] ?? [], id: \.id) { log in
                                     let weightStr = convertWeightDoubleToString(log.weight)
-                                    LogCard(weight: weightStr,
-                                            reps: String(log.reps),
-                                            date: log.date)
+                                    HStack(spacing: 16) {
+                                        LogCard(weight: weightStr,
+                                                reps: String(log.reps),
+                                                date: log.date)
+                                        if isEditingLogs {
+                                            DeleteLogButton(log: log, selectedLog: $selectedLog, 
+                                                            deleteLogInRealm: { self.deleteLogInRealm() },
+                                                            populateListOfWeights: { self.populateListOfWeights() },                                
+                                                            filterWeightAndPopulateData: { self.filterWeightAndPopulateData() },
+                                                            setMostRecentLog: { self.setMostRecentLog() })
+                                        }
+                                    }
                                     .padding(.horizontal, 16)
                                 }
                             }
@@ -231,8 +243,16 @@ struct MovementSetView: View {
         weightStr = String(recentLog?.weight ?? 135)
     }
     
-    private func deleteLog() {
-        
+    private func deleteLogInRealm() {
+        if let thawedLog = selectedLog.thaw() {
+            do {
+                try realm.write {
+                    realm.delete(thawedLog)
+                }
+            } catch  {
+                /// Handle error
+            }
+        }
     }
     
     /// Take float and convert to 0 or 1 decimal string
@@ -242,33 +262,5 @@ struct MovementSetView: View {
         } else {
             return String(format: "%.1f", weight)
         }
-    }
-}
-
-struct ShowFullScreenButton: View {
-    
-    @EnvironmentObject var theme: ThemeModel
-    
-    @State var icon = "chevron.compact.up"
-    
-    @Binding var showLogSetView: Bool
-    
-    var body: some View {
-        Button(action: {
-            withAnimation {
-                self.showLogSetView.toggle()
-                if showLogSetView {
-                    icon = "chevron.compact.up"
-                } else {
-                    icon = "chevron.compact.down"
-                }
-            }
-        }, label: {
-            ZStack {
-                Image(systemName: icon)
-                    .foregroundColor(.primary)
-                    .font(.title3.weight(.semibold))
-            }
-        })
     }
 }
