@@ -15,6 +15,7 @@
 		370730662BF07BA500E95989 /* EditLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730652BF07BA500E95989 /* EditLogButton.swift */; };
 		370730682BF07E6F00E95989 /* ShowFullScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */; };
 		3707306A2BF083C300E95989 /* DeleteLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730692BF083C300E95989 /* DeleteLogButton.swift */; };
+		3707306C2BF12B8800E95989 /* LogDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707306B2BF12B8800E95989 /* LogDataController.swift */; };
 		37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655092BA5385600B96BEB /* One_RepApp.swift */; };
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		370730652BF07BA500E95989 /* EditLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogButton.swift; sourceTree = "<group>"; };
 		370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFullScreenButton.swift; sourceTree = "<group>"; };
 		370730692BF083C300E95989 /* DeleteLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLogButton.swift; sourceTree = "<group>"; };
+		3707306B2BF12B8800E95989 /* LogDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataController.swift; sourceTree = "<group>"; };
 		37A655062BA5385600B96BEB /* One Rep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "One Rep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A655092BA5385600B96BEB /* One_RepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_RepApp.swift; sourceTree = "<group>"; };
 		37A6550D2BA5385800B96BEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
+				3707306B2BF12B8800E95989 /* LogDataController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
+				3707306C2BF12B8800E95989 /* LogDataController.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,

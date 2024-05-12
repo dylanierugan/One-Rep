@@ -13,9 +13,7 @@ struct MutateRepsView: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    
-    @Binding var reps: Int
-    @Binding var repsStr: String
+    @EnvironmentObject var logDataController: LogDataController
     
     @FocusState var isInputActive: Bool
     
@@ -30,8 +28,8 @@ struct MutateRepsView: View {
             HStack(spacing: 8)  {
                 MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
                 
-                TextField("", text: $repsStr)
-                    .onChange(of: repsStr) { newText, _ in
+                TextField("", text: $logDataController.repsStr)
+                    .onChange(of: logDataController.repsStr) { newText, _ in
                         bindValues()
                     }
                     .accentColor(Color(theme.darkBaseColor))
@@ -43,7 +41,7 @@ struct MutateRepsView: View {
                     .frame(width: 80, alignment: .center)
                     .cornerRadius(10)
                     .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                    .onReceive(Just(reps)) { _ in limitText(3) }
+                    .onReceive(Just(logDataController.reps)) { _ in limitText(3) }
                     .focused($isInputActive)
                 
                 MutateRepsButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 1, mutateRep: mutateReps)
@@ -54,23 +52,23 @@ struct MutateRepsView: View {
     // MARK: - Functions
     
     private func mutateReps(_ mutatingValue: Int) {
-        if reps > 0 || reps < 999 {
-            reps += mutatingValue
-            repsStr = String(reps)
+        if logDataController.reps > 0 || logDataController.reps < 999 {
+            logDataController.reps += mutatingValue
+            logDataController.repsStr = String(logDataController.reps)
         }
     }
     
     private func bindValues() {
-        if let value = Int(repsStr) {
-            reps = value
+        if let value = Int(logDataController.repsStr) {
+            logDataController.reps = value
         } else {
-            repsStr = String(reps)
+            logDataController.repsStr = String(logDataController.reps)
         }
     }
     
     private func limitText(_ upper: Int) {
-        if repsStr.count > upper {
-            repsStr = String(repsStr.prefix(upper))
+        if logDataController.repsStr.count > upper {
+            logDataController.repsStr = String(logDataController.repsStr.prefix(upper))
         }
     }
 }

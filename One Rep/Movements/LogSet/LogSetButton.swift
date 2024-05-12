@@ -14,17 +14,16 @@ struct LogSetButton: View {
     
     @ObservedRealmObject var movement: Movement
     
+    @EnvironmentObject var logDataController: LogDataController
     @EnvironmentObject var theme: ThemeModel
     
     var addLogToRealm:() -> Void
-    var setMostRecentLog:() -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
             addLogToRealm()
-            setMostRecentLog()
             HapticManager.instance.impact(style: .soft)
         } label: {
             HStack {

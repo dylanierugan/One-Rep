@@ -6,20 +6,21 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct DeleteLogButton: View {
     
     // MARK: - Variable
     
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var logDataController: LogDataController
+    
+    @ObservedRealmObject var movement: Movement
     
     var log: Log
     @Binding var selectedLog: Log
     
     var deleteLogInRealm: () -> Void
-    var populateListOfWeights: () -> Void
-    var filterWeightAndPopulateData: () -> Void
-    var setMostRecentLog: () -> Void
 
     // MARK: - View
     
@@ -27,9 +28,9 @@ struct DeleteLogButton: View {
         Button {
             selectedLog = log
             deleteLogInRealm()
-            populateListOfWeights()
-            filterWeightAndPopulateData()
-            setMostRecentLog()
+            logDataController.populateListOfWeights(movement.logs)
+            logDataController.filterWeightAndPopulateData(movement.logs)
+            logDataController.setMostRecentLog(movement.logs)
         } label: {
             Image(systemName: Icons.TrashCircleFill.description)
                 .font(.title.weight(.regular))
