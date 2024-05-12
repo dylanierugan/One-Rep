@@ -25,23 +25,13 @@ struct SettingsView: View {
                     .ignoresSafeArea()
                 
                 ScrollView {
-                    ThemesView()
-                    Text(app.currentUser?.profile.email ?? "No user")
-                    Button {
-                        app.currentUser?.logOut { (error) in
-                            if error != nil {
-                                
-                            } else {
-                                DispatchQueue.main.async {
-                                    withAnimation {
-                                        viewRouter.currentPage = .login
-                                    }
-                                }
-                            }
-                        }
-                    } label: {
-                        Text("Log Out")
+                    VStack(spacing: 16) {
+                        AccountView()
+                        ThemesView()
+                        LogOutButton()
+                            .padding(.top, 12)
                     }
+                    .padding(.horizontal, 16)
                 }
             }
             .navigationTitle("Settings")

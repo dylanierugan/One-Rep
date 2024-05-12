@@ -114,6 +114,7 @@ enum Icons: CustomStringConvertible {
     case PlusCircleFill
     case RectangleAndPencilAndEllipsis
     case RectanglePlus
+    case RectanglePortraitAndArrowRight
     case GearshapeFill
     case SquareFill
     case SquareAndPencil
@@ -167,6 +168,7 @@ enum Icons: CustomStringConvertible {
         case .PlusCircleFill: return "plus.circle.fill"
         case .RectangleAndPencilAndEllipsis: return "rectangle.and.pencil.and.ellipsis"
         case .RectanglePlus: return "rectangle.stack.fill.badge.plus"
+        case .RectanglePortraitAndArrowRight: return "rectangle.portrait.and.arrow.right"
         case .GearshapeFill: return "gearshape.fill"
         case .SquareFill: return "square.fill"
         case .SquareAndPencil: return "square.and.pencil"

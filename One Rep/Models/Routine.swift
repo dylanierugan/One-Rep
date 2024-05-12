@@ -17,7 +17,7 @@ class Routine: Object, ObjectKeyIdentifiable {
     @Persisted var movements: List<Movement>
     
     /// Backlink
-    @Persisted(originProperty: "movements") var group: LinkingObjects<MovementViewModel>
+    @Persisted(originProperty: "routines") var group: LinkingObjects<RoutineViewModel>
     
     convenience init(name: String = "", icon: String = "", timeAdded: Double = 0, movements: List<Movement> = List<Movement>()) {
         self.init()

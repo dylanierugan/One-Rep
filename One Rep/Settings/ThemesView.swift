@@ -26,12 +26,12 @@ struct ThemesView: View {
                     ColorButton(stringColor: Colors.LightPink.description, darkBase: Colors.DarkPink.description, lightBase: Colors.LightPink.description)
                     Spacer()
                 }
-                .padding(16)
+                .padding(.horizontal, 16)
             }
+            .frame(height: 48)
             .background(Color(theme.backgroundElementColor))
             .cornerRadius(16)
         }
-        .padding(.horizontal, 16)
     }
 }
 
@@ -59,7 +59,7 @@ struct ColorButton: View {
                 .foregroundStyle(.linearGradient(colors: [
                     Color(lightBase),
                     Color(darkBase)
-                ], startPoint: .topLeading, endPoint: .bottomTrailing))
+                ], startPoint: .top, endPoint: .bottom))
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(themeColor.accent == stringColor ?  .primary : Color.clear, lineWidth: 3)

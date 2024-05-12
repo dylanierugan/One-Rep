@@ -69,31 +69,31 @@ struct MovementSetView: View {
                 
                 ScrollView(showsIndicators: false) {
                     
-                    if movement.logs.count != 0 {
-                        WeightHorizontalScroller(weightSelection: $weightSelection, listOfWeights: $listOfWeights, filterWeightAndPopulateData: filterWeightAndPopulateData, setMostRecentLog: setMostRecentLog)
-                            .padding(.top, 16)
-                    } else {
-                        Text(InfoText.NoData.description)
-                            .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(.secondary)
-                            .padding(.top, 32)
-                    }
-                    
-                    ForEach(0..<listOfDates.count, id: \.self) { index in
-                        let date = listOfDates[index]
-                        Section(header: HStack {
-                            Text(date)
-                                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                .foregroundColor(.primary)
-                            Spacer()
-                            if index == 0 {
-                                ShowFullScreenButton(showLogSetView: $showLogSetView)
-                            }
+                    VStack(spacing: 16) {
+                        if movement.logs.count != 0 {
+                            WeightHorizontalScroller(weightSelection: $weightSelection, listOfWeights: $listOfWeights, filterWeightAndPopulateData: filterWeightAndPopulateData, setMostRecentLog: setMostRecentLog)
+                        } else {
+                            Text(InfoText.NoData.description)
+                                .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.secondary)
+                                .padding(.top, 32)
                         }
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                        ){
+                        
+                        ForEach(0..<listOfDates.count, id: \.self) { index in
+                            let date = listOfDates[index]
+                            Section(header: HStack {
+                                Text(date)
+                                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                                if index == 0 {
+                                    ShowFullScreenButton(showLogSetView: $showLogSetView)
+                                }
+                            }
+                                .padding(.horizontal, 16)
+                                //.padding(.vertical, 8)
+                            ){
                                 ForEach(logsByDate[date] ?? [], id: \.id) { log in
                                     let weightStr = convertWeightDoubleToString(log.weight)
                                     LogCard(weight: weightStr,
@@ -101,10 +101,12 @@ struct MovementSetView: View {
                                             date: log.date)
                                     .padding(.horizontal, 16)
                                 }
+                            }
                         }
                     }
+                    .padding(.top, 16)
                 }
-                .padding(.top, showLogSetView ? -15 : 16)
+                .padding(.top, showLogSetView ? -15 : 0)
             }
             .sheet(isPresented: $showEditMovementPopup) {
                 EditMovementView(movement: movement, movementModel: movementModel, showDoneToolBar: $showDoneToolBar)
