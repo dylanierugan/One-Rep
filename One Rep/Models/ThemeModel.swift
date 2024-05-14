@@ -26,6 +26,9 @@ class ThemeModel: ObservableObject {
         self.darkYellow = Colors.DarkYellow.description
         self.lightYellow = Colors.LightYellow.description
         
+        self.primary = Colors.Primary.description
+        self.reversePrimary = Colors.ReversePrimary.description
+        
         if accent == Colors.LightGreen.description {
             self.darkBaseColor = Colors.DarkGreen.description
             self.lightBaseColor = Colors.LightGreen.description
@@ -54,6 +57,9 @@ class ThemeModel: ObservableObject {
     
     @Published var backgroundColor: String
     @Published var backgroundElementColor: String
+    
+    @Published var primary: String
+    @Published var reversePrimary: String
     
     @Published var darkRed: String
     @Published var lightRed: String

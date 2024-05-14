@@ -2,21 +2,127 @@
 //  MovementsView.swift
 //  One Rep
 //
-//  Created by Dylan Ierugan on 5/11/24.
+//  Created by Dylan Ierugan on 3/16/24.
 //
 
 import SwiftUI
+import RealmSwift
+import UIKit
 
 struct MovementsView: View {
+    
+    // MARK: - Variables
+    
+    @EnvironmentObject var theme: ThemeModel
+    
+    @ObservedRealmObject var movementModel: MovementViewModel
+    
+    @State private var searchText = ""
+    @State private var movementSelection: MovementSelection = .Library
+    @State private var menuSelection: MuscleType = .All
+    @State private var selectedMovement: Movement?
+    @State private var showAddMovementPopup = false
+    
+    /// Search Bar
+    private var filteredMovements: Results<Movement> {
+        if searchText.isEmpty {
+            return movementModel.movements.sorted(by: \Movement.name, ascending: true)
+        } else {
+            let filteredMovements = movementModel.movements.sorted(by: \Movement.name, ascending: true).where {
+                $0.name.contains(searchText, options: .diacriticInsensitive)
+            }
+            return filteredMovements
+        }
+    }
+    
+    // MARK: - View
+    
     var body: some View {
         NavigationView {
-            VStack {
-                
+            ZStack {
+                Color(theme.backgroundColor)
+                    .ignoresSafeArea()
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 16) {
+                        MovementPicker(movementSelection: $movementSelection)
+                            .padding(.horizontal, 16)
+                        switch movementSelection {
+                        case .Library:
+                            VStack(spacing: 16) {
+                                HorizontalScroller(muscleSelection: $menuSelection)
+                                ForEach(filteredMovements) { movement in
+                                    if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
+                                        MovementCardButton(movementModel: movementModel, selectedMovement: $selectedMovement, movement: movement)
+                                    }
+                                }
+                                if (movementModel.movements.count == 0) || (menuSelection != .All && movementModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
+                                    Text(InfoText.CreateNewMovement.description)
+                                        .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+                                        .multilineTextAlignment(.center)
+                                        .foregroundStyle(.secondary)
+                                        .padding(.horizontal, 32)
+                                        .padding(.top, 16)
+                                }
+                            }
+                        case .Activity:
+                            VStack {
+                                Spacer()
+                                Text("Activity")
+                                Spacer()
+                            }
+                        }
+                    }
+                    .sheet(isPresented: $showAddMovementPopup) {
+                        AddMovementView(movementModel: movementModel)
+                    }
+                }
             }
+            .searchable(text: $searchText)
+            .navigationTitle("Movements")
+            .toolbar(content: {
+                ToolbarItem(placement: .topBarTrailing) {
+                    AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
+                }
+            })
         }
     }
 }
 
-#Preview {
-    MovementsView()
+// MARK: - Extensions
+
+/// Allows for custom font on the navigation title
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.configureWithOpaqueBackground()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor  .white]
+        
+        let titleTextStyle = UIFont.TextStyle.body
+        let largeTtitleTextStyle = UIFont.TextStyle.largeTitle
+        let titleFont = UIFont.preferredFont(forTextStyle: titleTextStyle, compatibleWith: nil)
+        let largeTtitle = UIFont.preferredFont(forTextStyle: largeTtitleTextStyle, compatibleWith: nil)
+        
+        if let descriptor = titleFont.fontDescriptor.withDesign(.rounded)?.withSymbolicTraits(.traitBold) {
+            let customFont = UIFont(descriptor: descriptor, size: titleFont.pointSize)
+            appearance.titleTextAttributes = [ .font : customFont]
+        }
+        if let descriptor = titleFont.fontDescriptor.withDesign(.rounded)?.withSymbolicTraits(.traitBold) {
+            let customFont = UIFont(descriptor: descriptor, size: largeTtitle.pointSize)
+            appearance.largeTitleTextAttributes = [ .font : customFont]
+        }
+        navigationBar.standardAppearance = appearance
+        navigationBar.compactAppearance = appearance
+    }
+}
+
+/// Removes navigation back buttont text
+extension UINavigationController {
+    open override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationBar.topItem?.backButtonDisplayMode = .minimal
+    }
 }

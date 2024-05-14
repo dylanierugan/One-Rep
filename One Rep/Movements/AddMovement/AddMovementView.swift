@@ -26,34 +26,39 @@ struct AddMovementView: View {
     // MARK: - View
     
     var body: some View {
-        ZStack {
-            Color(theme.backgroundColor)
-                .ignoresSafeArea()
-            
-            VStack(spacing: 36) {
-                
-                Text("New Movement")
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Movement Name")
-                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                        .foregroundColor(.secondary)
-                    MovementNameTextField(focus: true, movementName: $movementName, text: "")
+        
+        NavigationStack {
+            ZStack {
+                Color(theme.backgroundColor)
+                    .ignoresSafeArea()
+                VStack(spacing: 36) {
+                    
+                    Text("New Movement")
+                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Movement Name")
+                            .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                            .foregroundColor(.secondary)
+                        MovementNameTextField(focus: true, movementName: $movementName, text: "")
+                    }
+                    .padding(.horizontal, 16)
+                    
+                    VStack(alignment: .leading,  spacing: 4) {
+                        Text("Muscle Group")
+                            .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                            .foregroundColor(.secondary)
+                        MusclePicker(muscleGroup: $muscleGroup)
+                    }
+                    .padding(.horizontal, 16)
                 }
-                .padding(.horizontal, 16)
-                
-                VStack(alignment: .leading,  spacing: 4) {
-                    Text("Muscle Group")
-                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                        .foregroundColor(.secondary)
-                    MusclePicker(muscleGroup: $muscleGroup)
+                .padding(.vertical, 24)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        AddMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
+                    }
                 }
-                .padding(.horizontal, 16)
-                
-                AddMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
             }
-            .padding(.vertical, 24)
         }
     }
     

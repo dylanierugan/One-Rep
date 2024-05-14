@@ -30,44 +30,49 @@ struct EditMovementView: View {
     // MARK: - View
     
     var body: some View {
-        ZStack {
-            Color(theme.backgroundColor)
-                .ignoresSafeArea()
-            
-            VStack(spacing: 36) {
+        NavigationStack {
+            ZStack {
+                Color(theme.backgroundColor)
+                    .ignoresSafeArea()
                 
-                Text("Edit Movement")
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Edit name")
-                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                        .foregroundColor(.secondary)
-                    MovementNameTextField(focus: false, movementName: $newMovementName, text: movement.name)
+                VStack(spacing: 36) {
+                    
+                    Text("Edit Movement")
+                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Edit name")
+                            .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                            .foregroundColor(.secondary)
+                        MovementNameTextField(focus: false, movementName: $newMovementName, text: movement.name)
+                    }
+                    .padding(.horizontal, 16)
+                    
+                    VStack(alignment: .leading,  spacing: 4) {
+                        Text("Edit muscle group")
+                            .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                            .foregroundColor(.secondary)
+                        MusclePicker(muscleGroup: $newMuscleGroup)
+                    }
+                    .padding(.horizontal, 16)
                 }
-                .padding(.horizontal, 16)
-                
-                VStack(alignment: .leading,  spacing: 4) {
-                    Text("Edit muscle group")
-                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                        .foregroundColor(.secondary)
-                    MusclePicker(muscleGroup: $newMuscleGroup)
-                }
-                .padding(.horizontal, 16)
-                
-                HStack(spacing: 32) {
-                    DeleteMovementButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteMovementAlert: $showingDeleteMovementAlert, deleteMovementInRealm: { self.deleteMovementInRealm() })
-                    UpdateMovementButton(updateMovementInRealm: { self.updateMovementInRealm() })
-                }
+                .padding(.vertical, 24)
+                .toolbar(content: {
+                    ToolbarItem(placement: .topBarLeading) {
+                        DeleteMovementButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteMovementAlert: $showingDeleteMovementAlert, deleteMovementInRealm: { self.deleteMovementInRealm() })
+                    }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        UpdateMovementButton(updateMovementInRealm: { self.updateMovementInRealm() })
+                    }
+                })
             }
-            .padding(.vertical, 24)
-        }
-        .onAppear {
-            newMovementName = movement.name
-            newMuscleGroup = movement.muscleGroup
-        }
-        .onDisappear {
-            showDoneToolBar = true
+            .onAppear {
+                newMovementName = movement.name
+                newMuscleGroup = movement.muscleGroup
+            }
+            .onDisappear {
+                showDoneToolBar = true
+            }
         }
     }
     

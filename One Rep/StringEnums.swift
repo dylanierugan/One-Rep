@@ -45,6 +45,7 @@ enum Colors: CustomStringConvertible {
     case LightPink
     case LightRed
     case LightYellow
+    case Primary
     case ReversePrimary
     case SecondaryBackgroundColor
     
@@ -64,6 +65,7 @@ enum Colors: CustomStringConvertible {
         case .LightPink: return "LightPink"
         case .LightRed: return "LightRed"
         case .LightYellow: return "LightYellow"
+        case .Primary: return "Primary"
         case .ReversePrimary: return "ReversePrimary"
         case .SecondaryBackgroundColor: return "SecondaryBackgroundColor"
         }
@@ -208,6 +210,12 @@ enum InfoText: CustomStringConvertible {
             case .NoData: return "No data"
         }
     }
+}
+
+enum MovementSelection: String, PersistableEnum, Identifiable {
+    var id: MovementSelection { self }
+    case Library = "Library"
+    case Activity = "Activity"
 }
 
 enum MuscleType: String, PersistableEnum, Identifiable {

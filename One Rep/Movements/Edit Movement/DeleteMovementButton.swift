@@ -25,21 +25,12 @@ struct DeleteMovementButton: View {
         Button {
             showingDeleteMovementAlert = true
         } label: {
-            HStack {
-                Text("Delete")
-                Image(systemName: Icons.Trash.description)
-            }
-            .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
-            .foregroundColor(.black)
-            .padding(.vertical, 12)
-            .padding(.horizontal, 32)
-            .background(
-                .linearGradient(colors: [
+            Text("Delete")
+                .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                .foregroundStyle(.linearGradient(colors: [
                     Color(theme.lightRed),
                     Color(theme.darkRed)
-                ], startPoint: .top, endPoint: .bottom)
-            )
-            .cornerRadius(16)
+                ], startPoint: .top, endPoint: .bottom))
         }
         /// Alert to delete movement (asks for confirmation)
         .alert(isPresented: $showingDeleteMovementAlert) {
