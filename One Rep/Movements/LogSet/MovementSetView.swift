@@ -145,7 +145,7 @@ struct MovementSetView: View {
     // MARK: - Functions
     
     private func addLogToRealm() {
-        let log = Log(reps: logDataController.reps, weight: logDataController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970 + 86400)
+        let log = Log(reps: logDataController.reps, weight: logDataController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970)
         if let thawedMovementLogList = movement.logs.thaw() {
             do {
                 try realm.write {

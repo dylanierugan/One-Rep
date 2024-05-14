@@ -16,6 +16,8 @@ class Log: Object, ObjectKeyIdentifiable{
     @Persisted var repType: RepType
     @Persisted var date: Double
     
+    @Persisted(originProperty: "logs") var movement: LinkingObjects<Movement>
+    
     convenience init(reps: Int = 0, weight: Double = 0, isBodyWeight: Bool = false , repType: RepType, date: Double = Date().timeIntervalSinceNow) {
         self.init()
         self.reps = reps

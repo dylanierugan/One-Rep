@@ -95,6 +95,7 @@ struct EditMovementView: View {
         if let thawedMovement = movement.thaw() {
             do {
                 try realm.write {
+                    realm.delete(thawedMovement.logs)
                     realm.delete(thawedMovement)
                 }
             } catch  {
