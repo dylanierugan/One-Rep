@@ -16,7 +16,8 @@ class LogDataController: ObservableObject {
     
     @Published var listOfWeights = [String]()
     @Published var listOfDates = [String]()
-    @Published var logsByDate = [String: [Log]]()
+    @Published var dateLogMap = [String: [Log]]()
+    @Published var dateMovementLogMap = [String: [Movement:[Log]]]()
     
     @Published var reps: Int = 12
     @Published var repsStr = "12"
@@ -36,26 +37,12 @@ class LogDataController: ObservableObject {
     }
     
     /// Populate listOfDates with unique dates and sort
-    func populatelistOfDates(_ logs: List<Log>) {
+    func populateListOfDates(_ logs: List<Log>) {
         listOfDates = []
         for log in logs {
             let stringDate = formatDate(date: log.date)
             if !self.listOfDates.contains(stringDate) {
                 self.listOfDates.append(stringDate)
-            }
-        }
-    }
-    
-    /// Populate logsByDate where the key = date and val = array of logs
-    func populateLogsByDate(_ logs: List<Log>) {
-        logsByDate = [:]
-        for date in self.listOfDates { /// Create all dict keys with empty lists
-            self.logsByDate[date] = []
-        }
-        for log in logs {
-            let stringDate = formatDate(date: log.date)
-            if self.listOfDates.contains(stringDate) {
-                self.logsByDate[stringDate]?.append(log)
             }
         }
     }
@@ -73,6 +60,34 @@ class LogDataController: ObservableObject {
         listOfWeights.insert("All", at: 0)
     }
     
+    /// Populate logsByDate where the key = date and val = array of logs
+    func populateDateLogMap(_ logs: List<Log>) {
+        dateLogMap = [:]
+        for date in self.listOfDates { /// Create all dict keys with empty lists
+            self.dateLogMap[date] = []
+        }
+        for log in logs {
+            let stringDate = formatDate(date: log.date)
+            if self.listOfDates.contains(stringDate) {
+                self.dateLogMap[stringDate]?.append(log)
+            }
+        }
+    }
+    
+    /// Populate dateMovementLogMap where the each key is a uniqeue date that holds another map of movements and their logs on that date
+    func populateDateMovementLogMap(_ logs: List<Log>) {
+        dateMovementLogMap = [String: [Movement:[Log]]]()
+        for date in self.listOfDates { /// Create all dict keys with empty lists
+            self.dateMovementLogMap[date] = [Movement:[Log]]()
+        }
+        for log in logs {
+            let stringDate = formatDate(date: log.date)
+            if dateMovementLogMap[stringDate] != nil {
+                dateMovementLogMap[stringDate]?[log.movement!, default: []].append(log)
+            }
+        }
+    }
+    
     /// Populate data based on filter for weight
     func filterWeightAndPopulateData(_ logs: List<Log>) {
         let filteredLogs = List<Log>()
@@ -87,8 +102,8 @@ class LogDataController: ObservableObject {
         let sortedFilteredLogs = filteredLogs.sorted(by: { $0.date > $1.date })
         let realmList = List<Log>()
         realmList.append(objectsIn: sortedFilteredLogs)
-        populatelistOfDates(realmList)
-        populateLogsByDate(realmList)
+        populateListOfDates(realmList)
+        populateDateLogMap(realmList)
     }
     
     /// Set weight and rep fields to most recent log
@@ -115,4 +130,13 @@ class LogDataController: ObservableObject {
         }
     }
     
+    func getAllLogs(_ movements: List<Movement>) -> List<Log> {
+        let allLogs = List<Log>()
+        for movement in movements {
+            for log in movement.logs {
+                allLogs.append(log)
+            }
+        }
+        return allLogs
+    }
 }

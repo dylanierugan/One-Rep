@@ -3,4 +3,70 @@
    uuid = "5991C852-C3E6-448E-96B7-E567701E8EA0"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C09022AB-69C2-43DB-BAA5-6B368FDE4807"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/Movements/ActivityView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C09022AB-69C2-43DB-BAA5-6B368FDE4807 - dd2cef1d0e134657"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (One_Rep.Movement) -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt; in closure #2 () -&gt; Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;One_Rep.Movement&gt;, One_Rep.Movement, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt;&gt;&gt; in closure #1 (Swift.Int) -&gt; SwiftUI.Section&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;One_Rep.Movement&gt;, One_Rep.Movement, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt;&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Section&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;One_Rep.Movement&gt;, One_Rep.Movement, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt;&gt;&gt;, SwiftUI.EmptyView&gt;&gt; in One_Rep.ActivityView.body.getter : some"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/Movements/ActivityView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "C09022AB-69C2-43DB-BAA5-6B368FDE4807 - 2a62ff0da62e9488"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt; in closure #1 (One_Rep.Movement) -&gt; SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt; in closure #2 () -&gt; Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;One_Rep.Movement&gt;, One_Rep.Movement, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt;&gt;&gt; in closure #1 (Swift.Int) -&gt; SwiftUI.Section&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;One_Rep.Movement&gt;, One_Rep.Movement, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt;&gt;&gt;, SwiftUI.EmptyView&gt; in closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Section&lt;&lt;&lt;opaque return type of SwiftUI.View.padding(SwiftUI.Edge.Set, Swift.Optional&lt;CoreGraphics.CGFloat&gt;) -&gt; some&gt;&gt;.0, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Array&lt;One_Rep.Movement&gt;, One_Rep.Movement, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, Swift.Optional&lt;SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, SwiftUI.Text&gt;&gt;)&gt;&gt;&gt;&gt;, SwiftUI.EmptyView&gt;&gt; in One_Rep.ActivityView.body.getter : some"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/Movements/ActivityView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "38"
+                  endingLineNumber = "38"
+                  offsetFromSymbolStart = "460">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9097F065-2685-45FD-9945-0CE3DF124E27"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/Movements/ActivityView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -13,7 +13,9 @@ struct MovementsView: View {
     
     // MARK: - Variables
     
+    @Environment(\.dismissSearch) private var dismissSearch
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var logDataController: LogDataController
     
     @ObservedRealmObject var movementModel: MovementViewModel
     
@@ -66,9 +68,7 @@ struct MovementsView: View {
                             }
                         case .Activity:
                             VStack {
-                                Spacer()
-                                Text("Activity")
-                                Spacer()
+                                ActivityView(movementModel: movementModel)
                             }
                         }
                     }
@@ -77,7 +77,6 @@ struct MovementsView: View {
                     }
                 }
             }
-            .searchable(text: $searchText)
             .navigationTitle("Movements")
             .toolbar(content: {
                 ToolbarItem(placement: .topBarTrailing) {

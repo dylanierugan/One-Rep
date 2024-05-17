@@ -91,7 +91,7 @@ struct MovementSetView: View {
                             }
                                 .padding(.horizontal, 16)
                             ){
-                                ForEach(logDataController.logsByDate[date] ?? [], id: \.id) { log in
+                                ForEach(logDataController.dateLogMap[date] ?? [], id: \.id) { log in
                                     let weightStr = logDataController.convertWeightDoubleToString(log.weight)
                                     HStack(spacing: 16) {
                                         LogCard(weight: weightStr,
@@ -145,7 +145,18 @@ struct MovementSetView: View {
     // MARK: - Functions
     
     private func addLogToRealm() {
-        let log = Log(reps: logDataController.reps, weight: logDataController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970)
+        /// Ensure movement is managed by the same Realm instance
+        let log = Log(reps: logDataController.reps, weight: logDataController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970, movement: nil)
+        let managedMovement: Movement
+        if let existingMovement = realm.object(ofType: Movement.self, forPrimaryKey: movement.id) {
+            managedMovement = existingMovement
+        } else {
+            try! realm.write {
+                realm.add(movement, update: .all)
+            }
+            managedMovement = movement
+        }
+        log.movement = managedMovement
         if let thawedMovementLogList = movement.logs.thaw() {
             do {
                 try realm.write {
