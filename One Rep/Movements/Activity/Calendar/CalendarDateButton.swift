@@ -25,9 +25,11 @@ struct CalendarDateButton: View {
     
     var body: some View {
         Button {
-            dateViewModel.selectedDate = dateObject.date
-            dateViewModel.setDate()
-            HapticManager.instance.impact(style: .soft)
+            withAnimation {
+                dateViewModel.selectedDate = dateObject.date
+                dateViewModel.setDate()
+                HapticManager.instance.impact(style: .soft)
+            }
         } label: {
             VStack {
                 if dateObject.day != -1 {
@@ -35,18 +37,19 @@ struct CalendarDateButton: View {
                         VStack {
                             Text("\(dateObject.day)")
                                 .font(.title3.bold())
-                                .foregroundStyle(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? .black : .primary)
+                                .foregroundStyle(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? (theme.lightBaseColor == Colors.Primary.description ? .reversePrimary : Color(.black)) : .primary)
                                 .frame(maxWidth: .infinity)
                             Spacer()
                             Circle()
-                                .fill(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? .white : Color(theme.lightBaseColor))
+                                .fill(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? 
+                                      (theme.lightBaseColor == Colors.Primary.description ? .reversePrimary : .white) : Color(theme.lightBaseColor))
                                 .frame(width: 8, height: 8)
                         }
                     } else {
                         VStack {
                             Text("\(dateObject.day)")
                                 .font(.title3.bold())
-                                .foregroundColor(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? .black : .primary)
+                                .foregroundColor(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? (theme.lightBaseColor == Colors.Primary.description ? .reversePrimary : Color(.black)) : .primary)
                                 .frame(maxWidth: .infinity)
                             Spacer()
                         }
@@ -58,7 +61,11 @@ struct CalendarDateButton: View {
         }
         .background(
             Capsule()
-                .fill(.linearGradient(colors: [
+                .fill(theme.lightBaseColor == Colors.Primary.description ?
+                    .linearGradient(colors: [
+                        .primary
+                    ], startPoint: .top, endPoint: .bottom) :
+                    .linearGradient(colors: [
                     Color(theme.lightBaseColor),
                     Color(theme.darkBaseColor)
                 ], startPoint: .top, endPoint: .bottom))

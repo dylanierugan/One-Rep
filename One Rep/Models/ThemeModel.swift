@@ -35,6 +35,9 @@ class ThemeModel: ObservableObject {
         } else if accent == Colors.LightPink.description {
             self.darkBaseColor = Colors.DarkPink.description
             self.lightBaseColor = Colors.LightPink.description
+        } else if accent == Colors.Primary.description {
+            self.lightBaseColor = Colors.Primary.description
+            self.darkBaseColor = Colors.Primary.description
         } else {
             self.darkBaseColor = Colors.DarkGreen.description
             self.lightBaseColor = Colors.LightGreen.description
@@ -71,6 +74,9 @@ class ThemeModel: ObservableObject {
         } else if accent == Colors.LightPink.description {
             self.lightBaseColor = Colors.LightPink.description
             self.darkBaseColor = Colors.DarkPink.description
+        } else if accent == Colors.Primary.description {
+            self.lightBaseColor = Colors.Primary.description
+            self.darkBaseColor = Colors.Primary.description
         }
     }
 }

@@ -24,6 +24,7 @@ struct ThemesView: View {
                 HStack(spacing: 24) {
                     ColorButton(stringColor: Colors.LightGreen.description, darkBase: Colors.LightGreen.description, lightBase: Colors.DarkGreen.description)
                     ColorButton(stringColor: Colors.LightPink.description, darkBase: Colors.DarkPink.description, lightBase: Colors.LightPink.description)
+                    ColorButton(stringColor: Colors.Primary.description, darkBase: Colors.Primary.description, lightBase: Colors.Primary.description)
                     Spacer()
                 }
                 .padding(.horizontal, 16)
