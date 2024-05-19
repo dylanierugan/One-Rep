@@ -19,8 +19,9 @@ struct ActivityMovementDataView: View {
     
     var body: some View {
         if let movementLogMap = logDataController.dateMovementLogMap[logDataController.formatDate(date: dateViewModel.selectedDate.timeIntervalSince1970)] {
+            let sortedMovements = Array(movementLogMap.keys).sorted { $0.name < $1.name }
             VStack {
-                ForEach(Array(movementLogMap.keys), id: \.self) { movement in
+                ForEach(Array(sortedMovements), id: \.self) { movement in
                     VStack(alignment: .leading) {
                         Text(movement.name)
                             .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
