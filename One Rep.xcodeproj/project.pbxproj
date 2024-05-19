@@ -14,7 +14,7 @@
 		370730662BF07BA500E95989 /* EditLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730652BF07BA500E95989 /* EditLogButton.swift */; };
 		370730682BF07E6F00E95989 /* ShowFullScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */; };
 		3707306A2BF083C300E95989 /* DeleteLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730692BF083C300E95989 /* DeleteLogButton.swift */; };
-		3707306C2BF12B8800E95989 /* LogDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707306B2BF12B8800E95989 /* LogDataController.swift */; };
+		3707306C2BF12B8800E95989 /* LogDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707306B2BF12B8800E95989 /* LogDataViewModel.swift */; };
 		370730702BF16ECD00E95989 /* MovementSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */; };
 		370730722BF3BE8900E95989 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730712BF3BE8900E95989 /* ActivityView.swift */; };
 		370730762BF7240F00E95989 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730752BF7240F00E95989 /* CalendarView.swift */; };
@@ -79,7 +79,7 @@
 		370730652BF07BA500E95989 /* EditLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogButton.swift; sourceTree = "<group>"; };
 		370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFullScreenButton.swift; sourceTree = "<group>"; };
 		370730692BF083C300E95989 /* DeleteLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLogButton.swift; sourceTree = "<group>"; };
-		3707306B2BF12B8800E95989 /* LogDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataController.swift; sourceTree = "<group>"; };
+		3707306B2BF12B8800E95989 /* LogDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataViewModel.swift; sourceTree = "<group>"; };
 		3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementSelectionPicker.swift; sourceTree = "<group>"; };
 		370730712BF3BE8900E95989 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		370730752BF7240F00E95989 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
-				3707306B2BF12B8800E95989 /* LogDataController.swift */,
+				3707306B2BF12B8800E95989 /* LogDataViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -408,7 +408,7 @@
 			files = (
 				3707307A2BF8805900E95989 /* DayPicker.swift in Sources */,
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
-				3707306C2BF12B8800E95989 /* LogDataController.swift in Sources */,
+				3707306C2BF12B8800E95989 /* LogDataViewModel.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,

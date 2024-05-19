@@ -12,13 +12,13 @@ struct ActivityMovementDataView: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataController: LogDataController
+    @EnvironmentObject var logDataViewModel: LogDataViewModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
     // MARK: - View
     
     var body: some View {
-        if let movementLogMap = logDataController.dateMovementLogMap[logDataController.formatDate(date: dateViewModel.selectedDate.timeIntervalSince1970)] {
+        if let movementLogMap = logDataViewModel.dateMovementLogMap[logDataViewModel.formatDate(date: dateViewModel.selectedDate.timeIntervalSince1970)] {
             let sortedMovements = Array(movementLogMap.keys).sorted { $0.name < $1.name }
             VStack {
                 ForEach(Array(sortedMovements), id: \.self) { movement in
@@ -27,7 +27,7 @@ struct ActivityMovementDataView: View {
                             .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                         if let logs = movementLogMap[movement]{
                             ForEach(Array(logs.enumerated()), id: \.element.id) { index, log in
-                                let weightStr = logDataController.convertWeightDoubleToString(log.weight)
+                                let weightStr = logDataViewModel.convertWeightDoubleToString(log.weight)
                                 let repStr = String(log.reps)
                                 HStack {
                                     HStack(spacing: 12) {

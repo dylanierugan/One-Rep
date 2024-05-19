@@ -13,7 +13,7 @@ struct MutateWeightView: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataController: LogDataController
+    @EnvironmentObject var logDataViewModel: LogDataViewModel
     
     @FocusState var isInputActive: Bool
     
@@ -28,8 +28,8 @@ struct MutateWeightView: View {
             HStack(spacing: 8) {
                 MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
                 
-                TextField("", text: $logDataController.weightStr)
-                    .onChange(of: logDataController.weightStr) { newText, _ in
+                TextField("", text: $logDataViewModel.weightStr)
+                    .onChange(of: logDataViewModel.weightStr) { newText, _ in
                         bindValues()
                     }
                     .accentColor(Color(theme.darkBaseColor))
@@ -41,7 +41,7 @@ struct MutateWeightView: View {
                     .frame(width: 80, alignment: .center)
                     .cornerRadius(10)
                     .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                    .onReceive(Just(logDataController.weight)) { _ in limitText(5) }
+                    .onReceive(Just(logDataViewModel.weight)) { _ in limitText(5) }
                     .focused($isInputActive)
                 
                 MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
@@ -52,23 +52,23 @@ struct MutateWeightView: View {
     // MARK: - Functions
     
     private func mutateWeight(_ mutatingValue: Double) {
-        if logDataController.weight + mutatingValue >= 0 && logDataController.weight + mutatingValue <= 999 {
-            logDataController.weight += mutatingValue
+        if logDataViewModel.weight + mutatingValue >= 0 && logDataViewModel.weight + mutatingValue <= 999 {
+            logDataViewModel.weight += mutatingValue
             updateWeightString()
         }
     }
 
     private func bindValues() {
-        if let value = Double(logDataController.weightStr) {
-            logDataController.weight = value
+        if let value = Double(logDataViewModel.weightStr) {
+            logDataViewModel.weight = value
             updateWeightString()
         } else {
-            logDataController.weightStr = formatWeightString(logDataController.weight)
+            logDataViewModel.weightStr = formatWeightString(logDataViewModel.weight)
         }
     }
 
     private func updateWeightString() {
-        logDataController.weightStr = formatWeightString(logDataController.weight)
+        logDataViewModel.weightStr = formatWeightString(logDataViewModel.weight)
     }
 
     private func formatWeightString(_ weight: Double) -> String {
@@ -80,8 +80,8 @@ struct MutateWeightView: View {
     }
     
     private func limitText(_ upper: Int) {
-        if logDataController.weightStr.count > upper {
-            logDataController.weightStr = String(logDataController.weightStr.prefix(upper))
+        if logDataViewModel.weightStr.count > upper {
+            logDataViewModel.weightStr = String(logDataViewModel.weightStr.prefix(upper))
         }
     }
 }

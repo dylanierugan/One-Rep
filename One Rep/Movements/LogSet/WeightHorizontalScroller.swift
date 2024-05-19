@@ -13,7 +13,7 @@ struct WeightHorizontalScroller: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataController: LogDataController
+    @EnvironmentObject var logDataViewModel: LogDataViewModel
     
     @ObservedRealmObject var movement: Movement
     
@@ -21,34 +21,34 @@ struct WeightHorizontalScroller: View {
     
     var body: some View {
         /// Horizontal scrollview to allow for weight group selection
-        if logDataController.listOfWeights.count > 2  {
+        if logDataViewModel.listOfWeights.count > 2  {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(logDataController.listOfWeights, id: \.self) { weight in
+                    ForEach(logDataViewModel.listOfWeights, id: \.self) { weight in
                         Button {
-                            logDataController.weightSelection = weight
-                            logDataController.filterWeightAndPopulateData(movement.logs)
-                            logDataController.setMostRecentLog(movement.logs)
+                            logDataViewModel.weightSelection = weight
+                            logDataViewModel.filterWeightAndPopulateData(movement.logs)
+                            logDataViewModel.setMostRecentLog(movement.logs)
                             HapticManager.instance.impact(style: .soft)
                         } label: {
                             if weight == "All" {
                                 Text(weight)
-                                    .foregroundColor(logDataController.weightSelection == weight ? .primary : .secondary.opacity(0.5))
+                                    .foregroundColor(logDataViewModel.weightSelection == weight ? .primary : .secondary.opacity(0.5))
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             } else {
                                 Text("\(weight) lbs")
-                                    .foregroundColor(logDataController.weightSelection == weight ? .primary : .secondary.opacity(0.5))
+                                    .foregroundColor(logDataViewModel.weightSelection == weight ? .primary : .secondary.opacity(0.5))
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             }
                         }
                         .padding(.vertical, 10)
                         .padding(.horizontal, 16)
-                        .background(logDataController.weightSelection == weight ? Color(theme.backgroundElementColor) : Color(theme.backgroundElementColor).opacity(0.5))
+                        .background(logDataViewModel.weightSelection == weight ? Color(theme.backgroundElementColor) : Color(theme.backgroundElementColor).opacity(0.5))
                         .cornerRadius(16)
                     }
                 }
                 .padding(.horizontal, 16)
-                .onChange(of: logDataController.weightSelection) { newValue, _ in
+                .onChange(of: logDataViewModel.weightSelection) { newValue, _ in
                     HapticManager.instance.impact(style: .soft)
                 }
             }

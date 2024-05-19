@@ -15,7 +15,6 @@ struct MovementsView: View {
     
     @Environment(\.dismissSearch) private var dismissSearch
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataController: LogDataController
     
     @ObservedRealmObject var movementModel: MovementViewModel
     

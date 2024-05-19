@@ -1,5 +1,5 @@
 //
-//  LogDataController.swift
+//  LogDataViewModel.swift
 //  One Rep
 //
 //  Created by Dylan Ierugan on 5/12/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class LogDataController: ObservableObject {
+class LogDataViewModel: ObservableObject {
     
     // MARK: - Variables
     

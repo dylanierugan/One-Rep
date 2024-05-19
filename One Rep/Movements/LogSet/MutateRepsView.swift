@@ -13,7 +13,7 @@ struct MutateRepsView: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataController: LogDataController
+    @EnvironmentObject var logDataViewModel: LogDataViewModel
     
     @FocusState var isInputActive: Bool
     
@@ -28,8 +28,8 @@ struct MutateRepsView: View {
             HStack(spacing: 8)  {
                 MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
                 
-                TextField("", text: $logDataController.repsStr)
-                    .onChange(of: logDataController.repsStr) { newText, _ in
+                TextField("", text: $logDataViewModel.repsStr)
+                    .onChange(of: logDataViewModel.repsStr) { newText, _ in
                         bindValues()
                     }
                     .accentColor(Color(theme.darkBaseColor))
@@ -41,7 +41,7 @@ struct MutateRepsView: View {
                     .frame(width: 80, alignment: .center)
                     .cornerRadius(10)
                     .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                    .onReceive(Just(logDataController.reps)) { _ in limitText(3) }
+                    .onReceive(Just(logDataViewModel.reps)) { _ in limitText(3) }
                     .focused($isInputActive)
                 
                 MutateRepsButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 1, mutateRep: mutateReps)
@@ -52,23 +52,23 @@ struct MutateRepsView: View {
     // MARK: - Functions
     
     private func mutateReps(_ mutatingValue: Int) {
-        if logDataController.reps > 0 || logDataController.reps < 999 {
-            logDataController.reps += mutatingValue
-            logDataController.repsStr = String(logDataController.reps)
+        if logDataViewModel.reps > 0 || logDataViewModel.reps < 999 {
+            logDataViewModel.reps += mutatingValue
+            logDataViewModel.repsStr = String(logDataViewModel.reps)
         }
     }
     
     private func bindValues() {
-        if let value = Int(logDataController.repsStr) {
-            logDataController.reps = value
+        if let value = Int(logDataViewModel.repsStr) {
+            logDataViewModel.reps = value
         } else {
-            logDataController.repsStr = String(logDataController.reps)
+            logDataViewModel.repsStr = String(logDataViewModel.reps)
         }
     }
     
     private func limitText(_ upper: Int) {
-        if logDataController.repsStr.count > upper {
-            logDataController.repsStr = String(logDataController.repsStr.prefix(upper))
+        if logDataViewModel.repsStr.count > upper {
+            logDataViewModel.repsStr = String(logDataViewModel.repsStr.prefix(upper))
         }
     }
 }

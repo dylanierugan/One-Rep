@@ -14,7 +14,6 @@ struct LogSetButton: View {
     
     @ObservedRealmObject var movement: Movement
     
-    @EnvironmentObject var logDataController: LogDataController
     @EnvironmentObject var theme: ThemeModel
     
     var addLogToRealm:() -> Void

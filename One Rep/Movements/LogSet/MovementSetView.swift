@@ -15,7 +15,7 @@ struct MovementSetView: View {
     @Environment(\.realm) var realm
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataController: LogDataController
+    @EnvironmentObject var logDataViewModel: LogDataViewModel
     
     @ObservedRealmObject var movementModel: MovementViewModel
     @ObservedRealmObject var movement: Movement
@@ -76,8 +76,8 @@ struct MovementSetView: View {
                             }
                         }
                         
-                        ForEach(0..<logDataController.listOfDates.count, id: \.self) { index in
-                            let date = logDataController.listOfDates[index]
+                        ForEach(0..<logDataViewModel.listOfDates.count, id: \.self) { index in
+                            let date = logDataViewModel.listOfDates[index]
                             Section(header: HStack {
                                 Text(date)
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
@@ -91,8 +91,8 @@ struct MovementSetView: View {
                             }
                                 .padding(.horizontal, 16)
                             ){
-                                ForEach(logDataController.dateLogMap[date] ?? [], id: \.id) { log in
-                                    let weightStr = logDataController.convertWeightDoubleToString(log.weight)
+                                ForEach(logDataViewModel.dateLogMap[date] ?? [], id: \.id) { log in
+                                    let weightStr = logDataViewModel.convertWeightDoubleToString(log.weight)
                                     HStack(spacing: 16) {
                                         LogCard(weight: weightStr,
                                                 reps: String(log.reps),
@@ -135,10 +135,10 @@ struct MovementSetView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
-                logDataController.weightSelection = "All"
-                logDataController.populateListOfWeights(movement.logs)
-                logDataController.filterWeightAndPopulateData(movement.logs)
-                logDataController.setMostRecentLog(movement.logs)
+                logDataViewModel.weightSelection = "All"
+                logDataViewModel.populateListOfWeights(movement.logs)
+                logDataViewModel.filterWeightAndPopulateData(movement.logs)
+                logDataViewModel.setMostRecentLog(movement.logs)
             }
     }
     
@@ -146,7 +146,7 @@ struct MovementSetView: View {
     
     private func addLogToRealm() {
         /// Ensure movement is managed by the same Realm instance
-        let log = Log(reps: logDataController.reps, weight: logDataController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970, movement: nil)
+        let log = Log(reps: logDataViewModel.reps, weight: logDataViewModel.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970, movement: nil)
         let managedMovement: Movement
         if let existingMovement = realm.object(ofType: Movement.self, forPrimaryKey: movement.id) {
             managedMovement = existingMovement
@@ -162,12 +162,12 @@ struct MovementSetView: View {
                 try realm.write {
                     thawedMovementLogList.append(log)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                        if logDataController.weightSelection != "All" {
-                            logDataController.weightSelection = logDataController.weightStr
-                            logDataController.setMostRecentLog(movement.logs)
+                        if logDataViewModel.weightSelection != "All" {
+                            logDataViewModel.weightSelection = logDataViewModel.weightStr
+                            logDataViewModel.setMostRecentLog(movement.logs)
                         }
-                        logDataController.populateListOfWeights(movement.logs)
-                        logDataController.filterWeightAndPopulateData(movement.logs)
+                        logDataViewModel.populateListOfWeights(movement.logs)
+                        logDataViewModel.filterWeightAndPopulateData(movement.logs)
                     }
                 }
             } catch  {
