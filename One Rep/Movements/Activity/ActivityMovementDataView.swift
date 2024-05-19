@@ -26,11 +26,14 @@ struct ActivityMovementDataView: View {
                         Text(movement.name)
                             .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                         if let logs = movementLogMap[movement]{
-                            ForEach(logs.reversed() , id: \.id) { log in
+                            ForEach(Array(logs.enumerated()), id: \.element.id) { index, log in
                                 let weightStr = logDataController.convertWeightDoubleToString(log.weight)
                                 let repStr = String(log.reps)
                                 HStack {
-                                    TimeLabel(date: log.date)
+                                    HStack(spacing: 12) {
+                                        LogIndexLabel(index: index + 1)
+                                        TimeLabel(date: log.date)
+                                    }
                                     Spacer()
                                     DataLabel(data: weightStr, dataType: "lbs")
                                     Spacer()
