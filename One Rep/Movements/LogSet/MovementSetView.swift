@@ -68,10 +68,10 @@ struct MovementSetView: View {
                             HStack {
                                 Spacer()
                                 Text(InfoText.NoData.description)
-                                    .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+                                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                                     .multilineTextAlignment(.center)
                                     .foregroundStyle(.secondary)
-                                    .padding(.top, 32)
+                                    .padding(.top, 36)
                                 Spacer()
                             }
                         }

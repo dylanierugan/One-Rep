@@ -59,10 +59,10 @@ struct MovementsView: View {
                                 }
                                 if (movementModel.movements.count == 0) || (menuSelection != .All && movementModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
                                     Text(InfoText.CreateNewMovement.description)
-                                        .customFont(size: .body, weight: .regular, kerning: 0, design: .rounded)
+                                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                                         .multilineTextAlignment(.center)
                                         .foregroundStyle(.secondary)
-                                        .padding(.horizontal, 32)
+                                        .padding(.horizontal, 36)
                                         .padding(.top, 16)
                                 }
                             }

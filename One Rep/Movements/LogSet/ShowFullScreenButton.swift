@@ -29,7 +29,7 @@ struct ShowFullScreenButton: View {
             ZStack {
                 Image(systemName: icon)
                     .foregroundColor(.primary)
-                    .font(.title3.weight(.semibold))
+                    .font(.title2.weight(.semibold))
             }
         })
     }

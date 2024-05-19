@@ -31,6 +31,7 @@ struct DeleteLogButton: View {
             logDataController.populateListOfWeights(movement.logs)
             logDataController.filterWeightAndPopulateData(movement.logs)
             logDataController.setMostRecentLog(movement.logs)
+            HapticManager.instance.impact(style: .light)
         } label: {
             Image(systemName: Icons.TrashCircleFill.description)
                 .font(.title.weight(.regular))

@@ -28,22 +28,7 @@ struct ActivityView: View {
                 HStack {
                     DateView()
                     Spacer()
-                    Button {
-                        moveSelectedDate(forward: false)
-                        dateViewModel.setDate()
-                    } label: {
-                        Image(systemName: Icons.ChevronLeft.description)
-                            .font(.title2).bold()
-                            .foregroundStyle(.primary)
-                    }
-                    Button {
-                        moveSelectedDate(forward: true)
-                        dateViewModel.setDate()
-                    } label: {
-                        Image(systemName: Icons.ChevronRight.description)
-                            .font(.title2).bold()
-                            .foregroundStyle(.primary)
-                    }
+                    MoveWeekButtons()
                 }
                 .padding(.top, 8)
                 .padding(.horizontal, 24)
@@ -55,53 +40,9 @@ struct ActivityView: View {
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             }
-            if let movementLogMap = logDataController.dateMovementLogMap[logDataController.formatDate(date: dateViewModel.selectedDate.timeIntervalSince1970)] {
-                ForEach(Array(movementLogMap.keys), id: \.self) { movement in
-                    VStack(alignment: .leading) {
-                        Text(movement.name)
-                            .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                        if let logs = movementLogMap[movement]{
-                            ForEach(logs.reversed() , id: \.id) { log in
-                                let weightStr = logDataController.convertWeightDoubleToString(log.weight)
-                                let repStr = String(log.reps)
-                                HStack {
-                                    HStack {
-                                        Text(weightStr)
-                                            .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                                            .foregroundStyle(.primary)
-                                        Text("lbs")
-                                            .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    Spacer()
-                                    HStack {
-                                        Text(repStr)
-                                            .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                                            .foregroundStyle(.primary)
-                                        Text("reps")
-                                            .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                                            .foregroundStyle(.secondary)
-                                    }
-                                    Spacer()
-                                    Text(Date(timeIntervalSince1970: log.date), style: .time)
-                                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                                        .foregroundStyle(.primary)
-                                }
-                                .padding(.horizontal, 16)
-                            }
-                        }
-                    }
-                    .padding(.top, 16)
-                    .padding(.horizontal, 8)
-                }
-            } else {
-                Text("No data logged for this day")
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 72)
-            }
+            ActivityMovementDataView()
+                .padding(.top, 16)
+                .padding(.horizontal, 16)
         }
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {
@@ -115,70 +56,4 @@ struct ActivityView: View {
             dateViewModel.setDate()
         }
     }
-    
-    // MARK: - Functions
-    
-    func moveSelectedDate(forward: Bool) {
-        let weeksToMove = forward ? 1 : -1
-        dateViewModel.selectedDate = dateViewModel.selectedDate.move(byWeeks: weeksToMove)
-    }
 }
-
-//    ForEach(0..<logDataController.listOfDates.count, id: \.self) { index in
-//        let date = logDataController.listOfDates.reversed()[index]
-//        VStack {
-//            Section(header: HStack {
-//                Text(date)
-//                    .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
-//                    .foregroundColor(.primary)
-//                    .padding(.horizontal, 16)
-//                    .padding(.top, 16)
-//                Spacer()
-//            }
-//            ){
-//                if let movementLogMap = logDataController.dateMovementLogMap[date] {
-//                    ForEach(Array(movementLogMap.keys), id: \.self) { movement in
-//                        VStack(alignment: .leading) {
-//                            Text(movement.name)
-//                                .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
-//                                .padding(.vertical, 8)
-//                                .padding(.horizontal, 16)
-//                            if let logs = movementLogMap[movement]{
-//                                ForEach(logs.reversed() , id: \.id) { log in
-//                                    let weightStr = logDataController.convertWeightDoubleToString(log.weight)
-//                                    let repStr = String(log.reps)
-//                                    HStack {
-//                                        Text(Date(timeIntervalSince1970: log.date), style: .time)
-//                                            .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
-//                                            .foregroundStyle(.primary)
-//                                        Spacer()
-//                                        HStack {
-//                                            Text(weightStr)
-//                                                .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-//                                                .foregroundStyle(.primary)
-//                                            Text("lbs")
-//                                                .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
-//                                                .foregroundStyle(.secondary)
-//                                        }
-//                                        Spacer()
-//                                        HStack {
-//                                            Text(repStr)
-//                                                .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-//                                                .foregroundStyle(.primary)
-//                                            Text("reps")
-//                                                .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
-//                                                .foregroundStyle(.secondary)
-//                                        }
-//                                    }
-//                                    .padding(.horizontal, 16)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            Divider().padding(.horizontal, 16)
-//                .padding(.top, 16)
-//        }
-//    }
-

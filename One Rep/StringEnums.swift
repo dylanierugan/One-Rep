@@ -222,11 +222,13 @@ enum Icons: CustomStringConvertible {
 enum InfoText: CustomStringConvertible {
     case CreateNewMovement
     case NoData
+    case NoDataOnDay
     
     var description: String {
         switch self {
             case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
-            case .NoData: return "No data"
+            case .NoData: return "No data\nLog some sets!"
+            case .NoDataOnDay: return "No data logged for this day"
         }
     }
 }

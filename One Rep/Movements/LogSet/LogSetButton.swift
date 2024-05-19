@@ -24,7 +24,7 @@ struct LogSetButton: View {
     var body: some View {
         Button {
             addLogToRealm()
-            HapticManager.instance.impact(style: .soft)
+            HapticManager.instance.impact(style: .light)
         } label: {
             HStack {
                 Text("Log set")

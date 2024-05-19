@@ -60,8 +60,5 @@ struct HorizontalScroller: View {
             }
         }
         .padding(.horizontal, 16)
-        .onChange(of: muscleSelection) { newValue, _ in
-            HapticManager.instance.impact(style: .soft)
-        }
     }
 }

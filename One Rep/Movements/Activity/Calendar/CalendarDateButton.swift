@@ -20,7 +20,6 @@ struct CalendarDateButton: View {
     var computedDate: String {
         return logDataController.formatDate(date: dateObject.date.timeIntervalSince1970)
     }
-    var isSameDay: (Double, Double) -> Bool
     
     // MARK: - View
     
@@ -28,6 +27,7 @@ struct CalendarDateButton: View {
         Button {
             dateViewModel.selectedDate = dateObject.date
             dateViewModel.setDate()
+            HapticManager.instance.impact(style: .soft)
         } label: {
             VStack {
                 if dateObject.day != -1 {
@@ -35,18 +35,18 @@ struct CalendarDateButton: View {
                         VStack {
                             Text("\(dateObject.day)")
                                 .font(.title3.bold())
-                                .foregroundStyle(isSameDay(dateObject.date.timeIntervalSince1970, dateViewModel.selectedDate.timeIntervalSince1970) ? .black : .primary)
+                                .foregroundStyle(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? .black : .primary)
                                 .frame(maxWidth: .infinity)
                             Spacer()
                             Circle()
-                                .fill(isSameDay(dateObject.date.timeIntervalSince1970, dateViewModel.selectedDate.timeIntervalSince1970) ? .white : Color(theme.lightBaseColor))
+                                .fill(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? .white : Color(theme.lightBaseColor))
                                 .frame(width: 8, height: 8)
                         }
                     } else {
                         VStack {
                             Text("\(dateObject.day)")
                                 .font(.title3.bold())
-                                .foregroundColor(isSameDay(dateObject.date.timeIntervalSince1970, dateViewModel.selectedDate.timeIntervalSince1970) ? .black : .primary)
+                                .foregroundColor(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? .black : .primary)
                                 .frame(maxWidth: .infinity)
                             Spacer()
                         }
@@ -63,7 +63,7 @@ struct CalendarDateButton: View {
                     Color(theme.darkBaseColor)
                 ], startPoint: .top, endPoint: .bottom))
                 .padding(.horizontal, 8)
-                .opacity(isSameDay(dateObject.date.timeIntervalSince1970, dateViewModel.selectedDate.timeIntervalSince1970) ? 1 : 0)
+                .opacity(dateViewModel.isSameDay(dateOne: dateObject.date.timeIntervalSince1970, dateTwo: dateViewModel.selectedDate.timeIntervalSince1970) ? 1 : 0)
         )
     }
 }

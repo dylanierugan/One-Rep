@@ -23,6 +23,9 @@
 		3707307C2BF88AE500E95989 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707307B2BF88AE500E95989 /* DateViewModel.swift */; };
 		3707307E2BF98A5A00E95989 /* ShowCalendarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707307D2BF98A5A00E95989 /* ShowCalendarButton.swift */; };
 		370730802BF98D1A00E95989 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707307F2BF98D1A00E95989 /* DateView.swift */; };
+		370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730812BF9D39C00E95989 /* MoveWeekButtons.swift */; };
+		370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730842BF9D57000E95989 /* MoveMonthButtons.swift */; };
+		370730872BF9D64F00E95989 /* ActivityMovementDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730862BF9D64F00E95989 /* ActivityMovementDataView.swift */; };
 		37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655092BA5385600B96BEB /* One_RepApp.swift */; };
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
@@ -84,6 +87,9 @@
 		3707307B2BF88AE500E95989 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		3707307D2BF98A5A00E95989 /* ShowCalendarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCalendarButton.swift; sourceTree = "<group>"; };
 		3707307F2BF98D1A00E95989 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		370730812BF9D39C00E95989 /* MoveWeekButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveWeekButtons.swift; sourceTree = "<group>"; };
+		370730842BF9D57000E95989 /* MoveMonthButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveMonthButtons.swift; sourceTree = "<group>"; };
+		370730862BF9D64F00E95989 /* ActivityMovementDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementDataView.swift; sourceTree = "<group>"; };
 		37A655062BA5385600B96BEB /* One Rep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "One Rep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A655092BA5385600B96BEB /* One_RepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_RepApp.swift; sourceTree = "<group>"; };
 		37A6550D2BA5385800B96BEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -145,12 +151,13 @@
 			isa = PBXGroup;
 			children = (
 				370730712BF3BE8900E95989 /* ActivityView.swift */,
+				370730862BF9D64F00E95989 /* ActivityMovementDataView.swift */,
+				370730812BF9D39C00E95989 /* MoveWeekButtons.swift */,
 				3707307F2BF98D1A00E95989 /* DateView.swift */,
 				370730792BF8805900E95989 /* DayPicker.swift */,
-				3707307D2BF98A5A00E95989 /* ShowCalendarButton.swift */,
-				370730752BF7240F00E95989 /* CalendarView.swift */,
-				370730772BF72A1800E95989 /* CalendarDateButton.swift */,
 				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
+				3707307D2BF98A5A00E95989 /* ShowCalendarButton.swift */,
+				370730832BF9D54E00E95989 /* Calendar */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -165,6 +172,16 @@
 				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
 			);
 			path = Movement;
+			sourceTree = "<group>";
+		};
+		370730832BF9D54E00E95989 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				370730752BF7240F00E95989 /* CalendarView.swift */,
+				370730842BF9D57000E95989 /* MoveMonthButtons.swift */,
+				370730772BF72A1800E95989 /* CalendarDateButton.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		37A654FD2BA5385600B96BEB = {
@@ -398,6 +415,8 @@
 				37A655622BC1EF6A00B96BEB /* ThemesView.swift in Sources */,
 				370730782BF72A1800E95989 /* CalendarDateButton.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
+				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
+				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
 				37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */,
 				37A655692BC602CC00B96BEB /* MutateRepsButton.swift in Sources */,
@@ -433,6 +452,7 @@
 				37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */,
 				370730702BF16ECD00E95989 /* MovementSelectionPicker.swift in Sources */,
 				37C70C322BDD52C200B0375A /* LogCard.swift in Sources */,
+				370730872BF9D64F00E95989 /* ActivityMovementDataView.swift in Sources */,
 				3707305E2BF063CC00E95989 /* RoutineViewModel.swift in Sources */,
 				370730762BF7240F00E95989 /* CalendarView.swift in Sources */,
 				37A6557B2BC6206700B96BEB /* BodyWeightButton.swift in Sources */,

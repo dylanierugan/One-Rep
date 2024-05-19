@@ -18,9 +18,7 @@ struct LogCard: View {
     var body: some View {
         HStack {
             HStack {
-                Text(Date(timeIntervalSince1970: date), style: .time)
-                    .foregroundStyle(.secondary)
-                    .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                TimeLabel(date: date)
                 Spacer()
                 DataLabel(data: weight, dataType: "lbs")
                 Spacer()
@@ -31,6 +29,17 @@ struct LogCard: View {
         }
         .background(Color(theme.backgroundElementColor))
         .cornerRadius(16)
+    }
+}
+
+struct TimeLabel: View {
+    var date: Double
+    var body: some View {
+        HStack {
+            Text(Date(timeIntervalSince1970: date), style: .time)
+                .foregroundStyle(.secondary)
+                .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+        }
     }
 }
 

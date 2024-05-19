@@ -31,6 +31,7 @@ struct DayPicker: View {
                     withAnimation {
                         dateViewModel.selectedDate = weekdayObject.date
                         dateViewModel.setDate()
+                        HapticManager.instance.impact(style: .soft)
                     }
                 }, label: {
                     VStack {
@@ -74,14 +75,5 @@ struct DayPicker: View {
             return WeekdayValue(day: day, date: date, weekday: weekday)
         }
         return days
-    }
-}
-
-// MARK: - Extension
-extension Date {
-    /// Function to add or subtract a week from the current date
-    func move(byWeeks weeks: Int) -> Date {
-        let calendar = Calendar.current
-        return calendar.date(byAdding: .weekOfYear, value: weeks, to: self)!
     }
 }
