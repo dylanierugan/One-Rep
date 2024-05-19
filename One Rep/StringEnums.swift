@@ -8,6 +8,17 @@
 import Foundation
 import RealmSwift
 
+enum Weekdays: String, PersistableEnum, Identifiable {
+    var id: Weekdays { self }
+    case Sun = "Sun"
+    case Mon = "Mon"
+    case Tue = "Tue"
+    case Wed = "Wed"
+    case Thu = "Thu"
+    case Fri = "Fri"
+    case Sat = "Sat"
+}
+
 enum DefaultKeys: CustomStringConvertible {
     case AccentColor
     
@@ -83,6 +94,10 @@ enum Icons: CustomStringConvertible {
     case ChevronCompactDown
     case ChevronCompactUp
     case ChevronForward
+    case ChevronLeft
+    case ChevronRight
+    case ChevronCompactLeft
+    case ChevronCompactRight
     case CircleFill
     case CircleHexagongrid
     case Dumbell
@@ -140,6 +155,10 @@ enum Icons: CustomStringConvertible {
         case .ChevronCompactDown: return "chevron.compact.down"
         case .ChevronCompactUp: return "chevron.compact.up"
         case .ChevronForward: return "chevron.forward"
+        case .ChevronLeft: return "chevron.left"
+        case .ChevronRight: return "chevron.right"
+        case .ChevronCompactLeft: return "chevron.compact.left"
+        case .ChevronCompactRight: return "chevron.compact.right"
         case .CircleFill: return "circle.fill"
         case .CircleHexagongrid: return "circle.hexagongrid"
         case .Dumbell: return "dumbbell"

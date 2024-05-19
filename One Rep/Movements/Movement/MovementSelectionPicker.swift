@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovementPicker: View {
+struct MovementSelectionPicker: View {
     
     // MARK: - Variables
     
@@ -40,7 +40,7 @@ struct MovementPickerButton: View {
     
     var body: some View {
         Button(action: {
-            withAnimation(.bouncy) {
+            withAnimation() {
                 movementSelection = selection
                 HapticManager.instance.impact(style: .soft)
             }

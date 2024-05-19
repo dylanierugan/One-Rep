@@ -46,7 +46,7 @@ struct MovementsView: View {
                     .ignoresSafeArea()
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {
-                        MovementPicker(movementSelection: $movementSelection)
+                        MovementSelectionPicker(movementSelection: $movementSelection)
                             .padding(.horizontal, 16)
                         switch movementSelection {
                         case .Library:
@@ -79,8 +79,10 @@ struct MovementsView: View {
             }
             .navigationTitle("Movements")
             .toolbar(content: {
-                ToolbarItem(placement: .topBarTrailing) {
-                    AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
+                if movementSelection == .Library {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
+                    }
                 }
             })
         }
