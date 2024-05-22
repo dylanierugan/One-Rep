@@ -41,7 +41,7 @@ struct ActivityView: View {
                     .padding(.horizontal, 16)
             }
             ActivityMovementDataView()
-                .padding(.top, 16)
+                .padding(.vertical, 16)
                 .padding(.horizontal, 16)
         }
         .toolbar(content: {

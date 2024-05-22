@@ -35,7 +35,11 @@ struct DeleteLogButton: View {
         } label: {
             Image(systemName: Icons.TrashCircleFill.description)
                 .font(.title.weight(.regular))
-                .foregroundStyle(.primary)
+                .foregroundStyle(.linearGradient(colors: [
+                    Color(theme.lightRed),
+                    Color(theme.lightRed),
+                    Color(theme.darkRed)
+                ], startPoint: .top, endPoint: .bottom))
         }
     }
 }

@@ -21,8 +21,5 @@ struct LogIndexLabel: View {
         Text(String(index))
             .foregroundStyle(Color(.primary))
             .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-//            .frame(width: 20, height: 20)
-//            .background(.primary)
-//            .cornerRadius(50)
     }
 }

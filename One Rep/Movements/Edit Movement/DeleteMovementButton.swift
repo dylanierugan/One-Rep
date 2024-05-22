@@ -27,10 +27,7 @@ struct DeleteMovementButton: View {
         } label: {
             Text("Delete")
                 .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                .foregroundStyle(.linearGradient(colors: [
-                    Color(theme.lightRed),
-                    Color(theme.darkRed)
-                ], startPoint: .top, endPoint: .bottom))
+                .foregroundStyle(Color(.primary))
         }
         /// Alert to delete movement (asks for confirmation)
         .alert(isPresented: $showingDeleteMovementAlert) {

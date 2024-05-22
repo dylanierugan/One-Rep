@@ -25,7 +25,7 @@ struct MutateRepsView: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary).opacity(0.7)
             
-            HStack(spacing: 8)  {
+            HStack(spacing: 8) {
                 MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
                 
                 TextField("", text: $logDataViewModel.repsStr)
@@ -59,7 +59,9 @@ struct MutateRepsView: View {
     }
     
     private func bindValues() {
-        if let value = Int(logDataViewModel.repsStr) {
+        if logDataViewModel.repsStr.isEmpty {
+            logDataViewModel.reps = 0
+        } else if let value = Int(logDataViewModel.repsStr) {
             logDataViewModel.reps = value
         } else {
             logDataViewModel.repsStr = String(logDataViewModel.reps)

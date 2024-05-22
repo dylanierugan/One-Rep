@@ -59,7 +59,9 @@ struct MutateWeightView: View {
     }
 
     private func bindValues() {
-        if let value = Double(logDataViewModel.weightStr) {
+        if logDataViewModel.weightStr.isEmpty {
+            logDataViewModel.weight = 0.0
+        } else if let value = Double(logDataViewModel.weightStr) {
             logDataViewModel.weight = value
             updateWeightString()
         } else {
