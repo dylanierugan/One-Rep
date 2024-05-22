@@ -14,19 +14,42 @@ struct MutateWeightView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @Environment(\.realm) var realm
     
     @FocusState var isInputActive: Bool
+    
+    @State var mutatingValue: Double = 5
+    @State var movement: Movement
+    
+    let mutatingValues : [Double] = [2.5, 5, 10, 25]
     
     // MARK: - View
     
     var body: some View {
         VStack {
-            Text("Weight (lbs)")
-                .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                .foregroundColor(.secondary).opacity(0.7)
+            HStack {
+                Text("Weight (lbs)")
+                    .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                    .foregroundColor(.secondary).opacity(0.7)
+                
+                Menu {
+                    Picker("", selection: $mutatingValue) {
+                        ForEach(mutatingValues, id: \.self) { value in
+                            Text("\(formatWeightString(value)) lbs")
+                                .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                                .foregroundColor(.secondary).opacity(0.7)
+                        }
+                    }
+                    .onChange(of: mutatingValue) {
+                        updateMovementInRealm()
+                    }
+                } label: {
+                    Image(systemName: Icons.ChevronCompactDown.description)
+                }
+            }
             
             HStack(spacing: 8) {
-                MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -mutatingValue, mutateWeight: mutateWeight)
                 
                 TextField("", text: $logDataViewModel.weightStr)
                     .onChange(of: logDataViewModel.weightStr) { newText, _ in
@@ -44,8 +67,11 @@ struct MutateWeightView: View {
                     .onReceive(Just(logDataViewModel.weight)) { _ in limitText(5) }
                     .focused($isInputActive)
                 
-                MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 2.5, mutateWeight: mutateWeight)
+                MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: mutatingValue, mutateWeight: mutateWeight)
             }
+        }
+        .onAppear() {
+            mutatingValue = movement.mutatingValue
         }
     }
     
@@ -84,6 +110,18 @@ struct MutateWeightView: View {
     private func limitText(_ upper: Int) {
         if logDataViewModel.weightStr.count > upper {
             logDataViewModel.weightStr = String(logDataViewModel.weightStr.prefix(upper))
+        }
+    }
+    
+    func updateMovementInRealm() {
+        if let thawedMovement = movement.thaw() {
+            do {
+                try realm.write {
+                    thawedMovement.mutatingValue = mutatingValue
+                }
+            } catch  {
+                /// Handle error
+            }
         }
     }
 }

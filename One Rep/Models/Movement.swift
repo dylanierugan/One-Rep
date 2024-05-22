@@ -17,12 +17,13 @@ class Movement: Object, ObjectKeyIdentifiable {
     @Persisted var muscleGroup: MuscleType
     @Persisted var timeAdded: Double
     @Persisted var isPremium: Bool
+    @Persisted var mutatingValue: Double
     
     /// Backlink
     @Persisted(originProperty: "movements") var group: LinkingObjects<MovementViewModel>
     //@Persisted(originProperty: "routines") var assignee: LinkingObjects<Routine>
     
-    convenience init(name: String = "", muscleGroup: MuscleType = .Arms, logs: List<Log> = List<Log>(), routine: String, timeAdded: Double = 0, isPremium: Bool = false) {
+    convenience init(name: String = "", muscleGroup: MuscleType = .Arms, logs: List<Log> = List<Log>(), routine: String, timeAdded: Double = 0, isPremium: Bool = false, mutatingValue: Double) {
         self.init()
         self.name = name
         self.muscleGroup = muscleGroup
@@ -30,5 +31,6 @@ class Movement: Object, ObjectKeyIdentifiable {
         self.routine = routine
         self.timeAdded = timeAdded
         self.isPremium = isPremium
+        self.mutatingValue = mutatingValue
     }
 }

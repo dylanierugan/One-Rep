@@ -65,7 +65,7 @@ struct AddMovementView: View {
     // MARK: - Functions
     
     private func addMovementToRealm() {
-        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>(), routine: "")
+        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>(), routine: "", mutatingValue: 5)
         $movementModel.movements.append(newMovement)
     }
 }

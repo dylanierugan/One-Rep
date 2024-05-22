@@ -19,7 +19,7 @@ struct LogIndexLabel: View {
     
     var body: some View {
         Text(String(index))
-            .foregroundStyle(Color(.primary))
-            .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+            .foregroundStyle(.primary)
+            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
     }
 }

@@ -12,9 +12,10 @@ struct LogSetButton: View {
     
     // MARK: - Variables
     
-    @ObservedRealmObject var movement: Movement
-    
     @EnvironmentObject var theme: ThemeModel
+    @Environment(\.colorScheme) var colorScheme
+    
+    @ObservedRealmObject var movement: Movement
     
     var addLogToRealm:() -> Void
     
@@ -30,13 +31,13 @@ struct LogSetButton: View {
                 Image(systemName: Icons.Pencil.description)
             }
             .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
-            .foregroundColor(theme.lightBaseColor == Colors.Primary.description ? .reversePrimary : .black)
+            .foregroundStyle(colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor))
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(
                 .linearGradient(colors: [
-                    Color(theme.lightBaseColor),
-                    Color(theme.darkBaseColor)
+                    Color(theme.lightBaseColor).opacity(0.2),
+                    Color(theme.darkBaseColor).opacity(0.2)
                 ], startPoint: .top, endPoint: .bottom)
             )
             .cornerRadius(16)

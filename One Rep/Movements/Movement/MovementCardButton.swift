@@ -32,7 +32,7 @@ struct MovementCardButton: View {
                         ZStack {
                             Circle()
                                 .frame(width: 36, height: 36)
-                                .foregroundStyle(Color(theme.darkBaseColor).opacity(0.1))
+                                .foregroundStyle(Color(theme.darkBaseColor).opacity(0.15))
                             Image(movement.muscleGroup.rawValue.lowercased())
                                 .font(.body.weight(.regular))
                                 .foregroundStyle(.linearGradient(colors: [

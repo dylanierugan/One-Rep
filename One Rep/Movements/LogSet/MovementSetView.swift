@@ -35,7 +35,7 @@ struct MovementSetView: View {
                 if showLogSetView {
                     VStack(alignment: .center, spacing: 16) {
                         HStack(spacing: 8) {
-                            MutateWeightView(isInputActive: _isInputActive)
+                            MutateWeightView(isInputActive: _isInputActive, movement: movement)
                             MutateRepsView(isInputActive: _isInputActive)
                         }
                         .toolbar {
