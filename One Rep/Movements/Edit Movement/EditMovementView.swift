@@ -12,8 +12,8 @@ struct EditMovementView: View {
     
     // MARK: - Variables
     
-    @EnvironmentObject var theme: ThemeModel
     @Environment(\.realm) var realm
+    @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var movement: Movement
     @ObservedRealmObject var movementViewModel: MovementViewModel

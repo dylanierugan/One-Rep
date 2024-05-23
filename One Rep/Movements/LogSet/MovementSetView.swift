@@ -35,7 +35,7 @@ struct MovementSetView: View {
                 if showLogSetView {
                     VStack(alignment: .center, spacing: 16) {
                         HStack(spacing: 8) {
-                            MutateWeightView(isInputActive: _isInputActive, movement: movement)
+                            MutateWeightView(movement: movement, isInputActive: _isInputActive)
                             MutateRepsView(isInputActive: _isInputActive)
                         }
                         .toolbar {
@@ -84,7 +84,7 @@ struct MovementSetView: View {
                                     .foregroundColor(.primary)
                                 Spacer()
                                 if index == 0 {
-                                    EditLogButton(isEditingLogs: $isEditingLogs)
+                                    ToggleEditLogButton(isEditingLogs: $isEditingLogs)
                                         .padding(.horizontal, 8)
                                     ShowFullScreenButton(showLogSetView: $showLogSetView)
                                 }
@@ -92,13 +92,10 @@ struct MovementSetView: View {
                                 .padding(.horizontal, 16)
                             ){
                                 ForEach(logDataViewModel.dateLogMap[date] ?? [], id: \.id) { log in
-                                    let weightStr = logDataViewModel.convertWeightDoubleToString(log.weight)
                                     HStack(spacing: 16) {
-                                        LogCard(weight: weightStr,
-                                                reps: String(log.reps),
-                                                date: log.date)
+                                        LogCard(log: log, movement: movement, showDoneToolBar: $showDoneToolBar)
                                         if isEditingLogs {
-                                            DeleteLogButton(movement: movement,
+                                            DeleteLogTrashIconButton(movement: movement,
                                                             log: log,
                                                             selectedLog: $selectedLog,
                                                             deleteLogInRealm: { self.deleteLogInRealm() })
@@ -116,10 +113,12 @@ struct MovementSetView: View {
             }
             .sheet(isPresented: $showEditMovementPopup) {
                 EditMovementView(movement: movement, movementViewModel: movementViewModel, showDoneToolBar: $showDoneToolBar)
+                    .environment(\.sizeCategory, .extraSmall)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
+                    
                 }
                 ToolbarItem(placement: .principal) {
                     HStack(spacing: 14) {

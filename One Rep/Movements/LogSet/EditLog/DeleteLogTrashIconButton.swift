@@ -1,5 +1,5 @@
 //
-//  DeleteLogButton.swift
+//  DeleteLogTrashIconButton.swift
 //  One Rep
 //
 //  Created by Dylan Ierugan on 5/11/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import RealmSwift
 
-struct DeleteLogButton: View {
+struct DeleteLogTrashIconButton: View {
     
     // MARK: - Variable
     

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct LogCard: View {
     
@@ -14,26 +15,44 @@ struct LogCard: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logDataViewModel: LogDataViewModel
     
-    var weight: String
-    var reps: String
-    var date: Double
+    @ObservedRealmObject var log: Log
+    @ObservedRealmObject var movement: Movement
+    
+    @State var showEditMovementPopup = false
+    
+    @Binding var showDoneToolBar: Bool
     
     // MARK: - View
     
     var body: some View {
-        HStack {
+        Button {
+            showEditMovementPopup.toggle()
+            showDoneToolBar = false
+        } label: {
             HStack {
-                TimeLabel(date: date)
-                Spacer()
-                DataLabel(data: weight, dataType: logDataViewModel.unit.rawValue)
-                Spacer()
-                DataLabel(data: reps, dataType: "reps")
+                HStack {
+                    TimeLabel(date: log.date)
+                    Spacer()
+                    DataLabel(data: logDataViewModel.convertWeightDoubleToString(log.weight), dataType: logDataViewModel.unit.rawValue)
+                    Spacer()
+                    DataLabel(data: String(log.reps), dataType: "reps")
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .background(Color(theme.backgroundElementColor))
+            .cornerRadius(16)
         }
-        .background(Color(theme.backgroundElementColor))
-        .cornerRadius(16)
+        .sheet(isPresented: $showEditMovementPopup) {
+            EditLogView(log: log, movement: movement)
+                .environment(\.sizeCategory, .extraSmall)
+                .onDisappear {
+                    showDoneToolBar = true
+                    logDataViewModel.populateListOfWeights(movement.logs)
+                    logDataViewModel.filterWeightAndPopulateData(movement.logs)
+                    logDataViewModel.setMostRecentLog(movement.logs)
+                }
+        }
     }
 }
 

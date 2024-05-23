@@ -1,5 +1,5 @@
 //
-//  EditSetButton.swift
+//  ToggleEditLogButton.swift
 //  One Rep
 //
 //  Created by Dylan Ierugan on 5/11/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditLogButton: View {
+struct ToggleEditLogButton: View {
     
     // MARK: - Variable
     

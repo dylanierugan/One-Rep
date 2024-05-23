@@ -16,10 +16,10 @@ struct MutateWeightView: View {
     @EnvironmentObject var logDataViewModel: LogDataViewModel
     @Environment(\.realm) var realm
     
-    @FocusState var isInputActive: Bool
-    
     @State var mutatingValue: Double = 5
     @State var movement: Movement
+    
+    @FocusState var isInputActive: Bool
     
     let mutatingValues : [Double] = [2.5, 5, 10, 25]
     

@@ -73,6 +73,7 @@ struct MovementsView: View {
                     }
                     .sheet(isPresented: $showAddMovementPopup) {
                         AddMovementView(movementViewModel: movementViewModel)
+                            .environment(\.sizeCategory, .extraSmall)
                     }
                 }
             }
