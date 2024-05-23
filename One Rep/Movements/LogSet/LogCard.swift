@@ -9,18 +9,23 @@ import SwiftUI
 
 struct LogCard: View {
     
+    // MARK: - Variables
+    
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var logDataViewModel: LogDataViewModel
     
     var weight: String
     var reps: String
     var date: Double
+    
+    // MARK: - View
     
     var body: some View {
         HStack {
             HStack {
                 TimeLabel(date: date)
                 Spacer()
-                DataLabel(data: weight, dataType: "lbs")
+                DataLabel(data: weight, dataType: logDataViewModel.unit.rawValue)
                 Spacer()
                 DataLabel(data: reps, dataType: "reps")
             }
@@ -31,6 +36,8 @@ struct LogCard: View {
         .cornerRadius(16)
     }
 }
+
+// MARK: - Structs
 
 struct TimeLabel: View {
     var date: Double

@@ -30,12 +30,12 @@ struct ActivityMovementDataView: View {
                                 let weightStr = logDataViewModel.convertWeightDoubleToString(log.weight)
                                 let repStr = String(log.reps)
                                 HStack {
-                                    HStack(spacing: 12) {
+                                    HStack(spacing: 16) {
                                         LogIndexLabel(index: index + 1)
                                         TimeLabel(date: log.date)
                                     }
                                     Spacer()
-                                    DataLabel(data: weightStr, dataType: "lbs")
+                                    DataLabel(data: weightStr, dataType: logDataViewModel.unit.rawValue)
                                     Spacer()
                                     DataLabel(data: repStr, dataType: "reps")
                                 }

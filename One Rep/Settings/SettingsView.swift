@@ -28,6 +28,7 @@ struct SettingsView: View {
                     VStack(spacing: 16) {
                         AccountView()
                         ThemesView()
+                        UnitView()
                         LogOutButton()
                             .padding(.top, 12)
                     }

@@ -28,14 +28,14 @@ struct MutateWeightView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Weight (lbs)")
+                Text("Weight (\(logDataViewModel.unit.rawValue))")
                     .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                     .foregroundColor(.secondary).opacity(0.7)
                 
                 Menu {
                     Picker("", selection: $mutatingValue) {
                         ForEach(mutatingValues, id: \.self) { value in
-                            Text("\(formatWeightString(value)) lbs")
+                            Text("\(formatWeightString(value)) \(logDataViewModel.unit.rawValue)")
                                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                                 .foregroundColor(.secondary).opacity(0.7)
                         }
@@ -45,6 +45,7 @@ struct MutateWeightView: View {
                     }
                 } label: {
                     Image(systemName: Icons.ChevronCompactDown.description)
+                        .foregroundColor(.secondary).opacity(0.7)
                 }
             }
             

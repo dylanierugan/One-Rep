@@ -255,3 +255,9 @@ enum RepType: String, PersistableEnum {
   case WorkingSet = "Working Set"
   case PR = "PR"
 }
+
+enum UnitSelection: String, PersistableEnum, Identifiable {
+    var id: UnitSelection { self }
+    case lbs = "lbs"
+    case kgs = "kgs"
+}

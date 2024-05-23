@@ -17,7 +17,7 @@ struct ThemesView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Appearance")
+            Text("Theme")
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary.opacity(0.5))
             VStack(alignment: .leading) {

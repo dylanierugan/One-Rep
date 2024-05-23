@@ -36,7 +36,7 @@ struct WeightHorizontalScroller: View {
                                     .foregroundColor(logDataViewModel.weightSelection == weight ? .primary : .secondary.opacity(0.5))
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             } else {
-                                Text("\(weight) lbs")
+                                Text("\(weight) \(logDataViewModel.unit.rawValue)")
                                     .foregroundColor(logDataViewModel.weightSelection == weight ? .primary : .secondary.opacity(0.5))
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             }

@@ -11,7 +11,7 @@ import SwiftUI
 struct Demo: View {
     
     var body: some View {
-        VStack {
+        HStack {
             
         }
     }

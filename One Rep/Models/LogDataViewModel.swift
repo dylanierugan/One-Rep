@@ -24,6 +24,7 @@ class LogDataViewModel: ObservableObject {
     @Published var weight: Double = 135
     @Published var weightStr = "135"
     @Published var weightSelection = "All"
+    @Published var unit: UnitSelection = .lbs
     
     // MARK: - Functions
     
