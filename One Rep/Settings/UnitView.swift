@@ -51,6 +51,7 @@ struct UnitPickerButton: View {
         Button(action: {
             withAnimation() {
                 logDataViewModel.unit = unitSelection
+                HapticManager.instance.impact(style: .soft)
             }
         }, label: {
             HStack {

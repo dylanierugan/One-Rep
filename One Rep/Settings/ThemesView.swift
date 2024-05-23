@@ -53,6 +53,7 @@ struct ColorButton: View {
             UserDefaults.standard.set(stringColor, forKey: DefaultKeys.AccentColor.description)
             themeColor.accent = stringColor
             themeColor.changeColor(color: stringColor)
+            HapticManager.instance.impact(style: .soft)
         } label: {
             Rectangle()
                 .frame(width: 24, height: 24)

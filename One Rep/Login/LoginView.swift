@@ -30,12 +30,14 @@ struct LoginView: View {
         ZStack {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
-            VStack(spacing: 8) {
-                RepsLogo(size: 28)
-                Text("Do one more rep than last time")
-                    .font(.caption.weight(.regular))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
+            VStack(spacing: 16) {
+                VStack(spacing: 8) {
+                    RepsLogo(size: 28)
+                    Text("Do one more rep than last time")
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.center)
+                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                }
                 SignInWithApple(isLoggingIn: isLoggingIn)
                     .frame(height: 32)
                     .padding(.top, 8)

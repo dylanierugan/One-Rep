@@ -13,7 +13,7 @@ struct RepsLogo: View {
     
     var body: some View {
         Text("1 Rep")
-            .font(.title.weight(.heavy))
+            .customFont(size: .title, weight: .bold, kerning: 0, design: .rounded)
             .foregroundColor(.primary)
             .kerning(-1)
     }

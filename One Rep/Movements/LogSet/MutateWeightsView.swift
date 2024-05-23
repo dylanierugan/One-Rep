@@ -27,27 +27,28 @@ struct MutateWeightView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Weight (\(logDataViewModel.unit.rawValue))")
-                    .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                    .foregroundColor(.secondary).opacity(0.7)
-                
-                Menu {
-                    Picker("", selection: $mutatingValue) {
-                        ForEach(mutatingValues, id: \.self) { value in
-                            Text("\(formatWeightString(value)) \(logDataViewModel.unit.rawValue)")
-                                .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                                .foregroundColor(.secondary).opacity(0.7)
-                        }
+            Menu {
+                Picker("", selection: $mutatingValue) {
+                    ForEach(mutatingValues, id: \.self) { value in
+                        Text("± \(formatWeightString(value)) \(logDataViewModel.unit.rawValue)")
+                            .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                            .foregroundColor(.secondary).opacity(0.7)
                     }
-                    .onChange(of: mutatingValue) {
-                        updateMovementInRealm()
-                    }
-                } label: {
+                }
+                .onChange(of: mutatingValue) {
+                    updateMovementInRealm()
+                }
+            } label: {
+                HStack {
+                    Text("Weight (\(logDataViewModel.unit.rawValue))")
+                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                        .foregroundColor(.secondary).opacity(0.7)
                     Image(systemName: Icons.ChevronCompactDown.description)
                         .foregroundColor(.secondary).opacity(0.7)
                 }
+                .frame(maxWidth: .infinity)
             }
+            .padding(.bottom, 6)
             
             HStack(spacing: 8) {
                 MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -mutatingValue, mutateWeight: mutateWeight)
@@ -84,7 +85,7 @@ struct MutateWeightView: View {
             updateWeightString()
         }
     }
-
+    
     private func bindValues() {
         if logDataViewModel.weightStr.isEmpty {
             logDataViewModel.weight = 0.0
@@ -95,11 +96,11 @@ struct MutateWeightView: View {
             logDataViewModel.weightStr = formatWeightString(logDataViewModel.weight)
         }
     }
-
+    
     private func updateWeightString() {
         logDataViewModel.weightStr = formatWeightString(logDataViewModel.weight)
     }
-
+    
     private func formatWeightString(_ weight: Double) -> String {
         if weight.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", weight)

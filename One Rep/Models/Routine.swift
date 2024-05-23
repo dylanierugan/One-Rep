@@ -26,5 +26,4 @@ class Routine: Object, ObjectKeyIdentifiable {
         self.timeAdded = timeAdded
         self.movements = movements
     }
-
 }

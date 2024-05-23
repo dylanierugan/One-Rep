@@ -36,8 +36,8 @@ struct LogSetButton: View {
             .padding(.horizontal, 16)
             .background(
                 .linearGradient(colors: [
-                    Color(theme.lightBaseColor).opacity(0.2),
-                    Color(theme.darkBaseColor).opacity(0.2)
+                    Color(theme.lightBaseColor).opacity(0.15),
+                    Color(theme.darkBaseColor).opacity(0.15)
                 ], startPoint: .top, endPoint: .bottom)
             )
             .cornerRadius(16)
