@@ -75,6 +75,26 @@ class DateViewModel: ObservableObject {
         return days
     }
     
+    func formattedSelectedDate() -> String {
+        let calendar = Calendar.current
+        let today = Date()
+        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM d"
+        
+        if calendar.isDate(selectedDate, inSameDayAs: today) {
+            return "Today,  \(dateFormatter.string(from: selectedDate))"
+        } else if calendar.isDate(selectedDate, inSameDayAs: yesterday) {
+            return "Yesterday,  \(dateFormatter.string(from: selectedDate))"
+        } else if calendar.isDate(selectedDate, inSameDayAs: tomorrow) {
+            return "Tomorrow,  \(dateFormatter.string(from: selectedDate))"
+        } else {
+            return dateFormatter.string(from: selectedDate)
+        }
+    }
+    
     func setDate() {
         self.setWeekday()
         self.setDay()

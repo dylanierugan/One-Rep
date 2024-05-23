@@ -17,12 +17,8 @@ struct DateView: View {
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 4) {
-            Text("\(dateViewModel.month)")
+            Text("\(dateViewModel.formattedSelectedDate())")
                 .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
-                .foregroundStyle(.primary)
-            Text("\(dateViewModel.year)")
-                .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
-                .foregroundStyle(.primary)
         }
     }
 }
