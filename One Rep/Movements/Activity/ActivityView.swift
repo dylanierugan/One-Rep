@@ -40,7 +40,7 @@ struct ActivityView: View {
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             }
-            ActivityMovementDataView()
+            ActivityMovementDataView(movementModel: movementModel)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
         }
