@@ -16,7 +16,7 @@ struct ActivityMovementDataView: View {
     @EnvironmentObject var logDataViewModel: LogDataViewModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
-    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     // MARK: - View
     
@@ -26,7 +26,7 @@ struct ActivityMovementDataView: View {
             VStack {
                 ForEach(Array(sortedMovements), id: \.self) { movement in
                     NavigationLink {
-                        MovementSetView(movementModel: movementModel, movement: movement)
+                        MovementSetView(movementViewModel: movementViewModel, movement: movement)
                     } label: {
                         VStack(alignment: .leading) {
                             Text(movement.name)

@@ -16,7 +16,7 @@ struct EditMovementView: View {
     @Environment(\.realm) var realm
     
     @ObservedRealmObject var movement: Movement
-    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State private var newMovementName = ""
     @State private var newMuscleGroup: MuscleType = .Arms

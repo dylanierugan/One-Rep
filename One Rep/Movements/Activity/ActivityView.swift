@@ -16,7 +16,7 @@ struct ActivityView: View {
     @EnvironmentObject var logDataViewModel: LogDataViewModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
-    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State var showCalendar = false
     
@@ -40,7 +40,7 @@ struct ActivityView: View {
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             }
-            ActivityMovementDataView(movementModel: movementModel)
+            ActivityMovementDataView(movementViewModel: movementViewModel)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
         }
@@ -50,7 +50,7 @@ struct ActivityView: View {
             }
         })
         .onAppear() {
-            let logs = logDataViewModel.getAllLogs(movementModel.movements)
+            let logs = logDataViewModel.getAllLogs(movementViewModel.movements)
             logDataViewModel.populateListOfDates(logs)
             logDataViewModel.populateDateMovementLogMap(logs)
             dateViewModel.setDate()

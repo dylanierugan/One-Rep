@@ -14,7 +14,7 @@ struct AddMovementView: View {
     
     @EnvironmentObject var theme: ThemeModel
     
-    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State private var movementName = ""
     @State private var muscleGroup: MuscleType = .Arms
@@ -66,6 +66,6 @@ struct AddMovementView: View {
     
     private func addMovementToRealm() {
         let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>(), routine: "", mutatingValue: 5)
-        $movementModel.movements.append(newMovement)
+        $movementViewModel.movements.append(newMovement)
     }
 }

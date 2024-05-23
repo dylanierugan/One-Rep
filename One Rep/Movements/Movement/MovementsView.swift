@@ -16,7 +16,7 @@ struct MovementsView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @EnvironmentObject var theme: ThemeModel
     
-    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State private var searchText = ""
     @State private var movementSelection: MovementSelection = .Library
@@ -27,9 +27,9 @@ struct MovementsView: View {
     /// Search Bar
     private var filteredMovements: Results<Movement> {
         if searchText.isEmpty {
-            return movementModel.movements.sorted(by: \Movement.name, ascending: true)
+            return movementViewModel.movements.sorted(by: \Movement.name, ascending: true)
         } else {
-            let filteredMovements = movementModel.movements.sorted(by: \Movement.name, ascending: true).where {
+            let filteredMovements = movementViewModel.movements.sorted(by: \Movement.name, ascending: true).where {
                 $0.name.contains(searchText, options: .diacriticInsensitive)
             }
             return filteredMovements
@@ -53,10 +53,10 @@ struct MovementsView: View {
                                 HorizontalScroller(muscleSelection: $menuSelection)
                                 ForEach(filteredMovements) { movement in
                                     if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
-                                        MovementCardButton(movementModel: movementModel, selectedMovement: $selectedMovement, movement: movement)
+                                        MovementCardButton(movementViewModel: movementViewModel, selectedMovement: $selectedMovement, movement: movement)
                                     }
                                 }
-                                if (movementModel.movements.count == 0) || (menuSelection != .All && movementModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
+                                if (movementViewModel.movements.count == 0) || (menuSelection != .All && movementViewModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
                                     Text(InfoText.CreateNewMovement.description)
                                         .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                                         .multilineTextAlignment(.center)
@@ -67,12 +67,12 @@ struct MovementsView: View {
                             }
                         case .Activity:
                             VStack {
-                                ActivityView(movementModel: movementModel)
+                                ActivityView(movementViewModel: movementViewModel)
                             }
                         }
                     }
                     .sheet(isPresented: $showAddMovementPopup) {
-                        AddMovementView(movementModel: movementModel)
+                        AddMovementView(movementViewModel: movementViewModel)
                     }
                 }
             }

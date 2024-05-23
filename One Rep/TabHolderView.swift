@@ -13,6 +13,7 @@ struct TabHolderView: View {
     // MARK: - ObservedResults
     
     @ObservedResults(MovementViewModel.self) var movementsCollection
+    @ObservedResults(RoutineViewModel.self) var routinesCollection
     
     // MARK: - View
     
@@ -21,7 +22,7 @@ struct TabHolderView: View {
         if let movements = movementsCollection.first {
             /// TabView holds 2 tabs: Movements and Settings
             TabView() {
-                MovementsView(movementModel: movements)
+                MovementsView(movementViewModel: movements)
                     .tabItem {
                         Image(systemName: Icons.FigureStrengthTraining.description)
                     }
@@ -29,9 +30,18 @@ struct TabHolderView: View {
                     .tabItem {
                         Image(systemName: Icons.PersonFill.description)
                     }
+                if let routines = routinesCollection.first {
+                    Demo(routineViewModel: routines, movementViewModel: movements)
+                        .tabItem {
+                            Image(systemName: Icons.ChartXYAxis.description)
+                        }
+                }
             }
             .font(.headline)
             .accentColor(.primary)
+            .onAppear {
+                $routinesCollection.append(RoutineViewModel())
+            }
         } else {
             ProgressView()
                 .onAppear {

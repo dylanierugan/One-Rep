@@ -17,7 +17,7 @@ struct MovementSetView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logDataViewModel: LogDataViewModel
     
-    @ObservedRealmObject var movementModel: MovementViewModel
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     @ObservedRealmObject var movement: Movement
     @State var selectedLog: Log = Log()
     
@@ -115,7 +115,7 @@ struct MovementSetView: View {
                 .padding(.top, showLogSetView ? -15 : 0)
             }
             .sheet(isPresented: $showEditMovementPopup) {
-                EditMovementView(movement: movement, movementModel: movementModel, showDoneToolBar: $showDoneToolBar)
+                EditMovementView(movement: movement, movementViewModel: movementViewModel, showDoneToolBar: $showDoneToolBar)
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
