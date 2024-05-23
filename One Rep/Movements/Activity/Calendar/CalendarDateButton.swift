@@ -12,13 +12,13 @@ struct CalendarDateButton: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
     @State var dateObject: DateValue
     
     var computedDate: String {
-        return logDataViewModel.formatDate(date: dateObject.date.timeIntervalSince1970)
+        return logViewModel.formatDate(date: dateObject.date.timeIntervalSince1970)
     }
     
     // MARK: - View
@@ -33,7 +33,7 @@ struct CalendarDateButton: View {
         } label: {
             VStack {
                 if dateObject.day != -1 {
-                    if logDataViewModel.listOfDates.contains(computedDate) {
+                    if logViewModel.listOfDates.contains(computedDate) {
                         VStack {
                             Text("\(dateObject.day)")
                                 .font(.title3.bold())

@@ -15,11 +15,9 @@ struct EditRepsTextField: View {
     
     @Environment(\.realm) var realm
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logController: LogController
     
     @ObservedRealmObject var log: Log
-    @Binding var reps: Int
-    @Binding var repsStr: String
     
     @FocusState var isInputActive: Bool
     
@@ -27,11 +25,11 @@ struct EditRepsTextField: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1, mutateRep: mutateReps)
+            MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1)
             
-            TextField("", text: $repsStr)
-                .onChange(of: repsStr) { newText, _ in
-                    bindValues()
+            TextField("", text: $logController.repsStr)
+                .onChange(of: logController.repsStr) { newText, _ in
+                    logController.bindRepValues()
                 }
                 .accentColor(Color(theme.darkBaseColor))
                 .multilineTextAlignment(.center)
@@ -42,39 +40,16 @@ struct EditRepsTextField: View {
                 .frame(width: 84, alignment: .center)
                 .cornerRadius(10)
                 .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                .onReceive(Just(reps)) { _ in limitText(3) }
+                .onReceive(Just(logController.reps)) { _ in logController.limitRepsText(3) }
                 .focused($isInputActive)
                 .onAppear() {
-                    reps = log.reps
-                    repsStr = String(log.reps)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        logController.reps = log.reps
+                        logController.repsStr = String(log.reps)
+                    }
                 }
             
-            MutateRepsButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 1, mutateRep: mutateReps)
-        }
-    }
-    
-    // MARK: - Functions
-    
-    private func mutateReps(_ mutatingValue: Int) {
-        if reps > 0 || reps < 999 {
-            reps += mutatingValue
-            repsStr = String(reps)
-        }
-    }
-    
-    private func bindValues() {
-        if repsStr.isEmpty {
-            reps = 0
-        } else if let value = Int(repsStr) {
-            reps = value
-        } else {
-            repsStr = String(reps)
-        }
-    }
-    
-    private func limitText(_ upper: Int) {
-        if repsStr.count > upper {
-            repsStr = String(repsStr.prefix(upper))
+            MutateRepsButton(color: .primary, icon: Icons.Plus.description, mutatingValue: 1)
         }
     }
 }

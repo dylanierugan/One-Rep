@@ -13,7 +13,8 @@ struct LogCard: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logController: LogController
+    @EnvironmentObject var logViewModel: LogViewModel
     
     @ObservedRealmObject var log: Log
     @ObservedRealmObject var movement: Movement
@@ -33,7 +34,7 @@ struct LogCard: View {
                 HStack {
                     TimeLabel(date: log.date)
                     Spacer()
-                    DataLabel(data: logDataViewModel.convertWeightDoubleToString(log.weight), dataType: logDataViewModel.unit.rawValue)
+                    DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight), dataType: logViewModel.unit.rawValue)
                     Spacer()
                     DataLabel(data: String(log.reps), dataType: "reps")
                 }
@@ -48,9 +49,8 @@ struct LogCard: View {
                 .environment(\.sizeCategory, .extraSmall)
                 .onDisappear {
                     showDoneToolBar = true
-                    logDataViewModel.populateListOfWeights(movement.logs)
-                    logDataViewModel.filterWeightAndPopulateData(movement.logs)
-                    logDataViewModel.setMostRecentLog(movement.logs)
+                    logViewModel.populateListOfWeights(movement.logs)
+                    logViewModel.filterWeightAndPopulateData(movement.logs)
                 }
         }
     }

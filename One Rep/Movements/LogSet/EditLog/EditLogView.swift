@@ -13,19 +13,12 @@ struct EditLogView: View {
     // MARK: - Variables
     
     @Environment(\.realm) var realm
-    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var logController: LogController
     
     @ObservedRealmObject var log: Log
     @ObservedRealmObject var movement: Movement
-    
-    @State private var weight: Double = 0
-    @State private var weightStr = ""
-    @State private var mutatingValue: Double = 0
-    
-    @State var reps: Int = 0
-    @State var repsStr = ""
     
     @State private var date = Date()
     
@@ -51,13 +44,13 @@ struct EditLogView: View {
                                 Text("Edit weight")
                                     .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                                     .foregroundColor(.secondary)
-                                EditWeightTextField(log: log, weight: $weight, weightStr: $weightStr, mutatingValue: $mutatingValue, isInputActive: _isInputActive)
+                                EditWeightTextField(log: log, movement: movement, isInputActive: _isInputActive)
                             }
                             VStack(alignment: .center, spacing: 4) {
                                 Text("Edit reps")
                                     .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                                     .foregroundColor(.secondary)
-                                EditRepsTextField(log: log, reps: $reps, repsStr: $repsStr, isInputActive: _isInputActive)
+                                EditRepsTextField(log: log, isInputActive: _isInputActive)
                             }
                         }
                         DatePicker("Date/Time", selection: $date)
@@ -78,7 +71,6 @@ struct EditLogView: View {
             }
             .onAppear {
                 date = Date(timeIntervalSince1970: log.date)
-                mutatingValue = movement.mutatingValue
             }
         }
     }
@@ -89,8 +81,8 @@ struct EditLogView: View {
         if let thawedLog = log.thaw() {
             do {
                 try realm.write {
-                    thawedLog.weight = weight
-                    thawedLog.reps = reps
+                    thawedLog.weight = logController.weight
+                    thawedLog.reps = logController.reps
                     thawedLog.date = date.timeIntervalSince1970
                 }
             } catch  {

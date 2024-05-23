@@ -13,7 +13,8 @@ struct DeleteLogTrashIconButton: View {
     // MARK: - Variable
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logController: LogController
     
     @ObservedRealmObject var movement: Movement
     
@@ -28,9 +29,9 @@ struct DeleteLogTrashIconButton: View {
         Button {
             selectedLog = log
             deleteLogInRealm()
-            logDataViewModel.populateListOfWeights(movement.logs)
-            logDataViewModel.filterWeightAndPopulateData(movement.logs)
-            logDataViewModel.setMostRecentLog(movement.logs)
+            logViewModel.populateListOfWeights(movement.logs)
+            logViewModel.filterWeightAndPopulateData(movement.logs)
+            logController.setMostRecentLog(movement.logs, weightSelection: logViewModel.weightSelection)
             HapticManager.instance.impact(style: .light)
         } label: {
             Image(systemName: Icons.TrashCircleFill.description)

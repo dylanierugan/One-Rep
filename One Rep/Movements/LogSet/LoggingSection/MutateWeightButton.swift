@@ -11,16 +11,17 @@ struct MutateWieghtButton: View {
     
     // MARK: - Variables
     
+    @EnvironmentObject var logController: LogController
+    
     var color: Color
     var icon: String
     var mutatingValue: Double
-    var mutateWeight:(Double) -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
-            mutateWeight(mutatingValue)
+            logController.mutateWeight(mutatingValue)
             HapticManager.instance.impact(style: .soft)
         } label: {
             ZStack {

@@ -11,16 +11,17 @@ struct MutateRepsButton: View {
     
     // MARK: - Variables
     
+    @EnvironmentObject var logController: LogController
+    
     var color: Color
     var icon: String
     var mutatingValue: Int
-    var mutateRep:(Int) -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
-            mutateRep(mutatingValue)
+            logController.mutateReps(mutatingValue)
             HapticManager.instance.impact(style: .soft)
         } label: {
             ZStack {

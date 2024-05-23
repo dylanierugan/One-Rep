@@ -20,7 +20,7 @@ struct DayPicker: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var dateViewModel: DateViewModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
     
     // MARK: - View
     
@@ -43,7 +43,7 @@ struct DayPicker: View {
                             .foregroundStyle(dateViewModel.weekday == weekdayObject.weekday ? Color(.primary) : .secondary.opacity(0.5))
                             .customFont(size: .callout, weight: .semibold, kerning: 0, design: .rounded)
                             .frame(maxWidth: .infinity)
-                        if logDataViewModel.listOfDates.contains(logDataViewModel.formatDate(date: weekdayObject.date.timeIntervalSince1970)) {
+                        if logViewModel.listOfDates.contains(logViewModel.formatDate(date: weekdayObject.date.timeIntervalSince1970)) {
                             Circle()
                                 .fill(Color(theme.lightBaseColor))
                                 .frame(width: 8, height: 8)

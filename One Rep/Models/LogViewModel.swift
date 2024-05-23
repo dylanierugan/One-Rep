@@ -1,5 +1,5 @@
 //
-//  LogDataViewModel.swift
+//  LogViewModel.swift
 //  One Rep
 //
 //  Created by Dylan Ierugan on 5/12/24.
@@ -8,21 +8,15 @@
 import Foundation
 import RealmSwift
 
-class LogDataViewModel: ObservableObject {
+class LogViewModel: ObservableObject {
     
     // MARK: - Variables
-    
-    @Published var lastLog: Log? = nil
     
     @Published var listOfWeights = [String]()
     @Published var listOfDates = [String]()
     @Published var dateLogMap = [String: [Log]]()
     @Published var dateMovementLogMap = [String: [Movement:[Log]]]()
     
-    @Published var reps: Int = 12
-    @Published var repsStr = "12"
-    @Published var weight: Double = 135
-    @Published var weightStr = "135"
     @Published var weightSelection = "All"
     @Published var unit: UnitSelection = .lbs
     
@@ -105,21 +99,6 @@ class LogDataViewModel: ObservableObject {
         realmList.append(objectsIn: sortedFilteredLogs)
         populateListOfDates(realmList)
         populateDateLogMap(realmList)
-    }
-    
-    /// Set weight and rep fields to most recent log
-    func setMostRecentLog(_ logs: List<Log>) {
-        var logs = logs.sorted(by: \Log.date, ascending: false)
-        if weightSelection != "All" {
-            logs = logs.sorted(by: \Log.date, ascending: false).where {
-                ($0.weight == Double(weightSelection) ?? 0)
-            }
-        }
-        lastLog = logs.first
-        reps = lastLog?.reps ?? 12
-        repsStr = String(lastLog?.reps ?? 12)
-        weight = lastLog?.weight ?? 135
-        weightStr = String(lastLog?.weight ?? 135)
     }
     
     /// Take float and convert to 0 or 1 decimal string

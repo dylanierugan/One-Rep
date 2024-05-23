@@ -13,7 +13,7 @@ struct ActivityView: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
@@ -50,9 +50,9 @@ struct ActivityView: View {
             }
         })
         .onAppear() {
-            let logs = logDataViewModel.getAllLogs(movementViewModel.movements)
-            logDataViewModel.populateListOfDates(logs)
-            logDataViewModel.populateDateMovementLogMap(logs)
+            let logs = logViewModel.getAllLogs(movementViewModel.movements)
+            logViewModel.populateListOfDates(logs)
+            logViewModel.populateDateMovementLogMap(logs)
             dateViewModel.setDate()
         }
     }

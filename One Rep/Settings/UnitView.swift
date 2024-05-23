@@ -12,7 +12,6 @@ struct UnitView: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
     
     // MARK: - View
     
@@ -41,7 +40,7 @@ struct UnitPickerButton: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logDataViewModel: LogDataViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
     
     var unitSelection: UnitSelection
     
@@ -50,7 +49,7 @@ struct UnitPickerButton: View {
     var body: some View {
         Button(action: {
             withAnimation() {
-                logDataViewModel.unit = unitSelection
+                logViewModel.unit = unitSelection
                 HapticManager.instance.impact(style: .soft)
             }
         }, label: {
@@ -59,7 +58,7 @@ struct UnitPickerButton: View {
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
             }
             .frame(width: 32, height: 28)
-            .foregroundStyle(unitSelection == logDataViewModel.unit ? .primary: .secondary)
+            .foregroundStyle(unitSelection == logViewModel.unit ? .primary: .secondary)
         })
     }
 }
