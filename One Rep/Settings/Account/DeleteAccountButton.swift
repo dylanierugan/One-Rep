@@ -10,8 +10,6 @@ import RealmSwift
 
 struct DeleteAccountButton: View {
     
-    // MARK: - Variables
-    
     @Environment(\.realm) var realm
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var theme: ThemeModel

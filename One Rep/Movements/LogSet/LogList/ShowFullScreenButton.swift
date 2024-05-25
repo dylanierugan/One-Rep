@@ -11,9 +11,11 @@ struct ShowFullScreenButton: View {
     
     @EnvironmentObject var theme: ThemeModel
     
-    @State var icon = Icons.ChevronCompactUp.description
+    @State private var icon = Icons.ChevronCompactUp.description
     
     @Binding var showLogSetView: Bool
+    
+    // MARK: - View
     
     var body: some View {
         Button(action: {

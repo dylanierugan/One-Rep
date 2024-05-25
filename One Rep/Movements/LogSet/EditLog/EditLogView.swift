@@ -10,8 +10,6 @@ import RealmSwift
 
 struct EditLogView: View {
     
-    // MARK: - Variables
-    
     @Environment(\.realm) var realm
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.colorScheme) var colorScheme

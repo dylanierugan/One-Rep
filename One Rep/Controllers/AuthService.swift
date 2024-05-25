@@ -12,15 +12,13 @@ import Realm
 
 class AuthService: ObservableObject {
     
+    @Published var app: RealmSwift.App
+    @Published var user: RLMUser?
+    
     init(app: RealmSwift.App) {
         self.app = app
         user = app.currentUser ?? nil
     }
-    
-    // MARK: - Variables
-    
-    @Published var app: RealmSwift.App
-    @Published var user: RLMUser?
     
     // MARK: - Functions
     

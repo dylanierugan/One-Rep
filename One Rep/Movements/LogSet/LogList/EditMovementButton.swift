@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct EditMovementButton: View {
-    
-    // MARK: - Varibles
-    
+        
     @Binding var showEditMovementPopup: Bool
     @Binding var showDoneToolBar: Bool
     

@@ -9,9 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct LogCard: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
@@ -19,7 +17,7 @@ struct LogCard: View {
     @ObservedRealmObject var log: Log
     @ObservedRealmObject var movement: Movement
     
-    @State var showEditMovementPopup = false
+    @State private var showEditMovementPopup = false
     
     @Binding var showDoneToolBar: Bool
     

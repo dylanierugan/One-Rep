@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct MusclePicker: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var muscleGroup: MuscleType

@@ -9,10 +9,9 @@ import SwiftUI
 
 struct ToggleEditLogButton: View {
     
-    // MARK: - Variable
-    
     @Binding var isEditingLogs: Bool
-    var buttonText: String {
+    
+    private var buttonText: String {
         return isEditingLogs ? "Done" : "Edit"
     }
     

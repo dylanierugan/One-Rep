@@ -10,8 +10,6 @@ import RealmSwift
 
 struct WeightHorizontalScroller: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController

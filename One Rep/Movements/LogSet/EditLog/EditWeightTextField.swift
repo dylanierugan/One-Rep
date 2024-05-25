@@ -11,8 +11,6 @@ import Combine
 
 struct EditWeightTextField: View {
     
-    // MARK: - Variables
-    
     @Environment(\.realm) var realm
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel

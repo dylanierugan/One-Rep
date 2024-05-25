@@ -12,4 +12,6 @@ class MovementViewModel: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
     
     @Persisted var movements = RealmSwift.List<Movement>()
+    
+    @Persisted var userID = ""
 }

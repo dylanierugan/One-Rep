@@ -9,8 +9,6 @@ import SwiftUI
 
 struct LogIndexLabel: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     var index: Int

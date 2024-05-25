@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MovementSelectionPicker: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var movementSelection: MovementSelection
@@ -28,8 +26,6 @@ struct MovementSelectionPicker: View {
 }
 
 struct MovementPickerButton: View {
-    
-    // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
     

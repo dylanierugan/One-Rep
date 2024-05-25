@@ -9,8 +9,6 @@ import SwiftUI
 
 struct UnitSection: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     // MARK: - View

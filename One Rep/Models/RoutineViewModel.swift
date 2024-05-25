@@ -12,4 +12,5 @@ class RoutineViewModel: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
     
     @Persisted var routines = RealmSwift.List<Routine>()
+    @Persisted var userID = ""
 }

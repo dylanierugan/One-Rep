@@ -9,9 +9,7 @@ import Foundation
 import RealmSwift
 
 class LogViewModel: ObservableObject {
-    
-    // MARK: - Variables
-    
+        
     @Published var listOfWeights = [String]()
     @Published var listOfDates = [String]()
     @Published var dateLogMap = [String: [Log]]()

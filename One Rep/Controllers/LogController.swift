@@ -9,9 +9,7 @@ import Foundation
 import RealmSwift
 
 class LogController: ObservableObject {
-    
-    // MARK: - Variables
-    
+        
     @Published var reps: Int = 0
     @Published var weight: Double = 0
     @Published var repsStr = ""

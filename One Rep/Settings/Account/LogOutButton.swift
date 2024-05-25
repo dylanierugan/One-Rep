@@ -10,8 +10,6 @@ import RealmSwift
 
 struct LogOutButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var app: RealmSwift.App
     
     @EnvironmentObject var theme: ThemeModel

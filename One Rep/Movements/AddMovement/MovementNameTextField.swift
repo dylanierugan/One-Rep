@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MovementNameTextField: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     @State var focus: Bool

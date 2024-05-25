@@ -16,8 +16,6 @@ struct WeekdayValue: Identifiable{
 
 struct DayPicker: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var dateViewModel: DateViewModel
     @EnvironmentObject var logViewModel: LogViewModel

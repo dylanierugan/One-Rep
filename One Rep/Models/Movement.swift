@@ -21,7 +21,7 @@ class Movement: Object, ObjectKeyIdentifiable {
     
     /// Backlink
     @Persisted(originProperty: "movements") var group: LinkingObjects<MovementViewModel>
-    //@Persisted(originProperty: "routines") var assignee: LinkingObjects<Routine>
+    // @Persisted(originProperty: "routines") var assignee: LinkingObjects<Routine>
     
     convenience init(name: String = "", muscleGroup: MuscleType = .Arms, logs: List<Log> = List<Log>(), routine: String, timeAdded: Double = 0, isPremium: Bool = false, mutatingValue: Double) {
         self.init()

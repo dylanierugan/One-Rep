@@ -15,13 +15,11 @@ struct DateValue: Identifiable{
 
 struct CalendarView: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
-    let days: [Weekdays] = [.Sun, .Mon, .Tue, .Wed, .Thu, .Fri, .Sat]
-    let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    private let days: [Weekdays] = [.Sun, .Mon, .Tue, .Wed, .Thu, .Fri, .Sat]
+    private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
     // MARK: - View
     

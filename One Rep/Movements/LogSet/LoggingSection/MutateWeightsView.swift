@@ -9,20 +9,18 @@ import Combine
 import SwiftUI
 
 struct MutateWeightView: View {
-    
-    // MARK: - Variables
-    
+        
     @Environment(\.realm) var realm
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
     
-    @State var mutatingValue: Double = 5
+    @State private var mutatingValue: Double = 5
     @State var movement: Movement
     
     @FocusState var isInputActive: Bool
     
-    let mutatingValues : [Double] = [2.5, 5, 10, 25]
+    private let mutatingValues : [Double] = [2.5, 5, 10, 25]
     
     // MARK: - View
     

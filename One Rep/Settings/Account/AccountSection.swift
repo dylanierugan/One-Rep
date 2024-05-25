@@ -10,8 +10,6 @@ import RealmSwift
 
 struct AccountSection: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var theme: ThemeModel

@@ -11,8 +11,6 @@ import RealmSwift
 @main
 struct One_RepApp: SwiftUI.App {
     
-    // MARK: - StateObject
-    
     @StateObject var app: RealmSwift.App
     @StateObject var authService: AuthService
     @StateObject var viewRouter = ViewRouter()

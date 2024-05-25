@@ -10,8 +10,6 @@ import RealmSwift
 
 struct ActivityMovementDataView: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var dateViewModel: DateViewModel

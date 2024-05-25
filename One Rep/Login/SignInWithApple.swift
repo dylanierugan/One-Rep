@@ -11,8 +11,6 @@ import SwiftUI
 
 struct SignInWithApple: View {
     
-    // MARK: - Variables
-    
     @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var authService: AuthService

@@ -9,9 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct TabHolderView: View {
-    
-    // MARK: - ObservedResults
-    
+        
     @ObservedResults(MovementViewModel.self) var movementsCollection
     
     // MARK: - View
