@@ -38,7 +38,7 @@ struct EditMovementView: View {
                 VStack(spacing: 36) {
                     
                     Text("Edit Movement")
-                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                        .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Edit name")

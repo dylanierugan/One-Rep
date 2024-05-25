@@ -24,20 +24,16 @@ struct LogOutButton: View {
                 logOutUser()
             }
         } label: {
-            HStack {
-                Spacer()
-                Text("Log Out")
+            HStack(spacing: 16) {
                 Image(systemName: Icons.RectanglePortraitAndArrowRight.description)
+                Text("Log Out")
                 Spacer()
             }
             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
             .foregroundStyle(.linearGradient(colors: [
                 Color(theme.lightBaseColor),
                 Color(theme.darkBaseColor)
-            ],startPoint: .top, endPoint: .bottom))
-            .frame(height: 48)
-            .background(Color(theme.backgroundElementColor))
-            .cornerRadius(16)
+            ], startPoint: .top, endPoint: .bottom))
         }
     }
     

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UnitView: View {
+struct UnitSection: View {
     
     // MARK: - Variables
     
@@ -19,7 +19,7 @@ struct UnitView: View {
         VStack(alignment: .leading) {
             Text("Units")
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                .foregroundColor(.secondary.opacity(0.5))
+                .foregroundColor(.secondary)
             VStack(alignment: .leading) {
                 HStack(spacing: 12) {
                     UnitPickerButton(unitSelection: .lbs)

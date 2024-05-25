@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ThemesView: View {
+struct ThemeSection: View {
     
     // MARK: - Variables
     
@@ -19,7 +19,7 @@ struct ThemesView: View {
         VStack(alignment: .leading) {
             Text("Theme")
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                .foregroundColor(.secondary.opacity(0.5))
+                .foregroundColor(.secondary)
             VStack(alignment: .leading) {
                 HStack(spacing: 24) {
                     ColorButton(stringColor: Colors.LightGreen.description, darkBase: Colors.LightGreen.description, lightBase: Colors.DarkGreen.description)

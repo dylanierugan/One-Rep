@@ -23,14 +23,11 @@ struct SettingsView: View {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
-                
                 ScrollView {
                     VStack(spacing: 16) {
-                        AccountView()
-                        ThemesView()
-                        UnitView()
-                        LogOutButton()
-                            .padding(.top, 12)
+                        AccountSection()
+                        UnitSection()
+                        ThemeSection()
                     }
                     .padding(.horizontal, 16)
                 }

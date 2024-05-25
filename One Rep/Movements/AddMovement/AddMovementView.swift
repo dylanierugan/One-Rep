@@ -34,7 +34,7 @@ struct AddMovementView: View {
                 VStack(spacing: 36) {
                     
                     Text("New Movement")
-                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                        .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Movement Name")

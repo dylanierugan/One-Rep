@@ -32,13 +32,13 @@ struct EditLogView: View {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
                 
-                VStack(spacing: 32) {
+                VStack(spacing: 64) {
                     
                     Text("Edit Log")
-                        .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                        .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                         .padding(.top, 32)
                     
-                    VStack(spacing: 16) {
+                    VStack(spacing: 32) {
                         HStack(spacing: 16) {
                             VStack(alignment: .center, spacing: 4) {
                                 Text("Edit weight")
@@ -54,13 +54,24 @@ struct EditLogView: View {
                             }
                         }
                         DatePicker("Date/Time", selection: $date)
-                            .datePickerStyle(.graphical)
-                            .frame(maxHeight: 400)
+                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                            .datePickerStyle(.automatic)
                             .padding(.horizontal)
                             .accentColor(colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor))
                     }
+                    
+                    Spacer()
                 }
+                .padding(.top, 64)
                 .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                isInputActive = false
+                            }
+                        }
+                    }
                     ToolbarItem(placement: .navigationBarLeading) {
                         DeleteLogButton(deleteLogInRealm: { self.deleteLogInRealm() })
                     }
@@ -102,5 +113,4 @@ struct EditLogView: View {
             }
         }
     }
-    
 }
