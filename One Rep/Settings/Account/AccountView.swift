@@ -13,7 +13,10 @@ struct AccountView: View {
     // MARK: - Variables
     
     @EnvironmentObject var app: RealmSwift.App
+    @EnvironmentObject var authService: AuthService
     @EnvironmentObject var theme: ThemeModel
+    
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     // MARK: - Views
     
@@ -25,7 +28,7 @@ struct AccountView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 16) {
                         Image(systemName: Icons.PersonFill.description)
-                        Text(app.currentUser?.profile.email ?? "No user")
+                        Text(authService.user?.profile.email ?? "No user")
                     }
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     Divider()
@@ -33,7 +36,7 @@ struct AccountView: View {
                     LogOutButton()
                     Divider()
                         .padding(.leading, 32)
-                    DeleteAccountButton()
+                    DeleteAccountButton(movementViewModel: movementViewModel)
                 }
                 .padding(16)
                 .background(Color(theme.backgroundElementColor))

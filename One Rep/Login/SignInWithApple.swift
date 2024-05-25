@@ -15,9 +15,9 @@ struct SignInWithApple: View {
     
     @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var app: RealmSwift.App
+    @EnvironmentObject var authService: AuthService
     @EnvironmentObject var viewRouter: ViewRouter
-
-    @State var isLoggingIn: Bool
+    
     @State private var identityTokenString = ""
     
     // MARK: - View
@@ -25,49 +25,30 @@ struct SignInWithApple: View {
     var body: some View {
         VStack {
             SignInWithAppleButton(.signIn, onRequest: { request in
-                isLoggingIn = true
                 request.requestedScopes = [.email]
             }, onCompletion: { result in
                 switch result {
                 case .success(let authResults):
                     guard let credentials = authResults.credential as? ASAuthorizationAppleIDCredential, let identityToken = credentials.identityToken,
-                            let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
+                          let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
                     self.identityTokenString = identityTokenString
                     print("Successfully signed in with Apple.")
-                    login()
+                    authService.login(identityTokenString: identityTokenString) { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        case .success:
+                            withAnimation {
+                                viewRouter.currentPage = .main
+                            }
+                        }
+                    }
                 case .failure(let error):
-                    isLoggingIn = false
                     print("Sign in with Apple failed: \(error.localizedDescription)")
                 }
             })
             .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
-            .disabled(isLoggingIn)
             .cornerRadius(16)
         }
     }
-    
-    // MARK: - Functions
-    
-    private func login() -> Void {
-           var credentials: Credentials
-           if self.identityTokenString != "" {
-               credentials = Credentials.apple(idToken: identityTokenString)
-           } else {
-               credentials = Credentials.anonymous
-           }
-           app.login(credentials: credentials) { result in
-               switch result {
-               case .failure(let error):
-                   print("Login to Realm failed: \(error.localizedDescription)")
-               case .success(let user):
-                   DispatchQueue.main.async {
-                       withAnimation {
-                           viewRouter.currentPage = .main
-                       }
-                   }
-                   print("Successfully logged into Realm as \(user.id).")
-               }
-               isLoggingIn = false
-           }
-       }
 }

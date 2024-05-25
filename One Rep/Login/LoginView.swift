@@ -21,7 +21,6 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var isSecure = true
-    @State private var isLoggingIn = false
     @State private var showResetPassword = false
     
     // MARK: - View
@@ -38,7 +37,7 @@ struct LoginView: View {
                         .multilineTextAlignment(.center)
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 }
-                SignInWithApple(isLoggingIn: isLoggingIn)
+                SignInWithApple()
                     .frame(height: 32)
                     .padding(.top, 8)
                     .padding(.horizontal, 32)

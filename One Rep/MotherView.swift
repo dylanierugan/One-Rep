@@ -16,6 +16,7 @@ struct MotherView: View {
     
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var authService: AuthService
     
     // MARK: - View Router Logic
     
@@ -35,7 +36,7 @@ struct MotherView: View {
     
     func checkLogIn() {
         /// Function checks if user is logged in and redirects the user to the appropriate view
-        if app.currentUser != nil {
+        if authService.isUserLoggedIn {
             viewRouter.currentPage = .main
         } else {
             viewRouter.currentPage = .login

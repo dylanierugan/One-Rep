@@ -52,8 +52,8 @@ struct MovementPickerButton: View {
                 Spacer()
             }
             .padding(.vertical, 6)
-            .foregroundStyle(movementSelection == selection  ? Color(theme.reversePrimary): .primary)
-            .background(movementSelection == selection ? Color(theme.primary).opacity(0.9) : .clear)
+            .foregroundStyle(movementSelection == selection  ? Color(.reversePrimary): .primary)
+            .background(movementSelection == selection ? Color(.primary).opacity(0.9) : .clear)
             .cornerRadius(16)
             .padding(4)
         })

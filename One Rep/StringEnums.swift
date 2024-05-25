@@ -8,15 +8,14 @@
 import Foundation
 import RealmSwift
 
-enum Weekdays: String, PersistableEnum, Identifiable {
-    var id: Weekdays { self }
-    case Sun = "Sun"
-    case Mon = "Mon"
-    case Tue = "Tue"
-    case Wed = "Wed"
-    case Thu = "Thu"
-    case Fri = "Fri"
-    case Sat = "Sat"
+enum App: CustomStringConvertible {
+    case ID
+    
+    var description : String {
+        switch self {
+        case .ID: return "one-rep-hpeel"
+        }
+    }
 }
 
 enum DefaultKeys: CustomStringConvertible {
@@ -221,14 +220,18 @@ enum Icons: CustomStringConvertible {
 
 enum InfoText: CustomStringConvertible {
     case CreateNewMovement
+    case DeleteAllDataConfirmation
     case NoData
     case NoDataOnDay
+    case NoWayToUndo
     
     var description: String {
         switch self {
-            case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
-            case .NoData: return "No data\nLog some sets!"
-            case .NoDataOnDay: return "No data logged for this day"
+        case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
+        case .DeleteAllDataConfirmation: return "Are you sure you want to delete this movement and all the logged data associated with it?"
+        case .NoData: return "No data\nLog some sets!"
+        case .NoDataOnDay: return "No data logged for this day"
+        case .NoWayToUndo: return "There is no way to undo this action."
         }
     }
 }
@@ -251,9 +254,20 @@ enum MuscleType: String, PersistableEnum, Identifiable {
 }
 
 enum RepType: String, PersistableEnum {
-  case WarmUp = "Warm Up"
-  case WorkingSet = "Working Set"
-  case PR = "PR"
+    case WarmUp = "Warm Up"
+    case WorkingSet = "Working Set"
+    case PR = "PR"
+}
+
+enum Weekdays: String, PersistableEnum, Identifiable {
+    var id: Weekdays { self }
+    case Sun = "Sun"
+    case Mon = "Mon"
+    case Tue = "Tue"
+    case Wed = "Wed"
+    case Thu = "Thu"
+    case Fri = "Fri"
+    case Sat = "Sat"
 }
 
 enum UnitSelection: String, PersistableEnum, Identifiable {

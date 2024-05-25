@@ -13,12 +13,19 @@ struct One_RepApp: SwiftUI.App {
     
     // MARK: - StateObject
     
-    @StateObject var app = RealmSwift.App(id: "one-rep-hpeel")
+    @StateObject var app: RealmSwift.App
+    @StateObject var authService: AuthService
     @StateObject var viewRouter = ViewRouter()
     @StateObject var dateViewModel = DateViewModel()
     @StateObject var logViewModel = LogViewModel()
     @StateObject var logController = LogController()
     @StateObject var themeColor = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.LightGreen.description)
+    
+    init() {
+        let app = RealmSwift.App(id: App.ID.description)
+        _app = StateObject(wrappedValue: app)
+        _authService =  StateObject(wrappedValue: AuthService(app: app))
+    }
     
     // MARK: - Scene
     
@@ -27,6 +34,7 @@ struct One_RepApp: SwiftUI.App {
             MotherView()
                 .environment(\.sizeCategory, .extraSmall)
                 .environmentObject(app)
+                .environmentObject(authService)
                 .environmentObject(viewRouter)
                 .environmentObject(dateViewModel)
                 .environmentObject(logViewModel)

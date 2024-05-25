@@ -21,7 +21,7 @@ struct UnitSection: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             VStack(alignment: .leading) {
-                HStack(spacing: 12) {
+                HStack(spacing: 16) {
                     UnitPickerButton(unitSelection: .lbs)
                     UnitPickerButton(unitSelection: .kgs)
                     Spacer()
@@ -58,7 +58,9 @@ struct UnitPickerButton: View {
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
             }
             .frame(width: 32, height: 28)
-            .foregroundStyle(unitSelection == logViewModel.unit ? .primary: .secondary)
+            .foregroundStyle(unitSelection == logViewModel.unit ? Color(.reversePrimary): .secondary)
+            .background(unitSelection == logViewModel.unit ? Color(.primary) : .clear)
+            .cornerRadius(8)
         })
     }
 }

@@ -13,15 +13,25 @@ struct LogOutButton: View {
     // MARK: - Variables
     
     @EnvironmentObject var app: RealmSwift.App
+    
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var authService: AuthService
     @EnvironmentObject var viewRouter: ViewRouter
     
     // MARK: - View
     
     var body: some View {
         Button {
-            Task {
-                logOutUser()
+            authService.logOutUser { result in
+                switch result {
+                case .failure(let error):
+                    /// Handle error
+                    print("Log out failed: \(error.localizedDescription)")
+                case .success:
+                    withAnimation {
+                        viewRouter.currentPage = .login
+                    }
+                }
             }
         } label: {
             HStack(spacing: 16) {
@@ -34,22 +44,6 @@ struct LogOutButton: View {
                 Color(theme.lightBaseColor),
                 Color(theme.darkBaseColor)
             ], startPoint: .top, endPoint: .bottom))
-        }
-    }
-    
-    // MARK: - Functions
-    
-    private func logOutUser() {
-        app.currentUser?.logOut { (error) in
-            if error != nil {
-                /// Handle error
-            } else {
-                DispatchQueue.main.async {
-                    withAnimation {
-                        viewRouter.currentPage = .login
-                    }
-                }
-            }
         }
     }
 }

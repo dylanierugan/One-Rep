@@ -25,7 +25,7 @@ struct TabHolderView: View {
                     .tabItem {
                         Image(systemName: Icons.FigureStrengthTraining.description)
                     }
-                SettingsView()
+                SettingsView(movementViewModel: movements)
                     .tabItem {
                         Image(systemName: Icons.PersonFill.description)
                     }

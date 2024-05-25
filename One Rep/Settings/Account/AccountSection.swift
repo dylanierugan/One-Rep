@@ -13,13 +13,16 @@ struct AccountSection: View {
     // MARK: - Variables
     
     @EnvironmentObject var app: RealmSwift.App
+    @EnvironmentObject var authService: AuthService
     @EnvironmentObject var theme: ThemeModel
+    
+    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     // MARK: - View
     
     var body: some View {
         NavigationLink {
-            AccountView()
+            AccountView(movementViewModel: movementViewModel)
         } label: {
             VStack(alignment: .leading) {
                 Text("Account")
@@ -29,7 +32,7 @@ struct AccountSection: View {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
                             Image(systemName: Icons.PersonFill.description)
-                            Text(app.currentUser?.profile.email ?? "No user")
+                            Text(authService.user?.profile.email ?? "No user")
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()

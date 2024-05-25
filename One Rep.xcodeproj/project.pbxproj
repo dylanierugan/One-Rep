@@ -36,6 +36,7 @@
 		370730A22BFFF58D00E95989 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A12BFFF58D00E95989 /* LogController.swift */; };
 		370730A52C01638D00E95989 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A42C01638D00E95989 /* AccountView.swift */; };
 		370730A82C01668A00E95989 /* DeleteAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A72C01668A00E95989 /* DeleteAccountButton.swift */; };
+		370730AB2C022C9000E95989 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730AA2C022C9000E95989 /* AuthService.swift */; };
 		37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655092BA5385600B96BEB /* One_RepApp.swift */; };
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		370730A12BFFF58D00E95989 /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		370730A42C01638D00E95989 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		370730A72C01668A00E95989 /* DeleteAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountButton.swift; sourceTree = "<group>"; };
+		370730AA2C022C9000E95989 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		37A655062BA5385600B96BEB /* One Rep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "One Rep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A655092BA5385600B96BEB /* One_RepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_RepApp.swift; sourceTree = "<group>"; };
 		37A6550D2BA5385800B96BEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -253,6 +255,15 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		370730A92C022C4900E95989 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				370730A12BFFF58D00E95989 /* LogController.swift */,
+				370730AA2C022C9000E95989 /* AuthService.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		37A654FD2BA5385600B96BEB = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +293,7 @@
 				37A655312BA745A300B96BEB /* Login */,
 				37A655332BA745CF00B96BEB /* Movements */,
 				37A655342BA745D400B96BEB /* Settings */,
+				370730A92C022C4900E95989 /* Controllers */,
 				37A655322BA745C700B96BEB /* Models */,
 				37A6555E2BC1B94000B96BEB /* Modifiers */,
 				37A6550D2BA5385800B96BEB /* Assets.xcassets */,
@@ -318,7 +330,6 @@
 				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
 				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
-				370730A12BFFF58D00E95989 /* LogController.swift */,
 				3707306B2BF12B8800E95989 /* LogViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
 			);
@@ -471,6 +482,7 @@
 				37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,
+				370730AB2C022C9000E95989 /* AuthService.swift in Sources */,
 				370730722BF3BE8900E95989 /* ActivityView.swift in Sources */,
 				37A655262BA5F8A700B96BEB /* LoginView.swift in Sources */,
 				37A655282BA5F8C200B96BEB /* RepsLogo.swift in Sources */,

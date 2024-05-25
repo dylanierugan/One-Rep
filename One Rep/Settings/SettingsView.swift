@@ -16,6 +16,8 @@ struct SettingsView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var theme: ThemeModel
     
+    @ObservedRealmObject var movementViewModel: MovementViewModel
+    
     // MARK: - View
     
     var body: some View {
@@ -25,7 +27,7 @@ struct SettingsView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 16) {
-                        AccountSection()
+                        AccountSection(movementViewModel: movementViewModel)
                         UnitSection()
                         ThemeSection()
                     }
