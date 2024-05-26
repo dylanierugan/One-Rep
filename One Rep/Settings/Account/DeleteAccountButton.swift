@@ -10,6 +10,8 @@ import RealmSwift
 
 struct DeleteAccountButton: View {
     
+    @ObservedObject var app: RealmSwift.App
+    
     @Environment(\.realm) var realm
     @EnvironmentObject var authService: AuthService
     @EnvironmentObject var theme: ThemeModel
@@ -41,7 +43,7 @@ struct DeleteAccountButton: View {
                 title: Text("Are you sure you want to delete your account and all the data associated with it?"),
                 message: Text("There is no way to undo this action."),
                 primaryButton: .destructive(Text("Delete")) {
-                    authService.deleteUser { result in
+                    authService.deleteUser(app: app) { result in
                         switch result {
                         case .failure(let error):
                             /// Handle error

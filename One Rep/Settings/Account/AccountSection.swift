@@ -30,7 +30,7 @@ struct AccountSection: View {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
                             Image(systemName: Icons.PersonFill.description)
-                            Text(authService.user?.profile.email ?? "No user")
+                            Text(app.currentUser?.profile.email ?? "No user")
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()

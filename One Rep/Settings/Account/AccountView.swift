@@ -26,15 +26,15 @@ struct AccountView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 16) {
                         Image(systemName: Icons.PersonFill.description)
-                        Text(authService.user?.profile.email ?? "No user")
+                        Text(app.currentUser?.profile.email ?? "No user")
                     }
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     Divider()
                         .padding(.leading, 32)
-                    LogOutButton()
+                    LogOutButton(app: app)
                     Divider()
                         .padding(.leading, 32)
-                    DeleteAccountButton(movementViewModel: movementViewModel)
+                    DeleteAccountButton(app: app, movementViewModel: movementViewModel)
                 }
                 .padding(16)
                 .background(Color(theme.backgroundElementColor))

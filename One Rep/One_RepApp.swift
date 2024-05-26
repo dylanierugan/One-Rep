@@ -11,19 +11,14 @@ import RealmSwift
 @main
 struct One_RepApp: SwiftUI.App {
     
-    @StateObject var app: RealmSwift.App
-    @StateObject var authService: AuthService
+    @StateObject var app = RealmSwift.App(id: App.ID.description)
+    @StateObject var authService = AuthService()
     @StateObject var viewRouter = ViewRouter()
-    @StateObject var dateViewModel = DateViewModel()
+    @StateObject var movementViewModel = MovementViewModel()
     @StateObject var logViewModel = LogViewModel()
     @StateObject var logController = LogController()
+    @StateObject var dateViewModel = DateViewModel()
     @StateObject var themeColor = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.LightGreen.description)
-    
-    init() {
-        let app = RealmSwift.App(id: App.ID.description)
-        _app = StateObject(wrappedValue: app)
-        _authService =  StateObject(wrappedValue: AuthService(app: app))
-    }
     
     // MARK: - Scene
     
@@ -34,9 +29,10 @@ struct One_RepApp: SwiftUI.App {
                 .environmentObject(app)
                 .environmentObject(authService)
                 .environmentObject(viewRouter)
-                .environmentObject(dateViewModel)
+                .environmentObject(movementViewModel)
                 .environmentObject(logViewModel)
                 .environmentObject(logController)
+                .environmentObject(dateViewModel)
                 .environmentObject(themeColor)
         }
     }
