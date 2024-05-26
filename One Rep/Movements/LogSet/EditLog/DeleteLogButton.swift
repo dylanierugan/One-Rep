@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct DeleteLogButton: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.dismiss) private var dismiss
     

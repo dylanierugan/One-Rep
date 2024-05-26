@@ -9,6 +9,8 @@ import SwiftUI
 import RealmSwift
 
 struct TabHolderView: View {
+        
+    @EnvironmentObject var app: RealmSwift.App
     
     @ObservedResults(MovementViewModel.self) var movementsCollection
     
@@ -17,7 +19,7 @@ struct TabHolderView: View {
     var body: some View {
         if let movements = movementsCollection.first {
             TabView() {
-                MovementsView(movementViewModel: movements)
+                MovementsView()
                     .tabItem {
                         Image(systemName: Icons.FigureStrengthTraining.description)
                     }

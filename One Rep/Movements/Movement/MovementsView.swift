@@ -10,9 +10,7 @@ import RealmSwift
 import UIKit
 
 struct MovementsView: View {
-    
-    // MARK: - Variables
-    
+        
     @Environment(\.dismissSearch) private var dismissSearch
     @EnvironmentObject var theme: ThemeModel
     
@@ -78,13 +76,13 @@ struct MovementsView: View {
                 }
             }
             .navigationTitle("Movements")
-            .toolbar(content: {
+            .toolbar {
                 if movementSelection == .Library {
                     ToolbarItem(placement: .topBarTrailing) {
                         AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
                     }
                 }
-            })
+            }
         }
     }
 }

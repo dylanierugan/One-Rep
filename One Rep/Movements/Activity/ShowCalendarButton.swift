@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ShowCalendarButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var showCalendar: Bool

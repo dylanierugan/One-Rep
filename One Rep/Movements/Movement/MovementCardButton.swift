@@ -9,9 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct MovementCardButton: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel

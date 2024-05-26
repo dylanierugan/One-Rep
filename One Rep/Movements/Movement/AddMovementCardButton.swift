@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AddMovementCardButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var showAddMovementPopup: Bool

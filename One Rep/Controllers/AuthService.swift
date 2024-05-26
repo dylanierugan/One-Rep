@@ -12,23 +12,7 @@ import Realm
 
 class AuthService: ObservableObject {
     
-    init(app: RealmSwift.App) {
-        self.app = app
-        user = app.currentUser ?? nil
-    }
-    
-    // MARK: - Variables
-    
-    @Published var app: RealmSwift.App
-    @Published var user: RLMUser?
-    
-    // MARK: - Functions
-    
-    var isUserLoggedIn: Bool {
-        return user != nil
-    }
-        
-    func login(identityTokenString: String, completion: @escaping (Result<User, Error>) -> Void) {
+    func login(app: RealmSwift.App, identityTokenString: String, completion: @escaping (Result<User, Error>) -> Void) {
         var credentials: Credentials
         if !identityTokenString.isEmpty {
             credentials = Credentials.apple(idToken: identityTokenString)
@@ -42,7 +26,6 @@ class AuthService: ObservableObject {
                 completion(.failure(error))
             case .success(let user):
                 DispatchQueue.main.async {
-                    self.user = user
                     completion(.success(user))
                     print("Successfully logged into Realm as \(user.id).")
                 }
@@ -51,7 +34,7 @@ class AuthService: ObservableObject {
     }
     
 
-    func logOutUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    func logOutUser(app: RealmSwift.App, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let user = app.currentUser else {
             completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "No user is currently logged in"])))
             return
@@ -62,7 +45,6 @@ class AuthService: ObservableObject {
                     print("Failed to log out: \(error.localizedDescription)")
                     completion(.failure(error))
                 } else {
-                    self.user = nil
                     completion(.success(()))
                     print("Successfully logged out.")
                 }
@@ -71,7 +53,7 @@ class AuthService: ObservableObject {
     }
     
     
-    func deleteUser(completion: @escaping (Result<Void, Error>) -> Void) {
+    func deleteUser(app: RealmSwift.App, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let user = app.currentUser else {
             completion(.failure(NSError(domain: "", code: 401, userInfo: [NSLocalizedDescriptionKey: "No user is currently logged in"])))
             return
@@ -82,7 +64,6 @@ class AuthService: ObservableObject {
                     print("Failed to delete user: \(error.localizedDescription)")
                     completion(.failure(error))
                 } else {
-                    self.user = nil
                     completion(.success(()))
                     print("Successfully deleted user.")
                 }

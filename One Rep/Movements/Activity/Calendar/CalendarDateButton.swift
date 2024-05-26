@@ -9,8 +9,6 @@ import SwiftUI
 
 struct CalendarDateButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var dateViewModel: DateViewModel

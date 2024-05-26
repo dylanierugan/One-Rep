@@ -9,9 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct DeleteLogTrashIconButton: View {
-    
-    // MARK: - Variable
-    
+        
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController

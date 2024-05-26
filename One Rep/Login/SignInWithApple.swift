@@ -11,8 +11,6 @@ import SwiftUI
 
 struct SignInWithApple: View {
     
-    // MARK: - Variables
-    
     @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var authService: AuthService
@@ -33,7 +31,7 @@ struct SignInWithApple: View {
                           let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
                     self.identityTokenString = identityTokenString
                     print("Successfully signed in with Apple.")
-                    authService.login(identityTokenString: identityTokenString) { result in
+                    authService.login(app: app, identityTokenString: identityTokenString) { result in
                         switch result {
                         case .failure(let error):
                             print(error.localizedDescription)

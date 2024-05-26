@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HorizontalScroller: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var muscleSelection: MuscleType

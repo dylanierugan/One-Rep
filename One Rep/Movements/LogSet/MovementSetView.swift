@@ -9,9 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct MovementSetView: View {
-    
-    // MARK: - Variables
-    
+        
     @Environment(\.realm) var realm
     
     @EnvironmentObject var theme: ThemeModel

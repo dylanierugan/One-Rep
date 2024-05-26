@@ -11,9 +11,7 @@ import Realm
 import AuthenticationServices
 
 struct LoginView: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var theme: ThemeModel
@@ -31,7 +29,7 @@ struct LoginView: View {
                 .ignoresSafeArea()
             VStack(spacing: 16) {
                 VStack(spacing: 8) {
-                    RepsLogo(size: 28)
+                    OneRepLogo(size: .title)
                     Text("Do one more rep than last time")
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)

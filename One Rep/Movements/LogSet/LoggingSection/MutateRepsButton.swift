@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MutateRepsButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var logController: LogController
     
     var color: Color

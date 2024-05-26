@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct AddMovementButton: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.dismiss) private var dismiss
     
-    @State var addMovementClicked = false
+    @State private var addMovementClicked = false
     
     var isFormValid: Bool
     

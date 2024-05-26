@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MoveMonthButtons: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var dateViewModel: DateViewModel
     
     // MARK: - View

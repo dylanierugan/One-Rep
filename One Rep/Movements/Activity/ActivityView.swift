@@ -9,16 +9,14 @@ import SwiftUI
 import RealmSwift
 
 struct ActivityView: View {
-    
-    // MARK: - Variables
-    
+        
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var dateViewModel: DateViewModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
     
-    @State var showCalendar = false
+    @State private var showCalendar = false
     
     // MARK: - View
     

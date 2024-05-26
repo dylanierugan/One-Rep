@@ -10,8 +10,6 @@ import RealmSwift
 
 struct EditMovementView: View {
     
-    // MARK: - Variables
-    
     @Environment(\.realm) var realm
     @EnvironmentObject var theme: ThemeModel
     

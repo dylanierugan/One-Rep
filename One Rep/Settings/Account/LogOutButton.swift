@@ -10,9 +10,7 @@ import RealmSwift
 
 struct LogOutButton: View {
     
-    // MARK: - Variables
-    
-    @EnvironmentObject var app: RealmSwift.App
+    @ObservedObject var app: RealmSwift.App
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var authService: AuthService
@@ -22,7 +20,7 @@ struct LogOutButton: View {
     
     var body: some View {
         Button {
-            authService.logOutUser { result in
+            authService.logOutUser(app: app) { result in
                 switch result {
                 case .failure(let error):
                     /// Handle error

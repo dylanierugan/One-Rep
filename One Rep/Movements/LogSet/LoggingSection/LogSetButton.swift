@@ -10,8 +10,6 @@ import RealmSwift
 
 struct LogSetButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.colorScheme) var colorScheme
     

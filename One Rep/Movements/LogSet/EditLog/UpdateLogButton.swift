@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct UpdateLogButton: View {
-    
-    // MARK: - Variables
-    
+        
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel
     

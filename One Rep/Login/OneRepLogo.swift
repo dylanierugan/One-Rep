@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-struct RepsLogo: View {
+struct OneRepLogo: View {
     
-    var size: CGFloat
+    var size: Font.TextStyle
+    
+    // MARK: - View
     
     var body: some View {
         Text("1 Rep")
-            .customFont(size: .title, weight: .bold, kerning: 0, design: .rounded)
+            .customFont(size: size, weight: .bold, kerning: 0, design: .rounded)
             .foregroundColor(.primary)
             .kerning(-1)
     }

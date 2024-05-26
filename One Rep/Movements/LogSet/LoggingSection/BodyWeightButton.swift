@@ -9,8 +9,6 @@ import SwiftUI
 
 struct BodyWeightButton: View {
     
-    // MARK: - Variables
-    
     @EnvironmentObject var theme: ThemeModel
     
     @Binding var isBodyWeightSelected: Bool
