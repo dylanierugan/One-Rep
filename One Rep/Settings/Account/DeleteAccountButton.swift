@@ -51,7 +51,7 @@ struct DeleteAccountButton: View {
                         case .success:
                             withAnimation {
                                 deleteAllData()
-                                viewRouter.currentPage = .login
+                                viewRouter.currentPage = .loginView
                             }
                         }
                     }

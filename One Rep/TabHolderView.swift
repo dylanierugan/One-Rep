@@ -10,16 +10,12 @@ import RealmSwift
 
 struct TabHolderView: View {
     
-    // MARK: - ObservedResults
-    
     @ObservedResults(MovementViewModel.self) var movementsCollection
     
     // MARK: - View
     
     var body: some View {
-        /// Initialize movements
         if let movements = movementsCollection.first {
-            /// TabView holds 2 tabs: Movements and Settings
             TabView() {
                 MovementsView(movementViewModel: movements)
                     .tabItem {
@@ -33,10 +29,7 @@ struct TabHolderView: View {
             .font(.headline)
             .accentColor(.primary)
         } else {
-            ProgressView()
-                .onAppear {
-                    $movementsCollection.append(MovementViewModel())
-                }
+            ProgressView().onAppear { $movementsCollection.append(MovementViewModel()) }
         }
     }
 }

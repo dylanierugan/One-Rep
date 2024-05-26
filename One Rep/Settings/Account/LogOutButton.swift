@@ -29,7 +29,7 @@ struct LogOutButton: View {
                     print("Log out failed: \(error.localizedDescription)")
                 case .success:
                     withAnimation {
-                        viewRouter.currentPage = .login
+                        viewRouter.currentPage = .loginView
                     }
                 }
             }

@@ -22,24 +22,20 @@ struct MotherView: View {
     
     var body: some View {
         switch viewRouter.currentPage {
-        case .main:
+        case .loginView:
+            LoginView().onAppear { checkLogIn() }
+        case .tabView:
             TabHolderView()
-        case .login:
-            LoginView()
-                .onAppear {
-                    checkLogIn()
-                }
         }
     }
     
     // MARK: - Functions
     
     func checkLogIn() {
-        /// Function checks if user is logged in and redirects the user to the appropriate view
         if authService.isUserLoggedIn {
-            viewRouter.currentPage = .main
+            viewRouter.currentPage = .tabView
         } else {
-            viewRouter.currentPage = .login
+            viewRouter.currentPage = .loginView
         }
     }
 }

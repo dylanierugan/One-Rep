@@ -39,7 +39,7 @@ struct SignInWithApple: View {
                             print(error.localizedDescription)
                         case .success:
                             withAnimation {
-                                viewRouter.currentPage = .main
+                                viewRouter.currentPage = .tabView
                             }
                         }
                     }
