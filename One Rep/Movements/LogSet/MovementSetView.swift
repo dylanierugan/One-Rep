@@ -148,7 +148,7 @@ struct MovementSetView: View {
         /// Ensure movement is managed by the same Realm instance
         let log = Log(reps: logController.reps, weight: logController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970, movement: nil)
         let managedMovement: Movement
-        if let existingMovement = realm.object(ofType: Movement.self, forPrimaryKey: movement.id) {
+        if let existingMovement = realm.object(ofType: Movement.self, forPrimaryKey: movement._id) {
             managedMovement = existingMovement
         } else {
             try! realm.write {

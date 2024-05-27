@@ -68,5 +68,53 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "071EE2A1-0BA1-4709-A655-87E417B36E97"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/TabHolderView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "071EE2A1-0BA1-4709-A655-87E417B36E97 - 1455d7ca04133631"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "One_Rep.TabHolderView.body.getter : some"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/TabHolderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "1812">
+               </Location>
+               <Location
+                  uuid = "071EE2A1-0BA1-4709-A655-87E417B36E97 - 7a94fcf77d52c3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in One_Rep.TabHolderView.body.getter : some"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/TabHolderView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "240">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

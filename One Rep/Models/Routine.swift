@@ -10,7 +10,7 @@ import RealmSwift
 
 class Routine: Object, ObjectKeyIdentifiable {
     
-    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var name: String
     @Persisted var icon: String
     @Persisted var timeAdded: Double

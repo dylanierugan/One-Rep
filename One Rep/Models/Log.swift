@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class Log: Object, ObjectKeyIdentifiable{
-    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var reps: Int
     @Persisted var weight: Double
     @Persisted var isBodyWeight: Bool
