@@ -8,12 +8,14 @@
 import Foundation
 import RealmSwift
 
-enum App: CustomStringConvertible {
+enum AppConstants: CustomStringConvertible {
     case ID
+    case MovementKey
     
     var description : String {
         switch self {
         case .ID: return "one-rep-hpeel"
+        case .MovementKey: return "user_movements"
         }
     }
 }
@@ -251,6 +253,26 @@ enum MuscleType: String, PersistableEnum, Identifiable {
     case Core = "Core"
     case Legs = "Legs"
     case Shoulders = "Shoulders"
+}
+
+enum ProgressText: CustomStringConvertible {
+    case Connecting
+    case Downloading
+    case ErrorGoingToLogin
+    case Loading
+    case Login
+    case Opening
+    
+    var description: String {
+        switch self {
+        case .Connecting: return "Connecting..."
+        case .Downloading: return "Downloading..."
+        case .ErrorGoingToLogin: return "Error loading data, going back to login..."
+        case .Loading: return "Loading..."
+        case .Login: return "Waiting for login..."
+        case .Opening: return "Opening..."
+        }
+    }
 }
 
 enum RepType: String, PersistableEnum {

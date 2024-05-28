@@ -10,6 +10,8 @@ import RealmSwift
 
 struct TabHolderView: View {
     
+    @Environment(\.realm) var realm
+    
     @ObservedResults(MovementViewModel.self) var movementsCollection
     
     // MARK: - View
@@ -29,7 +31,11 @@ struct TabHolderView: View {
             .font(.headline)
             .accentColor(.primary)
         } else {
-            ProgressView().onAppear { $movementsCollection.append(MovementViewModel()) }
+            ProgressView().onAppear { 
+                let movementViewModel = MovementViewModel()
+                movementViewModel.ownerId = realm.syncSession?.parentUser()?.id ?? ""
+                $movementsCollection.append(movementViewModel)
+            }
         }
     }
 }

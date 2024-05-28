@@ -10,10 +10,10 @@ import SwiftUI
 
 /// Class to handle whether to show login or app page
 @MainActor class ViewRouter: ObservableObject {
-    @Published var currentPage: Page = .loginView
+    @Published var currentPage: Page = .syncRealm
 }
 
 enum Page {
+    case syncRealm
     case loginView
-    case tabView
 }

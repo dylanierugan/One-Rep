@@ -22,7 +22,7 @@ struct One_RepApp: SwiftUI.App {
     @StateObject var themeColor = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.LightGreen.description)
     
     init() {
-        let app = RealmSwift.App(id: App.ID.description)
+        let app = RealmSwift.App(id: AppConstants.ID.description)
         _app = StateObject(wrappedValue: app)
         _authService =  StateObject(wrappedValue: AuthService(app: app))
     }

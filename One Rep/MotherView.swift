@@ -16,26 +16,15 @@ struct MotherView: View {
     
     @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var authService: AuthService
     
-    // MARK: - View Router Logic
+    // MARK: - View
     
     var body: some View {
         switch viewRouter.currentPage {
+        case .syncRealm:
+            SyncRealmView()
         case .loginView:
-            LoginView().onAppear { checkLogIn() }
-        case .tabView:
-            TabHolderView()
-        }
-    }
-    
-    // MARK: - Functions
-    
-    func checkLogIn() {
-        if authService.isUserLoggedIn {
-            viewRouter.currentPage = .tabView
-        } else {
-            viewRouter.currentPage = .loginView
+            LoginView()
         }
     }
 }
