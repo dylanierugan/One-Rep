@@ -16,14 +16,23 @@ struct OpenRealmView: View {
     var body: some View {
         switch autoOpen {
         case .connecting:
-            OneRepProgressView(text: ProgressText.Connecting.description)
+            VStack {
+                OneRepProgressView(text: "")
+                OneRepLogo(size: .title)
+            }
         case .waitingForUser:
-            OneRepProgressView(text: ProgressText.Login.description)
+            VStack {
+                OneRepProgressView(text: "")
+                OneRepLogo(size: .title)
+            }
         case .open(let realm):
             TabHolderView()
                 .environment(\.realm, realm)
         case .progress(_):
-            OneRepProgressView(text: ProgressText.Downloading.description)
+            VStack {
+                OneRepProgressView(text: "")
+                OneRepLogo(size: .title)
+            }
         case .error(_):
             OneRepProgressView(text: ProgressText.ErrorGoingToLogin.description)
                 .onAppear {

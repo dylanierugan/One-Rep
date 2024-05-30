@@ -46,9 +46,6 @@ struct MovementCardButton: View {
                             .multilineTextAlignment(.leading)
                     }
                     Spacer()
-                    Image(systemName: Icons.ChevronForward.description)
-                        .font(.caption.weight(.bold))
-                        .foregroundColor(.secondary)
                 }
                 .padding(20)
                 .frame(height: 64)

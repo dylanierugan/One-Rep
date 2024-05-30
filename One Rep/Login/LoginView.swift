@@ -31,7 +31,7 @@ struct LoginView: View {
                 .ignoresSafeArea()
             VStack(spacing: 16) {
                 VStack(spacing: 8) {
-                    RepsLogo(size: 28)
+                    OneRepLogo(size: .title)
                     Text("Do one more rep than last time")
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
