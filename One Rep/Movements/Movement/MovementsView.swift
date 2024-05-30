@@ -24,6 +24,17 @@ struct MovementsView: View {
     @State private var selectedMovement: Movement?
     @State private var showAddMovementPopup = false
     
+    private var filteredMovements: Results<Movement> {
+        if searchText.isEmpty {
+            return movementViewModel.movements.sorted(by: \Movement.name, ascending: true)
+        } else {
+            let filteredMovements = movementViewModel.movements.sorted(by: \Movement.name, ascending: true).where {
+                $0.name.contains(searchText, options: .diacriticInsensitive)
+            }
+            return filteredMovements
+        }
+    }
+    
     // MARK: - View
     
     var body: some View {
@@ -39,7 +50,7 @@ struct MovementsView: View {
                         case .Library:
                             VStack(spacing: 16) {
                                 HorizontalScroller(muscleSelection: $menuSelection)
-                                ForEach(movementViewModel.movements) { movement in
+                                ForEach(filteredMovements) { movement in
                                     if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
                                         MovementCardButton(movementViewModel: movementViewModel, selectedMovement: $selectedMovement, movement: movement)
                                     }
