@@ -13,7 +13,6 @@ struct SettingsView: View {
     // MARK: - Variables
     
     @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel

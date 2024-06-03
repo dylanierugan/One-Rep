@@ -109,9 +109,10 @@ enum Icons: CustomStringConvertible {
     case EyeSlash
     case FigureCoreTraining
     case FigureHighIntensityIntervaltraining
+    case FigureRower
     case FigureStrengthTraining
     case FigureStrengthTrainingFunctional
-    case FigureRower
+    case FigureStand
     case Flame
     case FlameFill
     case GearshapeFill
@@ -172,6 +173,7 @@ enum Icons: CustomStringConvertible {
         case .FigureHighIntensityIntervaltraining: return "figure.highintensity.intervaltraining"
         case .FigureStrengthTraining: return "figure.strengthtraining.traditional"
         case .FigureStrengthTrainingFunctional: return "figure.strengthtraining.functional"
+        case .FigureStand: return "figure.stand"
         case .Flame: return "flame"
         case .FlameFill: return "flame.fill"
         case .FigureRower: return "figure.rower"

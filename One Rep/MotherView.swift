@@ -21,10 +21,17 @@ struct MotherView: View {
     
     var body: some View {
         switch viewRouter.currentPage {
-        case .syncRealm:
-            SyncRealmView()
         case .loginView:
             LoginView()
+        case .syncRealm:
+            SyncRealmView()
+        case .tabView:
+            if let realm = viewRouter.realm {
+                TabHolderView()
+                    .environment(\.realm, realm)
+            } else {
+                LoginView()
+            }
         }
     }
 }

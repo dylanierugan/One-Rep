@@ -31,13 +31,13 @@ struct LogSetButton: View {
                 Image(systemName: Icons.Pencil.description)
             }
             .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
-            .foregroundStyle(colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor))
+            .foregroundStyle(Color(.black))
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(
                 .linearGradient(colors: [
-                    Color(theme.lightBaseColor).opacity(0.15),
-                    Color(theme.darkBaseColor).opacity(0.15)
+                    Color(theme.lightBaseColor),
+                    Color(theme.darkBaseColor)
                 ], startPoint: .top, endPoint: .bottom)
             )
             .cornerRadius(16)

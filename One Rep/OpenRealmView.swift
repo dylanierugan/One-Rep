@@ -26,8 +26,14 @@ struct OpenRealmView: View {
                 OneRepLogo(size: .title)
             }
         case .open(let realm):
-            TabHolderView()
-                .environment(\.realm, realm)
+            VStack {
+                OneRepProgressView(text: "")
+                OneRepLogo(size: .title)
+            }
+            .onAppear {
+                viewRouter.realm = realm
+                viewRouter.currentPage = .tabView
+            }
         case .progress(_):
             VStack {
                 OneRepProgressView(text: "")
