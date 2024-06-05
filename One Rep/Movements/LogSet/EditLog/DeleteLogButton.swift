@@ -25,7 +25,10 @@ struct DeleteLogButton: View {
         } label: {
             Text("Delete")
                 .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                .foregroundStyle(Color(.primary))
+                .foregroundStyle(.linearGradient(colors: [
+                    Color(theme.lightRed),
+                    Color(theme.darkRed)
+                ], startPoint: .top, endPoint: .bottom))
         }
     }
 }

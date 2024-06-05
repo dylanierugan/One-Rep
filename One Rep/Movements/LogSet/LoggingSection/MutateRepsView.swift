@@ -25,7 +25,7 @@ struct MutateRepsView: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary).opacity(0.7)
             
-            HStack(spacing: 8) {
+            HStack(spacing: 0) {
                 MutateRepsButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -1)
                 
                 TextField("", text: $logController.repsStr)
@@ -36,11 +36,9 @@ struct MutateRepsView: View {
                     .multilineTextAlignment(.center)
                     .keyboardType(.numberPad)
                     .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .background(.secondary.opacity(0.05))
-                    .frame(width: 80, alignment: .center)
+                    .frame(width: 72, alignment: .center)
                     .cornerRadius(10)
-                    .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
+                    .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .onReceive(Just(logController.reps)) { _ in logController.limitRepsText(3) }
                     .focused($isInputActive)
                 

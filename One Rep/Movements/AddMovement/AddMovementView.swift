@@ -17,6 +17,7 @@ struct AddMovementView: View {
     @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State private var movementName = ""
+    @State private var movementType: MovementType = .Weight
     @State private var muscleGroup: MuscleType = .Arms
     
     private var isFormValid: Bool {
@@ -37,15 +38,18 @@ struct AddMovementView: View {
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Movement Name")
+                        Text("Movement name")
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
                         MovementNameTextField(focus: true, movementName: $movementName, text: "")
                     }
                     .padding(.horizontal, 16)
                     
+                    MovementTypePicker(movementTypeSelection: $movementType, captionText: "Movement type")
+                        .padding(.horizontal, 16)
+                    
                     VStack(alignment: .leading,  spacing: 4) {
-                        Text("Muscle Group")
+                        Text("Muscle group")
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
                         MusclePicker(muscleGroup: $muscleGroup)
@@ -65,7 +69,7 @@ struct AddMovementView: View {
     // MARK: - Functions
     
     private func addMovementToRealm() {
-        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>(), routine: "", mutatingValue: 5)
+        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>(), routine: "", mutatingValue: 5, movementType: movementType)
         $movementViewModel.movements.append(newMovement)
     }
 }

@@ -67,8 +67,12 @@ struct EditLogView: View {
                     ToolbarItem(placement: .keyboard) {
                         HStack {
                             Spacer()
-                            Button("Done") {
+                            Button {
                                 isInputActive = false
+                            } label: {
+                                Text("Done")
+                                    .foregroundStyle(.primary)
+                                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             }
                         }
                     }

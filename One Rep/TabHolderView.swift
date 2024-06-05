@@ -13,23 +13,32 @@ struct TabHolderView: View {
     @Environment(\.realm) var realm
     
     @ObservedResults(MovementViewModel.self) var movementsCollection
+    @ObservedResults(UserModel.self) var userCollection
     
     // MARK: - View
     
     var body: some View {
         if let movements = movementsCollection.first {
-            TabView() {
-                MovementsView(movementViewModel: movements)
-                    .tabItem {
-                        Image(systemName: Icons.FigureStrengthTraining.description)
-                    }
-                SettingsView(movementViewModel: movements)
-                    .tabItem {
-                        Image(systemName: Icons.PersonFill.description)
-                    }
+            if let userModel = userCollection.first {
+                TabView() {
+                    MovementsView(movementViewModel: movements, userModel: userModel)
+                        .tabItem {
+                            Image(systemName: Icons.FigureStrengthTraining.description)
+                        }
+                    SettingsView(movementViewModel: movements, userModel: userModel)
+                        .tabItem {
+                            Image(systemName: Icons.PersonFill.description)
+                        }
+                }
+                .font(.headline)
+                .accentColor(.primary)
+            } else {
+                ProgressView().onAppear {
+                    let userModel = UserModel()
+                    userModel.ownerId = realm.syncSession?.parentUser()?.id ?? ""
+                    $userCollection.append(userModel)
+                }
             }
-            .font(.headline)
-            .accentColor(.primary)
         } else {
             ProgressView().onAppear { 
                 let movementViewModel = MovementViewModel()

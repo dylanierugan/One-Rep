@@ -1,38 +1,31 @@
 //
-//  AddMovementButton.swift
+//  SaveWeightButton.swift
 //  One Rep
 //
-//  Created by Dylan Ierugan on 3/19/24.
+//  Created by Dylan Ierugan on 6/4/24.
 //
 
 import SwiftUI
 
-struct AddMovementButton: View {
+struct SaveWeightButton: View {
     
     // MARK: - Vars
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.dismiss) private var dismiss
+    @Binding var bodyweight: Double
+    @Binding var prevBodyweight: Double
     
-    @State var addMovementClicked = false
-    
-    var isFormValid: Bool
-    
-    var addMovementToRealm: () -> Void
+    var addWeightToRealm: () -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
-            withAnimation {
-                addMovementClicked = true
-                addMovementToRealm()
-                dismiss()
-            }
+            addWeightToRealm()
         } label: {
             HStack {
-                Text("Add")
-                    .foregroundStyle(isFormValid ?
+                Text("Save")
+                    .foregroundStyle(prevBodyweight != bodyweight ?
                         .linearGradient(colors: [
                             Color(theme.lightBaseColor),
                             Color(theme.darkBaseColor)
@@ -43,7 +36,5 @@ struct AddMovementButton: View {
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
             }
         }
-        .disabled(isFormValid ? false : true)
-        .disabled(addMovementClicked ? true : false)
     }
 }

@@ -51,23 +51,20 @@ struct MutateWeightView: View {
             }
             .padding(.bottom, 6)
             
-            HStack(spacing: 8) {
+            HStack(spacing: 0) {
                 MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -mutatingValue)
                 
                 TextField("", text: $logController.weightStr)
-                    .onChange(of: logController.weightStr) { newText, _ in
+                    .onChange(of: logController.weightStr) { newText in
                         logController.bindWeightValues()
                     }
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)
                     .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .background(.secondary.opacity(0.05))
-                    .frame(width: 80, alignment: .center)
+                    .frame(width: 72, alignment: .center)
                     .cornerRadius(10)
-                    .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                    .onReceive(Just(logController.weight)) { _ in logController.limitWeightText(5) }
+                    .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .focused($isInputActive)
                 
                 MutateWieghtButton(color: .primary, icon: Icons.Plus.description, mutatingValue: mutatingValue)

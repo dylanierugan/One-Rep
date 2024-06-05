@@ -40,6 +40,12 @@
 		37881F4C2C05A38300ABBF42 /* OpenRealmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4B2C05A38300ABBF42 /* OpenRealmView.swift */; };
 		37881F4E2C05A42A00ABBF42 /* SyncRealmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4D2C05A42A00ABBF42 /* SyncRealmView.swift */; };
 		37881F502C05AC1800ABBF42 /* OneRepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */; };
+		37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */; };
+		37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */; };
+		37881F562C0DAAB700ABBF42 /* RecordBodyweightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */; };
+		37881F582C0E17CE00ABBF42 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F572C0E17CE00ABBF42 /* UserModel.swift */; };
+		37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F592C0E950500ABBF42 /* BodyweightTextField.swift */; };
+		37881F5C2C0F624100ABBF42 /* SaveWeightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5B2C0F624100ABBF42 /* SaveWeightButton.swift */; };
 		37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655092BA5385600B96BEB /* One_RepApp.swift */; };
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
@@ -118,6 +124,12 @@
 		37881F4B2C05A38300ABBF42 /* OpenRealmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenRealmView.swift; sourceTree = "<group>"; };
 		37881F4D2C05A42A00ABBF42 /* SyncRealmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncRealmView.swift; sourceTree = "<group>"; };
 		37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepProgressView.swift; sourceTree = "<group>"; };
+		37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTypePicker.swift; sourceTree = "<group>"; };
+		37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightSection.swift; sourceTree = "<group>"; };
+		37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBodyweightView.swift; sourceTree = "<group>"; };
+		37881F572C0E17CE00ABBF42 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		37881F592C0E950500ABBF42 /* BodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightTextField.swift; sourceTree = "<group>"; };
+		37881F5B2C0F624100ABBF42 /* SaveWeightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWeightButton.swift; sourceTree = "<group>"; };
 		37A655062BA5385600B96BEB /* One Rep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "One Rep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A655092BA5385600B96BEB /* One_RepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_RepApp.swift; sourceTree = "<group>"; };
 		37A6550D2BA5385800B96BEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -250,17 +262,6 @@
 			path = LogList;
 			sourceTree = "<group>";
 		};
-		370730A62C0163BB00E95989 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				3707305F2BF0679600E95989 /* AccountSection.swift */,
-				370730A42C01638D00E95989 /* AccountView.swift */,
-				370730612BF06A9E00E95989 /* LogOutButton.swift */,
-				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
-			);
-			path = Account;
-			sourceTree = "<group>";
-		};
 		370730A92C022C4900E95989 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +342,7 @@
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
 				3707306B2BF12B8800E95989 /* LogViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
+				37881F572C0E17CE00ABBF42 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -361,7 +363,14 @@
 			isa = PBXGroup;
 			children = (
 				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
-				370730A62C0163BB00E95989 /* Account */,
+				3707305F2BF0679600E95989 /* AccountSection.swift */,
+				370730A42C01638D00E95989 /* AccountView.swift */,
+				370730612BF06A9E00E95989 /* LogOutButton.swift */,
+				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
+				37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */,
+				37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */,
+				37881F592C0E950500ABBF42 /* BodyweightTextField.swift */,
+				37881F5B2C0F624100ABBF42 /* SaveWeightButton.swift */,
 				37A655612BC1EF6A00B96BEB /* ThemeSection.swift */,
 				3707308C2BFEBA2500E95989 /* UnitSection.swift */,
 			);
@@ -373,6 +382,7 @@
 			children = (
 				37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */,
 				37A655402BAA8DD500B96BEB /* MovementNameTextField.swift */,
+				37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */,
 				37A655442BAA965C00B96BEB /* MusclePicker.swift */,
 				37A655462BAA98AC00B96BEB /* AddMovementButton.swift */,
 			);
@@ -401,9 +411,9 @@
 			isa = PBXGroup;
 			children = (
 				37A655662BC6025300B96BEB /* MovementSetView.swift */,
-				370730A32C000A7900E95989 /* LogList */,
 				3707309C2BFF734C00E95989 /* LoggingSection */,
 				370730992BFF719C00E95989 /* EditLog */,
+				370730A32C000A7900E95989 /* LogList */,
 			);
 			path = LogSet;
 			sourceTree = "<group>";
@@ -506,7 +516,11 @@
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
 				37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */,
 				37A655692BC602CC00B96BEB /* MutateRepsButton.swift in Sources */,
+				37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */,
+				37881F5C2C0F624100ABBF42 /* SaveWeightButton.swift in Sources */,
 				37A6556B2BC602F000B96BEB /* MutateWeightButton.swift in Sources */,
+				37881F562C0DAAB700ABBF42 /* RecordBodyweightView.swift in Sources */,
+				37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */,
 				3707307E2BF98A5A00E95989 /* ShowCalendarButton.swift in Sources */,
 				37881F502C05AC1800ABBF42 /* OneRepProgressView.swift in Sources */,
 				37C70C2E2BD4504E00B0375A /* UpdateMovementButton.swift in Sources */,
@@ -529,6 +543,7 @@
 				370730622BF06A9E00E95989 /* LogOutButton.swift in Sources */,
 				37A655642BC1F00A00B96BEB /* ThemeModel.swift in Sources */,
 				3707309E2BFF843400E95989 /* UpdateLogButton.swift in Sources */,
+				37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */,
 				370730682BF07E6F00E95989 /* ShowFullScreenButton.swift in Sources */,
 				37A6552C2BA5F8FA00B96BEB /* MovementsView.swift in Sources */,
 				37A655382BA7470B00B96BEB /* Log.swift in Sources */,
@@ -540,6 +555,7 @@
 				370730A52C01638D00E95989 /* AccountView.swift in Sources */,
 				37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */,
 				37A6553D2BA9E8F300B96BEB /* MovementViewModel.swift in Sources */,
+				37881F582C0E17CE00ABBF42 /* UserModel.swift in Sources */,
 				37A6552A2BA5F8E400B96BEB /* SignInWithApple.swift in Sources */,
 				3707307C2BF88AE500E95989 /* DateViewModel.swift in Sources */,
 				37A655672BC6025300B96BEB /* MovementSetView.swift in Sources */,

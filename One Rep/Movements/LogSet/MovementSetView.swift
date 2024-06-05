@@ -43,8 +43,12 @@ struct MovementSetView: View {
                             if showDoneToolBar {
                                 ToolbarItemGroup(placement: .keyboard) {
                                     Spacer()
-                                    Button("Done") {
+                                    Button {
                                         isInputActive = false
+                                    } label: {
+                                        Text("Done")
+                                            .foregroundStyle(.primary)
+                                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                                     }
                                 }
                             }
@@ -122,7 +126,7 @@ struct MovementSetView: View {
                     
                 }
                 ToolbarItem(placement: .principal) {
-                    HStack(spacing: 14) {
+                    HStack(spacing: 12) {
                         Image(movement.muscleGroup.rawValue.lowercased())
                             .font(.caption2)
                             .foregroundStyle(.linearGradient(colors: [
@@ -130,6 +134,7 @@ struct MovementSetView: View {
                                 Color(theme.darkBaseColor)
                             ], startPoint: .top, endPoint: .bottom))
                         Text(movement.name)
+                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     }
                 }
             }

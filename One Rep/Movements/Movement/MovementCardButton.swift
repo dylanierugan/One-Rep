@@ -28,11 +28,8 @@ struct MovementCardButton: View {
                 MovementSetView(movementViewModel: movementViewModel, movement: movement)
             } label: {
                 HStack {
-                    HStack(spacing: 16) {
+                    HStack() {
                         ZStack {
-                            Circle()
-                                .frame(width: 36, height: 36)
-                                .foregroundStyle(Color(theme.darkBaseColor).opacity(0.15))
                             Image(movement.muscleGroup.rawValue.lowercased())
                                 .font(.body.weight(.regular))
                                 .foregroundStyle(.linearGradient(colors: [
@@ -44,11 +41,12 @@ struct MovementCardButton: View {
                             .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                             .foregroundColor(.primary)
                             .multilineTextAlignment(.leading)
+                            .padding(.leading, movement.muscleGroup == .Chest ? 8 : 14)
                     }
                     Spacer()
                 }
                 .padding(20)
-                .frame(height: 64)
+                .frame(height: 56)
                 .background(Color(theme.backgroundElementColor))
                 .cornerRadius(16)
                 .padding(.horizontal, 16)

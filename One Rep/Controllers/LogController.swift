@@ -48,22 +48,22 @@ class LogController: ObservableObject {
             weight = 0.0
         } else if let value = Double(weightStr) {
             weight = value
-            updateWeightString()
         } else {
             weightStr = formatWeightString(weight)
         }
+        updateWeightString()
     }
     
     func updateWeightString() {
         weightStr = formatWeightString(weight)
     }
-    
+
     func formatWeightString(_ weight: Double) -> String {
-        if weight.truncatingRemainder(dividingBy: 1) == 0 {
-            return String(format: "%.0f", weight)
-        } else {
-            return String(format: "%.1f", weight)
-        }
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.maximumFractionDigits = 2
+        nf.minimumFractionDigits = 0
+        return nf.string(for: weight) ?? "0"
     }
     
     func limitWeightText(_ upper: Int) {

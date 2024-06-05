@@ -19,6 +19,7 @@ struct EditMovementView: View {
     @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State private var newMovementName = ""
+    @State private var newMovementType: MovementType = .Weight
     @State private var newMuscleGroup: MuscleType = .Arms
     @State private var deleteConfirmedClicked = false
     @State private var showingDeleteMovementAlert = false
@@ -48,6 +49,9 @@ struct EditMovementView: View {
                     }
                     .padding(.horizontal, 16)
                     
+                    MovementTypePicker(movementTypeSelection: $newMovementType, captionText: "Edit movement type")
+                        .padding(.horizontal, 16)
+                    
                     VStack(alignment: .leading,  spacing: 4) {
                         Text("Edit muscle group")
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -68,6 +72,7 @@ struct EditMovementView: View {
             }
             .onAppear {
                 newMovementName = movement.name
+                newMovementType = movement.movementType
                 newMuscleGroup = movement.muscleGroup
             }
             .onDisappear {
@@ -84,6 +89,7 @@ struct EditMovementView: View {
                 try realm.write {
                     thawedMovement.name = newMovementName
                     thawedMovement.muscleGroup = newMuscleGroup
+                    thawedMovement.movementType = newMovementType
                 }
             } catch  {
                 /// Handle error

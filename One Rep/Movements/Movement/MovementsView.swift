@@ -17,6 +17,7 @@ struct MovementsView: View {
     @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
+    @ObservedRealmObject var userModel: UserModel
     
     @State private var searchText = ""
     @State private var movementSelection: MovementSelection = .Library

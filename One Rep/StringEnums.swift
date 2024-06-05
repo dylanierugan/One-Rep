@@ -11,11 +11,13 @@ import RealmSwift
 enum AppConstants: CustomStringConvertible {
     case ID
     case MovementKey
+    case UserKey
     
     var description : String {
         switch self {
         case .ID: return "one-rep-hpeel"
         case .MovementKey: return "user_movements"
+        case .UserKey: return "user_model"
         }
     }
 }
@@ -107,12 +109,12 @@ enum Icons: CustomStringConvertible {
     case Eye
     case EyeFill
     case EyeSlash
+    case FigureArmsOpen
     case FigureCoreTraining
     case FigureHighIntensityIntervaltraining
     case FigureRower
     case FigureStrengthTraining
     case FigureStrengthTrainingFunctional
-    case FigureStand
     case Flame
     case FlameFill
     case GearshapeFill
@@ -169,11 +171,11 @@ enum Icons: CustomStringConvertible {
         case .Eye: return "eye"
         case .EyeFill: return "eye.fill"
         case .EyeSlash: return "eye.slash"
+        case .FigureArmsOpen: return "figure.arms.open"
         case .FigureCoreTraining: return "figure.core.training"
         case .FigureHighIntensityIntervaltraining: return "figure.highintensity.intervaltraining"
         case .FigureStrengthTraining: return "figure.strengthtraining.traditional"
         case .FigureStrengthTrainingFunctional: return "figure.strengthtraining.functional"
-        case .FigureStand: return "figure.stand"
         case .Flame: return "flame"
         case .FlameFill: return "flame.fill"
         case .FigureRower: return "figure.rower"
@@ -242,8 +244,14 @@ enum InfoText: CustomStringConvertible {
 
 enum MovementSelection: String, PersistableEnum, Identifiable {
     var id: MovementSelection { self }
-    case Library = "Library"
     case Activity = "Activity"
+    case Library = "Library"
+}
+
+enum MovementType: String, PersistableEnum, Identifiable {
+    var id: MovementType { self }
+    case Weight = "Weights"
+    case Bodyweight = "Bodyweight"
 }
 
 enum MuscleType: String, PersistableEnum, Identifiable {

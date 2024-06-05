@@ -45,7 +45,7 @@ struct MovementNameTextField: View {
                 isFocused = true
             } label: {
                 Text("")
-                    .frame(width: UIScreen.main.bounds.width - 45, height: 25, alignment: .center)
+                    .frame(width: UIScreen.main.bounds.width - 32, height: 24, alignment: .center)
                     .padding(10)
                     .background(.clear)
             }

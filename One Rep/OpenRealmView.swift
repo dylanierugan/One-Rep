@@ -18,17 +18,17 @@ struct OpenRealmView: View {
         case .connecting:
             VStack {
                 OneRepProgressView(text: "")
-                OneRepLogo(size: .title)
+                OneRepLogo(size: .body)
             }
         case .waitingForUser:
             VStack {
                 OneRepProgressView(text: "")
-                OneRepLogo(size: .title)
+                OneRepLogo(size: .body)
             }
         case .open(let realm):
             VStack {
                 OneRepProgressView(text: "")
-                OneRepLogo(size: .title)
+                OneRepLogo(size: .body)
             }
             .onAppear {
                 viewRouter.realm = realm
@@ -37,7 +37,7 @@ struct OpenRealmView: View {
         case .progress(_):
             VStack {
                 OneRepProgressView(text: "")
-                OneRepLogo(size: .title)
+                OneRepLogo(size: .body)
             }
         case .error(_):
             OneRepProgressView(text: ProgressText.ErrorGoingToLogin.description)

@@ -1,38 +1,37 @@
 //
-//  AccountView.swift
+//  WeightSection.swift
 //  One Rep
 //
-//  Created by Dylan Ierugan on 5/11/24.
+//  Created by Dylan Ierugan on 6/3/24.
 //
 
 import SwiftUI
 import RealmSwift
 
-struct AccountSection: View {
+struct BodyweightSection: View {
     
-    // MARK: - Variables
+    // MARK: - Vars
     
-    @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var authService: AuthService
     @EnvironmentObject var theme: ThemeModel
     
-    @ObservedRealmObject var movementViewModel: MovementViewModel
+    @ObservedRealmObject var userModel: UserModel
     
     // MARK: - View
     
     var body: some View {
-        NavigationLink {
-            AccountView(movementViewModel: movementViewModel)
-        } label: {
-            VStack(alignment: .leading) {
-                Text("Account")
-                    .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-                    .foregroundColor(.secondary)
+        VStack(alignment: .leading) {
+            Text("Body weight")
+                .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                .foregroundColor(.secondary)
+            NavigationLink {
+                RecordBodyweightView(userModel: userModel)
+            } label: {
                 VStack(alignment: .leading) {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
-                            Image(systemName: Icons.PersonFill.description)
-                            Text(authService.user?.profile.email ?? "No user")
+                            Image(systemName: Icons.FigureArmsOpen.description)
+                                .fontWeight(.black)
+                            Text("Set  bodyweight")
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()

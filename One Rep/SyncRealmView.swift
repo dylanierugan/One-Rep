@@ -30,6 +30,9 @@ struct SyncRealmView: View {
                         })
                         subscriptions.append(QuerySubscription<Movement>())
                         subscriptions.append(QuerySubscription<Log>())
+                        subscriptions.append(QuerySubscription<UserModel>(name: AppConstants.UserKey.description) {
+                            $0.ownerId == user.id
+                        })
                     }
                 })
                 OpenRealmView(user: user)

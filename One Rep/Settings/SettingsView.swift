@@ -16,6 +16,7 @@ struct SettingsView: View {
     @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
+    @ObservedRealmObject var userModel: UserModel
     
     // MARK: - View
     
@@ -27,6 +28,7 @@ struct SettingsView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         AccountSection(movementViewModel: movementViewModel)
+                        BodyweightSection(userModel: userModel)
                         UnitSection()
                         ThemeSection()
                     }
