@@ -39,36 +39,7 @@ class LogController: ObservableObject {
     func mutateWeight(_ mutatingValue: Double) {
         if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
             weight += mutatingValue
-            updateWeightString()
-        }
-    }
-    
-    func bindWeightValues() {
-        if weightStr.isEmpty {
-            weight = 0.0
-        } else if let value = Double(weightStr) {
-            weight = value
-        } else {
-            weightStr = formatWeightString(weight)
-        }
-        updateWeightString()
-    }
-    
-    func updateWeightString() {
-        weightStr = formatWeightString(weight)
-    }
-
-    func formatWeightString(_ weight: Double) -> String {
-        let nf = NumberFormatter()
-        nf.numberStyle = .decimal
-        nf.maximumFractionDigits = 2
-        nf.minimumFractionDigits = 0
-        return nf.string(for: weight) ?? "0"
-    }
-    
-    func limitWeightText(_ upper: Int) {
-        if weightStr.count > upper {
-            weightStr = String(weightStr.prefix(upper))
+            weightStr = weight.clean
         }
     }
     
@@ -95,5 +66,21 @@ class LogController: ObservableObject {
         if repsStr.count > upper {
             repsStr = String(repsStr.prefix(upper))
         }
+    }
+}
+
+extension Double {
+    var clean: String {
+       return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+}
+
+extension NumberFormatter {
+    static var noDecimalUnlessNeeded: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 1 // You can set this to a reasonable number for your use case
+        return formatter
     }
 }

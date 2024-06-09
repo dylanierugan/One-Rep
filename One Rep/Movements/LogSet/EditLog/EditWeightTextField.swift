@@ -29,25 +29,21 @@ struct EditWeightTextField: View {
         HStack(spacing: 8) {
             MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -movement.mutatingValue)
             
-            TextField("", text: $logController.weightStr)
-                .onChange(of: logController.weightStr) { newText, _ in
-                    logController.bindWeightValues()
-                }
+            TextField("", value: $logController.weight,
+                      formatter: NumberFormatter.noDecimalUnlessNeeded)
                 .accentColor(Color(theme.darkBaseColor))
                 .multilineTextAlignment(.center)
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 .background(.secondary.opacity(0.05))
                 .frame(width: 84, alignment: .center)
                 .cornerRadius(10)
                 .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                .onReceive(Just(logController.weight)) { _ in logController.limitWeightText(5) }
                 .focused($isInputActive)
                 .onAppear() {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         logController.weight = log.weight
-                        logController.weightStr = logViewModel.convertWeightDoubleToString(log.weight)
                     }
                 }
             

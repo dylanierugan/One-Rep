@@ -16,9 +16,8 @@ struct RecordBodyweightView: View {
     
     @ObservedRealmObject var userModel: UserModel
     
-    @State var bodyweightStr = "Bodyweight"
-    @State var bodyweight: Double = 150
-    @State var prevBodyweight: Double = 150
+    @State var bodyweight: Double = 130
+    @State var prevBodyweight: Double = 0
     
     @FocusState var isInputActive: Bool
     
@@ -29,15 +28,17 @@ struct RecordBodyweightView: View {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
             VStack {
-                BodyweightTextField(focus: true, isInputActive: _isInputActive, bodyweightStr: $bodyweightStr, bodyweight: $bodyweight)
-                    .padding(.horizontal, 16)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Enter bodyweight")
+                        .padding(.horizontal, 8)
+                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                        .foregroundColor(.secondary)
+                    BodyweightTextField(focus: true, isInputActive: _isInputActive, bodyweight: $bodyweight)
+                }
+                .padding(.horizontal, 16)
                 Spacer()
             }
             .toolbar {
-                ToolbarItemGroup(placement: .principal) {
-                    Text("Bodyweight")
-                        .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     SaveWeightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight, addWeightToRealm: addWeightToRealm)
                 }
@@ -57,7 +58,6 @@ struct RecordBodyweightView: View {
             if let bodyweightEntry = userModel.bodyweightEntries.last {
                 bodyweight = bodyweightEntry.bodyweight
                 prevBodyweight = bodyweightEntry.bodyweight
-                bodyweightStr = formatWeightString(bodyweightEntry.bodyweight)
             }
         }
     }

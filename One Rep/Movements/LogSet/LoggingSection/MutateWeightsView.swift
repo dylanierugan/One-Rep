@@ -31,7 +31,7 @@ struct MutateWeightView: View {
             Menu {
                 Picker("", selection: $mutatingValue) {
                     ForEach(mutatingValues, id: \.self) { value in
-                        Text("± \(logController.formatWeightString(value)) \(logViewModel.unit.rawValue)")
+                        Text("± \(value.clean) \(logViewModel.unit.rawValue)")
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary).opacity(0.7)
                     }
@@ -54,10 +54,7 @@ struct MutateWeightView: View {
             HStack(spacing: 0) {
                 MutateWieghtButton(color: .primary, icon: Icons.Minus.description, mutatingValue: -mutatingValue)
                 
-                TextField("", text: $logController.weightStr)
-                    .onChange(of: logController.weightStr) { newText in
-                        logController.bindWeightValues()
-                    }
+                TextField("", value: $logController.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)

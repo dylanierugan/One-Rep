@@ -24,7 +24,7 @@ struct SaveWeightButton: View {
             addWeightToRealm()
         } label: {
             HStack {
-                Text("Save")
+                Text("Set")
                     .foregroundStyle(prevBodyweight != bodyweight ?
                         .linearGradient(colors: [
                             Color(theme.lightBaseColor),
@@ -36,5 +36,6 @@ struct SaveWeightButton: View {
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
             }
         }
+        .disabled(prevBodyweight != bodyweight ? false : true)
     }
 }
