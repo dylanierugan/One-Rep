@@ -12,12 +12,16 @@ struct RecordBodyweightView: View {
     
     // MARK: - Vars
     
+    @Environment(\.realm) var realm
+    
     @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var userModel: UserModel
     
     @State var bodyweight: Double = 130
     @State var prevBodyweight: Double = 0
+    
+    @State var fromSettingsView: Bool
     
     @FocusState var isInputActive: Bool
     
@@ -36,11 +40,12 @@ struct RecordBodyweightView: View {
                     BodyweightTextField(focus: true, isInputActive: _isInputActive, bodyweight: $bodyweight)
                 }
                 .padding(.horizontal, 16)
+                .padding(.top, fromSettingsView ? 0 : 52)
                 Spacer()
             }
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    SaveWeightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight, addWeightToRealm: addWeightToRealm)
+                    SetWeightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight, addWeightToRealm: addWeightToRealm)
                 }
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
@@ -70,8 +75,9 @@ struct RecordBodyweightView: View {
         }
     }
     
-    private func addWeightToRealm() {
+    func addWeightToRealm() {
         let newWeight = BodyweightEntry(bodyweight: bodyweight, timeAdded: Date().timeIntervalSince1970)
-        userModel.bodyweightEntries.append(newWeight)
+        prevBodyweight = bodyweight
+        $userModel.bodyweightEntries.append(newWeight)
     }
 }

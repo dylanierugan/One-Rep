@@ -15,6 +15,7 @@ struct MovementCardButton: View {
     @EnvironmentObject var theme: ThemeModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
+    @ObservedRealmObject var userModel: UserModel
     
     @Binding var selectedMovement: Movement?
 
@@ -25,7 +26,7 @@ struct MovementCardButton: View {
     var body: some View {
         ZStack(alignment: .trailing) {
             NavigationLink {
-                MovementSetView(movementViewModel: movementViewModel, movement: movement)
+                MovementSetView(movementViewModel: movementViewModel, movement: movement, userModel: userModel)
             } label: {
                 HStack {
                     HStack() {

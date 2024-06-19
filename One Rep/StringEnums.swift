@@ -235,7 +235,7 @@ enum InfoText: CustomStringConvertible {
         switch self {
         case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
         case .DeleteAllDataConfirmation: return "Are you sure you want to delete this movement and all the logged data associated with it?"
-        case .NoData: return "No data\nLog some sets!"
+        case .NoData: return "No data\nLog some sets"
         case .NoDataOnDay: return "No data logged for this day"
         case .NoWayToUndo: return "There is no way to undo this action."
         }

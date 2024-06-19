@@ -20,9 +20,11 @@ struct MovementSetView: View {
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
     @ObservedRealmObject var movement: Movement
+    @ObservedRealmObject var userModel: UserModel
     @State var selectedLog: Log = Log()
     
     @State private var showEditMovementPopup = false
+    @State private var addWeightToBodyweight = false
     @State private var showDoneToolBar = true
     @State private var showLogSetView = true
     @State private var isEditingLogs = false
@@ -34,41 +36,25 @@ struct MovementSetView: View {
     var body: some View {
             VStack {
                 if showLogSetView {
-                    VStack(alignment: .center, spacing: 16) {
-                        HStack(spacing: 8) {
-                            MutateWeightView(movement: movement, isInputActive: _isInputActive)
-                            MutateRepsView(isInputActive: _isInputActive)
+                    if movement.movementType == .Weight {
+                        LogWeightSection(movement: movement, showDoneToolBar: $showDoneToolBar, addLogToRealm: addLogToRealm)
+                    } else {
+                        if let _ = userModel.bodyweightEntries.last {
+                            LogBodyweightSection(userModel: userModel, movement: movement, addWeightToBodyWeight: $addWeightToBodyweight, addLogToRealm: addLogToRealm)
+                                .padding(.top, -8)
+                        } else {
+                            SetBodyweightButton(userModel: userModel)
                         }
-                        .toolbar {
-                            if showDoneToolBar {
-                                ToolbarItemGroup(placement: .keyboard) {
-                                    Spacer()
-                                    Button {
-                                        isInputActive = false
-                                    } label: {
-                                        Text("Done")
-                                            .foregroundStyle(.primary)
-                                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.horizontal, 24)
-                        
-                        LogSetButton(movement: movement, addLogToRealm: addLogToRealm)
-                            .padding(.top, 8)
                     }
-                    .padding(.vertical, 24)
-                    .background(Color(theme.backgroundElementColor))
-                    Divider()
-                        .padding(.top, -8)
                 }
                 
                 ScrollView(showsIndicators: false) {
                     
                     VStack(spacing: 16) {
                         if movement.logs.count != 0 {
-                            WeightHorizontalScroller(movement: movement)
+                            if movement.movementType != .Bodyweight {
+                                WeightHorizontalScroller(movement: movement)
+                            }
                         } else {
                             HStack {
                                 Spacer()
@@ -113,7 +99,7 @@ struct MovementSetView: View {
                     }
                     .padding(.top, 16)
                 }
-                .background(Color("BackgroundColor"))
+                .background(Color(theme.backgroundColor))
                 .padding(.top, showLogSetView ? -15 : 0)
             }
             .sheet(isPresented: $showEditMovementPopup) {
@@ -150,8 +136,24 @@ struct MovementSetView: View {
     // MARK: - Functions
     
     private func addLogToRealm() {
-        /// Ensure movement is managed by the same Realm instance
-        let log = Log(reps: logController.reps, weight: logController.weight, isBodyWeight: false, repType: .WorkingSet, date: Date().timeIntervalSince1970, movement: nil)
+
+        var loggedWeight: Double = 0
+        var isBodyWeight = false
+        
+        if movement.movementType == .Weight {
+            loggedWeight = logController.weight
+        } else {
+            if let bodyweightEntry = userModel.bodyweightEntries.last {
+                loggedWeight = bodyweightEntry.bodyweight
+            }
+        }
+        
+        if movement.movementType == .Bodyweight && addWeightToBodyweight {
+            loggedWeight += logController.weight
+            isBodyWeight = true
+        }
+        
+        let log = Log(reps: logController.reps, weight: loggedWeight, isBodyWeight: isBodyWeight, repType: .WorkingSet, date: Date().timeIntervalSince1970, movement: nil)
         let managedMovement: Movement
         if let existingMovement = realm.object(ofType: Movement.self, forPrimaryKey: movement._id) {
             managedMovement = existingMovement

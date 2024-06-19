@@ -132,5 +132,101 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20A58598-7E00-47E6-87FB-F7348A4612D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/LogSet/LoggingSection/MovementSetView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "addLogToRealm()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "20A58598-7E00-47E6-87FB-F7348A4612D3 - 861f3be08f5ed441"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "One_Rep.MovementSetView.addLogToRealm() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/LogSet/LoggingSection/MovementSetView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "1388">
+               </Location>
+               <Location
+                  uuid = "20A58598-7E00-47E6-87FB-F7348A4612D3 - 861f3be08f5ed441"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "One_Rep.MovementSetView.addLogToRealm() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/LogSet/LoggingSection/MovementSetView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "1568">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB1534CB-28AB-47A9-8558-DC9B80674446"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/LogSet/LoggingSection/MovementSetView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "addLogToRealm()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FB1534CB-28AB-47A9-8558-DC9B80674446 - 861f3be08f5ed4c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "One_Rep.MovementSetView.addLogToRealm() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/LogSet/LoggingSection/MovementSetView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "1308">
+               </Location>
+               <Location
+                  uuid = "FB1534CB-28AB-47A9-8558-DC9B80674446 - 861f3be08f5ed4c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "One_Rep.MovementSetView.addLogToRealm() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One%20Rep/One%20Rep/LogSet/LoggingSection/MovementSetView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "1488">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

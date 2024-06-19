@@ -24,7 +24,7 @@ struct BodyweightSection: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             NavigationLink {
-                RecordBodyweightView(userModel: userModel)
+                RecordBodyweightView(userModel: userModel, fromSettingsView: true)
             } label: {
                 VStack(alignment: .leading) {
                     HStack(spacing: 24) {

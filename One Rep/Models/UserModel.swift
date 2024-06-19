@@ -16,20 +16,3 @@ class UserModel: Object, ObjectKeyIdentifiable  {
     @Persisted var bodyweightEntries = RealmSwift.List<BodyweightEntry>()
     
 }
-
-class BodyweightEntry: Object, ObjectKeyIdentifiable  {
-    
-    @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var bodyweight: Double
-    @Persisted var timeAdded: Double
-    
-    /// Backlink
-    // @Persisted(originProperty: "bodyweightEntries") var userModel: LinkingObjects<UserModel>
-    
-    convenience init(bodyweight: Double = 0, timeAdded: Double = 0) {
-        self.init()
-        self.bodyweight = bodyweight
-        self.timeAdded = timeAdded
-    }
-    
-}

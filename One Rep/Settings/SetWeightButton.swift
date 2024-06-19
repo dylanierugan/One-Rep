@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct SaveWeightButton: View {
+struct SetWeightButton: View {
     
     // MARK: - Vars
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject var theme: ThemeModel
     @Binding var bodyweight: Double
     @Binding var prevBodyweight: Double
@@ -21,7 +21,10 @@ struct SaveWeightButton: View {
     
     var body: some View {
         Button {
-            addWeightToRealm()
+            DispatchQueue.main.async {
+                self.presentationMode.wrappedValue.dismiss()
+                addWeightToRealm()
+            }
         } label: {
             HStack {
                 Text("Set")

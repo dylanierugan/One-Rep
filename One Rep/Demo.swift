@@ -12,8 +12,17 @@ import RealmSwift
 struct Demo: View {
         
     var body: some View {
-        VStack {
-            
+        ZStack {
+            Color("BackgroundColor")
+                .ignoresSafeArea()
+            VStack {
+                Text("1  Rep")
+                    .customFont(size: .largeTitle, weight: .bold, kerning: 0, design: .rounded)
+            }
         }
     }
+}
+
+#Preview {
+    Demo()
 }

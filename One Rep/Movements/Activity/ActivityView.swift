@@ -17,6 +17,7 @@ struct ActivityView: View {
     @EnvironmentObject var dateViewModel: DateViewModel
     
     @ObservedRealmObject var movementViewModel: MovementViewModel
+    @ObservedRealmObject var userModel: UserModel
     
     @State var showCalendar = false
     
@@ -40,7 +41,7 @@ struct ActivityView: View {
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             }
-            ActivityMovementDataView(movementViewModel: movementViewModel)
+            ActivityMovementDataView(movementViewModel: movementViewModel, userModel: userModel)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
         }

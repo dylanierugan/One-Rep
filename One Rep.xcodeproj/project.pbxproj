@@ -45,7 +45,12 @@
 		37881F562C0DAAB700ABBF42 /* RecordBodyweightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */; };
 		37881F582C0E17CE00ABBF42 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F572C0E17CE00ABBF42 /* UserModel.swift */; };
 		37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F592C0E950500ABBF42 /* BodyweightTextField.swift */; };
-		37881F5C2C0F624100ABBF42 /* SaveWeightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5B2C0F624100ABBF42 /* SaveWeightButton.swift */; };
+		37881F5C2C0F624100ABBF42 /* SetWeightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5B2C0F624100ABBF42 /* SetWeightButton.swift */; };
+		37881F5E2C164C5C00ABBF42 /* SetBodyweightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5D2C164C5C00ABBF42 /* SetBodyweightButton.swift */; };
+		37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5F2C164CDC00ABBF42 /* LogWeightSection.swift */; };
+		37881F622C166B6D00ABBF42 /* BodyweightEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */; };
+		37881F642C1DEA5D00ABBF42 /* LogBodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F632C1DEA5D00ABBF42 /* LogBodyweightSection.swift */; };
+		37881F662C1DF34D00ABBF42 /* BodyweightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F652C1DF34D00ABBF42 /* BodyweightView.swift */; };
 		37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655092BA5385600B96BEB /* One_RepApp.swift */; };
 		37A6550E2BA5385800B96BEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A6550D2BA5385800B96BEB /* Assets.xcassets */; };
 		37A655122BA5385800B96BEB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37A655112BA5385800B96BEB /* Preview Assets.xcassets */; };
@@ -129,7 +134,12 @@
 		37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBodyweightView.swift; sourceTree = "<group>"; };
 		37881F572C0E17CE00ABBF42 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		37881F592C0E950500ABBF42 /* BodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightTextField.swift; sourceTree = "<group>"; };
-		37881F5B2C0F624100ABBF42 /* SaveWeightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWeightButton.swift; sourceTree = "<group>"; };
+		37881F5B2C0F624100ABBF42 /* SetWeightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetWeightButton.swift; sourceTree = "<group>"; };
+		37881F5D2C164C5C00ABBF42 /* SetBodyweightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBodyweightButton.swift; sourceTree = "<group>"; };
+		37881F5F2C164CDC00ABBF42 /* LogWeightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWeightSection.swift; sourceTree = "<group>"; };
+		37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightEntry.swift; sourceTree = "<group>"; };
+		37881F632C1DEA5D00ABBF42 /* LogBodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogBodyweightSection.swift; sourceTree = "<group>"; };
+		37881F652C1DF34D00ABBF42 /* BodyweightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightView.swift; sourceTree = "<group>"; };
 		37A655062BA5385600B96BEB /* One Rep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "One Rep.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37A655092BA5385600B96BEB /* One_RepApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = One_RepApp.swift; sourceTree = "<group>"; };
 		37A6550D2BA5385800B96BEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,6 +250,12 @@
 		3707309C2BFF734C00E95989 /* LoggingSection */ = {
 			isa = PBXGroup;
 			children = (
+				37A655662BC6025300B96BEB /* MovementSetView.swift */,
+				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
+				37881F5F2C164CDC00ABBF42 /* LogWeightSection.swift */,
+				37881F632C1DEA5D00ABBF42 /* LogBodyweightSection.swift */,
+				37881F5D2C164C5C00ABBF42 /* SetBodyweightButton.swift */,
+				37881F652C1DF34D00ABBF42 /* BodyweightView.swift */,
 				37A6556E2BC60D4700B96BEB /* MutateWeightsView.swift */,
 				37A6556C2BC60CD300B96BEB /* MutateRepsView.swift */,
 				37A6556A2BC602F000B96BEB /* MutateWeightButton.swift */,
@@ -253,7 +269,6 @@
 		370730A32C000A7900E95989 /* LogList */ = {
 			isa = PBXGroup;
 			children = (
-				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
 				370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */,
 				37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */,
 				370730652BF07BA500E95989 /* ToggleEditLogButton.swift */,
@@ -302,6 +317,7 @@
 				37A6555C2BBE3DF800B96BEB /* Demo.swift */,
 				37A655312BA745A300B96BEB /* Login */,
 				37A655332BA745CF00B96BEB /* Movements */,
+				37A655652BC6018700B96BEB /* LogSet */,
 				37A655342BA745D400B96BEB /* Settings */,
 				370730A92C022C4900E95989 /* Controllers */,
 				37A655322BA745C700B96BEB /* Models */,
@@ -334,14 +350,15 @@
 		37A655322BA745C700B96BEB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37A655372BA7470B00B96BEB /* Log.swift */,
-				3707305B2BEE7DA600E95989 /* Routine.swift */,
 				37A655352BA7466300B96BEB /* Movement.swift */,
-				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
 				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
+				3707305B2BEE7DA600E95989 /* Routine.swift */,
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
+				37A655372BA7470B00B96BEB /* Log.swift */,
 				3707306B2BF12B8800E95989 /* LogViewModel.swift */,
+				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
+				37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */,
 				37881F572C0E17CE00ABBF42 /* UserModel.swift */,
 			);
 			path = Models;
@@ -354,7 +371,6 @@
 				370730732BF7239D00E95989 /* Activity */,
 				37A655572BBDAD5300B96BEB /* AddMovement */,
 				37A655592BBDADAD00B96BEB /* Edit Movement */,
-				37A655652BC6018700B96BEB /* LogSet */,
 			);
 			path = Movements;
 			sourceTree = "<group>";
@@ -370,7 +386,7 @@
 				37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */,
 				37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */,
 				37881F592C0E950500ABBF42 /* BodyweightTextField.swift */,
-				37881F5B2C0F624100ABBF42 /* SaveWeightButton.swift */,
+				37881F5B2C0F624100ABBF42 /* SetWeightButton.swift */,
 				37A655612BC1EF6A00B96BEB /* ThemeSection.swift */,
 				3707308C2BFEBA2500E95989 /* UnitSection.swift */,
 			);
@@ -410,7 +426,6 @@
 		37A655652BC6018700B96BEB /* LogSet */ = {
 			isa = PBXGroup;
 			children = (
-				37A655662BC6025300B96BEB /* MovementSetView.swift */,
 				3707309C2BFF734C00E95989 /* LoggingSection */,
 				370730992BFF719C00E95989 /* EditLog */,
 				370730A32C000A7900E95989 /* LogList */,
@@ -497,6 +512,8 @@
 			files = (
 				3707307A2BF8805900E95989 /* DayPicker.swift in Sources */,
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
+				37881F5E2C164C5C00ABBF42 /* SetBodyweightButton.swift in Sources */,
+				37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */,
 				3707306C2BF12B8800E95989 /* LogViewModel.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementCardButton.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
@@ -512,12 +529,13 @@
 				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
 				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
 				3707309B2BFF71E800E95989 /* EditRepsTextField.swift in Sources */,
+				37881F642C1DEA5D00ABBF42 /* LogBodyweightSection.swift in Sources */,
 				37881F4E2C05A42A00ABBF42 /* SyncRealmView.swift in Sources */,
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
 				37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */,
 				37A655692BC602CC00B96BEB /* MutateRepsButton.swift in Sources */,
 				37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */,
-				37881F5C2C0F624100ABBF42 /* SaveWeightButton.swift in Sources */,
+				37881F5C2C0F624100ABBF42 /* SetWeightButton.swift in Sources */,
 				37A6556B2BC602F000B96BEB /* MutateWeightButton.swift in Sources */,
 				37881F562C0DAAB700ABBF42 /* RecordBodyweightView.swift in Sources */,
 				37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */,
@@ -530,9 +548,11 @@
 				37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */,
 				37881F4C2C05A38300ABBF42 /* OpenRealmView.swift in Sources */,
 				3707306A2BF083C300E95989 /* DeleteLogTrashIconButton.swift in Sources */,
+				37881F662C1DF34D00ABBF42 /* BodyweightView.swift in Sources */,
 				37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */,
 				370730802BF98D1A00E95989 /* DateView.swift in Sources */,
 				37A655542BB30E1200B96BEB /* HapticManager.swift in Sources */,
+				37881F622C166B6D00ABBF42 /* BodyweightEntry.swift in Sources */,
 				37A655792BC60E5D00B96BEB /* LogSetButton.swift in Sources */,
 				3707308D2BFEBA2500E95989 /* UnitSection.swift in Sources */,
 				37A655452BAA965C00B96BEB /* MusclePicker.swift in Sources */,

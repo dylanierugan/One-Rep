@@ -22,17 +22,20 @@ struct SyncRealmView: View {
                 .ignoresSafeArea()
             if let user = app.currentUser {
                 let config = user.flexibleSyncConfiguration(initialSubscriptions: { subscriptions in
-                    if let _ = subscriptions.first(named: AppConstants.MovementKey.description) {
-                        return
-                    } else {
+                    if let _ = subscriptions.first(named: AppConstants.MovementKey.description) {}
+                    else {
                         subscriptions.append(QuerySubscription<MovementViewModel>(name: AppConstants.MovementKey.description) {
                             $0.ownerId == user.id
                         })
                         subscriptions.append(QuerySubscription<Movement>())
                         subscriptions.append(QuerySubscription<Log>())
+                    }
+                    if let _ = subscriptions.first(named: AppConstants.UserKey.description) {}
+                    else {
                         subscriptions.append(QuerySubscription<UserModel>(name: AppConstants.UserKey.description) {
                             $0.ownerId == user.id
                         })
+                        subscriptions.append(QuerySubscription<BodyweightEntry>())
                     }
                 })
                 OpenRealmView(user: user)

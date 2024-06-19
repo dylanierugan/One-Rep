@@ -31,7 +31,7 @@ struct LogSetButton: View {
                 Image(systemName: Icons.Pencil.description)
             }
             .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
-            .foregroundStyle(Color(.black))
+            .foregroundStyle( (colorScheme == .light && theme.lightBaseColor == Colors.Primary.description) ? Color(.white) : Color(.black) )
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(

@@ -53,7 +53,7 @@ struct MovementsView: View {
                                 HorizontalScroller(muscleSelection: $menuSelection)
                                 ForEach(filteredMovements) { movement in
                                     if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
-                                        MovementCardButton(movementViewModel: movementViewModel, selectedMovement: $selectedMovement, movement: movement)
+                                        MovementCardButton(movementViewModel: movementViewModel, userModel: userModel, selectedMovement: $selectedMovement, movement: movement)
                                     }
                                 }
                                 if (movementViewModel.movements.count == 0) || (menuSelection != .All && movementViewModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
@@ -67,7 +67,7 @@ struct MovementsView: View {
                             }
                         case .Activity:
                             VStack {
-                                ActivityView(movementViewModel: movementViewModel)
+                                ActivityView(movementViewModel: movementViewModel, userModel: userModel)
                             }
                         }
                     }
