@@ -27,17 +27,18 @@ struct LogSetButton: View {
             HapticManager.instance.impact(style: .light)
         } label: {
             HStack {
-                Text("Log set")
-                Image(systemName: Icons.Pencil.description)
+                Text("Log")
+                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                Image(systemName: Icons.PencilAndOutline.description)
+                    .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
             }
-            .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
-            .foregroundStyle( (colorScheme == .light && theme.lightBaseColor == Colors.Primary.description) ? Color(.white) : Color(.black) )
+            .foregroundStyle(colorScheme == .light ? .black : .white)
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
             .background(
                 .linearGradient(colors: [
-                    Color(theme.lightBaseColor),
-                    Color(theme.darkBaseColor)
+                    .secondary.opacity(0.05),
+                    .secondary.opacity(0.05)
                 ], startPoint: .top, endPoint: .bottom)
             )
             .cornerRadius(16)

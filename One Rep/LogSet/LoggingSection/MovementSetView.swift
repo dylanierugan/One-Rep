@@ -41,7 +41,7 @@ struct MovementSetView: View {
                 } else {
                     if let _ = userModel.bodyweightEntries.last {
                         LogBodyweightSection(userModel: userModel, movement: movement, addWeightToBodyWeight: $addWeightToBodyweight, addLogToRealm: addLogToRealm)
-                            .padding(.top, -8)
+                            .padding(.top, -16)
                     } else {
                         SetBodyweightButton(userModel: userModel)
                     }
@@ -84,7 +84,9 @@ struct MovementSetView: View {
                         ){
                             VStack {
                                 if let logs = logViewModel.dateLogMap[date] {
-                                    ForEach(Array(logs.reversed().enumerated()), id: \.element.id) { index, log in
+                                    ForEach(logs.indices, id: \.self) { index in
+                                        let reverseIndex = logs.count - 1 - index
+                                        let log = logs[reverseIndex]
                                         HStack {
                                             LogCard(log: log, movement: movement, index: index ,showDoneToolBar: $showDoneToolBar)
                                             if isEditingLogs {
@@ -93,6 +95,7 @@ struct MovementSetView: View {
                                                                          selectedLog: $selectedLog,
                                                                          deleteLogInRealm: { self.deleteLogInRealm() })
                                                 .padding(.horizontal, 8)
+                                                .padding(.vertical, 4)
                                             }
                                         }
                                     }
@@ -203,5 +206,4 @@ struct MovementSetView: View {
             }
         }
     }
-    
 }

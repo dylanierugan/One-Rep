@@ -42,7 +42,7 @@ struct LogCard: View {
                     DataLabel(data: String(log.reps), dataType: "reps")
                 }
                 .padding(.horizontal, 4)
-                .padding(.vertical, 8)
+                .padding(.vertical, 6)
         }
         .sheet(isPresented: $showEditMovementPopup) {
             EditLogView(log: log, movement: movement)

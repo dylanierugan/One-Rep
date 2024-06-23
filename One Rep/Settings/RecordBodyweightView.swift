@@ -39,7 +39,6 @@ struct RecordBodyweightView: View {
                         .foregroundColor(.secondary)
                     BodyweightTextField(focus: true, isInputActive: _isInputActive, bodyweight: $bodyweight)
                 }
-                .padding(.horizontal, 16)
                 .padding(.top, fromSettingsView ? 0 : 52)
                 Spacer()
             }
@@ -58,6 +57,7 @@ struct RecordBodyweightView: View {
                     }
                 }
             }
+            .padding(.horizontal, 16)
         }
         .onAppear() {
             if let bodyweightEntry = userModel.bodyweightEntries.last {
