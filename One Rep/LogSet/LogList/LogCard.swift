@@ -20,6 +20,7 @@ struct LogCard: View {
     @ObservedRealmObject var movement: Movement
     
     @State var showEditMovementPopup = false
+    @State var index: Int
     
     @Binding var showDoneToolBar: Bool
     
@@ -30,19 +31,18 @@ struct LogCard: View {
             showEditMovementPopup.toggle()
             showDoneToolBar = false
         } label: {
-            HStack {
                 HStack {
-                    TimeLabel(date: log.date)
+                    HStack(spacing: 16) {
+                        LogIndexLabel(index: index + 1)
+                        TimeLabel(date: log.date)
+                    }
                     Spacer()
                     DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight), dataType: logViewModel.unit.rawValue)
                     Spacer()
                     DataLabel(data: String(log.reps), dataType: "reps")
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-            }
-            .background(Color(theme.backgroundElementColor))
-            .cornerRadius(16)
+                .padding(.horizontal, 4)
+                .padding(.vertical, 8)
         }
         .sheet(isPresented: $showEditMovementPopup) {
             EditLogView(log: log, movement: movement)

@@ -34,109 +34,118 @@ struct MovementSetView: View {
     // MARK: - View
     
     var body: some View {
-            VStack {
-                if showLogSetView {
-                    if movement.movementType == .Weight {
-                        LogWeightSection(movement: movement, showDoneToolBar: $showDoneToolBar, addLogToRealm: addLogToRealm)
+        VStack {
+            if showLogSetView {
+                if movement.movementType == .Weight {
+                    LogWeightSection(movement: movement, showDoneToolBar: $showDoneToolBar, addLogToRealm: addLogToRealm)
+                } else {
+                    if let _ = userModel.bodyweightEntries.last {
+                        LogBodyweightSection(userModel: userModel, movement: movement, addWeightToBodyWeight: $addWeightToBodyweight, addLogToRealm: addLogToRealm)
+                            .padding(.top, -8)
                     } else {
-                        if let _ = userModel.bodyweightEntries.last {
-                            LogBodyweightSection(userModel: userModel, movement: movement, addWeightToBodyWeight: $addWeightToBodyweight, addLogToRealm: addLogToRealm)
-                                .padding(.top, -8)
-                        } else {
-                            SetBodyweightButton(userModel: userModel)
-                        }
+                        SetBodyweightButton(userModel: userModel)
                     }
                 }
+            }
+            
+            ScrollView(showsIndicators: false) {
                 
-                ScrollView(showsIndicators: false) {
+                VStack(spacing: 16) {
+                    if movement.logs.count != 0 {
+                        if movement.movementType != .Bodyweight {
+                            WeightHorizontalScroller(movement: movement)
+                        }
+                    } else {
+                        HStack {
+                            Spacer()
+                            Text(InfoText.NoData.description)
+                                .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(.secondary)
+                                .padding(.top, 36)
+                            Spacer()
+                        }
+                    }
                     
-                    VStack(spacing: 16) {
-                        if movement.logs.count != 0 {
-                            if movement.movementType != .Bodyweight {
-                                WeightHorizontalScroller(movement: movement)
-                            }
-                        } else {
-                            HStack {
-                                Spacer()
-                                Text(InfoText.NoData.description)
-                                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                                    .multilineTextAlignment(.center)
-                                    .foregroundStyle(.secondary)
-                                    .padding(.top, 36)
-                                Spacer()
+                    ForEach(0..<logViewModel.listOfDates.count, id: \.self) { index in
+                        let date = logViewModel.listOfDates[index]
+                        Section(header: HStack {
+                            Text(date)
+                                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                                .foregroundColor(.primary)
+                            Spacer()
+                            if index == 0 {
+                                ToggleEditLogButton(isEditingLogs: $isEditingLogs)
+                                    .padding(.horizontal, 8)
+                                ShowFullScreenButton(showLogSetView: $showLogSetView)
                             }
                         }
-                        
-                        ForEach(0..<logViewModel.listOfDates.count, id: \.self) { index in
-                            let date = logViewModel.listOfDates[index]
-                            Section(header: HStack {
-                                Text(date)
-                                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                    .foregroundColor(.primary)
-                                Spacer()
-                                if index == 0 {
-                                    ToggleEditLogButton(isEditingLogs: $isEditingLogs)
-                                        .padding(.horizontal, 8)
-                                    ShowFullScreenButton(showLogSetView: $showLogSetView)
-                                }
-                            }
-                                .padding(.horizontal, 16)
-                            ){
-                                ForEach(logViewModel.dateLogMap[date] ?? [], id: \.id) { log in
-                                    HStack(spacing: 16) {
-                                        LogCard(log: log, movement: movement, showDoneToolBar: $showDoneToolBar)
-                                        if isEditingLogs {
-                                            DeleteLogTrashIconButton(movement: movement,
-                                                            log: log,
-                                                            selectedLog: $selectedLog,
-                                                            deleteLogInRealm: { self.deleteLogInRealm() })
+                            .padding(.horizontal, 20)
+                        ){
+                            VStack {
+                                if let logs = logViewModel.dateLogMap[date] {
+                                    ForEach(Array(logs.reversed().enumerated()), id: \.element.id) { index, log in
+                                        HStack {
+                                            LogCard(log: log, movement: movement, index: index ,showDoneToolBar: $showDoneToolBar)
+                                            if isEditingLogs {
+                                                DeleteLogTrashIconButton(movement: movement,
+                                                                         log: log,
+                                                                         selectedLog: $selectedLog,
+                                                                         deleteLogInRealm: { self.deleteLogInRealm() })
+                                                .padding(.horizontal, 8)
+                                            }
                                         }
                                     }
-                                    .padding(.horizontal, 16)
                                 }
                             }
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .background(Color(theme.backgroundElementColor))
+                            .cornerRadius(16)
+                            .padding(.horizontal, 16)
                         }
                     }
-                    .padding(.top, 16)
                 }
-                .background(Color(theme.backgroundColor))
-                .padding(.top, showLogSetView ? -15 : 0)
+                .padding(.top, 16)
             }
-            .sheet(isPresented: $showEditMovementPopup) {
-                EditMovementView(movement: movement, movementViewModel: movementViewModel, showDoneToolBar: $showDoneToolBar)
-                    .environment(\.sizeCategory, .extraSmall)
+            .background(Color(theme.backgroundColor))
+            .padding(.top, showLogSetView ? -15 : 0)
+        }
+        .sheet(isPresented: $showEditMovementPopup) {
+            EditMovementView(movement: movement, movementViewModel: movementViewModel, showDoneToolBar: $showDoneToolBar)
+                .environment(\.sizeCategory, .extraSmall)
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
+                
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
-                    
+            ToolbarItem(placement: .principal) {
+                HStack(spacing: 12) {
+                    Image(movement.muscleGroup.rawValue.lowercased())
+                        .font(.caption2)
+                        .foregroundStyle(.linearGradient(colors: [
+                            Color(theme.lightBaseColor),
+                            Color(theme.darkBaseColor)
+                        ], startPoint: .top, endPoint: .bottom))
+                    Text(movement.name)
+                        .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                 }
-                ToolbarItem(placement: .principal) {
-                    HStack(spacing: 12) {
-                        Image(movement.muscleGroup.rawValue.lowercased())
-                            .font(.caption2)
-                            .foregroundStyle(.linearGradient(colors: [
-                                Color(theme.lightBaseColor),
-                                Color(theme.darkBaseColor)
-                            ], startPoint: .top, endPoint: .bottom))
-                        Text(movement.name)
-                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                    }
-                }
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                logViewModel.weightSelection = "All"
-                logViewModel.populateListOfWeights(movement.logs)
-                logViewModel.filterWeightAndPopulateData(movement.logs)
-                logController.setMostRecentLog(movement.logs, weightSelection: logViewModel.weightSelection)
-            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            logViewModel.weightSelection = "All"
+            logViewModel.populateListOfWeights(movement.logs)
+            logViewModel.filterWeightAndPopulateData(movement.logs)
+            logController.setMostRecentLog(movement.logs, weightSelection: logViewModel.weightSelection)
+        }
     }
     
     // MARK: - Functions
     
     private func addLogToRealm() {
-
+        
         var loggedWeight: Double = 0
         var isBodyWeight = false
         
@@ -194,5 +203,5 @@ struct MovementSetView: View {
             }
         }
     }
-
+    
 }
