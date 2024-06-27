@@ -20,6 +20,7 @@ struct MovementSelectionPicker: View {
     var body: some View {
         HStack {
             MovementPickerButton(selection: .Library, movementSelection: $movementSelection)
+            MovementPickerButton(selection: .Routines, movementSelection: $movementSelection)
             MovementPickerButton(selection: .Activity, movementSelection: $movementSelection)
         }
         .background(Color(theme.backgroundElementColor))

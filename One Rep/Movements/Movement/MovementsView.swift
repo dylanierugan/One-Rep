@@ -69,6 +69,10 @@ struct MovementsView: View {
                             VStack {
                                 ActivityView(movementViewModel: movementViewModel, userModel: userModel)
                             }
+                        case .Routines:
+                            VStack {
+                                Text("Routines")
+                            }
                         }
                     }
                     .sheet(isPresented: $showAddMovementPopup) {

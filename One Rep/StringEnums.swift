@@ -245,6 +245,7 @@ enum InfoText: CustomStringConvertible {
 enum MovementSelection: String, PersistableEnum, Identifiable {
     var id: MovementSelection { self }
     case Activity = "Activity"
+    case Routines = "Routines"
     case Library = "Library"
 }
 

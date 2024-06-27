@@ -30,16 +30,6 @@ struct LogBodyweightSection: View {
         HStack {
             Spacer()
             VStack(spacing: 16) {
-                Button {
-                    withAnimation {
-                        addWeightToBodyWeight.toggle()
-                    }
-                } label: {
-                    Text(addWeightToBodyWeight ? "Remove weight" : "Add weight")
-                        .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                        .foregroundColor(.secondary)
-                }
-                
                 if addWeightToBodyWeight {
                     VStack(spacing: 16) {
                         HStack {
@@ -61,6 +51,16 @@ struct LogBodyweightSection: View {
                         MutateRepsView()
                         Spacer()
                     }
+                }
+                
+                Button {
+                    withAnimation {
+                        addWeightToBodyWeight.toggle()
+                    }
+                } label: {
+                    Text(addWeightToBodyWeight ? "Remove weight" : "Add weight")
+                        .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                        .foregroundColor(.secondary).opacity(0.5)
                 }
                 
                 LogSetButton(movement: movement, addLogToRealm: addLogToRealm)
