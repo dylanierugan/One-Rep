@@ -350,11 +350,11 @@
 		37A655322BA745C700B96BEB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				37A655352BA7466300B96BEB /* Movement.swift */,
-				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
 				3707305B2BEE7DA600E95989 /* Routine.swift */,
-				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
+				37A655352BA7466300B96BEB /* Movement.swift */,
 				37A655372BA7470B00B96BEB /* Log.swift */,
+				37A6553C2BA9E8F300B96BEB /* MovementViewModel.swift */,
+				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
 				3707306B2BF12B8800E95989 /* LogViewModel.swift */,
 				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,

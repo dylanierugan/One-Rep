@@ -64,7 +64,7 @@ struct MovementTypePickerButton: View {
             .padding(.horizontal, 16)
             .frame(height: 28)
             .foregroundStyle(movementTypeSelection == movementType ? Color(.reversePrimary): .secondary)
-            .background(movementTypeSelection == movementType ? Color(.primary) : .clear)
+            .background(movementTypeSelection == movementType ? Color(.customPrimary) : Color(.clear))
             .cornerRadius(8)
         })
     }

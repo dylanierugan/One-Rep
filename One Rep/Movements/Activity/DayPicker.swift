@@ -36,11 +36,11 @@ struct DayPicker: View {
                 }, label: {
                     VStack {
                         Text("\(weekdayObject.day)")
-                            .foregroundStyle(dateViewModel.weekday == weekdayObject.weekday ? Color(.primary) : .secondary.opacity(0.5))
+                            .foregroundStyle(dateViewModel.weekday == weekdayObject.weekday ? Color(.customPrimary) : .secondary.opacity(0.5))
                             .customFont(size: .callout, weight: .semibold, kerning: 0, design: .rounded)
                             .frame(maxWidth: .infinity)
                         Text(weekdayObject.weekday.rawValue)
-                            .foregroundStyle(dateViewModel.weekday == weekdayObject.weekday ? Color(.primary) : .secondary.opacity(0.5))
+                            .foregroundStyle(dateViewModel.weekday == weekdayObject.weekday ? Color(.customPrimary) : .secondary.opacity(0.5))
                             .customFont(size: .callout, weight: .semibold, kerning: 0, design: .rounded)
                             .frame(maxWidth: .infinity)
                         if logViewModel.listOfDates.contains(logViewModel.formatDate(date: weekdayObject.date.timeIntervalSince1970)) {

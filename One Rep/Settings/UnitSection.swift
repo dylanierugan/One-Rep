@@ -59,7 +59,7 @@ struct UnitPickerButton: View {
             }
             .frame(width: 32, height: 28)
             .foregroundStyle(unitSelection == logViewModel.unit ? Color(.reversePrimary): .secondary)
-            .background(unitSelection == logViewModel.unit ? Color(.primary) : .clear)
+            .background(unitSelection == logViewModel.unit ? Color(.customPrimary) : .clear)
             .cornerRadius(8)
         })
     }

@@ -20,7 +20,7 @@ struct MovementSelectionPicker: View {
     var body: some View {
         HStack {
             MovementPickerButton(selection: .Library, movementSelection: $movementSelection)
-            MovementPickerButton(selection: .Routines, movementSelection: $movementSelection)
+            // MovementPickerButton(selection: .Routines, movementSelection: $movementSelection)
             MovementPickerButton(selection: .Activity, movementSelection: $movementSelection)
         }
         .background(Color(theme.backgroundElementColor))
@@ -54,7 +54,7 @@ struct MovementPickerButton: View {
             }
             .padding(.vertical, 6)
             .foregroundStyle(movementSelection == selection  ? Color(.reversePrimary): .primary)
-            .background(movementSelection == selection ? Color(.primary).opacity(0.9) : .clear)
+            .background(movementSelection == selection ? Color(.customPrimary).opacity(0.9) : .clear)
             .cornerRadius(16)
             .padding(4)
         })

@@ -61,7 +61,7 @@ struct SyncRealmView: View {
     }
     
     private func setupConfiguration(for user: User) async throws -> Realm {
-        var config = user.flexibleSyncConfiguration(initialSubscriptions: { subscriptions in
+        let config = user.flexibleSyncConfiguration(initialSubscriptions: { subscriptions in
             
             if let _ = subscriptions.first(named: AppConstants.MovementKey.description) {
                 // Subscription already exists, do nothing
