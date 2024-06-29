@@ -6,33 +6,28 @@
 //
 
 import SwiftUI
-import RealmSwift
 import UIKit
 
 struct MovementsView: View {
     
     // MARK: - Variables
     
-    @Environment(\.dismissSearch) private var dismissSearch
     @EnvironmentObject var theme: ThemeModel
-    
-    @ObservedRealmObject var movementViewModel: MovementViewModel
-    @ObservedRealmObject var userModel: UserModel
+    @EnvironmentObject var movementViewModel: MovementViewModel
     
     @State private var searchText = ""
     @State private var movementSelection: MovementSelection = .Library
-    @State private var menuSelection: MuscleType = .All
+    @State private var menuSelection: MuscleGroup = .All
     @State private var selectedMovement: Movement?
     @State private var showAddMovementPopup = false
     
-    private var filteredMovements: Results<Movement> {
+    private var filteredMovements: [Movement] {
         if searchText.isEmpty {
-            return movementViewModel.movements.sorted(by: \Movement.name, ascending: true)
+            return movementViewModel.movements.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
         } else {
-            let filteredMovements = movementViewModel.movements.sorted(by: \Movement.name, ascending: true).where {
-                $0.name.contains(searchText, options: .diacriticInsensitive)
-            }
-            return filteredMovements
+            return movementViewModel.movements
+                .filter { $0.name.range(of: searchText, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
+                .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
         }
     }
     
@@ -43,6 +38,7 @@ struct MovementsView: View {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
+                
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {
                         MovementSelectionPicker(movementSelection: $movementSelection)
@@ -51,13 +47,13 @@ struct MovementsView: View {
                         case .Library:
                             VStack(spacing: 16) {
                                 HorizontalScroller(muscleSelection: $menuSelection)
-                                ForEach(filteredMovements) { movement in
+                                ForEach(filteredMovements, id: \.id) { movement in
                                     if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
-                                        MovementCardButton(movementViewModel: movementViewModel, userModel: userModel, selectedMovement: $selectedMovement, movement: movement)
+                                        MovementCardButton(selectedMovement: $selectedMovement, movement: movement)
                                     }
                                 }
                                 if (movementViewModel.movements.count == 0) || (menuSelection != .All && movementViewModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
-                                    Text(InfoText.CreateNewMovement.description)
+                                    Text(InfoText.CreateNewMovement.rawValue)
                                         .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                                         .multilineTextAlignment(.center)
                                         .foregroundStyle(.secondary)
@@ -67,7 +63,7 @@ struct MovementsView: View {
                             }
                         case .Activity:
                             VStack {
-                                ActivityView(movementViewModel: movementViewModel, userModel: userModel)
+                                // ActivityView(movementViewModel: movementViewModel, userModel: userModel)
                             }
                         case .Routines:
                             VStack {
@@ -75,17 +71,17 @@ struct MovementsView: View {
                             }
                         }
                     }
-                    .sheet(isPresented: $showAddMovementPopup) {
-                        AddMovementView(movementViewModel: movementViewModel)
-                            .environment(\.sizeCategory, .extraSmall)
-                    }
                 }
+            }
+            .sheet(isPresented: $showAddMovementPopup) {
+                AddMovementView()
+                    .environment(\.sizeCategory, .extraSmall)
             }
             .navigationTitle("Movements")
             .toolbar(content: {
                 if movementSelection == .Library {
                     ToolbarItem(placement: .topBarTrailing) {
-                        AddMovementCardButton(showAddMovementPopup: $showAddMovementPopup)
+                        AddMovementToolButton(showAddMovementPopup: $showAddMovementPopup)
                     }
                 }
             })

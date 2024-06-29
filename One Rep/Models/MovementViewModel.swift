@@ -1,17 +1,88 @@
 //
-//  Movements.swift
+//  MovementViewModel.swift
 //  One Rep
 //
-//  Created by Dylan Ierugan on 3/19/24.
+//  Created by Dylan Ierugan on 6/27/24.
 //
 
 import Foundation
-import RealmSwift
+import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
-class MovementViewModel: Object, ObjectKeyIdentifiable {
+@MainActor
+class MovementViewModel: ObservableObject {
     
-    @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var ownerId: String
-    @Persisted var movements = RealmSwift.List<Movement>()
+    // MARK: - Variables
+    
+    let db = Firestore.firestore()
+    
+    @Published var userId: String = ""
+    @Published var movements = [Movement]()
+    
+    // MARK: - Functions
+    
+    func getMovementsAddSnapshot(completion: @escaping (FirebaseResult) -> Void) {
+        db.collection(FirebaseCollection.MovementCollection.rawValue)
+            .whereField(MovementAttributes.UserId.rawValue, isEqualTo: userId)
+            .addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                guard let querySnapshot = querySnapshot else {
+                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: ""])
+                    completion(.failure(error))
+                    return
+                }
+                self.movements = []
+                for document in querySnapshot.documents {
+                    let docId = document.documentID
+                    let name = document[MovementAttributes.Name.rawValue] as? String ?? ""
+                    let muscleGroupString = document[MovementAttributes.MuscleGroup.rawValue] as? String ?? ""
+                    let muscleGroup = MuscleGroup(rawValue: muscleGroupString) ?? MuscleGroup.Arms
+                    let movementTypeString = document[MovementAttributes.MovementType.rawValue] as? String ?? ""
+                    let movementType = MovementType(rawValue: movementTypeString) ?? MovementType.Weight
+                    let timeAdded = document[MovementAttributes.TimeAdded.rawValue] as? Double ?? 0
+                    let isPremium = document[MovementAttributes.IsPremium.rawValue] as? Bool ?? false
+                    let mutatingValue = document[MovementAttributes.MutatingValue.rawValue] as? Double ?? 5
+                    let movement = Movement(id: docId, userId: self.userId, name: name, muscleGroup: muscleGroup, movementType: movementType, timeAdded: timeAdded, isPremium: isPremium, mutatingValue: mutatingValue)
+                    self.movements.append(movement)
+                }
+                completion(.success)
+            }
+    }
+    
+    func addMovement(movement: Movement) async -> FirebaseResult {
+        do {
+            try db.collection(FirebaseCollection.MovementCollection.rawValue).document(movement.id ).setData(from: movement)
+            self.movements.append(movement)
+            return .success
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func editMovement(docId: String, newName: String, newMuscleGroup: MuscleGroup, newMovementType: MovementType) async -> FirebaseResult {
+        do {
+            try await db.collection(FirebaseCollection.MovementCollection.rawValue).document(docId).updateData([
+                MovementAttributes.Name.rawValue : newName,
+                MovementAttributes.MuscleGroup.rawValue : newMuscleGroup.rawValue,
+                MovementAttributes.MovementType.rawValue : newMovementType.rawValue
+            ])
+            return .success
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func deleteMovement(docId: String) async -> FirebaseResult {
+        do {
+            try await db.collection(FirebaseCollection.MovementCollection.rawValue).document(docId).delete()
+            return .success
+        } catch {
+            return .failure(error)
+        }
+    }
     
 }

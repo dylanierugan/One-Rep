@@ -6,32 +6,27 @@
 //
 
 import Foundation
-import RealmSwift
+import Firebase
 
-class Movement: Object, ObjectKeyIdentifiable {
+public struct Movement: Codable, Hashable {
     
-    @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var name: String
-    @Persisted var logs: List<Log>
-    @Persisted var routine: String
-    @Persisted var muscleGroup: MuscleType
-    @Persisted var timeAdded: Double
-    @Persisted var isPremium: Bool
-    @Persisted var mutatingValue: Double
-    @Persisted var movementType: MovementType
+    let id: String
+    let userId: String
+    var name: String
+    var muscleGroup: MuscleGroup
+    var movementType: MovementType
+    let timeAdded: Double
+    let isPremium: Bool
+    let mutatingValue: Double
     
-    /// Backlink
-    @Persisted(originProperty: "movements") var group: LinkingObjects<MovementViewModel>
-    
-    convenience init(name: String = "", muscleGroup: MuscleType = .Arms, logs: List<Log> = List<Log>(), routine: String, timeAdded: Double = 0, isPremium: Bool = false, mutatingValue: Double = 5, movementType: MovementType = .Weight ) {
-        self.init()
-        self.name = name
-        self.muscleGroup = muscleGroup
-        self.logs = logs
-        self.routine = routine
-        self.timeAdded = timeAdded
-        self.isPremium = isPremium
-        self.mutatingValue = mutatingValue
-        self.movementType = movementType
+    enum CodingKeys: String, CodingKey {
+        case id
+        case userId
+        case name
+        case muscleGroup
+        case movementType
+        case timeAdded
+        case isPremium
+        case mutatingValue
     }
 }

@@ -18,17 +18,13 @@ struct AddMovementButton: View {
     
     var isFormValid: Bool
     
-    var addMovementToRealm: () -> Void
+    var addMovementToFirebase:() -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
-            withAnimation {
-                addMovementClicked = true
-                addMovementToRealm()
-                dismiss()
-            }
+            addMovementToFirebase()
         } label: {
             HStack {
                 Text("Add")

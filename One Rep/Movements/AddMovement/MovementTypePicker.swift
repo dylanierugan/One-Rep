@@ -43,7 +43,6 @@ struct MovementTypePickerButton: View {
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
 
     @Binding var movementTypeSelection: MovementType
     var movementType: MovementType

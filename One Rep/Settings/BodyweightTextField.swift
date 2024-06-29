@@ -13,7 +13,6 @@ struct BodyweightTextField: View {
     // MARK: - Vars
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
     
     @State var focus: Bool
     @FocusState var isFocused: Bool
@@ -46,7 +45,7 @@ struct BodyweightTextField: View {
                     .cornerRadius(10)
                     .focused($isInputActive)
                 Spacer()
-                Text(logViewModel.unit.rawValue)
+                // Text(logViewModel.unit.rawValue)
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                     .padding(.horizontal, 16)
             }

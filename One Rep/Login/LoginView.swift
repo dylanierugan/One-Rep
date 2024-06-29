@@ -6,22 +6,15 @@
 //
 
 import SwiftUI
-import RealmSwift
-import Realm
-import AuthenticationServices
+import Firebase
 
 struct LoginView: View {
     
     // MARK: - Variables
     
-    @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
-    
-    @State private var email = ""
-    @State private var password = ""
-    @State private var isSecure = true
-    @State private var showResetPassword = false
+    @EnvironmentObject var viewRouter: ViewRouter
     
     // MARK: - View
     
@@ -41,6 +34,11 @@ struct LoginView: View {
                     .frame(height: 32)
                     .padding(.top, 8)
                     .padding(.horizontal, 32)
+            }
+        }
+        .onAppear() {
+            if Auth.auth().currentUser != nil {
+                viewRouter.currentPage = .loadDataView
             }
         }
     }

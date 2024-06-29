@@ -6,7 +6,6 @@
 //
 
 import AuthenticationServices
-import RealmSwift
 import SwiftUI
 
 struct SignInWithApple: View {
@@ -14,8 +13,7 @@ struct SignInWithApple: View {
     // MARK: - Variables
     
     @Environment(\.colorScheme) var currentScheme
-    @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var viewRouter: ViewRouter
     
     @State private var identityTokenString = ""
@@ -25,30 +23,40 @@ struct SignInWithApple: View {
     var body: some View {
         VStack {
             SignInWithAppleButton(.signIn, onRequest: { request in
-                request.requestedScopes = [.email]
+                AppleSignInManager.shared.requestAppleAuthorization(request)
             }, onCompletion: { result in
-                switch result {
-                case .success(let authResults):
-                    guard let credentials = authResults.credential as? ASAuthorizationAppleIDCredential, let identityToken = credentials.identityToken,
-                          let identityTokenString = String(data: identityToken, encoding: .utf8) else { return }
-                    self.identityTokenString = identityTokenString
-                    print("Successfully signed in with Apple.")
-                    authService.login(identityTokenString: identityTokenString) { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        case .success:
-                            withAnimation {
-                                viewRouter.currentPage = .syncRealm
-                            }
-                        }
-                    }
-                case .failure(let error):
-                    print("Sign in with Apple failed: \(error.localizedDescription)")
-                }
+                handleAppleID(result)
             })
             .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
             .cornerRadius(16)
+        }
+    }
+    
+    func handleAppleID(_ result: Result<ASAuthorization, Error>) {
+        if case let .success(auth) = result {
+            guard let appleIDCredentials = auth.credential as? ASAuthorizationAppleIDCredential else {
+                print("AppleAuthorization failed: AppleID credential not available")
+                /// TODO - Error handle
+                return
+            }
+            Task {
+                do {
+                    let result = try await authManager.appleAuth(
+                        appleIDCredentials,
+                        nonce: AppleSignInManager.nonce
+                    )
+                    if result != nil {
+                        viewRouter.currentPage = .tabView
+                    }
+                } catch {
+                    print("AppleAuthorization failed: \(error)")
+                    /// TODO - Error handle
+                }
+            }
+        }
+        else if case let .failure(error) = result {
+            print("AppleAuthorization failed: \(error)")
+            /// TODO - Error handle
         }
     }
 }

@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct AddMovementView: View {
     
     // MARK: - Variables
     
     @EnvironmentObject var theme: ThemeModel
-    
-    @ObservedRealmObject var movementViewModel: MovementViewModel
+    @EnvironmentObject var movementViewModel: MovementViewModel
+    @EnvironmentObject var resultHandler: ResultHandler
+    @Environment(\.dismiss) private var dismiss
     
     @State private var movementName = ""
+    @State private var muscleGroup: MuscleGroup = .Arms
     @State private var movementType: MovementType = .Weight
-    @State private var muscleGroup: MuscleType = .Arms
+    @State private var showProgressView = false
     
     private var isFormValid: Bool {
         !movementName.isEmpty
@@ -59,17 +60,23 @@ struct AddMovementView: View {
                 .padding(.vertical, 24)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        AddMovementButton(isFormValid: isFormValid, addMovementToRealm: { self.addMovementToRealm() })
+                        if showProgressView {
+                            ProgressView()
+                        } else {
+                            AddMovementButton(isFormValid: isFormValid, addMovementToFirebase: {
+                                let docId = UUID().uuidString
+                                let newMovement = Movement(id: docId, userId: movementViewModel.userId, name: movementName, muscleGroup: muscleGroup, movementType: movementType, timeAdded: Date.now.timeIntervalSince1970, isPremium: false, mutatingValue: 5.0)
+                                Task {
+                                    showProgressView = true
+                                    let result = await movementViewModel.addMovement(movement: newMovement)
+                                    showProgressView = false
+                                    resultHandler.handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
+                                }
+                            })
+                        }
                     }
                 }
             }
         }
-    }
-    
-    // MARK: - Functions
-    
-    private func addMovementToRealm() {
-        let newMovement = Movement(name: movementName, muscleGroup: muscleGroup, logs: List<Log>(), routine: "", mutatingValue: 5, movementType: movementType)
-        $movementViewModel.movements.append(newMovement)
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct MovementCardButton: View {
     
@@ -14,19 +13,16 @@ struct MovementCardButton: View {
     
     @EnvironmentObject var theme: ThemeModel
     
-    @ObservedRealmObject var movementViewModel: MovementViewModel
-    @ObservedRealmObject var userModel: UserModel
-    
     @Binding var selectedMovement: Movement?
 
-    var movement: Movement
+    @State var movement: Movement
     
     // MARK: - View
     
     var body: some View {
         ZStack(alignment: .trailing) {
             NavigationLink {
-                MovementSetView(movementViewModel: movementViewModel, movement: movement, userModel: userModel)
+                LogView(movement: $movement)
             } label: {
                 HStack {
                     HStack() {

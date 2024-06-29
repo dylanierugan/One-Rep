@@ -9,7 +9,11 @@ import SwiftUI
 
 struct OneRepLogo: View {
     
+    // MARK: - Variable
+    
     var size: Font.TextStyle
+    
+    // MARK: - View
     
     var body: some View {
         Text("1 Rep")

@@ -14,18 +14,14 @@ struct UpdateMovementButton: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel
     
-    @State var updateMovementClicked = false
-    
-    var updateMovementInRealm: () -> Void
+    var updateMovementInFirebase: () -> Void
     
     // MARK: - View
     
     var body: some View {
         Button {
             withAnimation {
-                updateMovementClicked = true
-                updateMovementInRealm()
-                dismiss()
+                updateMovementInFirebase()
             }
         } label: {
             HStack {
@@ -37,7 +33,6 @@ struct UpdateMovementButton: View {
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
             }
         }
-        .disabled(updateMovementClicked ? true : false)
     }
 }
 

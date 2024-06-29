@@ -17,7 +17,7 @@ struct DeleteMovementButton: View {
     @Binding var deleteConfirmedClicked: Bool
     @Binding var showingDeleteMovementAlert: Bool
     
-    var deleteMovementInRealm: () -> Void
+    var deleteMovementInFirebase: () -> Void
     
     // MARK: - View
     
@@ -35,10 +35,10 @@ struct DeleteMovementButton: View {
         /// Alert to delete movement (asks for confirmation)
         .alert(isPresented: $showingDeleteMovementAlert) {
             Alert(
-                title: Text(ErrorMessage.DeleteMovmentConfirmation.description),
-                message: Text(ErrorMessage.NoWayToUndo.description),
+                title: Text(ErrorMessage.DeleteMovmentConfirmation.rawValue),
+                message: Text(ErrorMessage.NoWayToUndo.rawValue),
                 primaryButton: .destructive(Text("Delete")) {
-                    deleteMovementInRealm()
+                    deleteMovementInFirebase()
                     dismiss()
                 },
                 secondaryButton: .cancel())

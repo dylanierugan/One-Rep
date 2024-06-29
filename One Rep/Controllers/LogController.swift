@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 class LogController: ObservableObject {
     
@@ -22,18 +21,17 @@ class LogController: ObservableObject {
     // MARK: - Functions (Weight)
     
     /// Set weight and rep fields to most recent log
-    func setMostRecentLog(_ logs: List<Log>, weightSelection: String) {
-            var logs = logs.sorted(by: \Log.date, ascending: false)
-            if weightSelection != "All" {
-                logs = logs.sorted(by: \Log.date, ascending: false).where {
-                    ($0.weight == Double(weightSelection) ?? 0)
-                }
-            }
-            lastLog = logs.first
-            reps = lastLog?.reps ?? 12
-            repsStr = String(lastLog?.reps ?? 12)
-            weight = lastLog?.weight ?? 135
-            weightStr = String(lastLog?.weight ?? 135)
+    func setMostRecentLog(_ logs: [Log], weightSelection: String) {
+        var sortedLogs = logs.sorted(by: { $0.timeAdded > $1.timeAdded })
+        if weightSelection != "All" {
+            let selectedWeight = Double(weightSelection) ?? 0.0
+            sortedLogs = sortedLogs.filter { $0.weight == selectedWeight }
+        }
+        lastLog = logs.first
+        reps = lastLog?.reps ?? 12
+        repsStr = String(lastLog?.reps ?? 12)
+        weight = lastLog?.weight ?? 135
+        weightStr = String(lastLog?.weight ?? 135)
     }
     
     func mutateWeight(_ mutatingValue: Double) {
@@ -80,7 +78,7 @@ extension NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 1 // You can set this to a reasonable number for your use case
+        formatter.maximumFractionDigits = 1 /// You can set this to a reasonable number for your use case
         return formatter
     }
 }

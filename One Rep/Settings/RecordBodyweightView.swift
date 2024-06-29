@@ -6,17 +6,12 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct RecordBodyweightView: View {
     
     // MARK: - Vars
     
-    @Environment(\.realm) var realm
-    
     @EnvironmentObject var theme: ThemeModel
-    
-    @ObservedRealmObject var userModel: UserModel
     
     @State var bodyweight: Double = 130
     @State var prevBodyweight: Double = 0
@@ -44,7 +39,7 @@ struct RecordBodyweightView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    SetWeightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight, addWeightToRealm: addWeightToRealm)
+//                    SetWeightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight, addWeightToRealm: addWeightToRealm)
                 }
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
@@ -59,12 +54,12 @@ struct RecordBodyweightView: View {
             }
             .padding(.horizontal, 16)
         }
-        .onAppear() {
-            if let bodyweightEntry = userModel.bodyweightEntries.last {
-                bodyweight = bodyweightEntry.bodyweight
-                prevBodyweight = bodyweightEntry.bodyweight
-            }
-        }
+//        .onAppear() {
+//            if let bodyweightEntry = userModel.bodyweightEntries.last {
+//                bodyweight = bodyweightEntry.bodyweight
+//                prevBodyweight = bodyweightEntry.bodyweight
+//            }
+//        }
     }
     
     func formatWeightString(_ weight: Double) -> String {
@@ -75,9 +70,9 @@ struct RecordBodyweightView: View {
         }
     }
     
-    func addWeightToRealm() {
-        let newWeight = BodyweightEntry(bodyweight: bodyweight, timeAdded: Date().timeIntervalSince1970)
-        prevBodyweight = bodyweight
-        $userModel.bodyweightEntries.append(newWeight)
-    }
+//    func addWeightToRealm() {
+//        let newWeight = BodyweightEntry(bodyweight: bodyweight, timeAdded: Date().timeIntervalSince1970)
+//        prevBodyweight = bodyweight
+//        $userModel.bodyweightEntries.append(newWeight)
+//    }
 }

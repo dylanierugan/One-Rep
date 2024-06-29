@@ -6,257 +6,144 @@
 //
 
 import Foundation
-import RealmSwift
 
-enum AppConstants: CustomStringConvertible {
-    case ID
-    case MovementKey
-    case UserKey
-    
-    var description : String {
-        switch self {
-        case .ID: return "one-rep-hpeel"
-        case .MovementKey: return "user_movements"
-        case .UserKey: return "user_model"
-        }
-    }
+enum AppConstants: String {
+    case ID = "one-rep-hpeel"
+    case MovementKey = "user_movements"
+    case UserKey = "user_model"
 }
 
-enum DefaultKeys: CustomStringConvertible {
-    case AccentColor
-    
-    var description : String {
-        switch self {
-        case .AccentColor: return "AccentColor"
-        }
-    }
+enum Colors: String {
+    case BackgroundElementColor = "BackgroundElementColor"
+    case BackgroundColor = "BackgroundColor"
+    case DarkBlue = "DarkBlue"
+    case DarkGreen = "DarkGreen"
+    case DarkOrange = "DarkOrange"
+    case DarkPink = "DarkPink"
+    case DarkRed = "DarkRed"
+    case DarkYellow = "DarkYellow"
+    case LightBlue = "LightBlue"
+    case LightGreen = "LightGreen"
+    case LightOrange = "LightOrange"
+    case LightPink = "LightPink"
+    case LightRed = "LightRed"
+    case LightYellow = "LightYellow"
+    case Primary = "Primary"
+    case ReversePrimary = "ReversePrimary"
+    case SecondaryBackgroundColor = "SecondaryBackgroundColor"
 }
 
-enum ErrorMessage: CustomStringConvertible {
-    case DeleteMovmentConfirmation
-    case NoWayToUndo
-    
-    var description : String {
-        switch self {
-        case .DeleteMovmentConfirmation: return "Are you sure you want to delete this movement and all the logged data associated with it?"
-        case .NoWayToUndo: return "There is no way to undo this action."
-        }
-    }
+enum DefaultKeys: String {
+    case AccentColor = "AccentColor"
 }
 
-enum Colors: CustomStringConvertible {
-    case BackgroundElementColor
-    case BackgroundColor
-    case DarkBlue
-    case DarkGreen
-    case DarkOrange
-    case DarkPink
-    case DarkRed
-    case DarkYellow
-    case LightBlue
-    case LightGreen
-    case LightOrange
-    case LightPink
-    case LightRed
-    case LightYellow
-    case Primary
-    case ReversePrimary
-    case SecondaryBackgroundColor
-    
-    var description : String {
-        switch self {
-        case .BackgroundElementColor: return "BackgroundElementColor"
-        case .BackgroundColor: return "BackgroundColor"
-        case .DarkBlue: return "DarkBlue"
-        case .DarkGreen: return "DarkGreen"
-        case .DarkOrange: return "DarkOrange"
-        case .DarkPink: return "DarkPink"
-        case .DarkRed: return "DarkRed"
-        case .DarkYellow: return "DarkYellow"
-        case .LightBlue: return "LightBlue"
-        case .LightGreen: return "LightGreen"
-        case .LightOrange: return "LightOrange"
-        case .LightPink: return "LightPink"
-        case .LightRed: return "LightRed"
-        case .LightYellow: return "LightYellow"
-        case .Primary: return "Primary"
-        case .ReversePrimary: return "ReversePrimary"
-        case .SecondaryBackgroundColor: return "SecondaryBackgroundColor"
-        }
-    }
+enum ErrorMessage: String {
+    case DeleteMovmentConfirmation = "Are you sure you want to delete this movement and all the logged data associated with it?"
+    case ErrorAddMovement = "There was an error adding the movement."
+    case ErrorGetMovements = "There was an error loading movements."
+    case NoWayToUndo = "There is no way to undo this action."
 }
 
-enum Icons: CustomStringConvertible {
-    case ArrowCounterclockwise
-    case ArrowshapeForwardFill
-    case Atom
-    case Bench
-    case BookMarkFill
-    case Calendar
-    case ChartXYAxis
-    case ChevronCompactDown
-    case ChevronCompactUp
-    case ChevronForward
-    case ChevronLeft
-    case ChevronRight
-    case ChevronCompactLeft
-    case ChevronCompactRight
-    case CircleFill
-    case CircleHexagongrid
-    case Dumbell
-    case DumbellFill
-    case ErrorTriangle
-    case Eye
-    case EyeFill
-    case EyeSlash
-    case FigureArmsOpen
-    case FigureCoreTraining
-    case FigureHighIntensityIntervaltraining
-    case FigureRower
-    case FigureStrengthTraining
-    case FigureStrengthTrainingFunctional
-    case Flame
-    case FlameFill
-    case GearshapeFill
-    case HeartFill
-    case Infinity
-    case InfoCircle
-    case Medal
-    case MedalFill
-    case Minus
-    case MinusCircleFill
-    case NoteTextBadgePlus
-    case ListBullet
-    case LockFill
-    case PaperPlaneFill
-    case Pencil
-    case PencilAndOutline
-    case PersonFill
-    case Plus
-    case PlusAppFill
-    case PlusCircle
-    case PlusCircleFill
-    case RectangleAndPencilAndEllipsis
-    case RectanglePlus
-    case RectanglePortraitAndArrowRight
-    case SquareFill
-    case SquareAndPencil
-    case TableCells
-    case TextBadgePlus
-    case Trash
-    case TrashCircleFill
-    case TriangleFill
-    
-    var description : String {
-        switch self {
-        case .ArrowCounterclockwise: return "arrow.counterclockwise"
-        case .ArrowshapeForwardFill: return "arrowshape.forward.fill"
-        case .Atom: return "atom"
-        case .Bench: return "bench"
-        case .BookMarkFill: return "bookmark.fill"
-        case .Calendar: return "calendar"
-        case .ChartXYAxis: return "chart.xyaxis.line"
-        case .ChevronCompactDown: return "chevron.compact.down"
-        case .ChevronCompactUp: return "chevron.compact.up"
-        case .ChevronForward: return "chevron.forward"
-        case .ChevronLeft: return "chevron.left"
-        case .ChevronRight: return "chevron.right"
-        case .ChevronCompactLeft: return "chevron.compact.left"
-        case .ChevronCompactRight: return "chevron.compact.right"
-        case .CircleFill: return "circle.fill"
-        case .CircleHexagongrid: return "circle.hexagongrid"
-        case .Dumbell: return "dumbbell"
-        case .DumbellFill: return "dumbbell.fill"
-        case .ErrorTriangle: return "exclamationmark.triangle"
-        case .Eye: return "eye"
-        case .EyeFill: return "eye.fill"
-        case .EyeSlash: return "eye.slash"
-        case .FigureArmsOpen: return "figure.arms.open"
-        case .FigureCoreTraining: return "figure.core.training"
-        case .FigureHighIntensityIntervaltraining: return "figure.highintensity.intervaltraining"
-        case .FigureStrengthTraining: return "figure.strengthtraining.traditional"
-        case .FigureStrengthTrainingFunctional: return "figure.strengthtraining.functional"
-        case .Flame: return "flame"
-        case .FlameFill: return "flame.fill"
-        case .FigureRower: return "figure.rower"
-        case .GearshapeFill: return "gearshape.fill"
-        case .HeartFill: return "heart.fill"
-        case .Infinity: return "infinity"
-        case .InfoCircle: return "info.circle"
-        case .Minus: return "minus"
-        case .MinusCircleFill: return "minus.circle.fill"
-        case .Medal: return "medal"
-        case .MedalFill: return "medal.fill"
-        case .NoteTextBadgePlus: return "note.text.badge.plus"
-        case .ListBullet: return "list.bullet.rectangle.portrait.fill"
-        case .LockFill: return "lock.fill"
-        case .PaperPlaneFill: return "paperplane.fill"
-        case .Pencil: return "pencil"
-        case .PencilAndOutline: return "pencil.and.outline"
-        case .PersonFill: return "person.fill"
-        case .Plus: return "plus"
-        case .PlusAppFill: return "plus.app.fill"
-        case .PlusCircle: return "plus.circle"
-        case .PlusCircleFill: return "plus.circle.fill"
-        case .RectangleAndPencilAndEllipsis: return "rectangle.and.pencil.and.ellipsis"
-        case .RectanglePlus: return "rectangle.stack.fill.badge.plus"
-        case .RectanglePortraitAndArrowRight: return "rectangle.portrait.and.arrow.right"
-        case .SquareFill: return "square.fill"
-        case .SquareAndPencil: return "square.and.pencil"
-        case .TableCells: return "tablecells"
-        case .TextBadgePlus: return "text.badge.plus"
-        case .Trash: return "trash"
-        case .TrashCircleFill: return "trash.circle.fill"
-        case .TriangleFill: return "triangle.fill"
-        }
-    }
-    
-    enum UserDefault: CustomStringConvertible {
-        case AccentColor
-        case DarkMode
-        
-        var description : String {
-            switch self {
-            case .AccentColor: return "accentColor"
-            case .DarkMode: return "darkMode"
-            }
-        }
-    }
+enum FirebaseCollection: String {
+    case MovementCollection = "Movements"
+    case LogsCollection = "Logs"
 }
 
-enum InfoText: CustomStringConvertible {
-    case CreateNewMovement
-    case DeleteAllDataConfirmation
-    case NoData
-    case NoDataOnDay
-    case NoWayToUndo
-    
-    var description: String {
-        switch self {
-        case .CreateNewMovement: return "Click on the  +  to create a new movement to track your sets"
-        case .DeleteAllDataConfirmation: return "Are you sure you want to delete this movement and all the logged data associated with it?"
-        case .NoData: return "No data\nLog some sets"
-        case .NoDataOnDay: return "No data logged for this day"
-        case .NoWayToUndo: return "There is no way to undo this action."
-        }
-    }
+enum Icons: String {
+    case ArrowCounterclockwise = "arrow.counterclockwise"
+    case ArrowshapeForwardFill = "arrowshape.forward.fill"
+    case Atom = "atom"
+    case Bench = "bench"
+    case BookMarkFill = "bookmark.fill"
+    case Calendar = "calendar"
+    case ChartXYAxis = "chart.xyaxis.line"
+    case ChevronCompactDown = "chevron.compact.down"
+    case ChevronCompactUp = "chevron.compact.up"
+    case ChevronForward = "chevron.forward"
+    case ChevronLeft = "chevron.left"
+    case ChevronRight = "chevron.right"
+    case ChevronCompactLeft = "chevron.compact.left"
+    case ChevronCompactRight = "chevron.compact.right"
+    case CircleFill = "circle.fill"
+    case CircleHexagongrid = "circle.hexagongrid"
+    case Dumbell = "dumbbell"
+    case DumbellFill = "dumbbell.fill"
+    case ErrorTriangle = "exclamationmark.triangle"
+    case Eye = "eye"
+    case EyeFill = "eye.fill"
+    case EyeSlash = "eye.slash"
+    case FigureArmsOpen = "figure.arms.open"
+    case FigureCoreTraining = "figure.core.training"
+    case FigureHighIntensityIntervaltraining = "figure.highintensity.intervaltraining"
+    case FigureRower = "figure.rower"
+    case FigureStrengthTraining = "figure.strengthtraining.traditional"
+    case FigureStrengthTrainingFunctional = "figure.strengthtraining.functional"
+    case Flame = "flame"
+    case FlameFill = "flame.fill"
+    case GearshapeFill = "gearshape.fill"
+    case HeartFill = "heart.fill"
+    case Infinity = "infinity"
+    case InfoCircle = "info.circle"
+    case Medal = "medal"
+    case MedalFill = "medal.fill"
+    case Minus = "minus"
+    case MinusCircleFill = "minus.circle.fill"
+    case NoteTextBadgePlus = "note.text.badge.plus"
+    case ListBullet = "list.bullet.rectangle.portrait.fill"
+    case LockFill = "lock.fill"
+    case PaperPlaneFill = "paperplane.fill"
+    case Pencil = "pencil"
+    case PencilAndOutline = "pencil.and.outline"
+    case PersonFill = "person.fill"
+    case Plus = "plus"
+    case PlusAppFill = "plus.app.fill"
+    case PlusCircle = "plus.circle"
+    case PlusCircleFill = "plus.circle.fill"
+    case RectangleAndPencilAndEllipsis = "rectangle.and.pencil.and.ellipsis"
+    case RectanglePlus = "rectangle.stack.fill.badge.plus"
+    case RectanglePortraitAndArrowRight = "rectangle.portrait.and.arrow.right"
+    case SquareFill = "square.fill"
+    case SquareAndPencil = "square.and.pencil"
+    case TableCells = "tablecells"
+    case TextBadgePlus = "text.badge.plus"
+    case Trash = "trash"
+    case TrashCircleFill = "trash.circle.fill"
+    case TriangleFill = "triangle.fill"
 }
 
-enum MovementSelection: String, PersistableEnum, Identifiable {
+enum InfoText: String {
+    case CreateNewMovement = "Click on the + to create a new movement to track your sets"
+    case DeleteAllDataConfirmation = "Are you sure you want to delete this movement and all the logged data associated with it?"
+    case NoData = "No data\nLog some sets"
+    case NoDataOnDay = "No data logged for this day"
+    case NoWayToUndo = "There is no way to undo this action."
+}
+
+enum MovementSelection: String, Identifiable {
     var id: MovementSelection { self }
     case Activity = "Activity"
     case Routines = "Routines"
     case Library = "Library"
 }
 
-enum MovementType: String, PersistableEnum, Identifiable {
+enum MovementType: String, Identifiable, Codable {
     var id: MovementType { self }
     case Weight = "Weights"
     case Bodyweight = "Bodyweight"
 }
 
-enum MuscleType: String, PersistableEnum, Identifiable {
-    var id: MuscleType { self }
+enum MovementAttributes: String {
+    case UserId = "userId"
+    case Name = "name"
+    case MuscleGroup = "muscleGroup"
+    case MovementType = "movementType"
+    case TimeAdded = "timeAdded"
+    case IsPremium = "isPremium"
+    case MutatingValue = "mutatingValue"
+}
+
+enum MuscleGroup: String, Identifiable, Codable, CaseIterable {
+    var id: MuscleGroup { self }
     case All = "All"
     case Arms = "Arms"
     case Back = "Back"
@@ -266,34 +153,19 @@ enum MuscleType: String, PersistableEnum, Identifiable {
     case Shoulders = "Shoulders"
 }
 
-enum ProgressText: CustomStringConvertible {
-    case Connecting
-    case Downloading
-    case ErrorGoingToLogin
-    case Loading
-    case Login
-    case Opening
-    
-    var description: String {
-        switch self {
-        case .Connecting: return "Connecting..."
-        case .Downloading: return "Downloading..."
-        case .ErrorGoingToLogin: return "Error loading data, going back to login..."
-        case .Loading: return "Loading..."
-        case .Login: return "Waiting for login..."
-        case .Opening: return "Opening..."
-        }
-    }
+enum ProgressText: String {
+    case OneRep = "One Rep"
+    case Loading = "Loading..."
 }
 
-enum RepType: String, PersistableEnum {
+enum RepType: String, Identifiable, Codable, CaseIterable {
+    var id: RepType { self }
     case WarmUp = "Warm Up"
     case WorkingSet = "Working Set"
     case PR = "PR"
 }
 
-enum Weekdays: String, PersistableEnum, Identifiable {
-    var id: Weekdays { self }
+enum Weekdays: String {
     case Sun = "Sun"
     case Mon = "Mon"
     case Tue = "Tue"
@@ -303,7 +175,7 @@ enum Weekdays: String, PersistableEnum, Identifiable {
     case Sat = "Sat"
 }
 
-enum UnitSelection: String, PersistableEnum, Identifiable {
+enum UnitSelection: String, Identifiable, Codable, CaseIterable {
     var id: UnitSelection { self }
     case lbs = "lbs"
     case kgs = "kgs"

@@ -11,33 +11,33 @@ class ThemeModel: ObservableObject {
     
     init(accent: String) {
         self.accent = accent
-        self.backgroundColor = Colors.BackgroundColor.description
-        self.backgroundElementColor = Colors.BackgroundElementColor.description
+        self.backgroundColor = Colors.BackgroundColor.rawValue
+        self.backgroundElementColor = Colors.BackgroundElementColor.rawValue
         
-        self.darkRed = Colors.DarkRed.description
-        self.lightRed = Colors.LightRed.description
+        self.darkRed = Colors.DarkRed.rawValue
+        self.lightRed = Colors.LightRed.rawValue
         
-        self.lightBlue = Colors.LightBlue.description
-        self.darkBlue = Colors.DarkBlue.description
-        self.darkOrange = Colors.DarkOrange.description
-        self.lightOrange = Colors.LightOrange.description
-        self.darkPink = Colors.DarkPink.description
-        self.lightPink = Colors.LightPink.description
-        self.darkYellow = Colors.DarkYellow.description
-        self.lightYellow = Colors.LightYellow.description
+        self.lightBlue = Colors.LightBlue.rawValue
+        self.darkBlue = Colors.DarkBlue.rawValue
+        self.darkOrange = Colors.DarkOrange.rawValue
+        self.lightOrange = Colors.LightOrange.rawValue
+        self.darkPink = Colors.DarkPink.rawValue
+        self.lightPink = Colors.LightPink.rawValue
+        self.darkYellow = Colors.DarkYellow.rawValue
+        self.lightYellow = Colors.LightYellow.rawValue
         
-        if accent == Colors.LightGreen.description {
-            self.darkBaseColor = Colors.DarkGreen.description
-            self.lightBaseColor = Colors.LightGreen.description
-        } else if accent == Colors.LightPink.description {
-            self.darkBaseColor = Colors.DarkPink.description
-            self.lightBaseColor = Colors.LightPink.description
-        } else if accent == Colors.Primary.description {
-            self.lightBaseColor = Colors.Primary.description
-            self.darkBaseColor = Colors.Primary.description
+        if accent == Colors.LightGreen.rawValue {
+            self.darkBaseColor = Colors.DarkGreen.rawValue
+            self.lightBaseColor = Colors.LightGreen.rawValue
+        } else if accent == Colors.LightPink.rawValue {
+            self.darkBaseColor = Colors.DarkPink.rawValue
+            self.lightBaseColor = Colors.LightPink.rawValue
+        } else if accent == Colors.Primary.rawValue {
+            self.lightBaseColor = Colors.Primary.rawValue
+            self.darkBaseColor = Colors.Primary.rawValue
         } else {
-            self.darkBaseColor = Colors.DarkGreen.description
-            self.lightBaseColor = Colors.LightGreen.description
+            self.darkBaseColor = Colors.DarkGreen.rawValue
+            self.lightBaseColor = Colors.LightGreen.rawValue
         }
     }
     
@@ -62,15 +62,15 @@ class ThemeModel: ObservableObject {
     @Published var lightRed: String
     
     func changeColor(color: String) {
-        if color == Colors.LightGreen.description {
-            self.lightBaseColor = Colors.LightGreen.description
-            self.darkBaseColor = Colors.DarkGreen.description
-        } else if accent == Colors.LightPink.description {
-            self.lightBaseColor = Colors.LightPink.description
-            self.darkBaseColor = Colors.DarkPink.description
-        } else if accent == Colors.Primary.description {
-            self.lightBaseColor = Colors.Primary.description
-            self.darkBaseColor = Colors.Primary.description
+        if color == Colors.LightGreen.rawValue {
+            self.lightBaseColor = Colors.LightGreen.rawValue
+            self.darkBaseColor = Colors.DarkGreen.rawValue
+        } else if accent == Colors.LightPink.rawValue {
+            self.lightBaseColor = Colors.LightPink.rawValue
+            self.darkBaseColor = Colors.DarkPink.rawValue
+        } else if accent == Colors.Primary.rawValue {
+            self.lightBaseColor = Colors.Primary.rawValue
+            self.darkBaseColor = Colors.Primary.rawValue
         }
     }
 }

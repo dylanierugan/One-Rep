@@ -13,7 +13,7 @@ struct HorizontalScroller: View {
     
     @EnvironmentObject var theme: ThemeModel
     
-    @Binding var muscleSelection: MuscleType
+    @Binding var muscleSelection: MuscleGroup
     
     // MARK: - View
     
@@ -21,7 +21,7 @@ struct HorizontalScroller: View {
         /// Horizontal scrollview to allow for muscle group selection
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
-                ForEach(MuscleType.allCases, id: \.rawValue) { muscleGroup in
+                ForEach(MuscleGroup.allCases, id: \.rawValue) { muscleGroup in
                     Button {
                         muscleSelection = muscleGroup
                         HapticManager.instance.impact(style: .soft)
@@ -29,7 +29,7 @@ struct HorizontalScroller: View {
                         HStack {
                             HStack {
                                 if muscleGroup == .All {
-                                    Image(systemName: Icons.Infinity.description)
+                                    Image(systemName: Icons.Infinity.rawValue)
                                         .font(.caption.weight(.bold))
                                         .padding(.trailing, 16)
                                 } else {
