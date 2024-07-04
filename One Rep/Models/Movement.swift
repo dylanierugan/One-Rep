@@ -8,9 +8,9 @@
 import Foundation
 import Firebase
 
-public struct Movement: Codable, Hashable {
+public struct Movement: Identifiable, Codable, Hashable, Equatable {
     
-    let id: String
+    public let id: String
     let userId: String
     var name: String
     var muscleGroup: MuscleGroup

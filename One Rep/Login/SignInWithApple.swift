@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SignInWithApple: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var authManager: AuthManager

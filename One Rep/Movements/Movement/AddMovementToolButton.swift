@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddMovementToolButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     

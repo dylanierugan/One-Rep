@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LogOutButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var authManager: AuthManager

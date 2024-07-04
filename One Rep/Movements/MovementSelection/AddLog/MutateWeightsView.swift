@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MutateWeightView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
@@ -51,7 +51,7 @@ struct MutateWeightView: View {
             .padding(.bottom, 6)
             
             HStack(spacing: 0) {
-                MutateWieghtButton(color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -mutatingValue)
                 
                 TextField("", value: $logController.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
                     .accentColor(Color(theme.darkBaseColor))
@@ -63,7 +63,7 @@ struct MutateWeightView: View {
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .focused($isInputActive)
                 
-                MutateWieghtButton(color: .primary, icon: Icons.Plus.rawValue, mutatingValue: mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: mutatingValue)
             }
         }
         .onAppear() {

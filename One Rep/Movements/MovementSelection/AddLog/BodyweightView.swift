@@ -10,7 +10,7 @@
 //
 //struct BodyweightView: View {
 //    
-//    // MARK: - Vars
+//    // MARK: - Properties
 //    
 //    @EnvironmentObject var logViewModel: LogViewModel
 //    

@@ -9,14 +9,13 @@ import SwiftUI
 
 struct EditMovementView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var movementViewModel: MovementViewModel
-    @EnvironmentObject var resultHandler: ResultHandler
+    @EnvironmentObject var movementsViewModel: MovementsViewModel
     
-    @Binding var movement: Movement
+    @ObservedObject var movementViewModel = MovementViewModel()
     
     @State private var newMovementName = ""
     @State private var newMovementType: MovementType = .Weight
@@ -47,7 +46,7 @@ struct EditMovementView: View {
                         Text("Edit name")
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
-                        MovementNameTextField(focus: false, movementName: $newMovementName, text: movement.name)
+                        MovementNameTextField(focus: false, movementName: $newMovementName, text: movementViewModel.movement.name)
                     }
                     .padding(.horizontal, 16)
                     
@@ -68,8 +67,8 @@ struct EditMovementView: View {
                         DeleteMovementButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteMovementAlert: $showingDeleteMovementAlert, deleteMovementInFirebase: {
                             Task {
                                 showDeleteProgressView = true
-                                let result = await movementViewModel.deleteMovement(docId: movement.id)
-                                resultHandler.handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
+                                let result = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
+                                handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
                             }
                         })
                     }
@@ -80,11 +79,12 @@ struct EditMovementView: View {
                             UpdateMovementButton(updateMovementInFirebase: {
                                 Task {
                                     showEditProgressView = true
-                                    let result = await movementViewModel.editMovement(docId: movement.id, newName: newMovementName, newMuscleGroup: newMuscleGroup, newMovementType: newMovementType)
-                                    resultHandler.handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
-                                    movement.name = newMovementName
-                                    movement.muscleGroup = newMuscleGroup
-                                    movement.movementType = newMovementType
+                                    movementViewModel.movement.name = newMovementName
+                                    movementViewModel.movement.movementType = newMovementType
+                                    movementViewModel.movement.muscleGroup = newMuscleGroup
+                                    let result = await movementViewModel.updateMovement()
+                                    dismiss()
+                                    handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
                                 }
                             })
                         }
@@ -92,13 +92,23 @@ struct EditMovementView: View {
                 })
             }
             .onAppear {
-                newMovementName = movement.name
-                newMovementType = movement.movementType
-                newMuscleGroup = movement.muscleGroup
+                newMovementName = movementViewModel.movement.name
+                newMovementType = movementViewModel.movement.movementType
+                newMuscleGroup = movementViewModel.movement.muscleGroup
             }
             .onDisappear {
                 showDoneToolBar = true
             }
+        }
+    }
+    
+    func handleResultDismiss(result: FirebaseResult?, dismiss: DismissAction, errorMessage: String) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            dismiss()
+        case .failure(_):
+            print(errorMessage)
         }
     }
 }

@@ -10,7 +10,7 @@
 //
 //struct LogBodyweightSection: View {
 //    
-//    // MARK: - Vars
+//    // MARK: - Properties
 //    
 //    @EnvironmentObject var theme: ThemeModel
 //    @EnvironmentObject var logViewModel: LogViewModel

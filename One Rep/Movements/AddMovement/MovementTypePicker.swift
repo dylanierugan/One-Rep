@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovementTypePicker: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     
@@ -40,7 +40,7 @@ struct MovementTypePicker: View {
 
 struct MovementTypePickerButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
 

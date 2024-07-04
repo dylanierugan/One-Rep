@@ -18,7 +18,7 @@ enum AuthState {
 @MainActor
 class AuthManager: ObservableObject {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @Published var user: User?
     @Published var authState = AuthState.signedOut

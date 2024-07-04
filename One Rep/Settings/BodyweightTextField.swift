@@ -10,7 +10,7 @@ import SwiftUI
 
 struct BodyweightTextField: View {
     
-    // MARK: - Vars
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     

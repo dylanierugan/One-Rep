@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SetBodyweightButton: View {
     
-    // MARK: - Vars
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     

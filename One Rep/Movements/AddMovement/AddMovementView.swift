@@ -9,11 +9,10 @@ import SwiftUI
 
 struct AddMovementView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var movementViewModel: MovementViewModel
-    @EnvironmentObject var resultHandler: ResultHandler
+    @EnvironmentObject var movementsViewModel: MovementsViewModel
     @Environment(\.dismiss) private var dismiss
     
     @State private var movementName = ""
@@ -65,12 +64,12 @@ struct AddMovementView: View {
                         } else {
                             AddMovementButton(isFormValid: isFormValid, addMovementToFirebase: {
                                 let docId = UUID().uuidString
-                                let newMovement = Movement(id: docId, userId: movementViewModel.userId, name: movementName, muscleGroup: muscleGroup, movementType: movementType, timeAdded: Date.now.timeIntervalSince1970, isPremium: false, mutatingValue: 5.0)
+                                let newMovement = Movement(id: docId, userId: movementsViewModel.userId, name: movementName, muscleGroup: muscleGroup, movementType: movementType, timeAdded: Date.now.timeIntervalSince1970, isPremium: false, mutatingValue: 5.0)
                                 Task {
                                     showProgressView = true
-                                    let result = await movementViewModel.addMovement(movement: newMovement)
+                                    let result = await movementsViewModel.addMovement(movement: newMovement)
                                     showProgressView = false
-                                    resultHandler.handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
+                                    handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
                                 }
                             })
                         }
@@ -79,4 +78,15 @@ struct AddMovementView: View {
             }
         }
     }
+    
+    func handleResultDismiss(result: FirebaseResult?, dismiss: DismissAction, errorMessage: String) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            dismiss()
+        case .failure(_):
+            print(errorMessage)
+        }
+    }
+    
 }

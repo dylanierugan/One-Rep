@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UpdateMovementButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel

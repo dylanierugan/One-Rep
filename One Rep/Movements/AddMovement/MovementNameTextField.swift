@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovementNameTextField: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountSection: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
    

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeleteMovementButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.dismiss) private var dismiss

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MutateRepsView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController

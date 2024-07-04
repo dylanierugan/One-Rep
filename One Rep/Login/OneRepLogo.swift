@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OneRepLogo: View {
     
-    // MARK: - Variable
+    // MARK: - Properties
     
     var size: Font.TextStyle
     

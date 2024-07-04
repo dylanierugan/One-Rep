@@ -9,20 +9,18 @@ import SwiftUI
 
 struct MovementCardButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
-    
-    @Binding var selectedMovement: Movement?
 
-    @State var movement: Movement
+    var movement: Movement
     
     // MARK: - View
     
     var body: some View {
         ZStack(alignment: .trailing) {
             NavigationLink {
-                LogView(movement: $movement)
+                LogView(movement: movement)
             } label: {
                 HStack {
                     HStack() {

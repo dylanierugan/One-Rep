@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RecordBodyweightView: View {
     
-    // MARK: - Vars
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     

@@ -10,7 +10,7 @@ import Firebase
 
 struct LoginView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel

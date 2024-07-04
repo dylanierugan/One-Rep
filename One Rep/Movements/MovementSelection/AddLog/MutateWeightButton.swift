@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MutateWieghtButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var logController: LogController
+    
+    @State var isEditing: Bool
     
     var color: Color
     var icon: String
@@ -21,12 +23,16 @@ struct MutateWieghtButton: View {
     
     var body: some View {
         Button {
-            logController.mutateWeight(mutatingValue)
+            if isEditing {
+                logController.mutateEditWeight(mutatingValue)
+            } else {
+                logController.mutateWeight(mutatingValue)
+            }
             HapticManager.instance.impact(style: .soft)
         } label: {
             ZStack {
                 Rectangle()
-                    .foregroundColor(.secondary.opacity(0.05))
+                    .foregroundColor(.secondary.opacity(0.075))
                     .frame(width: 36, height: 36)
                     .cornerRadius(8)
                 Image(systemName: icon)

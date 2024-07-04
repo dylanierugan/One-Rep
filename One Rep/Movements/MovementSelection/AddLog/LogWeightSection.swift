@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LogWeightSection: View {
     
-    // MARK: - Vars
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
     
@@ -21,7 +21,7 @@ struct LogWeightSection: View {
     // MARK: - View
     
     var body: some View {
-        VStack(alignment: .center, spacing: 16) {
+        VStack(alignment: .center, spacing: 12) {
             HStack(spacing: 8) {
                  MutateWeightView(movement: movement, isInputActive: _isInputActive)
                  MutateRepsView(isInputActive: _isInputActive)
@@ -45,7 +45,7 @@ struct LogWeightSection: View {
             LogSetButton(movement: movement)
                 .padding(.top, 8)
         }
-        .padding(.vertical, 24)
+        .padding(.vertical, 16)
         .background(Color(theme.backgroundElementColor))
     }
 }

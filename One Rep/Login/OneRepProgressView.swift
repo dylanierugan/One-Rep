@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OneRepProgressView: View {
     
-    // MARK: - Variable
+    // MARK: - Properties
     
     var text: String
     

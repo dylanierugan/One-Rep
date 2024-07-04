@@ -9,11 +9,10 @@ import SwiftUI
 
 struct LogSetButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var resultHandler: ResultHandler
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.colorScheme) var colorScheme
     
@@ -37,7 +36,7 @@ struct LogSetButton: View {
                 addingLog = true
                 let result = await logViewModel.addLog(log: log)
                 addingLog = false
-                resultHandler.handleResultLogSet(result: result, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
+                handleResultLogSet(result: result, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
             }
             HapticManager.instance.impact(style: .light)
         } label: {
@@ -50,12 +49,23 @@ struct LogSetButton: View {
             .padding(.horizontal, 16)
             .background(
                 .linearGradient(colors: [
-                    .secondary.opacity(0.05),
-                    .secondary.opacity(0.05)
+                    .secondary.opacity(0.075),
                 ], startPoint: .top, endPoint: .bottom)
             )
             .cornerRadius(16)
             .foregroundColor(.white)
+        }
+    }
+    
+    func handleResultLogSet(result: FirebaseResult?, errorMessage: String) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+            return
+        case .failure(_):
+            print(errorMessage)
         }
     }
 }

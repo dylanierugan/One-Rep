@@ -9,12 +9,17 @@ import Foundation
 
 class LogController: ObservableObject {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @Published var reps: Int = 0
-    @Published var weight: Double = 0
     @Published var repsStr = ""
+    @Published var editReps: Int = 0
+    @Published var editRepsStr = ""
+    
+    @Published var weight: Double = 0
     @Published var weightStr = ""
+    @Published var editWeight: Double = 0
+    @Published var editWeightStr = ""
     
     @Published var lastLog: Log? = nil
     
@@ -41,7 +46,14 @@ class LogController: ObservableObject {
         }
     }
     
-    // MARK: - Functions (Weight)
+    func mutateEditWeight(_ mutatingValue: Double) {
+        if editWeight + mutatingValue >= 0 && editWeight + mutatingValue <= 999 {
+            editWeight += mutatingValue
+            editWeightStr = editWeight.clean
+        }
+    }
+    
+    // MARK: - Functions (Reps)
     
     func mutateReps(_ mutatingValue: Int) {
         if reps > 0 || reps < 999 {
@@ -63,6 +75,29 @@ class LogController: ObservableObject {
     func limitRepsText(_ upper: Int) {
         if repsStr.count > upper {
             repsStr = String(repsStr.prefix(upper))
+        }
+    }
+    
+    func mutateEditReps(_ mutatingValue: Int) {
+        if editReps > 0 || editReps < 999 {
+            editReps += mutatingValue
+            editRepsStr = String(editReps)
+        }
+    }
+    
+    func bindEditRepValues() {
+        if editRepsStr.isEmpty {
+            editReps = 0
+        } else if let value = Int(editRepsStr) {
+            editReps = value
+        } else {
+            editRepsStr = String(editReps)
+        }
+    }
+    
+    func limitEditRepsText(_ upper: Int) {
+        if editRepsStr.count > upper {
+            editRepsStr = String(editRepsStr.prefix(upper))
         }
     }
 }

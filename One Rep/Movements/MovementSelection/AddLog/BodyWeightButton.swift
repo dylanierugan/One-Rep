@@ -9,7 +9,7 @@
 //
 //struct BodyWeightButton: View {
 //    
-//    // MARK: - Variables
+//    // MARK: - Properties
 //    
 //    @EnvironmentObject var theme: ThemeModel
 //    

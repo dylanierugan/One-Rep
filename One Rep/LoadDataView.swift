@@ -10,13 +10,11 @@ import SwiftUI
 
 struct LoadDataView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var movementViewModel: MovementViewModel
-    
-    @EnvironmentObject var resultHandler: ResultHandler
+    @EnvironmentObject var movementsViewModel: MovementsViewModel
     
     @State var movementsLoading = true
     @State var logsLoading = true
@@ -47,9 +45,9 @@ struct LoadDataView: View {
     // MARK: - Functions
     
     private func getMovements(userId: String) {
-        if movementViewModel.movements.isEmpty {
-            movementViewModel.userId = userId
-            movementViewModel.getMovementsAddSnapshot { result in
+        if movementsViewModel.movements.isEmpty {
+            movementsViewModel.userId = userId
+            movementsViewModel.subscribeToMovements { result in
                 switch result {
                 case .success:
                     DispatchQueue.main.async {

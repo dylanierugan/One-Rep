@@ -9,7 +9,7 @@
 //
 //struct DeleteLogButton: View {
 //    
-//    // MARK: - Variables
+//    // MARK: - Properties
 //    
 //    @EnvironmentObject var theme: ThemeModel
 //    @Environment(\.dismiss) private var dismiss

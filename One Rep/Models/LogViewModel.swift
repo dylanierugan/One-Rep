@@ -44,6 +44,7 @@ class LogViewModel: ObservableObject {
     
     /// Filter logs for the movementId
     func filterLogs(movementId: String) {
+        filteredLogs = []
         self.filteredLogs = logs.filter { $0.movementId == movementId }
     }
     
@@ -69,7 +70,6 @@ class LogViewModel: ObservableObject {
             self.filteredLogs = logs.filter { $0.weight == weight }
         }
         self.filteredLogs = filteredLogs.sorted(by: { $0.timeAdded > $1.timeAdded })
-        let realmList = [Log]()
     }
     
     /// Populate listOfDates with unique dates and sort
@@ -84,16 +84,27 @@ class LogViewModel: ObservableObject {
     }
     
     /// Populate logsByDate where the key = date and val = array of logs
-    func populateDateLogMap(_ logs: [Log]) {
+    func populateDateLogMap() {
         dateLogMap = [:]
         for date in self.listOfDates { /// Create all dict keys with empty lists
             self.dateLogMap[date] = []
         }
-        for log in logs {
+        for log in filteredLogs {
             let stringDate = formatDate(date: log.timeAdded)
             if self.listOfDates.contains(stringDate) {
                 self.dateLogMap[stringDate]?.append(log)
             }
+        }
+    }
+    
+    func repopulateViewModel(weightSelection: String, movement: Movement) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            self.weightSelection = weightSelection
+            self.filterLogs(movementId: movement.id)
+            self.populateListOfWeights()
+            self.filterWeightAndPopulateData(movementId: movement.id)
+            self.populateListOfDates()
+            self.populateDateLogMap()
         }
     }
     
@@ -142,7 +153,7 @@ class LogViewModel: ObservableObject {
                     let timeAdded = document[LogAttributes.TimeAdded.rawValue] as? Double ?? 0
                     let unitString = document[LogAttributes.Unit.rawValue] as? String ?? ""
                     let unit = UnitSelection(rawValue: unitString) ?? UnitSelection.lbs
-                    let log = Log(id: docId, userId: self.userId, movementId: movementId, reps: reps, weight: weight, isBodyWeight: isBodyWeight, timeAdded: timeAdded, unit: unit)
+                    let log = Log(id: docId, userId: self.userId, movementId: movementId, reps: reps, weight: weight, isBodyWeight: isBodyWeight, timeAdded: timeAdded, unit: unit, index: 0)
                     self.logs.append(log)
                 }
                 completion(.success)
@@ -159,15 +170,12 @@ class LogViewModel: ObservableObject {
         }
     }
     
-    func editLog(docId: String, newRep: Int, newWeight: Double, newTimeAdded: Double) async -> FirebaseResult {
+    func updateLog(log: Log) async -> FirebaseResult {
         do {
-            try await db.collection(FirebaseCollection.LogsCollection.rawValue).document(docId).updateData([
-                LogAttributes.Reps.rawValue : newRep,
-                LogAttributes.Weight.rawValue : newWeight,
-                LogAttributes.TimeAdded.rawValue: newTimeAdded
-            ])
+            try db.collection(FirebaseCollection.LogsCollection.rawValue).document(log.id).setData(from: log)
             return .success
-        } catch {
+        }
+        catch {
             return .failure(error)
         }
     }

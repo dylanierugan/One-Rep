@@ -14,10 +14,9 @@ struct One_RepApp: SwiftUI.App {
     // MARK: - StateObjects
 
     @StateObject var authManager = AuthManager()
-    @StateObject var movementViewModel = MovementViewModel()
+    @StateObject var movementsViewModel = MovementsViewModel()
     @StateObject var logViewModel = LogViewModel()
     @StateObject var logController = LogController()
-    @StateObject var resultHandler = ResultHandler()
     @StateObject var viewRouter = ViewRouter()
     @StateObject var themeModel = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue)
     
@@ -35,8 +34,7 @@ struct One_RepApp: SwiftUI.App {
                 .environmentObject(authManager)
                 .environmentObject(logController)
                 .environmentObject(logViewModel)
-                .environmentObject(movementViewModel)
-                .environmentObject(resultHandler)
+                .environmentObject(movementsViewModel)
                 .environmentObject(themeModel)
                 .environmentObject(viewRouter)
                 .environment(\.sizeCategory, .extraSmall)

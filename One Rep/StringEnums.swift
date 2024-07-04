@@ -49,6 +49,11 @@ enum FirebaseCollection: String {
     case LogsCollection = "Logs"
 }
 
+enum FirebaseResult {
+    case success
+    case failure(Error)
+}
+
 enum Icons: String {
     case ArrowCounterclockwise = "arrow.counterclockwise"
     case ArrowshapeForwardFill = "arrowshape.forward.fill"

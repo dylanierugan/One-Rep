@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MutateRepsButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @EnvironmentObject var logController: LogController
     
@@ -26,7 +26,7 @@ struct MutateRepsButton: View {
         } label: {
             ZStack {
                 Rectangle()
-                    .foregroundColor(.secondary.opacity(0.05))
+                    .foregroundColor(.secondary.opacity(0.075))
                     .frame(width: 36, height: 36)
                     .cornerRadius(8)
                 Image(systemName: icon)
