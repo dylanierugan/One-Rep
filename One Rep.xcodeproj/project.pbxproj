@@ -37,7 +37,6 @@
 		370730A52C01638D00E95989 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A42C01638D00E95989 /* AccountView.swift */; };
 		370730A82C01668A00E95989 /* DeleteAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A72C01668A00E95989 /* DeleteAccountButton.swift */; };
 		370730AB2C022C9000E95989 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730AA2C022C9000E95989 /* AuthService.swift */; };
-		3723DA1F2C36EF7A009ABE7F /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3723DA1E2C36EF7A009ABE7F /* MovementViewModel.swift */; };
 		3740691F2C2E41C200692ECD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 3740691E2C2E41C200692ECD /* FirebaseAnalytics */; };
 		374069212C2E41C200692ECD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 374069202C2E41C200692ECD /* FirebaseAnalyticsOnDeviceConversion */; };
 		374069232C2E41C200692ECD /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 374069222C2E41C200692ECD /* FirebaseAnalyticsSwift */; };
@@ -71,6 +70,7 @@
 		374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069752C2E945700692ECD /* MovementsViewModel.swift */; };
 		3740697A2C2F14AC00692ECD /* LoadDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069792C2F14AC00692ECD /* LoadDataView.swift */; };
 		3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740697B2C2FC26D00692ECD /* LogViewModel.swift */; };
+		3742229F2C37226300A7AEFA /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3742229E2C37226300A7AEFA /* MovementViewModel.swift */; };
 		37881F502C05AC1800ABBF42 /* OneRepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */; };
 		37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */; };
 		37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */; };
@@ -154,7 +154,6 @@
 		370730A42C01638D00E95989 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		370730A72C01668A00E95989 /* DeleteAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountButton.swift; sourceTree = "<group>"; };
 		370730AA2C022C9000E95989 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		3723DA1E2C36EF7A009ABE7F /* MovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
 		374069572C2E530C00692ECD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3740696F2C2E5D9800692ECD /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		374069712C2E5EB400692ECD /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
@@ -162,6 +161,7 @@
 		374069752C2E945700692ECD /* MovementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsViewModel.swift; sourceTree = "<group>"; };
 		374069792C2F14AC00692ECD /* LoadDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataView.swift; sourceTree = "<group>"; };
 		3740697B2C2FC26D00692ECD /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
+		3742229E2C37226300A7AEFA /* MovementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
 		37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepProgressView.swift; sourceTree = "<group>"; };
 		37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTypePicker.swift; sourceTree = "<group>"; };
 		37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightSection.swift; sourceTree = "<group>"; };
@@ -415,7 +415,7 @@
 			isa = PBXGroup;
 			children = (
 				37A655352BA7466300B96BEB /* Movement.swift */,
-				3723DA1E2C36EF7A009ABE7F /* MovementViewModel.swift */,
+				3742229E2C37226300A7AEFA /* MovementViewModel.swift */,
 				374069752C2E945700692ECD /* MovementsViewModel.swift */,
 				3740697B2C2FC26D00692ECD /* LogViewModel.swift */,
 				3707306B2BF12B8800E95989 /* LogViewModel2.swift */,
@@ -436,7 +436,7 @@
 				370730742BF723BB00E95989 /* Movement */,
 				37A655572BBDAD5300B96BEB /* AddMovement */,
 				37A655592BBDADAD00B96BEB /* Edit Movement */,
-				37A655652BC6018700B96BEB /* MovementSelection */,
+				37A655652BC6018700B96BEB /* Logs */,
 				370730732BF7239D00E95989 /* Activity */,
 			);
 			path = Movements;
@@ -482,7 +482,7 @@
 			path = "Edit Movement";
 			sourceTree = "<group>";
 		};
-		37A655652BC6018700B96BEB /* MovementSelection */ = {
+		37A655652BC6018700B96BEB /* Logs */ = {
 			isa = PBXGroup;
 			children = (
 				37A655662BC6025300B96BEB /* LogView.swift */,
@@ -490,7 +490,7 @@
 				370730992BFF719C00E95989 /* EditLog */,
 				370730A32C000A7900E95989 /* LogTable */,
 			);
-			path = MovementSelection;
+			path = Logs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -596,10 +596,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3707307A2BF8805900E95989 /* DayPicker.swift in Sources */,
+				3742229F2C37226300A7AEFA /* MovementViewModel.swift in Sources */,
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
 				37881F5E2C164C5C00ABBF42 /* SetBodyweightButton.swift in Sources */,
 				37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */,
-				3723DA1F2C36EF7A009ABE7F /* MovementViewModel.swift in Sources */,
 				3707306C2BF12B8800E95989 /* LogViewModel2.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementToolButton.swift in Sources */,
 				3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */,

@@ -61,7 +61,11 @@ struct LogSetButton: View {
         guard let result = result else { return }
         switch result {
         case .success:
-            logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+            if logViewModel.weightSelection != "All" {
+                logViewModel.repopulateViewModel(weightSelection: logController.weightStr, movement: movement)
+            } else {
+                logViewModel.repopulateViewModel(weightSelection: "All", movement: movement)
+            }
             logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
             return
         case .failure(_):

@@ -46,7 +46,7 @@ struct LogView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
-                    if logViewModel.filteredLogs.count != 0 {
+                    if logViewModel.logs.count != 0 {
                         if movement.movementType != .Bodyweight {
                             WeightHorizontalScroller(movement: movement)
                         }
@@ -80,10 +80,10 @@ struct LogView: View {
                             VStack {
                                 if let logs = logViewModel.dateLogMap[date] {
                                     VStack {
-                                        ForEach(logs.reversed(), id: \.id) { log in
+                                        ForEach(Array(logs.reversed().enumerated()), id: \.element.id) { index, log in
                                             HStack {
                                                 VStack {
-                                                    LogCard(log: log, movement: movement, showDoneToolBar: $showDoneToolBar)
+                                                    LogCard(log: log, movement: movement, index: index + 1, showDoneToolBar: $showDoneToolBar)
                                                 }
                                                 if isEditingLogs {
                                                     DeleteLogTrashIconButton(movement: movement, log: log, selectedLog: $selectedLog)

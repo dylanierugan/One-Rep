@@ -40,7 +40,7 @@ struct EditWeightTextField: View {
                 .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
                 .focused($isInputActive)
                 .onAppear() {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         logController.weight = log.weight
                     }
                 }

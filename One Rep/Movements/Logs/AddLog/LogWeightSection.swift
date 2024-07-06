@@ -23,8 +23,9 @@ struct LogWeightSection: View {
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
             HStack(spacing: 8) {
-                 MutateWeightView(movement: movement, isInputActive: _isInputActive)
-                 MutateRepsView(isInputActive: _isInputActive)
+                MutateWeightView(movementViewModel: MovementViewModel(movement: movement), isInputActive: _isInputActive)
+                Spacer()
+                MutateRepsView(isInputActive: _isInputActive)
             }
             .toolbar {
                 if showDoneToolBar {
@@ -40,7 +41,7 @@ struct LogWeightSection: View {
                     }
                 }
             }
-            .padding(.horizontal, 24)
+            .padding(.horizontal, 28)
             
             LogSetButton(movement: movement)
                 .padding(.top, 8)

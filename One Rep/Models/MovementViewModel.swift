@@ -36,7 +36,7 @@ class MovementViewModel: ObservableObject {
     
     func updateMovement() async -> FirebaseResult {
         do {
-            try db.collection(FirebaseCollection.MovementCollection.rawValue).document(movement.id ).setData(from: self.movement)
+            try db.collection(FirebaseCollection.MovementCollection.rawValue).document(movement.id).setData(from: self.movement)
             return .success
         }
         catch {

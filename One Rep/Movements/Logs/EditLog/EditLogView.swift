@@ -114,9 +114,15 @@ struct EditLogView: View {
         guard let result = result else { return }
         switch result {
         case .success:
-            logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
-            dismiss()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                if logViewModel.weightSelection == "All" {
+                    logViewModel.repopulateViewModel(weightSelection: "All", movement: movement)
+                } else {
+                    logViewModel.repopulateViewModel(weightSelection: logController.editWeightStr, movement: movement)
+                }
+                logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+                dismiss()
+            }
             return
         case .failure(_):
             print(errorMessage)

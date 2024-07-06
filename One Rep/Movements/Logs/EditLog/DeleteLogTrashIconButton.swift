@@ -27,8 +27,6 @@ struct DeleteLogTrashIconButton: View {
             selectedLog = log
             Task {
                 let result = await logViewModel.deleteLog(docId: log.id)
-                logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
-                logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
                 handleDeleteLog(result: result, errorMessage: "")
             }
             HapticManager.instance.impact(style: .light)
@@ -43,10 +41,18 @@ struct DeleteLogTrashIconButton: View {
         }
     }
     
+    // MARK: - Functions
+    
     func handleDeleteLog(result: FirebaseResult?, errorMessage: String) {
         guard let result = result else { return }
         switch result {
         case .success:
+            if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
+                logViewModel.repopulateViewModel(weightSelection: "All", movement: movement)
+            } else {
+                logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+            }
+            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
             return
         case .failure(_):
             print(errorMessage)

@@ -16,8 +16,8 @@ struct MutateWeightView: View {
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
     
+    @ObservedObject var movementViewModel = MovementViewModel()
     @State var mutatingValue: Double = 5
-    @State var movement: Movement
     
     @FocusState var isInputActive: Bool
     
@@ -36,7 +36,11 @@ struct MutateWeightView: View {
                     }
                 }
                 .onChange(of: mutatingValue) {
-                    
+                    Task {
+                        movementViewModel.movement.mutatingValue = mutatingValue
+                        let result = await movementViewModel.updateMovement()
+                        handleResult(result: result, errorMessage: "")
+                    }
                 }
             } label: {
                 HStack {
@@ -46,28 +50,40 @@ struct MutateWeightView: View {
                     Image(systemName: Icons.ChevronCompactDown.rawValue)
                         .foregroundColor(.secondary).opacity(0.7)
                 }
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: 100)
             }
             .padding(.bottom, 6)
             
-            HStack(spacing: 0) {
-                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -mutatingValue)
+            HStack {
+                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -movementViewModel.movement.mutatingValue)
                 
                 TextField("", value: $logController.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)
                     .padding(.vertical, 8)
-                    .frame(width: 72, alignment: .center)
+                    .frame(width: 68, alignment: .center)
                     .cornerRadius(10)
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .focused($isInputActive)
                 
-                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: movementViewModel.movement.mutatingValue)
             }
         }
         .onAppear() {
-            mutatingValue = movement.mutatingValue
+            print(movementViewModel.movement.mutatingValue)
+            mutatingValue = movementViewModel.movement.mutatingValue
+        }
+    }
+    
+    func handleResult(result: FirebaseResult?, errorMessage: String) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            return
+        case .failure(_):
+            print(errorMessage)
+            /// TODO - Handle error
         }
     }
 }

@@ -18,6 +18,7 @@ struct LogCard: View {
     @State var log: Log
     @State var movement: Movement
     @State var showEditMovementPopup = false
+    var index: Int
     
     @Binding var showDoneToolBar: Bool
     
@@ -29,7 +30,14 @@ struct LogCard: View {
             showDoneToolBar = false
         } label: {
                 HStack {
-                    TimeLabel(date: log.timeAdded)
+                    HStack(alignment: .bottom) {
+                        Text("Set")
+                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                            .foregroundStyle(.secondary)
+                        Text(String(index))
+                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                            .foregroundStyle(.primary)
+                    }
                     Spacer()
                     HStack(spacing: 32) {
                         DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight), dataType: logViewModel.unit.rawValue)

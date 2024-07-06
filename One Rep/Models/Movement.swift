@@ -17,7 +17,7 @@ public struct Movement: Identifiable, Codable, Hashable, Equatable {
     var movementType: MovementType
     let timeAdded: Double
     let isPremium: Bool
-    let mutatingValue: Double
+    var mutatingValue: Double
     
     enum CodingKeys: String, CodingKey {
         case id

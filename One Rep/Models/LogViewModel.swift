@@ -35,6 +35,7 @@ class LogViewModel: ObservableObject {
     @Published var filteredLogs = [Log]()
     @Published var weightSelection = "All"
     @Published var listOfWeights = [String]()
+    @Published var weightLogMap = [String: [Log]]()
     @Published var listOfDates = [String]()
     @Published var dateLogMap = [String: [Log]]()
     
@@ -44,7 +45,7 @@ class LogViewModel: ObservableObject {
     
     /// Filter logs for the movementId
     func filterLogs(movementId: String) {
-        filteredLogs = []
+        self.filteredLogs = []
         self.filteredLogs = logs.filter { $0.movementId == movementId }
     }
     
@@ -61,13 +62,35 @@ class LogViewModel: ObservableObject {
         listOfWeights.insert("All", at: 0)
     }
     
+    func populateWeightLogMap() {
+        weightLogMap = [:]
+        for log in filteredLogs {
+            let weightString = convertWeightDoubleToString(log.weight)
+            if weightLogMap[weightString] != nil {
+                weightLogMap[weightString]?.append(log)
+            } else {
+                weightLogMap[weightString] = [log]
+            }
+        }
+    }
+    
+    func checkIfWeightDeleted(movementId: String, weightSelection: String) -> Bool {
+        self.filterLogs(movementId: movementId)
+        self.populateWeightLogMap()
+        if self.weightLogMap[weightSelection] == nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     /// Populate data based on filter for weight
     func filterWeightAndPopulateData(movementId: String) {
         filteredLogs = []
         filterLogs(movementId: movementId)
         if weightSelection != "All" {
             let weight = (weightSelection as NSString).doubleValue
-            self.filteredLogs = logs.filter { $0.weight == weight }
+            self.filteredLogs = filteredLogs.filter { $0.weight == weight }
         }
         self.filteredLogs = filteredLogs.sorted(by: { $0.timeAdded > $1.timeAdded })
     }
@@ -98,14 +121,12 @@ class LogViewModel: ObservableObject {
     }
     
     func repopulateViewModel(weightSelection: String, movement: Movement) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             self.weightSelection = weightSelection
             self.filterLogs(movementId: movement.id)
             self.populateListOfWeights()
             self.filterWeightAndPopulateData(movementId: movement.id)
             self.populateListOfDates()
             self.populateDateLogMap()
-        }
     }
     
     // MARK: - Data formatting/converting
