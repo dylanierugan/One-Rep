@@ -9,16 +9,17 @@ import SwiftUI
 
 struct HorizontalScroller: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     @Binding var muscleSelection: MuscleGroup
     
     // MARK: - View
     
     var body: some View {
-        /// Horizontal scrollview to allow for muscle group selection
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 16) {
                 ForEach(MuscleGroup.allCases, id: \.rawValue) { muscleGroup in

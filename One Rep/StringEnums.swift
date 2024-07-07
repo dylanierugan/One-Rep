@@ -149,6 +149,10 @@ enum MovementSelection: String, Identifiable {
     case Library = "Library"
 }
 
+enum MovementsStrings: String {
+    case Movements = "Movements"
+}
+
 enum MovementType: String, Identifiable, Codable {
     var id: MovementType { self }
     case Weight = "Weights"

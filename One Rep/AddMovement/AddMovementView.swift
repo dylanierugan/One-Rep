@@ -9,11 +9,13 @@ import SwiftUI
 
 struct AddMovementView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @Environment(\.dismiss) private var dismiss
+    
+    // MARK: - Private Properties
     
     @State private var movementName = ""
     @State private var muscleGroup: MuscleGroup = .Arms

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MovementSelectionPicker: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     @Binding var movementSelection: MovementSelection
     
@@ -30,9 +32,11 @@ struct MovementSelectionPicker: View {
 
 struct MovementPickerButton: View {
     
-    // MARK: - Variables
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     var selection: MovementSelection
     @Binding var movementSelection: MovementSelection

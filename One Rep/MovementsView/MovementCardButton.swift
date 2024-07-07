@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MovementCardButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
 
     var movement: Movement
     

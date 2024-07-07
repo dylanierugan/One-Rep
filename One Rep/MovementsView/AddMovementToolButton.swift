@@ -9,9 +9,11 @@ import SwiftUI
 
 struct AddMovementToolButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     @Binding var showAddMovementPopup: Bool
     

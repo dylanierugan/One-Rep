@@ -10,10 +10,12 @@ import UIKit
 
 struct MovementsView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
+    
+    // MARK: - Private Properties
     
     @State private var searchText = ""
     @State private var movementSelection: MovementSelection = .Library
@@ -38,7 +40,6 @@ struct MovementsView: View {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
-                
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 16) {
                         MovementSelectionPicker(movementSelection: $movementSelection)
@@ -67,7 +68,6 @@ struct MovementsView: View {
                             }
                         case .Routines:
                             VStack {
-                                Text("Routines")
                             }
                         }
                     }
@@ -77,7 +77,7 @@ struct MovementsView: View {
                 AddMovementView()
                     .environment(\.sizeCategory, .extraSmall)
             }
-            .navigationTitle("Movements")
+            .navigationTitle(MovementsStrings.Movements.rawValue)
             .toolbar(content: {
                 if movementSelection == .Library {
                     ToolbarItem(placement: .topBarTrailing) {
