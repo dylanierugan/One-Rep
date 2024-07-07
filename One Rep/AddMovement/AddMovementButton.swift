@@ -9,16 +9,19 @@ import SwiftUI
 
 struct AddMovementButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.dismiss) private var dismiss
     
-    @State var addMovementClicked = false
+    // MARK: - Public Properties
     
     var isFormValid: Bool
-    
     var addMovementToFirebase:() -> Void
+    
+    // MARK: - Private Properties
+    
+    @State private var addMovementClicked = false
     
     // MARK: - View
     
@@ -27,7 +30,7 @@ struct AddMovementButton: View {
             addMovementToFirebase()
         } label: {
             HStack {
-                Text("Add")
+                Text(AddMovementStrings.Add.rawValue)
                     .foregroundStyle(isFormValid ?
                         .linearGradient(colors: [
                             Color(theme.lightBaseColor),

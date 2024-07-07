@@ -41,6 +41,18 @@ class ErrorHandler: ObservableObject {
         }
     }
     
+    // MARK: - Movement Functions
+    
+    func handleAddMovement(result: FirebaseResult?, dismiss: DismissAction) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            dismiss()
+        case .failure(_):
+            handleFailure()
+        }
+    }
+    
     // MARK: - Log Functions
     
     func handleUpdateLog(result: FirebaseResult?, logViewModel: LogViewModel, logController: LogController, movement: Movement) {

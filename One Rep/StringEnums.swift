@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum AddMovementStrings: String {
+    case NewMovement = "New Movement"
+    case MovementName = "Movement name"
+    case MovementType = "Movement type"
+    case MuscleGroup = "Muscle group"
+    case Add = "Add"
+}
+
 enum AppConstants: String {
     case ID = "one-rep-hpeel"
     case MovementKey = "user_movements"

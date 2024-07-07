@@ -9,16 +9,18 @@ import SwiftUI
 
 struct MusclePicker: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     @Binding var muscleGroup: MuscleGroup
     
     // MARK: - View
     
     var body: some View {
-        Picker("Muscle Group", selection: $muscleGroup) {
+        Picker(AddMovementStrings.MuscleGroup.rawValue, selection: $muscleGroup) {
             ForEach(MuscleGroup.allCases, id: \.rawValue) { muscle in
                 if muscle != .All {
                     Text(muscle.rawValue)

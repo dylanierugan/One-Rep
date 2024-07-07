@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MovementTypePicker: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     @Binding var movementTypeSelection: MovementType
     var captionText: String
@@ -40,9 +42,11 @@ struct MovementTypePicker: View {
 
 struct MovementTypePickerButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
 
     @Binding var movementTypeSelection: MovementType
     var movementType: MovementType

@@ -9,16 +9,15 @@ import SwiftUI
 
 struct MovementNameTextField: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     
+    // MARK: - Public Properties
+    
     @State var focus: Bool
-    
     @Binding var movementName: String
-    
     @FocusState var isFocused: Bool
-    
     var text: String
     
     // MARK: - View
@@ -40,7 +39,6 @@ struct MovementNameTextField: View {
                             }
                     }
                 }
-            /// Button to increase textField hitbox
             Button {
                 isFocused = true
             } label: {
