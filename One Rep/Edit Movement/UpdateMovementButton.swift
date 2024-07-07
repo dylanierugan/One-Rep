@@ -9,10 +9,12 @@ import SwiftUI
 
 struct UpdateMovementButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel
+    @Environment(\.dismiss) private var dismiss
+    
+    // MARK: - Public Properties
     
     var updateMovementInFirebase: () -> Void
     
@@ -25,7 +27,7 @@ struct UpdateMovementButton: View {
             }
         } label: {
             HStack {
-                Text("Update")
+                Text(EditMovementStrings.Update.rawValue)
                     .foregroundStyle(.linearGradient(colors: [
                         Color(theme.lightBaseColor),
                         Color(theme.darkBaseColor)

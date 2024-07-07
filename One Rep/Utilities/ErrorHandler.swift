@@ -43,7 +43,7 @@ class ErrorHandler: ObservableObject {
     
     // MARK: - Movement Functions
     
-    func handleAddMovement(result: FirebaseResult?, dismiss: DismissAction) {
+    func handleMovementUpdate(result: FirebaseResult?, dismiss: DismissAction) {
         guard let result = result else { return }
         switch result {
         case .success:

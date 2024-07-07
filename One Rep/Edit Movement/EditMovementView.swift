@@ -7,14 +7,31 @@
 
 import SwiftUI
 
+enum EditMovementStrings: String {
+    case EditMovement = "Edit Movement"
+    case EditName = "Edit name"
+    case EditMovementType = "Edit movement type"
+    case EditMuscleGroup = "Edit muscle group"
+    case Update = "Update"
+    case Delete = "Delete"
+}
+
 struct EditMovementView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
+    @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var movementViewModel = MovementViewModel()
+    @Environment(\.dismiss) private var dismiss
+    
+    // MARK: - Public Properties
+    
+    @Binding var showDoneToolBar: Bool
+    var muscleGroups: [MuscleGroup] = [.All, .Arms, .Back, .Chest, .Core, .Legs, .Shoulders]
+    
+    // MARK: - Private Properties
     
     @State private var newMovementName = ""
     @State private var newMovementType: MovementType = .Weight
@@ -24,10 +41,6 @@ struct EditMovementView: View {
     @State private var showEditProgressView = false
     @State private var showDeleteProgressView = false
     
-    @Binding var showDoneToolBar: Bool
-    
-    var muscleGroups: [MuscleGroup] = [.All, .Arms, .Back, .Chest, .Core, .Legs, .Shoulders]
-    
     // MARK: - View
     
     var body: some View {
@@ -35,25 +48,20 @@ struct EditMovementView: View {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
-                
                 VStack(spacing: 36) {
-                    
-                    Text("Edit Movement")
+                    Text(EditMovementStrings.EditMovement.rawValue)
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
-                    
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Edit name")
+                        Text(EditMovementStrings.EditName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
                         MovementNameTextField(focus: false, movementName: $newMovementName, text: movementViewModel.movement.name)
                     }
                     .padding(.horizontal, 16)
-                    
-                    MovementTypePicker(movementTypeSelection: $newMovementType, captionText: "Edit movement type")
+                    MovementTypePicker(movementTypeSelection: $newMovementType, captionText: EditMovementStrings.EditMovementType.rawValue)
                         .padding(.horizontal, 16)
-                    
                     VStack(alignment: .leading,  spacing: 4) {
-                        Text("Edit muscle group")
+                        Text(EditMovementStrings.EditMuscleGroup.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
                         MusclePicker(muscleGroup: $newMuscleGroup)
@@ -64,11 +72,7 @@ struct EditMovementView: View {
                 .toolbar(content: {
                     ToolbarItem(placement: .topBarLeading) {
                         DeleteMovementButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteMovementAlert: $showingDeleteMovementAlert, deleteMovementInFirebase: {
-                            Task {
-                                showDeleteProgressView = true
-                                let result = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
-                                handleEditMovementDissmiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
-                            }
+                            deleteMovement()
                         })
                     }
                     ToolbarItem(placement: .topBarTrailing) {
@@ -76,38 +80,41 @@ struct EditMovementView: View {
                             ProgressView()
                         } else {
                             UpdateMovementButton(updateMovementInFirebase: {
-                                Task {
-                                    showEditProgressView = true
-                                    movementViewModel.movement.name = newMovementName
-                                    movementViewModel.movement.movementType = newMovementType
-                                    movementViewModel.movement.muscleGroup = newMuscleGroup
-                                    let result = await movementViewModel.updateMovement()
-                                    dismiss()
-                                    handleEditMovementDissmiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
-                                }
+                                editMovement()
                             })
                         }
                     }
                 })
             }
-            .onAppear {
-                newMovementName = movementViewModel.movement.name
-                newMovementType = movementViewModel.movement.movementType
-                newMuscleGroup = movementViewModel.movement.muscleGroup
-            }
-            .onDisappear {
-                showDoneToolBar = true
-            }
+            .onAppear { setEditValues() }
+            .onDisappear { showDoneToolBar = true }
         }
     }
     
-    func handleEditMovementDissmiss(result: FirebaseResult?, dismiss: DismissAction, errorMessage: String) {
-        guard let result = result else { return }
-        switch result {
-        case .success:
-            dismiss()
-        case .failure(_):
-            print(errorMessage)
+    // MARK: - Functions
+    
+    private func setEditValues() {
+        newMovementName = movementViewModel.movement.name
+        newMovementType = movementViewModel.movement.movementType
+        newMuscleGroup = movementViewModel.movement.muscleGroup
+    }
+    
+    private func editMovement() {
+        Task {
+            showEditProgressView = true
+            movementViewModel.movement.name = newMovementName
+            movementViewModel.movement.movementType = newMovementType
+            movementViewModel.movement.muscleGroup = newMuscleGroup
+            let result = await movementViewModel.updateMovement()
+            errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
+        }
+    }
+    
+    private func deleteMovement() {
+        Task {
+            showDeleteProgressView = true
+            let result = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
+            errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
         }
     }
 }

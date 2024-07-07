@@ -9,14 +9,15 @@ import SwiftUI
 
 struct DeleteMovementButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.dismiss) private var dismiss
     
+    // MARK: - Public Properties
+    
     @Binding var deleteConfirmedClicked: Bool
     @Binding var showingDeleteMovementAlert: Bool
-    
     var deleteMovementInFirebase: () -> Void
     
     // MARK: - View
@@ -25,19 +26,18 @@ struct DeleteMovementButton: View {
         Button {
             showingDeleteMovementAlert = true
         } label: {
-            Text("Delete")
+            Text(EditMovementStrings.Delete.rawValue)
                 .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                 .foregroundStyle(.linearGradient(colors: [
                     Color(theme.lightRed),
                     Color(theme.darkRed)
                 ], startPoint: .top, endPoint: .bottom))
         }
-        /// Alert to delete movement (asks for confirmation)
         .alert(isPresented: $showingDeleteMovementAlert) {
             Alert(
                 title: Text(ErrorMessage.DeleteMovmentConfirmation.rawValue),
                 message: Text(ErrorMessage.NoWayToUndo.rawValue),
-                primaryButton: .destructive(Text("Delete")) {
+                primaryButton: .destructive(Text(EditMovementStrings.Delete.rawValue)) {
                     deleteMovementInFirebase()
                     dismiss()
                 },
