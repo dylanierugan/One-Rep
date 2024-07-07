@@ -33,7 +33,7 @@ class LogViewModel: ObservableObject {
     @Published var logs = [Log]()
     
     @Published var filteredLogs = [Log]()
-    @Published var weightSelection = WeightSelection.all.rawValue 
+    @Published var weightSelection = WeightSelection.All.rawValue
     @Published var listOfWeights = [String]()
     @Published var weightLogMap = [String: [Log]]()
     @Published var listOfDates = [String]()
@@ -59,7 +59,7 @@ class LogViewModel: ObservableObject {
             }
         }
         listOfWeights.sort{$0.localizedStandardCompare($1) == .orderedAscending}
-        listOfWeights.insert(WeightSelection.all.rawValue , at: 0)
+        listOfWeights.insert(WeightSelection.All.rawValue , at: 0)
     }
     
     func populateWeightLogMap() {
@@ -88,7 +88,7 @@ class LogViewModel: ObservableObject {
     func filterWeightAndPopulateData(movementId: String) {
         filteredLogs = []
         filterLogs(movementId: movementId)
-        if weightSelection != WeightSelection.all.rawValue {
+        if weightSelection != WeightSelection.All.rawValue {
             let weight = (weightSelection as NSString).doubleValue
             self.filteredLogs = filteredLogs.filter { $0.weight == weight }
         }

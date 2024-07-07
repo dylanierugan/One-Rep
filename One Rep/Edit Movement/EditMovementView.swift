@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-enum EditMovementStrings: String {
-    case EditMovement = "Edit Movement"
-    case EditName = "Edit name"
-    case EditMovementType = "Edit movement type"
-    case EditMuscleGroup = "Edit muscle group"
-    case Update = "Update"
-    case Delete = "Delete"
-}
-
 struct EditMovementView: View {
     
     // MARK: - Global Properties

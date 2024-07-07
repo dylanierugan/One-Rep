@@ -9,18 +9,19 @@ import SwiftUI
 
 struct WeightHorizontalScroller: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController
+    
+    // MARK: - Public Properties
     
     @State var movement: Movement
     
     // MARK: - View
     
     var body: some View {
-        /// Horizontal scrollview to allow for weight group selection
         if logViewModel.listOfWeights.count > 2  {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
@@ -30,7 +31,7 @@ struct WeightHorizontalScroller: View {
                             logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
                             HapticManager.instance.impact(style: .soft)
                         } label: {
-                            if weight == WeightSelection.all.rawValue  {
+                            if weight == WeightSelection.All.rawValue  {
                                 Text(weight)
                                     .foregroundColor(logViewModel.weightSelection == weight ? .primary : .secondary.opacity(0.8))
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
@@ -51,15 +52,6 @@ struct WeightHorizontalScroller: View {
                     HapticManager.instance.impact(style: .soft)
                 }
             }
-        }
-    }
-    
-    // MARK: - Function
-    private func formatWeightString(_ weight: Double) -> String {
-        if weight.truncatingRemainder(dividingBy: 1) == 0 {
-            return String(format: "%.0f", weight)
-        } else {
-            return String(format: "%.1f", weight)
         }
     }
 }

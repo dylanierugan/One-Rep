@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MutateWieghtButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var logController: LogController
     
-    @State var isEditing: Bool
+    // MARK: - Public Properties
     
+    @State var isEditing: Bool
     var color: Color
     var icon: String
     var mutatingValue: Double

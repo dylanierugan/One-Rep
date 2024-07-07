@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditMovementButton: View {
     
-    // MARK: - Properties
+    // MARK: - Public Properties
     
     @Binding var showEditMovementPopup: Bool
     @Binding var showDoneToolBar: Bool

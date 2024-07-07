@@ -9,12 +9,13 @@ import SwiftUI
 
 struct LogWeightSection: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     
-    @State var movement: Movement
+    // MARK: - Public Properties
     
+    @State var movement: Movement
     @Binding var showDoneToolBar: Bool
     @FocusState var isInputActive: Bool
     
@@ -34,7 +35,7 @@ struct LogWeightSection: View {
                         Button {
                             isInputActive = false
                         } label: {
-                            Text("Done")
+                            Text(KeyboardStrings.Done.rawValue)
                                 .foregroundStyle(.primary)
                                 .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         }

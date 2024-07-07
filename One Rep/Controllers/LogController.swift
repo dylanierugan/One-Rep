@@ -25,10 +25,9 @@ class LogController: ObservableObject {
     
     // MARK: - Functions (Weight)
     
-    /// Set weight and rep fields to most recent log
     func setMostRecentLog(_ logs: [Log], weightSelection: String) {
         var sortedLogs = logs.sorted(by: { $0.timeAdded > $1.timeAdded })
-        if weightSelection != WeightSelection.all.rawValue  {
+        if weightSelection != WeightSelection.All.rawValue  {
             let selectedWeight = Double(weightSelection) ?? 0.0
             sortedLogs = sortedLogs.filter { $0.weight == selectedWeight }
         }

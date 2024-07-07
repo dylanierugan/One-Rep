@@ -10,18 +10,22 @@ import SwiftUI
 
 struct MutateWeightView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
-    
+    @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var movementViewModel = MovementViewModel()
-    @State var mutatingValue: Double = 5
+    
+    // MARK: - Public Properties
     
     @FocusState var isInputActive: Bool
     
-    let mutatingValues : [Double] = [2.5, 5, 10, 25]
+    // MARK: - Private Properties
+    
+    @State private var mutatingValue: Double = 5
+    private let mutatingValues : [Double] = [2.5, 5, 10, 25]
     
     // MARK: - View
     
@@ -35,16 +39,10 @@ struct MutateWeightView: View {
                             .foregroundColor(.secondary).opacity(0.7)
                     }
                 }
-                .onChange(of: mutatingValue) {
-                    Task {
-                        movementViewModel.movement.mutatingValue = mutatingValue
-                        let result = await movementViewModel.updateMovement()
-                        handleResult(result: result, errorMessage: "")
-                    }
-                }
+                .onChange(of: mutatingValue) { pickerOnChangeSetMutatingValue() }
             } label: {
                 HStack {
-                    Text("Weight (\(logViewModel.unit.rawValue))")
+                    Text("\(MutateStrings.Weight.rawValue) (\(logViewModel.unit.rawValue))")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary).opacity(0.7)
                     Image(systemName: Icons.ChevronCompactDown.rawValue)
@@ -70,19 +68,17 @@ struct MutateWeightView: View {
                 MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: movementViewModel.movement.mutatingValue)
             }
         }
-        .onAppear() {
-            mutatingValue = movementViewModel.movement.mutatingValue
+        .onAppear() { mutatingValue = movementViewModel.movement.mutatingValue }
+    }
+    
+    // MARK: - Functions
+    
+    private func pickerOnChangeSetMutatingValue() {
+        Task {
+            movementViewModel.movement.mutatingValue = mutatingValue
+            let result = await movementViewModel.updateMovement()
+            errorHandler.handleResult(result: result)
         }
     }
     
-    func handleResult(result: FirebaseResult?, errorMessage: String) {
-        guard let result = result else { return }
-        switch result {
-        case .success:
-            return
-        case .failure(_):
-            print(errorMessage)
-            /// TODO - Handle error
-        }
-    }
 }

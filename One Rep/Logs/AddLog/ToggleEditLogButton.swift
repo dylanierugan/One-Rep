@@ -9,13 +9,18 @@ import SwiftUI
 
 struct ToggleEditLogButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var logViewModel: LogViewModel
     
+    // MARK: - Public Properties
+    
     @Binding var isEditingLogs: Bool
-    var buttonText: String {
-        return isEditingLogs ? "Done" : "Edit"
+    
+    // MARK: - Private Properties
+    
+    private var buttonText: String {
+        return isEditingLogs ? ToggleEditStrings.Done.rawValue : ToggleEditStrings.Edit.rawValue
     }
     
     // MARK: - View

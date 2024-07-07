@@ -9,13 +9,17 @@ import SwiftUI
 
 struct ShowFullScreenButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     
-    @State var icon = Icons.ChevronCompactUp.rawValue
+    // MARK: - Public Properties
     
     @Binding var showLogSetView: Bool
+    
+    // MARK: - Private Properties
+    
+    @State private var icon = Icons.ChevronCompactUp.rawValue
     
     // MARK: - View
     

@@ -83,7 +83,7 @@ struct AddMovementView: View {
         Task {
             showProgressView = true
             let result = await movementsViewModel.addMovement(movement: newMovement)
-            errorHandler.handleAddMovement(result: result, dismiss: dismiss)
+            errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
         }
     }
 }

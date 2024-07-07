@@ -49,7 +49,7 @@ struct DeleteLogTrashIconButton: View {
         switch result {
         case .success:
             if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
-                logViewModel.repopulateViewModel(weightSelection: WeightSelection.all.rawValue, movement: movement)
+                logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
             } else {
                 logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
             }

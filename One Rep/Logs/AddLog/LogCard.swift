@@ -9,18 +9,22 @@ import SwiftUI
 
 struct LogCard: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
     
+    // MARK: - Public Properties
+    
     @State var log: Log
     @State var movement: Movement
-    @State var showEditMovementPopup = false
+    @Binding var showDoneToolBar: Bool
     var index: Int
     
-    @Binding var showDoneToolBar: Bool
+    // MARK: - Private Properties
+    
+    @State private var showEditMovementPopup = false
     
     // MARK: - View
     
@@ -31,7 +35,7 @@ struct LogCard: View {
         } label: {
                 HStack {
                     HStack(alignment: .bottom) {
-                        Text("Set")
+                        Text(LogCardStrings.Set.rawValue)
                             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             .foregroundStyle(.secondary)
                         Text(String(index))
@@ -41,7 +45,7 @@ struct LogCard: View {
                     Spacer()
                     HStack(spacing: 32) {
                         DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight), dataType: logViewModel.unit.rawValue)
-                        DataLabel(data: String(log.reps), dataType: "reps")
+                        DataLabel(data: String(log.reps), dataType: LogCardStrings.Reps.rawValue)
                     }
                 }
                 .padding(.horizontal, 4)
@@ -50,9 +54,7 @@ struct LogCard: View {
         .sheet(isPresented: $showEditMovementPopup) {
             EditLogView(log: $log, movement: movement)
                 .environment(\.sizeCategory, .extraSmall)
-                .onDisappear {
-                    showDoneToolBar = true
-                }
+                .onDisappear { showDoneToolBar = true }
         }
     }
 }

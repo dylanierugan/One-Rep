@@ -122,6 +122,8 @@
 		37C70C322BDD52C200B0375A /* LogCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C312BDD52C200B0375A /* LogCard.swift */; };
 		37C70C342BE2806100B0375A /* WeightHorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */; };
 		37FAB2632C3A187B00FDD05B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2622C3A187B00FDD05B /* ErrorHandler.swift */; };
+		37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */; };
+		37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2662C3B013C00FDD05B /* LogListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -216,6 +218,8 @@
 		37C70C312BDD52C200B0375A /* LogCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCard.swift; sourceTree = "<group>"; };
 		37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightHorizontalScroller.swift; sourceTree = "<group>"; };
 		37FAB2622C3A187B00FDD05B /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewSubHeading.swift; sourceTree = "<group>"; };
+		37FAB2662C3B013C00FDD05B /* LogListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +313,12 @@
 			isa = PBXGroup;
 			children = (
 				37A655662BC6025300B96BEB /* LogView.swift */,
+				37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */,
+				37FAB2662C3B013C00FDD05B /* LogListView.swift */,
+				37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */,
+				370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */,
+				370730652BF07BA500E95989 /* ToggleEditLogButton.swift */,
+				37C70C312BDD52C200B0375A /* LogCard.swift */,
 				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
 				37881F5F2C164CDC00ABBF42 /* LogWeightSection.swift */,
 				37881F632C1DEA5D00ABBF42 /* LogBodyweightSection.swift */,
@@ -322,17 +332,6 @@
 				37A655782BC60E5D00B96BEB /* LogSetButton.swift */,
 			);
 			path = AddLog;
-			sourceTree = "<group>";
-		};
-		370730A32C000A7900E95989 /* LogTable */ = {
-			isa = PBXGroup;
-			children = (
-				370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */,
-				37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */,
-				370730652BF07BA500E95989 /* ToggleEditLogButton.swift */,
-				37C70C312BDD52C200B0375A /* LogCard.swift */,
-			);
-			path = LogTable;
 			sourceTree = "<group>";
 		};
 		370730A92C022C4900E95989 /* Controllers */ = {
@@ -483,7 +482,6 @@
 			children = (
 				3707309C2BFF734C00E95989 /* AddLog */,
 				370730992BFF719C00E95989 /* EditLog */,
-				370730A32C000A7900E95989 /* LogTable */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -611,6 +609,7 @@
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
 				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
 				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
+				37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */,
 				3707309B2BFF71E800E95989 /* EditRepsTextField.swift in Sources */,
 				37881F642C1DEA5D00ABBF42 /* LogBodyweightSection.swift in Sources */,
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
@@ -659,6 +658,7 @@
 				374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */,
 				370730A52C01638D00E95989 /* AccountView.swift in Sources */,
 				37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */,
+				37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */,
 				37881F582C0E17CE00ABBF42 /* UserModel.swift in Sources */,
 				3707307C2BF88AE500E95989 /* DateViewModel.swift in Sources */,
 				37A655672BC6025300B96BEB /* LogView.swift in Sources */,

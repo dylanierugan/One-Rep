@@ -10,10 +10,12 @@ import SwiftUI
 
 struct MutateRepsView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
+    
+    // MARK: - Public Properties
     
     @FocusState var isInputActive: Bool
     
@@ -21,7 +23,7 @@ struct MutateRepsView: View {
     
     var body: some View {
         VStack {
-            Text("Reps")
+            Text(MutateStrings.Reps.rawValue)
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary).opacity(0.7)
             

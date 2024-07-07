@@ -60,6 +60,15 @@ enum EditLogStrings: String {
     case Delete = "Delete"
 }
 
+enum EditMovementStrings: String {
+    case EditMovement = "Edit Movement"
+    case EditName = "Edit name"
+    case EditMovementType = "Edit movement type"
+    case EditMuscleGroup = "Edit muscle group"
+    case Update = "Update"
+    case Delete = "Delete"
+}
+
 enum ErrorMessage: String {
     case DeleteMovmentConfirmation = "Are you sure you want to delete this movement and all the logged data associated with it?"
     case ErrorAddMovement = "There was an error adding the movement."
@@ -142,12 +151,25 @@ enum InfoText: String {
     case NoWayToUndo = "There is no way to undo this action."
 }
 
+enum KeyboardStrings: String {
+    case Done = "Done"
+}
+
+enum LogCardStrings: String {
+    case Set = "Set"
+    case Reps = "reps"
+}
+
 enum LoginStrings: String {
     case DeleteMovmentConfirmation = "Do one more rep than last time"
 }
 
 enum LogoString: String {
     case OneRep = "1 Rep"
+}
+
+enum LogSetString: String {
+    case Log = "Log"
 }
 
 enum MovementSelection: String, Identifiable {
@@ -188,6 +210,11 @@ enum MuscleGroup: String, Identifiable, Codable, CaseIterable {
     case Shoulders = "Shoulders"
 }
 
+enum MutateStrings: String {
+    case Reps = "Reps"
+    case Weight = "Weight"
+}
+
 enum ProgressText: String {
     case OneRep = "One Rep"
     case Loading = "Loading..."
@@ -198,6 +225,11 @@ enum RepType: String, Identifiable, Codable, CaseIterable {
     case WarmUp = "Warm Up"
     case WorkingSet = "Working Set"
     case PR = "PR"
+}
+
+enum ToggleEditStrings: String {
+    case Done = "Done"
+    case Edit = "Edit"
 }
 
 enum Weekdays: String {
@@ -217,5 +249,5 @@ enum UnitSelection: String, Identifiable, Codable, CaseIterable {
 }
 
 enum WeightSelection: String {
-    case all = "All"
+    case All = "All"
 }
