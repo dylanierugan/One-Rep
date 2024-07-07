@@ -8,18 +8,23 @@
 import AuthenticationServices
 import CryptoKit
 
-
 class AppleSignInManager {
     
     static let shared = AppleSignInManager()
-
+    
     fileprivate static var currentNonce: String?
-
+    
+    // MARK: - Computed Properties
+    
     static var nonce: String? {
         currentNonce ?? nil
     }
+    
+    // MARK: - Init
 
     private init() {}
+    
+    // MARK: - Public Functions
 
     func requestAppleAuthorization(_ request: ASAuthorizationAppleIDRequest) {
         AppleSignInManager.currentNonce = randomNonceString()
@@ -28,6 +33,8 @@ class AppleSignInManager {
     }
 }
 
+// MARK: - Extension
+
 extension AppleSignInManager {
 
     private func randomNonceString(length: Int = 32) -> String {
@@ -35,14 +42,14 @@ extension AppleSignInManager {
         var randomBytes = [UInt8](repeating: 0, count: length)
         let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
         if errorCode != errSecSuccess {
+            /// TODO - Error handle
             fatalError(
                 "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
             )
-            /// TODO - Error handle
         }
 
         let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        Array(AppleSignInManagerStrings.CharSet.rawValue)
 
         let nonce = randomBytes.map { byte in
             charset[Int(byte) % charset.count]
@@ -55,7 +62,7 @@ extension AppleSignInManager {
         let inputData = Data(input.utf8)
         let hashedData = SHA256.hash(data: inputData)
         let hashString = hashedData.compactMap {
-            return String(format: "%02x", $0)
+            return String(format: AppleSignInManagerStrings.Format.rawValue, $0)
         }.joined()
 
         return hashString

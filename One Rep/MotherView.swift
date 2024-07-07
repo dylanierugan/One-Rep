@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-/// View holds either login/signup or tabview
 struct MotherView: View {
+    
+    // MARK: - Global Properties
     
     @EnvironmentObject var viewRouter: ViewRouter
     

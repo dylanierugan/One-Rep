@@ -13,6 +13,11 @@ enum AppConstants: String {
     case UserKey = "user_model"
 }
 
+enum AppleSignInManagerStrings: String {
+    case CharSet = "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._"
+    case Format = "%02x"
+}
+
 enum Colors: String {
     case BackgroundElementColor = "BackgroundElementColor"
     case BackgroundColor = "BackgroundColor"
@@ -37,6 +42,16 @@ enum DefaultKeys: String {
     case AccentColor = "AccentColor"
 }
 
+enum EditLogStrings: String {
+    case EditLog = "Edit Log"
+    case EditWeight = "Edit weight"
+    case EditReps = "Edit reps"
+    case DateTime = "Date/Time"
+    case Done = "Done"
+    case Update = "Update"
+    case Delete = "Delete"
+}
+
 enum ErrorMessage: String {
     case DeleteMovmentConfirmation = "Are you sure you want to delete this movement and all the logged data associated with it?"
     case ErrorAddMovement = "There was an error adding the movement."
@@ -47,11 +62,6 @@ enum ErrorMessage: String {
 enum FirebaseCollection: String {
     case MovementCollection = "Movements"
     case LogsCollection = "Logs"
-}
-
-enum FirebaseResult {
-    case success
-    case failure(Error)
 }
 
 enum Icons: String {
@@ -122,6 +132,14 @@ enum InfoText: String {
     case NoData = "No data\nLog some sets"
     case NoDataOnDay = "No data logged for this day"
     case NoWayToUndo = "There is no way to undo this action."
+}
+
+enum LoginStrings: String {
+    case DeleteMovmentConfirmation = "Do one more rep than last time"
+}
+
+enum LogoString: String {
+    case OneRep = "1 Rep"
 }
 
 enum MovementSelection: String, Identifiable {

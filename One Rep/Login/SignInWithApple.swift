@@ -10,11 +10,13 @@ import SwiftUI
 
 struct SignInWithApple: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var viewRouter: ViewRouter
+    
+    // MARK: - Private Properties
     
     @State private var identityTokenString = ""
     
@@ -32,10 +34,11 @@ struct SignInWithApple: View {
         }
     }
     
+    // MARK: - Public Functions
+    
     func handleAppleID(_ result: Result<ASAuthorization, Error>) {
         if case let .success(auth) = result {
             guard let appleIDCredentials = auth.credential as? ASAuthorizationAppleIDCredential else {
-                print("AppleAuthorization failed: AppleID credential not available")
                 /// TODO - Error handle
                 return
             }
@@ -49,14 +52,13 @@ struct SignInWithApple: View {
                         viewRouter.currentPage = .tabView
                     }
                 } catch {
-                    print("AppleAuthorization failed: \(error)")
                     /// TODO - Error handle
                 }
             }
         }
         else if case let .failure(error) = result {
-            print("AppleAuthorization failed: \(error)")
             /// TODO - Error handle
+            print(error.localizedDescription)
         }
     }
 }

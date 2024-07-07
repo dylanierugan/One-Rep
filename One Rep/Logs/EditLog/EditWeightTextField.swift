@@ -10,15 +10,16 @@ import Combine
 
 struct EditWeightTextField: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController
     
+    // MARK: - Public Properties
+    
     @State var log: Log
     @State var movement: Movement
-    
     @FocusState var isInputActive: Bool
     
     // MARK: - View
@@ -26,7 +27,6 @@ struct EditWeightTextField: View {
     var body: some View {
         HStack(spacing: 8) {
             MutateWieghtButton(isEditing: true, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -movement.mutatingValue)
-            
             TextField("", value: $logController.editWeight,
                       formatter: NumberFormatter.noDecimalUnlessNeeded)
                 .accentColor(Color(theme.darkBaseColor))
@@ -44,7 +44,6 @@ struct EditWeightTextField: View {
                         logController.weight = log.weight
                     }
                 }
-            
             MutateWieghtButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: movement.mutatingValue)
         }
     }

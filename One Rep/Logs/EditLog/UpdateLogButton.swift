@@ -9,9 +9,11 @@ import SwiftUI
 
 struct UpdateLogButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    
+    // MARK: - Public Properties
     
     var updateLogInFirebase: () -> Void
     
@@ -24,7 +26,7 @@ struct UpdateLogButton: View {
             }
         } label: {
             HStack {
-                Text("Update")
+                Text(EditLogStrings.Update.rawValue)
                     .foregroundStyle(.linearGradient(colors: [
                         Color(theme.lightBaseColor),
                         Color(theme.darkBaseColor)

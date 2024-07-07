@@ -14,7 +14,6 @@ struct EditMovementView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
-    
     @ObservedObject var movementViewModel = MovementViewModel()
     
     @State private var newMovementName = ""

@@ -201,16 +201,12 @@ class LogViewModel: ObservableObject {
         }
     }
     
-    func deleteLog(docId: String, completion: @escaping (FirebaseResult) -> Void) {
-        db.collection(FirebaseCollection.LogsCollection.rawValue).document(docId).delete() { error in
-            if let error = error {
-                /// TODO - Error handle
-                completion(.failure(error))
-                return
-            } else {
-                completion(.success)
-                return
-            }
+    func deleteLog(docId: String) async -> FirebaseResult {
+        do {
+            try await db.collection(FirebaseCollection.LogsCollection.rawValue).document(docId).delete()
+            return .success
+        } catch {
+            return .failure(error)
         }
     }
     

@@ -10,14 +10,16 @@ import SwiftUI
 
 struct LoadDataView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     
-    @State var movementsLoading = true
-    @State var logsLoading = true
+    // MARK: - Private Properties
+    
+    @State private var movementsLoading = true
+    @State private var logsLoading = true
     
     // MARK: - View
     

@@ -18,17 +18,22 @@ enum AuthState {
 @MainActor
 class AuthManager: ObservableObject {
     
-    // MARK: - Properties
+    // MARK: - Public Properties
     
     @Published var user: User?
     @Published var authState = AuthState.signedOut
+    
+    // MARK: - Private Properties
+    
     private var authStateHandle: AuthStateDidChangeListenerHandle!
     
-    // MARK: - Functions
+    // MARK: - Init
     
     init() {
         configureAuthStateChanges()
     }
+    
+    // MARK: - Public Functions
     
     func configureAuthStateChanges() {
         authStateHandle = Auth.auth().addStateDidChangeListener { auth, user in
@@ -44,7 +49,6 @@ class AuthManager: ObservableObject {
         self.user = user
         let isAuthenticatedUser = user != nil
         let isAnonymous = user?.isAnonymous ?? false
-        
         if isAuthenticatedUser {
             self.authState = isAnonymous ? .authenticated : .signedIn
         } else {
@@ -58,12 +62,39 @@ class AuthManager: ObservableObject {
                 try Auth.auth().signOut()
             }
             catch let error as NSError {
-                print("FirebaseAuthError: failed to sign out from Firebase, \(error)")
                 /// TODO - Error handle
+                print(error)
                 throw error
             }
         }
     }
+    
+    func appleAuth(_ appleIDCredential: ASAuthorizationAppleIDCredential, nonce: String?) async throws -> AuthDataResult? {
+        guard let nonce = nonce else {
+            /// TODO - Error handle
+            fatalError("Invalid state: A login callback was received, but no login request was sent.")
+        }
+        guard let appleIDToken = appleIDCredential.identityToken else {
+            /// TODO - Error handle - unable to fetch identity
+            return nil
+        }
+        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+            /// TODO - Error handle
+            return nil
+        }
+        let credentials = OAuthProvider.appleCredential(withIDToken: idTokenString,
+                                                       rawNonce: nonce,
+                                                       fullName: appleIDCredential.fullName)
+        do {
+            return try await authenticateUser(credentials: credentials)
+        }
+        catch {
+            /// TODO - Error handle
+            throw error
+        }
+    }
+    
+    // MARK: - Private Functions
     
     private func authenticateUser(credentials: AuthCredential) async throws -> AuthDataResult? {
         return try await authSignIn(credentials: credentials)
@@ -76,43 +107,8 @@ class AuthManager: ObservableObject {
             return result
         }
         catch {
-            print("FirebaseAuthError: signIn(with:) failed. \(error)")
             /// TODO - Error handle
-            throw error
-        }
-    }
-    
-    func appleAuth(
-        _ appleIDCredential: ASAuthorizationAppleIDCredential,
-        nonce: String?
-    ) async throws -> AuthDataResult? {
-        guard let nonce = nonce else {
-            fatalError("Invalid state: A login callback was received, but no login request was sent.")
-            /// TODO - Error handle
-        }
-
-        guard let appleIDToken = appleIDCredential.identityToken else {
-            print("Unable to fetch identity token")
-            /// TODO - Error handle
-            return nil
-        }
-
-        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-            print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
-            /// TODO - Error handle
-            return nil
-        }
-
-        let credentials = OAuthProvider.appleCredential(withIDToken: idTokenString,
-                                                       rawNonce: nonce,
-                                                       fullName: appleIDCredential.fullName)
-
-        do {
-            return try await authenticateUser(credentials: credentials)
-        }
-        catch {
-            print("FirebaseAuthError: appleAuth(appleIDCredential:nonce:) failed. \(error)")
-            /// TODO - Error handle
+            print(error)
             throw error
         }
     }

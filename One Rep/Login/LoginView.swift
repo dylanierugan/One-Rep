@@ -10,7 +10,7 @@ import Firebase
 
 struct LoginView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
@@ -25,7 +25,7 @@ struct LoginView: View {
             VStack(spacing: 16) {
                 VStack(spacing: 8) {
                     OneRepLogo(size: .title)
-                    Text("Do one more rep than last time")
+                    Text(LoginStrings.DeleteMovmentConfirmation.rawValue)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -36,10 +36,14 @@ struct LoginView: View {
                     .padding(.horizontal, 32)
             }
         }
-        .onAppear() {
-            if Auth.auth().currentUser != nil {
-                viewRouter.currentPage = .loadDataView
-            }
+        .onAppear{ onAppearSetViewRouter() }
+    }
+    
+    // MARK: - Functions
+    
+    private func onAppearSetViewRouter() {
+        if Auth.auth().currentUser != nil {
+            viewRouter.currentPage = .loadDataView
         }
     }
 }

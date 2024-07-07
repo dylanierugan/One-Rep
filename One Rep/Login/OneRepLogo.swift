@@ -9,14 +9,14 @@ import SwiftUI
 
 struct OneRepLogo: View {
     
-    // MARK: - Properties
+    // MARK: - Public Properties
     
     var size: Font.TextStyle
     
     // MARK: - View
     
     var body: some View {
-        Text("1 Rep")
+        Text(LogoString.OneRep.rawValue)
             .customFont(size: size, weight: .bold, kerning: 0, design: .rounded)
             .foregroundColor(.primary)
             .kerning(-1)

@@ -10,13 +10,14 @@ import SwiftUI
 
 struct EditRepsTextField: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
     
-    @State var log: Log
+    // MARK: - Public Properties
     
+    @State var log: Log
     @FocusState var isInputActive: Bool
     
     // MARK: - View
@@ -24,7 +25,6 @@ struct EditRepsTextField: View {
     var body: some View {
         HStack(spacing: 8) {
             MutateRepsButton(color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
-            
             TextField("", text: $logController.editRepsStr)
                 .onChange(of: logController.editRepsStr) { newText, _ in
                     logController.bindEditRepValues()
@@ -46,7 +46,6 @@ struct EditRepsTextField: View {
                         logController.editRepsStr = String(log.reps)
                     }
                 }
-            
             MutateRepsButton(color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
         }
     }

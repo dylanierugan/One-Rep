@@ -9,10 +9,12 @@ import SwiftUI
 
 struct DeleteLogButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @Environment(\.dismiss) private var dismiss
+    
+    // MARK: - Public Properties
     
     var deleteMovementInFirebase: () -> Void
     
@@ -22,7 +24,7 @@ struct DeleteLogButton: View {
         Button {
             deleteMovementInFirebase()
         } label: {
-            Text("Delete")
+            Text(EditLogStrings.Delete.rawValue)
                 .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                 .foregroundStyle(.linearGradient(colors: [
                     Color(theme.lightRed),

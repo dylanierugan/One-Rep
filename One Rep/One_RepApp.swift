@@ -14,6 +14,7 @@ struct One_RepApp: SwiftUI.App {
     // MARK: - StateObjects
 
     @StateObject var authManager = AuthManager()
+    @StateObject var errorHandler = ErrorHandler()
     @StateObject var movementsViewModel = MovementsViewModel()
     @StateObject var logViewModel = LogViewModel()
     @StateObject var logController = LogController()
@@ -32,6 +33,7 @@ struct One_RepApp: SwiftUI.App {
         WindowGroup {
             MotherView()
                 .environmentObject(authManager)
+                .environmentObject(errorHandler)
                 .environmentObject(logController)
                 .environmentObject(logViewModel)
                 .environmentObject(movementsViewModel)

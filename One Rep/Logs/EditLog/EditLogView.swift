@@ -9,22 +9,26 @@ import SwiftUI
 
 struct EditLogView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
-    @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var theme: ThemeModel
+    @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController
+    @EnvironmentObject var errorHandler: ErrorHandler
+    
+    // MARK: - Public Properties
     
     @Binding var log: Log
     @State var movement: Movement
-    @State var isDeletingLog = false
-    @State var isUpdatingLog = false
     
+    // MARK: - Private Properties
+
+    @State private var isDeletingLog = false
+    @State private var isUpdatingLog = false
     @State private var date = Date()
-    
-    @FocusState var isInputActive: Bool
+    @FocusState private var isInputActive: Bool
     
     // MARK: - View
     
@@ -33,35 +37,31 @@ struct EditLogView: View {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
-                
                 VStack(spacing: 64) {
-                    
-                    Text("Edit Log")
+                    Text(EditLogStrings.EditLog.rawValue)
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                         .padding(.top, 32)
-                    
                     VStack(spacing: 32) {
                         HStack(spacing: 16) {
                             VStack(alignment: .center, spacing: 4) {
-                                Text("Edit weight")
+                                Text(EditLogStrings.EditWeight.rawValue)
                                     .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                                     .foregroundColor(.secondary)
                                 EditWeightTextField(log: log, movement: movement, isInputActive: _isInputActive)
                             }
                             VStack(alignment: .center, spacing: 4) {
-                                Text("Edit reps")
+                                Text(EditLogStrings.EditReps.rawValue)
                                     .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                                     .foregroundColor(.secondary)
                                 EditRepsTextField(log: log, isInputActive: _isInputActive)
                             }
                         }
-                        DatePicker("Date/Time", selection: $date)
+                        DatePicker(EditLogStrings.DateTime.rawValue, selection: $date)
                             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             .datePickerStyle(.automatic)
                             .padding(.horizontal)
                             .accentColor(colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor))
                     }
-                    
                     Spacer()
                 }
                 .padding(.top, 64)
@@ -72,7 +72,7 @@ struct EditLogView: View {
                             Button {
                                 isInputActive = false
                             } label: {
-                                Text("Done")
+                                Text(EditLogStrings.Done.rawValue)
                                     .foregroundStyle(.primary)
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             }
@@ -83,17 +83,7 @@ struct EditLogView: View {
                             ProgressView()
                         } else {
                             DeleteLogButton() {
-                                isDeletingLog = true
-                                logViewModel.deleteLog(docId: log.id) { result in
-                                    switch result {
-                                    case .success:
-                                        handleDeleteLog()
-                                    case .failure(let error):
-                                        /// TODO - Handle error
-                                        print(error)
-                                    }
-                                }
-                                
+                                deleteLog()
                             }
                         }
                     }
@@ -102,56 +92,45 @@ struct EditLogView: View {
                             ProgressView()
                         } else {
                             UpdateLogButton(updateLogInFirebase: {
-                                Task {
-                                    isUpdatingLog = true
-                                    log.weight = logController.editWeight
-                                    log.reps = logController.editReps
-                                    log.timeAdded = date.timeIntervalSince1970
-                                    let result = await logViewModel.updateLog(log: log)
-                                    handleEditLog(result: result, errorMessage: "")
-                                }
+                                updateLog()
                             })
                         }
                     }
                 }
             }
             .onAppear {
-                date = Date(timeIntervalSince1970: log.timeAdded)
-                logController.editWeight = log.weight
-                logController.editWeightStr = log.weight.clean
-                logController.editReps = log.reps
-                logController.editRepsStr = String(log.reps)
+                setLogControllerOnAppear()
             }
         }
     }
     
-    func handleEditLog(result: FirebaseResult?, errorMessage: String) {
-        guard let result = result else { return }
-        switch result {
-        case .success:
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if logViewModel.weightSelection == WeightSelection.all.rawValue  {
-                    logViewModel.repopulateViewModel(weightSelection: WeightSelection.all.rawValue , movement: movement)
-                } else {
-                    logViewModel.repopulateViewModel(weightSelection: logController.editWeightStr, movement: movement)
-                }
-                logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
-                dismiss()
-            }
-            return
-        case .failure(_):
-            print(errorMessage)
+    // MARK: - Functions
+    
+    private func setLogControllerOnAppear() {
+        date = Date(timeIntervalSince1970: log.timeAdded)
+        logController.editWeight = log.weight
+        logController.editWeightStr = log.weight.clean
+        logController.editReps = log.reps
+        logController.editRepsStr = String(log.reps)
+    }
+    
+    private func updateLog() {
+        Task {
+            isUpdatingLog = true
+            log.weight = logController.editWeight
+            log.reps = logController.editReps
+            log.timeAdded = date.timeIntervalSince1970
+            let result = await logViewModel.updateLog(log: log)
+            errorHandler.handleUpdateLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
+            dismiss()
         }
     }
     
-    func handleDeleteLog() {
-        if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
-            logViewModel.repopulateViewModel(weightSelection: WeightSelection.all.rawValue, movement: movement)
-        } else {
-            logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+    private func deleteLog() {
+        Task {
+            isDeletingLog = true
+            let result = await logViewModel.deleteLog(docId: log.id)
+            errorHandler.handleDeleteLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
         }
-        logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
-        isDeletingLog = false
-        dismiss()
     }
 }
