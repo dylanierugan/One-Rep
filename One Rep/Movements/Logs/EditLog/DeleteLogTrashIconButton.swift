@@ -19,15 +19,25 @@ struct DeleteLogTrashIconButton: View {
     
     var log: Log
     @Binding var selectedLog: Log
-
+    
     // MARK: - View
     
     var body: some View {
         Button {
             selectedLog = log
-            Task {
-                let result = await logViewModel.deleteLog(docId: log.id)
-                handleDeleteLog(result: result, errorMessage: "")
+            logViewModel.deleteLog(docId: log.id) { result in
+                switch result {
+                case .success:
+                    if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
+                        logViewModel.repopulateViewModel(weightSelection: WeightSelection.all.rawValue, movement: movement)
+                    } else {
+                        logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+                    }
+                    logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+                case .failure(let error):
+                    /// TODO - Handle error
+                    print(error)
+                }
             }
             HapticManager.instance.impact(style: .light)
         } label: {
@@ -47,12 +57,6 @@ struct DeleteLogTrashIconButton: View {
         guard let result = result else { return }
         switch result {
         case .success:
-            if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
-                logViewModel.repopulateViewModel(weightSelection: "All", movement: movement)
-            } else {
-                logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
-            }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
             return
         case .failure(_):
             print(errorMessage)

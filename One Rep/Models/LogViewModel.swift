@@ -33,7 +33,7 @@ class LogViewModel: ObservableObject {
     @Published var logs = [Log]()
     
     @Published var filteredLogs = [Log]()
-    @Published var weightSelection = "All"
+    @Published var weightSelection = WeightSelection.all.rawValue 
     @Published var listOfWeights = [String]()
     @Published var weightLogMap = [String: [Log]]()
     @Published var listOfDates = [String]()
@@ -59,7 +59,7 @@ class LogViewModel: ObservableObject {
             }
         }
         listOfWeights.sort{$0.localizedStandardCompare($1) == .orderedAscending}
-        listOfWeights.insert("All", at: 0)
+        listOfWeights.insert(WeightSelection.all.rawValue , at: 0)
     }
     
     func populateWeightLogMap() {
@@ -88,7 +88,7 @@ class LogViewModel: ObservableObject {
     func filterWeightAndPopulateData(movementId: String) {
         filteredLogs = []
         filterLogs(movementId: movementId)
-        if weightSelection != "All" {
+        if weightSelection != WeightSelection.all.rawValue {
             let weight = (weightSelection as NSString).doubleValue
             self.filteredLogs = filteredLogs.filter { $0.weight == weight }
         }
@@ -201,12 +201,16 @@ class LogViewModel: ObservableObject {
         }
     }
     
-    func deleteLog(docId: String) async -> FirebaseResult {
-        do {
-            try await db.collection(FirebaseCollection.LogsCollection.rawValue).document(docId).delete()
-            return .success
-        } catch {
-            return .failure(error)
+    func deleteLog(docId: String, completion: @escaping (FirebaseResult) -> Void) {
+        db.collection(FirebaseCollection.LogsCollection.rawValue).document(docId).delete() { error in
+            if let error = error {
+                /// TODO - Error handle
+                completion(.failure(error))
+                return
+            } else {
+                completion(.success)
+                return
+            }
         }
     }
     

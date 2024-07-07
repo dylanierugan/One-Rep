@@ -30,7 +30,7 @@ struct WeightHorizontalScroller: View {
                             logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
                             HapticManager.instance.impact(style: .soft)
                         } label: {
-                            if weight == "All" {
+                            if weight == WeightSelection.all.rawValue  {
                                 Text(weight)
                                     .foregroundColor(logViewModel.weightSelection == weight ? .primary : .secondary.opacity(0.8))
                                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)

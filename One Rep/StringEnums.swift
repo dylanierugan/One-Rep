@@ -185,3 +185,7 @@ enum UnitSelection: String, Identifiable, Codable, CaseIterable {
     case lbs = "lbs"
     case kgs = "kgs"
 }
+
+enum WeightSelection: String {
+    case all = "All"
+}

@@ -71,7 +71,6 @@ struct MutateWeightView: View {
             }
         }
         .onAppear() {
-            print(movementViewModel.movement.mutatingValue)
             mutatingValue = movementViewModel.movement.mutatingValue
         }
     }

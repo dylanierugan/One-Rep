@@ -174,7 +174,7 @@ struct LogView: View {
     //                try realm.write {
     //                    thawedMovementLogList.append(log)
     //                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-    //                        if logViewModel.weightSelection != "All" {
+    //                        if logViewModel.weightSelection != WeightSelection.all.rawValue {
     //                            logViewModel.weightSelection = logController.weightStr
     //                            logController.setMostRecentLog(movement.logs, weightSelection: logViewModel.weightSelection)
     //                        }

@@ -68,7 +68,7 @@ struct EditMovementView: View {
                             Task {
                                 showDeleteProgressView = true
                                 let result = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
-                                handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
+                                handleEditMovementDissmiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
                             }
                         })
                     }
@@ -84,7 +84,7 @@ struct EditMovementView: View {
                                     movementViewModel.movement.muscleGroup = newMuscleGroup
                                     let result = await movementViewModel.updateMovement()
                                     dismiss()
-                                    handleResultDismiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
+                                    handleEditMovementDissmiss(result: result, dismiss: dismiss, errorMessage: ErrorMessage.ErrorAddMovement.rawValue)
                                 }
                             })
                         }
@@ -102,7 +102,7 @@ struct EditMovementView: View {
         }
     }
     
-    func handleResultDismiss(result: FirebaseResult?, dismiss: DismissAction, errorMessage: String) {
+    func handleEditMovementDissmiss(result: FirebaseResult?, dismiss: DismissAction, errorMessage: String) {
         guard let result = result else { return }
         switch result {
         case .success:

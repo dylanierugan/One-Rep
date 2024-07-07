@@ -79,7 +79,23 @@ struct EditLogView: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
-                        //DeleteLogButton(deleteLogInRealm: { self.deleteLogInRealm() })
+                        if isDeletingLog {
+                            ProgressView()
+                        } else {
+                            DeleteLogButton() {
+                                isDeletingLog = true
+                                logViewModel.deleteLog(docId: log.id) { result in
+                                    switch result {
+                                    case .success:
+                                        handleDeleteLog()
+                                    case .failure(let error):
+                                        /// TODO - Handle error
+                                        print(error)
+                                    }
+                                }
+                                
+                            }
+                        }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if isUpdatingLog {
@@ -93,7 +109,6 @@ struct EditLogView: View {
                                     log.timeAdded = date.timeIntervalSince1970
                                     let result = await logViewModel.updateLog(log: log)
                                     handleEditLog(result: result, errorMessage: "")
-                                    isUpdatingLog = false
                                 }
                             })
                         }
@@ -115,8 +130,8 @@ struct EditLogView: View {
         switch result {
         case .success:
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if logViewModel.weightSelection == "All" {
-                    logViewModel.repopulateViewModel(weightSelection: "All", movement: movement)
+                if logViewModel.weightSelection == WeightSelection.all.rawValue  {
+                    logViewModel.repopulateViewModel(weightSelection: WeightSelection.all.rawValue , movement: movement)
                 } else {
                     logViewModel.repopulateViewModel(weightSelection: logController.editWeightStr, movement: movement)
                 }
@@ -127,5 +142,16 @@ struct EditLogView: View {
         case .failure(_):
             print(errorMessage)
         }
+    }
+    
+    func handleDeleteLog() {
+        if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
+            logViewModel.repopulateViewModel(weightSelection: WeightSelection.all.rawValue, movement: movement)
+        } else {
+            logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+        }
+        logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+        isDeletingLog = false
+        dismiss()
     }
 }
