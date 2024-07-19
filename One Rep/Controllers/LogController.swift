@@ -21,11 +21,13 @@ class LogController: ObservableObject {
     @Published var editWeight: Double = 0
     @Published var editWeightStr = ""
     
+    @Published var addWeightToBodyweight: Bool = false
+    
     @Published var lastLog: Log? = nil
     
     // MARK: - Functions (Weight)
     
-    func setMostRecentLog(_ logs: [Log], weightSelection: String) {
+    func setMostRecentLog(_ logs: [Log], weightSelection: String, isBodyweight: Bool) {
         var sortedLogs = logs.sorted(by: { $0.timeAdded > $1.timeAdded })
         if weightSelection != WeightSelection.All.rawValue  {
             let selectedWeight = Double(weightSelection) ?? 0.0

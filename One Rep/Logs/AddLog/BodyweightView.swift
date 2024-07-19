@@ -1,39 +1,37 @@
-////
-////  BodyweightView.swift
-////  One Rep
-////
-////  Created by Dylan Ierugan on 6/15/24.
-////
 //
-//import SwiftUI
-//import RealmSwift
+//  BodyweightView.swift
+//  One Rep
 //
-//struct BodyweightView: View {
-//    
-//    // MARK: - Properties
-//    
-//    @EnvironmentObject var logViewModel: LogViewModel
-//    
-//    @ObservedRealmObject var userModel: UserModel
-//    
-//    // MARK: - View
-//    
-//    var body: some View {
-//        NavigationLink {
-//            RecordBodyweightView(userModel: userModel, fromSettingsView: false)
-//        } label: {
-//            VStack(spacing: 12) {
-//                Text("Bodyweight")
-//                    .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
-//                    .foregroundColor(.secondary).opacity(0.7)
-//                HStack {
-//                    if let bodyweightEntry = userModel.bodyweightEntries.last {
-//                        Image(systemName: Icons.FigureArmsOpen.rawValue)
-//                            .fontWeight(.black)
-//                        Text("\(bodyweightEntry.bodyweight.clean)  \(logViewModel.unit.rawValue)")
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+//  Created by Dylan Ierugan on 6/15/24.
+//
+
+import SwiftUI
+
+struct BodyweightView: View {
+    
+    // MARK: - Global Properties
+    
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    // MARK: - View
+    
+    var body: some View {
+        NavigationLink {
+            RecordBodyweightView(fromSettingsView: false)
+        } label: {
+            VStack(spacing: 12) {
+                Text(BodyweightStrings.Bodyweight.rawValue)
+                    .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                    .foregroundColor(.secondary).opacity(0.7)
+                HStack {
+                    if let bodyweightEntry = userViewModel.bodyweightEntries.first {
+                        Image(systemName: Icons.FigureArmsOpen.rawValue)
+                            .fontWeight(.black)
+                        Text("\(bodyweightEntry.bodyweight.clean)  \(logViewModel.unit.rawValue)")
+                    }
+                }
+            }
+        }
+    }
+}

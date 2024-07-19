@@ -24,7 +24,7 @@ struct AccountView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 16) {
                         Image(systemName: Icons.PersonFill.rawValue)
-                        Text(authManager.user?.email ?? "No user")
+                        Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
                     }
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     Divider()
@@ -43,7 +43,7 @@ struct AccountView: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("Account")
+                Text(SettingsStrings.Account.rawValue)
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     .foregroundStyle(.primary)
             }

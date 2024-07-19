@@ -12,22 +12,10 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 
-enum LogAttributes: String {
-    case UserId = "userId"
-    case MovementId = "movementId"
-    case Reps = "reps"
-    case Weight = "weight"
-    case IsBodyWeight = "isBodyWeight"
-    case TimeAdded = "timeAdded"
-    case Unit = "unit"
-}
-
 @MainActor
 class LogViewModel: ObservableObject {
     
     // MARK: - Variables
-    
-    let db = Firestore.firestore()
     
     @Published var userId: String = ""
     @Published var logs = [Log]()
@@ -40,6 +28,9 @@ class LogViewModel: ObservableObject {
     @Published var dateLogMap = [String: [Log]]()
     
     @Published var unit: UnitSelection = .lbs
+    
+    private let db = Firestore.firestore()
+    private var listenerRegistration: ListenerRegistration?
     
     // MARK: - Data functions
     
@@ -151,6 +142,19 @@ class LogViewModel: ObservableObject {
     
     // MARK: - Firebase functions
     
+    deinit {
+        Task {
+            await self.unsubscribe()
+        }
+    }
+    
+    func unsubscribe() {
+      if listenerRegistration != nil {
+        listenerRegistration?.remove()
+        listenerRegistration = nil
+      }
+    }
+    
     func getLogsAddSnapshot(completion: @escaping (FirebaseResult) -> Void) {
         db.collection(FirebaseCollection.LogsCollection.rawValue)
             .whereField(LogAttributes.UserId.rawValue, isEqualTo: userId)
@@ -170,11 +174,12 @@ class LogViewModel: ObservableObject {
                     let movementId = document[LogAttributes.MovementId.rawValue] as? String ?? ""
                     let reps = document[LogAttributes.Reps.rawValue] as? Int ?? 0
                     let weight = document[LogAttributes.Weight.rawValue] as? Double ?? 0
+                    let bodyweight = document[LogAttributes.Bodyweight.rawValue] as? Double ?? 0
                     let isBodyWeight = document[LogAttributes.IsBodyWeight.rawValue] as? Bool ?? false
                     let timeAdded = document[LogAttributes.TimeAdded.rawValue] as? Double ?? 0
                     let unitString = document[LogAttributes.Unit.rawValue] as? String ?? ""
                     let unit = UnitSelection(rawValue: unitString) ?? UnitSelection.lbs
-                    let log = Log(id: docId, userId: self.userId, movementId: movementId, reps: reps, weight: weight, isBodyWeight: isBodyWeight, timeAdded: timeAdded, unit: unit, index: 0)
+                    let log = Log(id: docId, userId: self.userId, movementId: movementId, reps: reps, weight: weight, bodyweight: bodyweight, isBodyWeight: isBodyWeight, timeAdded: timeAdded, unit: unit, index: 0)
                     self.logs.append(log)
                 }
                 completion(.success)

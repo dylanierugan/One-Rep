@@ -15,6 +15,7 @@ struct LogSetButton: View {
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var errorHandler: ErrorHandler
+    @EnvironmentObject var userViewModel: UserViewModel
     @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
@@ -52,19 +53,65 @@ struct LogSetButton: View {
     
     func logSet() {
         let docId = UUID().uuidString
-        let log = Log(id: docId,
-                      userId: logViewModel.userId,
-                      movementId: movement.id,
-                      reps: logController.reps,
-                      weight: logController.weight,
-                      isBodyWeight: movement.movementType == .Bodyweight ? true : false,
-                      timeAdded: Date.now.timeIntervalSince1970,
-                      unit: logViewModel.unit)
+        
+        var log = Log()
+        
+        /// If log is of type body weight and weight is added
+        if movement.movementType == .Bodyweight && logController.addWeightToBodyweight {
+            if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
+                log = Log(
+                    id: docId,
+                    userId: logViewModel.userId,
+                    movementId: movement.id,
+                    reps: logController.reps,
+                    weight: logController.weight,
+                    bodyweight: bodyWeightEntry.bodyweight,
+                    isBodyWeight: movement.movementType == .Bodyweight,
+                    timeAdded: Date.now.timeIntervalSince1970,
+                    unit: logViewModel.unit
+                )
+            }
+        } else if movement.movementType == .Bodyweight && !logController.addWeightToBodyweight {
+            if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
+                log = Log(
+                    id: docId,
+                    userId: logViewModel.userId,
+                    movementId: movement.id,
+                    reps: logController.reps,
+                    weight: 0,
+                    bodyweight: bodyWeightEntry.bodyweight,
+                    isBodyWeight: movement.movementType == .Bodyweight,
+                    timeAdded: Date.now.timeIntervalSince1970,
+                    unit: logViewModel.unit
+                )
+            }
+        } else {
+            if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
+                log = Log(
+                    id: docId,
+                    userId: logViewModel.userId,
+                    movementId: movement.id,
+                    reps: logController.reps,
+                    weight: logController.weight,
+                    bodyweight: 0,
+                    isBodyWeight: movement.movementType == .Bodyweight,
+                    timeAdded: Date.now.timeIntervalSince1970,
+                    unit: logViewModel.unit
+                )
+            }
+        }
+
         Task {
             addingLog = true
             let result = await logViewModel.addLog(log: log)
-            errorHandler.handleLogSet(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
+            errorHandler.handleLogSet(
+                result: result,
+                logViewModel: logViewModel,
+                logController: logController,
+                movement: movement
+            )
         }
+
         HapticManager.instance.impact(style: .light)
     }
 }

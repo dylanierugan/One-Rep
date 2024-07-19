@@ -26,6 +26,16 @@ enum AppleSignInManagerStrings: String {
     case Format = "%02x"
 }
 
+enum BodyweightStrings: String {
+    case Bodyweight = "Body weight"
+    case SetBodyweight = "Set  bodyweight"
+    case RemoveWeight = "Remove weight"
+    case AddWeight = "Add weight"
+    case Set = "Set"
+    case EnterBodyweight = "Enter bodyweight"
+    case Done = "Done"
+}
+
 enum Colors: String {
     case BackgroundElementColor = "BackgroundElementColor"
     case BackgroundColor = "BackgroundColor"
@@ -79,6 +89,7 @@ enum ErrorMessage: String {
 enum FirebaseCollection: String {
     case MovementCollection = "Movements"
     case LogsCollection = "Logs"
+    case UserCollection = "User"
 }
 
 enum Icons: String {
@@ -155,6 +166,17 @@ enum KeyboardStrings: String {
     case Done = "Done"
 }
 
+enum LogAttributes: String {
+    case UserId = "userId"
+    case MovementId = "movementId"
+    case Reps = "reps"
+    case Weight = "weight"
+    case Bodyweight = "bodyweight"
+    case IsBodyWeight = "isBodyWeight"
+    case TimeAdded = "timeAdded"
+    case Unit = "unit"
+}
+
 enum LogCardStrings: String {
     case Set = "Set"
     case Reps = "reps"
@@ -225,6 +247,12 @@ enum RepType: String, Identifiable, Codable, CaseIterable {
     case WarmUp = "Warm Up"
     case WorkingSet = "Working Set"
     case PR = "PR"
+}
+
+enum SettingsStrings: String {
+    case Settings = "Settings"
+    case Account = "Account"
+    case NoUser = "No user"
 }
 
 enum ToggleEditStrings: String {

@@ -22,13 +22,13 @@ struct EditLogView: View {
     
     @Binding var log: Log
     @State var movement: Movement
+    @FocusState var isInputActive: Bool
     
     // MARK: - Private Properties
 
     @State private var isDeletingLog = false
     @State private var isUpdatingLog = false
     @State private var date = Date()
-    @FocusState private var isInputActive: Bool
     
     // MARK: - View
     

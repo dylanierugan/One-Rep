@@ -15,16 +15,18 @@ public struct Log: Codable {
     let movementId: String
     var reps: Int
     var weight: Double
+    var bodyweight: Double
     var isBodyWeight: Bool
     var timeAdded: Double
     var unit: UnitSelection
     
-    init(id: String = "", userId: String = "", movementId: String = "", reps: Int = 0, weight: Double = 0.0, isBodyWeight: Bool = false, timeAdded: Double = 0.0, unit: UnitSelection = .lbs, index: Int = 0) {
+    init(id: String = "", userId: String = "", movementId: String = "", reps: Int = 0, weight: Double = 0.0, bodyweight: Double = 0.0, isBodyWeight: Bool = false, timeAdded: Double = 0.0, unit: UnitSelection = .lbs, index: Int = 0) {
         self.id = id
         self.userId = userId
         self.movementId = movementId
         self.reps = reps
         self.weight = weight
+        self.bodyweight = bodyweight
         self.isBodyWeight = isBodyWeight
         self.timeAdded = timeAdded
         self.unit = unit
@@ -36,6 +38,7 @@ public struct Log: Codable {
         case movementId
         case reps
         case weight
+        case bodyweight
         case isBodyWeight
         case timeAdded
         case unit

@@ -14,6 +14,7 @@ struct LogView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
     
@@ -24,7 +25,6 @@ struct LogView: View {
     
     @State private var selectedLog: Log = Log()
     @State private var showEditMovementPopup = false
-    @State private var addWeightToBodyweight = false
     @State private var showDoneToolBar = true
     @State private var showLogSetView = true
     @State private var isEditingLogs = false
@@ -35,14 +35,15 @@ struct LogView: View {
         VStack {
             if showLogSetView {
                 if movement.movementType == .Weight {
-                    LogWeightSection(movement: movement, showDoneToolBar: $showDoneToolBar)
+                    LogWeightSection(movement: movement,
+                                     showDoneToolBar: $showDoneToolBar)
                 } else {
-                    //                    if let _ = userModel.bodyweightEntries.last {
-                    //                        LogBodyweightSection(userModel: userModel, movement: movement, addWeightToBodyWeight: $addWeightToBodyweight, addLogToRealm: addLogToRealm)
-                    //                            .padding(.top, -16)
-                    //                    } else {
-                    //                        SetBodyweightButton(userModel: userModel)
-                    //                    }
+                    if let _ = userViewModel.bodyweightEntries.first {
+                        LogBodyweightSection(movement: movement)
+                        .padding(.top, -16)
+                    } else {
+                        SetBodyweightButtonLink()
+                    }
                 }
             }
             
@@ -86,6 +87,6 @@ struct LogView: View {
     
     private func setLogsOnAppear() {
         logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-        logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+        logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
 }

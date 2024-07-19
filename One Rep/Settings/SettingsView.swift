@@ -12,10 +12,7 @@ struct SettingsView: View {
     // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
-   
-//    @ObservedRealmObject var movementViewModel: MovementViewModel
-//    @ObservedRealmObject var userModel: UserModel
-    
+
     // MARK: - View
     
     var body: some View {
@@ -26,14 +23,14 @@ struct SettingsView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         AccountSection()
-//                        BodyweightSection(userModel: userModel)
+                        BodyweightSection()
 //                        UnitSection()
 //                        ThemeSection()
                     }
                     .padding(.horizontal, 16)
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(SettingsStrings.Settings.rawValue)
         }
     }
 }

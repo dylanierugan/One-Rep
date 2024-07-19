@@ -30,10 +30,10 @@ class MovementsViewModel: ObservableObject {
     }
     
     func unsubscribe() {
-      if listenerRegistration != nil {
-        listenerRegistration?.remove()
-        listenerRegistration = nil
-      }
+        if listenerRegistration != nil {
+            listenerRegistration?.remove()
+            listenerRegistration = nil
+        }
     }
     
     func subscribeToMovements(completion: @escaping (FirebaseResult) -> Void) {

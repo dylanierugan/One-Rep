@@ -41,6 +41,18 @@ class ErrorHandler: ObservableObject {
         }
     }
     
+    // MARK: - Generic Function
+    
+    func handleResult(result: FirebaseResult?) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            return
+        case .failure(_):
+            handleFailure()
+        }
+    }
+    
     // MARK: - Movement Functions
     
     func handleMovementUpdate(result: FirebaseResult?, dismiss: DismissAction) {
@@ -53,13 +65,13 @@ class ErrorHandler: ObservableObject {
         }
     }
     
-    // MARK: - Generic Function
+    // MARK: - Movement Functions
     
-    func handleResult(result: FirebaseResult?) {
+    func handleAddBodyweight(result: FirebaseResult?, dismiss: DismissAction) {
         guard let result = result else { return }
         switch result {
         case .success:
-            return
+            dismiss()
         case .failure(_):
             handleFailure()
         }
@@ -77,7 +89,7 @@ class ErrorHandler: ObservableObject {
                 } else {
                     logViewModel.repopulateViewModel(weightSelection: logController.editWeightStr, movement: movement)
                 }
-                logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+                logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
             }
             return
         case .failure(_):
@@ -95,7 +107,7 @@ class ErrorHandler: ObservableObject {
             } else {
                 logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
             }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
         case .failure(_):
             handleFailure()
         }
@@ -111,7 +123,7 @@ class ErrorHandler: ObservableObject {
             } else {
                 logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
             }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
             return
         case .failure(_):
             handleFailure()

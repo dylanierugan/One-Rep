@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct SetBodyweightButton: View {
+struct SetBodyweightButtonLink: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - View
     
@@ -23,7 +24,7 @@ struct SetBodyweightButton: View {
                 RecordBodyweightView(fromSettingsView: false)
             } label: {
                 HStack {
-                    Text("Set  bodyweight")
+                    Text(BodyweightStrings.SetBodyweight.rawValue)
                     Image(systemName: Icons.FigureArmsOpen.rawValue)
                 }
                 .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)

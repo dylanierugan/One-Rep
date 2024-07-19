@@ -28,7 +28,7 @@ struct WeightHorizontalScroller: View {
                     ForEach(logViewModel.listOfWeights, id: \.self) { weight in
                         Button {
                             logViewModel.repopulateViewModel(weightSelection: weight, movement: movement)
-                            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+                            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
                             HapticManager.instance.impact(style: .soft)
                         } label: {
                             if weight == WeightSelection.All.rawValue  {

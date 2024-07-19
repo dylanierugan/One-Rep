@@ -20,6 +20,7 @@ struct One_RepApp: SwiftUI.App {
     @StateObject var logController = LogController()
     @StateObject var viewRouter = ViewRouter()
     @StateObject var themeModel = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue)
+    @StateObject var userViewModel = UserViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -39,6 +40,7 @@ struct One_RepApp: SwiftUI.App {
                 .environmentObject(movementsViewModel)
                 .environmentObject(themeModel)
                 .environmentObject(viewRouter)
+                .environmentObject(userViewModel)
                 .environment(\.sizeCategory, .extraSmall)
         }
     }

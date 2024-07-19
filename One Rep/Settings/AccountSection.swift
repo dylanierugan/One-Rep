@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountSection: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
@@ -20,7 +20,7 @@ struct AccountSection: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Account")
+            Text(SettingsStrings.Account.rawValue)
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             NavigationLink {
@@ -30,7 +30,7 @@ struct AccountSection: View {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
                             Image(systemName: Icons.PersonFill.rawValue)
-                            Text(authManager.user?.email ?? "No user")
+                            Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()

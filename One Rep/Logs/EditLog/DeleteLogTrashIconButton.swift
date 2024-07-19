@@ -53,7 +53,7 @@ struct DeleteLogTrashIconButton: View {
             } else {
                 logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
             }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection)
+            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
             return
         case .failure(_):
             print(errorMessage)

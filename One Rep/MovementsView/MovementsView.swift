@@ -25,7 +25,8 @@ struct MovementsView: View {
     
     private var filteredMovements: [Movement] {
         if searchText.isEmpty {
-            return movementsViewModel.movements.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+            return movementsViewModel.movements.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+            }
         } else {
             return movementsViewModel.movements
                 .filter { $0.name.range(of: searchText, options: [.caseInsensitive, .diacriticInsensitive]) != nil }
