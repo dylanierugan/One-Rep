@@ -14,7 +14,6 @@
 		370730662BF07BA500E95989 /* ToggleEditLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730652BF07BA500E95989 /* ToggleEditLogButton.swift */; };
 		370730682BF07E6F00E95989 /* ShowFullScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */; };
 		3707306A2BF083C300E95989 /* DeleteLogTrashIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730692BF083C300E95989 /* DeleteLogTrashIconButton.swift */; };
-		3707306C2BF12B8800E95989 /* LogViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707306B2BF12B8800E95989 /* LogViewModel2.swift */; };
 		370730702BF16ECD00E95989 /* MovementSelectionPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */; };
 		370730722BF3BE8900E95989 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730712BF3BE8900E95989 /* ActivityView.swift */; };
 		370730762BF7240F00E95989 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730752BF7240F00E95989 /* CalendarView.swift */; };
@@ -73,6 +72,7 @@
 		376B58972C44431D007C82E9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58962C44431D007C82E9 /* FirebaseStorage */; };
 		376B58992C44431D007C82E9 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58982C44431D007C82E9 /* FirebaseStorageCombine-Community */; };
 		376B589B2C44431D007C82E9 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 376B589A2C44431D007C82E9 /* FirebaseVertexAI-Preview */; };
+		376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */; };
 		37881F502C05AC1800ABBF42 /* OneRepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */; };
 		37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */; };
 		37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */; };
@@ -95,7 +95,7 @@
 		37A655282BA5F8C200B96BEB /* OneRepLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655272BA5F8C200B96BEB /* OneRepLogo.swift */; };
 		37A6552C2BA5F8FA00B96BEB /* MovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */; };
 		37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552D2BA5F91100B96BEB /* SettingsView.swift */; };
-		37A655302BA5F98C00B96BEB /* StringEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552F2BA5F98C00B96BEB /* StringEnums.swift */; };
+		37A655302BA5F98C00B96BEB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552F2BA5F98C00B96BEB /* Enums.swift */; };
 		37A655362BA7466300B96BEB /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655352BA7466300B96BEB /* Movement.swift */; };
 		37A655382BA7470B00B96BEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655372BA7470B00B96BEB /* Log.swift */; };
 		37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */; };
@@ -136,7 +136,6 @@
 		370730652BF07BA500E95989 /* ToggleEditLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleEditLogButton.swift; sourceTree = "<group>"; };
 		370730672BF07E6F00E95989 /* ShowFullScreenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowFullScreenButton.swift; sourceTree = "<group>"; };
 		370730692BF083C300E95989 /* DeleteLogTrashIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLogTrashIconButton.swift; sourceTree = "<group>"; };
-		3707306B2BF12B8800E95989 /* LogViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel2.swift; sourceTree = "<group>"; };
 		3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementSelectionPicker.swift; sourceTree = "<group>"; };
 		370730712BF3BE8900E95989 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		370730752BF7240F00E95989 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -167,6 +166,7 @@
 		374069792C2F14AC00692ECD /* LoadDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataView.swift; sourceTree = "<group>"; };
 		3740697B2C2FC26D00692ECD /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		3742229E2C37226300A7AEFA /* MovementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
+		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepProgressView.swift; sourceTree = "<group>"; };
 		37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTypePicker.swift; sourceTree = "<group>"; };
 		37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightSection.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		37A655272BA5F8C200B96BEB /* OneRepLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepLogo.swift; sourceTree = "<group>"; };
 		37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsView.swift; sourceTree = "<group>"; };
 		37A6552D2BA5F91100B96BEB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		37A6552F2BA5F98C00B96BEB /* StringEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringEnums.swift; sourceTree = "<group>"; };
+		37A6552F2BA5F98C00B96BEB /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		37A655352BA7466300B96BEB /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
 		37A655372BA7470B00B96BEB /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementView.swift; sourceTree = "<group>"; };
@@ -268,6 +268,7 @@
 			children = (
 				370730712BF3BE8900E95989 /* ActivityView.swift */,
 				370730862BF9D64F00E95989 /* ActivityMovementDataView.swift */,
+				376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */,
 				3707308A2BFA691D00E95989 /* LogIndexLabel.swift */,
 				370730812BF9D39C00E95989 /* MoveWeekButtons.swift */,
 				3707307F2BF98D1A00E95989 /* DateView.swift */,
@@ -382,7 +383,7 @@
 				37A655212BA5F86600B96BEB /* MotherView.swift */,
 				374069792C2F14AC00692ECD /* LoadDataView.swift */,
 				37A655232BA5F88200B96BEB /* TabHolderView.swift */,
-				37A6552F2BA5F98C00B96BEB /* StringEnums.swift */,
+				37A6552F2BA5F98C00B96BEB /* Enums.swift */,
 				37A655312BA745A300B96BEB /* Login */,
 				370730742BF723BB00E95989 /* MovementsView */,
 				37A655572BBDAD5300B96BEB /* AddMovement */,
@@ -497,7 +498,6 @@
 			children = (
 				37A655372BA7470B00B96BEB /* Log.swift */,
 				3740697B2C2FC26D00692ECD /* LogViewModel.swift */,
-				3707306B2BF12B8800E95989 /* LogViewModel2.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -639,7 +639,6 @@
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
 				37881F5E2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift in Sources */,
 				37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */,
-				3707306C2BF12B8800E95989 /* LogViewModel2.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementToolButton.swift in Sources */,
 				3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
@@ -652,6 +651,7 @@
 				37A655622BC1EF6A00B96BEB /* ThemeSection.swift in Sources */,
 				370730782BF72A1800E95989 /* CalendarDateButton.swift in Sources */,
 				370730962BFF13AD00E95989 /* EditLogView.swift in Sources */,
+				376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
 				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
 				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
@@ -697,7 +697,7 @@
 				37A6552C2BA5F8FA00B96BEB /* MovementsView.swift in Sources */,
 				37A655382BA7470B00B96BEB /* Log.swift in Sources */,
 				370730942BFF0C7200E95989 /* EditWeightTextField.swift in Sources */,
-				37A655302BA5F98C00B96BEB /* StringEnums.swift in Sources */,
+				37A655302BA5F98C00B96BEB /* Enums.swift in Sources */,
 				37C70C342BE2806100B0375A /* WeightHorizontalScroller.swift in Sources */,
 				37A6555D2BBE3DF800B96BEB /* Demo.swift in Sources */,
 				37A655362BA7466300B96BEB /* Movement.swift in Sources */,

@@ -28,7 +28,11 @@ class LogViewModel: ObservableObject {
     @Published var dateLogMap = [String: [Log]]()
     @Published var dateMovementLogMap = [String: [Movement:[Log]]]()
     
-    @Published var unit: UnitSelection = .lbs
+    @Published var unit: UnitSelection
+    
+    init(unit: UnitSelection) {
+        self.unit = unit
+    }
     
     private let db = Firestore.firestore()
     private var listenerRegistration: ListenerRegistration?

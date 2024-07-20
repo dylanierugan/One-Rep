@@ -31,22 +31,7 @@ struct ActivityMovementDataView: View {
                                 .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                             if let logs = movementLogMap[movement] {
                                 ForEach(Array(logs.enumerated()), id: \.element.id) { index, log in
-                                    let weightStr = logViewModel.convertWeightDoubleToString(log.weight)
-                                    let repStr = String(log.reps)
-                                    HStack {
-                                        HStack(alignment: .bottom) {
-                                            Text(LogCardStrings.Set.rawValue)
-                                                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                                .foregroundStyle(.secondary)
-                                            Text(String(index + 1))
-                                                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                                .foregroundStyle(.primary)
-                                        }
-                                        Spacer()
-                                        DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: logViewModel.unit.rawValue)
-                                        Spacer()
-                                        DataLabel(data: repStr, dataType: LogCardStrings.Reps.rawValue)
-                                    }
+                                    ActivityMovementCard(index: index, log: log)
                                 }
                                 .padding(.top, 4)
                             }

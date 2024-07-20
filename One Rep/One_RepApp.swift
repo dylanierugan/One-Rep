@@ -17,7 +17,7 @@ struct One_RepApp: SwiftUI.App {
     @StateObject var dateViewModel = DateViewModel()
     @StateObject var errorHandler = ErrorHandler()
     @StateObject var movementsViewModel = MovementsViewModel()
-    @StateObject var logViewModel = LogViewModel()
+    @StateObject var logViewModel = LogViewModel(unit: UserDefaults.standard.unitSelection)
     @StateObject var logController = LogController()
     @StateObject var viewRouter = ViewRouter()
     @StateObject var themeModel = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue)

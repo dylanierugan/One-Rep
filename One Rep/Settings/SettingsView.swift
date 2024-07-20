@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
 
@@ -24,8 +24,8 @@ struct SettingsView: View {
                     VStack(spacing: 16) {
                         AccountSection()
                         BodyweightSection()
-//                        UnitSection()
-//                        ThemeSection()
+                        UnitSection()
+                        ThemeSection()
                     }
                     .padding(.horizontal, 16)
                 }

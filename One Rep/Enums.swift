@@ -257,6 +257,8 @@ enum SettingsStrings: String {
     case Settings = "Settings"
     case Account = "Account"
     case NoUser = "No user"
+    case Units = "Units"
+    case Theme = "Theme"
 }
 
 enum ToggleEditStrings: String {
@@ -283,4 +285,23 @@ enum UnitSelection: String, Identifiable, Codable, CaseIterable {
 
 enum WeightSelection: String {
     case All = "All"
+}
+
+extension UserDefaults {
+    private enum Keys {
+        static let unitSelection = "unitSelection"
+    }
+    
+    var unitSelection: UnitSelection {
+        get {
+            guard let savedValue = string(forKey: Keys.unitSelection),
+                  let unit = UnitSelection(rawValue: savedValue) else {
+                return .lbs
+            }
+            return unit
+        }
+        set {
+            set(newValue.rawValue, forKey: Keys.unitSelection)
+        }
+    }
 }

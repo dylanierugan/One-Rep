@@ -44,7 +44,7 @@ struct LogCard: View {
                     }
                     Spacer()
                     HStack(spacing: 32) {
-                        DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: logViewModel.unit.rawValue)
+                        DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
                         DataLabel(data: String(log.reps), dataType: LogCardStrings.Reps.rawValue)
                     }
                 }

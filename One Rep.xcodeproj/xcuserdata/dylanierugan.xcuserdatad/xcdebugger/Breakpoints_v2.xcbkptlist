@@ -400,7 +400,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "handleLogSet(result:logViewModel:logController:movement:bodyweight:)"
+            landmarkName = "handleLogSet(result:logViewModel:logController:movement:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
