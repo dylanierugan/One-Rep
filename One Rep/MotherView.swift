@@ -7,14 +7,10 @@
 
 import SwiftUI
 
-import SwiftUI
-import Realm
-import RealmSwift
-
-/// View holds either login/signup or tabview
 struct MotherView: View {
     
-    @EnvironmentObject var app: RealmSwift.App
+    // MARK: - Global Properties
+    
     @EnvironmentObject var viewRouter: ViewRouter
     
     // MARK: - View
@@ -23,15 +19,10 @@ struct MotherView: View {
         switch viewRouter.currentPage {
         case .loginView:
             LoginView()
-        case .syncRealm:
-            SyncRealmView()
+        case .loadDataView:
+            LoadDataView()
         case .tabView:
-            if let realm = viewRouter.realm {
-                TabHolderView()
-                    .environment(\.realm, realm)
-            } else {
-                LoginView()
-            }
+            TabHolderView()
         }
     }
 }

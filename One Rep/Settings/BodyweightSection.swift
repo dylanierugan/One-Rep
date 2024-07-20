@@ -6,36 +6,34 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct BodyweightSection: View {
     
-    // MARK: - Vars
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    
-    @ObservedRealmObject var userModel: UserModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - View
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Body weight")
+            Text(BodyweightStrings.Bodyweight.rawValue)
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             NavigationLink {
-                RecordBodyweightView(userModel: userModel, fromSettingsView: true)
+                RecordBodyweightView(fromSettingsView: true)
             } label: {
                 VStack(alignment: .leading) {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
-                            Image(systemName: Icons.FigureArmsOpen.description)
+                            Image(systemName: Icons.FigureArmsOpen.rawValue)
                                 .fontWeight(.black)
-                            Text("Set  bodyweight")
+                            Text(BodyweightStrings.SetBodyweight.rawValue)
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()
-                        Image(systemName: Icons.ChevronRight.description)
+                        Image(systemName: Icons.ChevronRight.rawValue)
                             .font(.caption).bold()
                             .foregroundStyle(.secondary)
                     }

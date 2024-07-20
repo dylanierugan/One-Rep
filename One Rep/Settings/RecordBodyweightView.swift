@@ -6,24 +6,26 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct RecordBodyweightView: View {
     
-    // MARK: - Vars
-    
-    @Environment(\.realm) var realm
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var errorHandler: ErrorHandler
+    @EnvironmentObject var userViewModel: UserViewModel
+    @Environment(\.dismiss) private var dismiss
     
-    @ObservedRealmObject var userModel: UserModel
-    
-    @State var bodyweight: Double = 130
-    @State var prevBodyweight: Double = 0
+    // MARK: - Public Properties
     
     @State var fromSettingsView: Bool
-    
     @FocusState var isInputActive: Bool
+    
+    // MARK: - Private Properties
+    
+    @State private var bodyweight: Double = 130
+    @State private var prevBodyweight: Double = 0
+    @State private var showProgressView = false
     
     // MARK: - Views
     
@@ -33,7 +35,7 @@ struct RecordBodyweightView: View {
                 .ignoresSafeArea()
             VStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Enter bodyweight")
+                    Text(BodyweightStrings.EnterBodyweight.rawValue)
                         .padding(.horizontal, 8)
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary)
@@ -44,14 +46,20 @@ struct RecordBodyweightView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    SetWeightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight, addWeightToRealm: addWeightToRealm)
+                    if showProgressView {
+                        ProgressView()
+                    } else {
+                        AddNewBodyweightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight) {
+                            addBodyweight()
+                        }
+                    }
                 }
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button {
                         isInputActive = false
                     } label: {
-                        Text("Done")
+                        Text(BodyweightStrings.Done.rawValue)
                             .foregroundStyle(.primary)
                             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     }
@@ -60,14 +68,16 @@ struct RecordBodyweightView: View {
             .padding(.horizontal, 16)
         }
         .onAppear() {
-            if let bodyweightEntry = userModel.bodyweightEntries.last {
+            if let bodyweightEntry = userViewModel.bodyweightEntries.first {
                 bodyweight = bodyweightEntry.bodyweight
                 prevBodyweight = bodyweightEntry.bodyweight
             }
         }
     }
     
-    func formatWeightString(_ weight: Double) -> String {
+    // MARK: - Functions
+    
+    private func formatWeightString(_ weight: Double) -> String {
         if weight.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", weight)
         } else {
@@ -75,9 +85,14 @@ struct RecordBodyweightView: View {
         }
     }
     
-    func addWeightToRealm() {
-        let newWeight = BodyweightEntry(bodyweight: bodyweight, timeAdded: Date().timeIntervalSince1970)
+    private func addBodyweight() {
+        let docId = UUID().uuidString
+        let newBodyweight = BodyweightEntry(id: docId, userId: userViewModel.userId, bodyweight: bodyweight, timeAdded: Date().timeIntervalSince1970)
         prevBodyweight = bodyweight
-        $userModel.bodyweightEntries.append(newWeight)
+        Task {
+            showProgressView = true
+            let result = await userViewModel.addBodyweight(bodyweight: newBodyweight)
+            errorHandler.handleAddBodyweight(result: result, dismiss: dismiss)
+        }
     }
 }

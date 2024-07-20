@@ -5,26 +5,28 @@
 //  Created by Dylan Ierugan on 3/15/24.
 //
 
+import FirebaseCore
 import SwiftUI
-import RealmSwift
 
 @main
 struct One_RepApp: SwiftUI.App {
     
-    // MARK: - StateObject
-    
-    @StateObject var app: RealmSwift.App
-    @StateObject var authService: AuthService
-    @StateObject var viewRouter = ViewRouter()
+    // MARK: - StateObjects
+
+    @StateObject var authManager = AuthManager()
     @StateObject var dateViewModel = DateViewModel()
-    @StateObject var logViewModel = LogViewModel()
+    @StateObject var errorHandler = ErrorHandler()
+    @StateObject var movementsViewModel = MovementsViewModel()
+    @StateObject var logViewModel = LogViewModel(unit: UserDefaults.standard.unitSelection)
     @StateObject var logController = LogController()
-    @StateObject var themeColor = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.description) ?? Colors.LightGreen.description)
+    @StateObject var viewRouter = ViewRouter()
+    @StateObject var themeModel = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue)
+    @StateObject var userViewModel = UserViewModel()
     
     init() {
-        let app = RealmSwift.App(id: AppConstants.ID.description)
-        _app = StateObject(wrappedValue: app)
-        _authService =  StateObject(wrappedValue: AuthService(app: app))
+        FirebaseApp.configure()
+        let authManager = AuthManager()
+        _authManager = StateObject(wrappedValue: authManager)
     }
     
     // MARK: - Scene
@@ -32,14 +34,16 @@ struct One_RepApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             MotherView()
-                .environment(\.sizeCategory, .extraSmall)
-                .environmentObject(app)
-                .environmentObject(authService)
-                .environmentObject(viewRouter)
+                .environmentObject(authManager)
                 .environmentObject(dateViewModel)
-                .environmentObject(logViewModel)
+                .environmentObject(errorHandler)
                 .environmentObject(logController)
-                .environmentObject(themeColor)
+                .environmentObject(logViewModel)
+                .environmentObject(movementsViewModel)
+                .environmentObject(themeModel)
+                .environmentObject(viewRouter)
+                .environmentObject(userViewModel)
+                .environment(\.sizeCategory, .extraSmall)
         }
     }
 }

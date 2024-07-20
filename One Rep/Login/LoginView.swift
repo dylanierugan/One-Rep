@@ -6,22 +6,15 @@
 //
 
 import SwiftUI
-import RealmSwift
-import Realm
-import AuthenticationServices
+import Firebase
 
 struct LoginView: View {
     
-    // MARK: - Variables
+    // MARK: - Global Properties
     
-    @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
-    
-    @State private var email = ""
-    @State private var password = ""
-    @State private var isSecure = true
-    @State private var showResetPassword = false
+    @EnvironmentObject var viewRouter: ViewRouter
     
     // MARK: - View
     
@@ -32,7 +25,7 @@ struct LoginView: View {
             VStack(spacing: 16) {
                 VStack(spacing: 8) {
                     OneRepLogo(size: .title)
-                    Text("Do one more rep than last time")
+                    Text(LoginStrings.DeleteMovmentConfirmation.rawValue)
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -42,6 +35,15 @@ struct LoginView: View {
                     .padding(.top, 8)
                     .padding(.horizontal, 32)
             }
+        }
+        .onAppear{ onAppearSetViewRouter() }
+    }
+    
+    // MARK: - Functions
+    
+    private func onAppearSetViewRouter() {
+        if Auth.auth().currentUser != nil {
+            viewRouter.currentPage = .loadDataView
         }
     }
 }

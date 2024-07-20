@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UnitSection: View {
     
-    // MARK: - Variables
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     
@@ -17,7 +17,7 @@ struct UnitSection: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Units")
+            Text(SettingsStrings.Settings.rawValue)
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             VStack(alignment: .leading) {
@@ -37,10 +37,12 @@ struct UnitSection: View {
 
 struct UnitPickerButton: View {
     
-    // MARK: - Variables
+    // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
+    
+    // MARK: - Public Properties
     
     var unitSelection: UnitSelection
     
@@ -50,6 +52,7 @@ struct UnitPickerButton: View {
         Button(action: {
             withAnimation() {
                 logViewModel.unit = unitSelection
+                UserDefaults.standard.unitSelection = unitSelection
                 HapticManager.instance.impact(style: .soft)
             }
         }, label: {

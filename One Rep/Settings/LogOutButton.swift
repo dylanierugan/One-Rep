@@ -6,36 +6,31 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct LogOutButton: View {
     
-    // MARK: - Variables
-    
-    @EnvironmentObject var app: RealmSwift.App
+    // MARK: - Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var viewRouter: ViewRouter
     
     // MARK: - View
     
     var body: some View {
         Button {
-            authService.logOutUser { result in
-                switch result {
-                case .failure(let error):
-                    /// Handle error
-                    print("Log out failed: \(error.localizedDescription)")
-                case .success:
-                    withAnimation {
-                        viewRouter.currentPage = .loginView
-                    }
+            Task {
+                do {
+                    try await authManager.signOut()
+                    viewRouter.currentPage = .loginView
+                    print("User signed out successfully.")
+                } catch {
+                    print("Failed to sign out: \(error.localizedDescription)")
                 }
             }
         } label: {
             HStack(spacing: 16) {
-                Image(systemName: Icons.RectanglePortraitAndArrowRight.description)
+                Image(systemName: Icons.RectanglePortraitAndArrowRight.rawValue)
                 Text("Log Out")
                 Spacer()
             }

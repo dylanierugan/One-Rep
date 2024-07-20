@@ -6,17 +6,13 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct AccountView: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
-    @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
-    
-    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     // MARK: - Views
     
@@ -27,8 +23,8 @@ struct AccountView: View {
             VStack {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 16) {
-                        Image(systemName: Icons.PersonFill.description)
-                        Text(authService.user?.profile.email ?? "No user")
+                        Image(systemName: Icons.PersonFill.rawValue)
+                        Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
                     }
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     Divider()
@@ -36,7 +32,7 @@ struct AccountView: View {
                     LogOutButton()
                     Divider()
                         .padding(.leading, 32)
-                    DeleteAccountButton(movementViewModel: movementViewModel)
+                    DeleteAccountButton()
                 }
                 .padding(16)
                 .background(Color(theme.backgroundElementColor))
@@ -47,7 +43,7 @@ struct AccountView: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                Text("Account")
+                Text(SettingsStrings.Account.rawValue)
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     .foregroundStyle(.primary)
             }

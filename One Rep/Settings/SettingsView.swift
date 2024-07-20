@@ -6,18 +6,13 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct SettingsView: View {
     
-    // MARK: - Variables
+    // MARK: - Global Properties
     
-    @EnvironmentObject var app: RealmSwift.App
     @EnvironmentObject var theme: ThemeModel
-    
-    @ObservedRealmObject var movementViewModel: MovementViewModel
-    @ObservedRealmObject var userModel: UserModel
-    
+
     // MARK: - View
     
     var body: some View {
@@ -27,15 +22,15 @@ struct SettingsView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 16) {
-                        AccountSection(movementViewModel: movementViewModel)
-                        BodyweightSection(userModel: userModel)
+                        AccountSection()
+                        BodyweightSection()
                         UnitSection()
                         ThemeSection()
                     }
                     .padding(.horizontal, 16)
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(SettingsStrings.Settings.rawValue)
         }
     }
 }

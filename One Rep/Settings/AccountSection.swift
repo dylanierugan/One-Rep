@@ -6,37 +6,35 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct AccountSection: View {
     
-    // MARK: - Variables
+    // MARK: - Global Properties
     
-    @EnvironmentObject var app: RealmSwift.App
-    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     
-    @ObservedRealmObject var movementViewModel: MovementViewModel
+    // @ObservedRealmObject var movementViewModel: MovementViewModel
     
     // MARK: - View
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Account")
+            Text(SettingsStrings.Account.rawValue)
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             NavigationLink {
-                AccountView(movementViewModel: movementViewModel)
+                AccountView()
             } label: {
                 VStack(alignment: .leading) {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
-                            Image(systemName: Icons.PersonFill.description)
-                            Text(authService.user?.profile.email ?? "No user")
+                            Image(systemName: Icons.PersonFill.rawValue)
+                            Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()
-                        Image(systemName: Icons.ChevronRight.description)
+                        Image(systemName: Icons.ChevronRight.rawValue)
                             .font(.caption).bold()
                             .foregroundStyle(.secondary)
                     }

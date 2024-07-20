@@ -6,18 +6,14 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct DeleteAccountButton: View {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
-    @Environment(\.realm) var realm
-    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
-    
-    @ObservedRealmObject var movementViewModel: MovementViewModel
     
     @State private var showDeleteMovementAlert = false
     
@@ -28,7 +24,7 @@ struct DeleteAccountButton: View {
             showDeleteMovementAlert = true
         } label: {
             HStack(spacing: 16) {
-                Image(systemName: Icons.Trash.description)
+                Image(systemName: Icons.Trash.rawValue)
                 Text("Delete Account")
                 Spacer()
             }
@@ -43,18 +39,18 @@ struct DeleteAccountButton: View {
                 title: Text("Are you sure you want to delete your account and all the data associated with it?"),
                 message: Text("There is no way to undo this action."),
                 primaryButton: .destructive(Text("Delete")) {
-                    authService.deleteUser { result in
-                        switch result {
-                        case .failure(let error):
-                            /// Handle error
-                            print("Delete user failed: \(error.localizedDescription)")
-                        case .success:
-                            withAnimation {
-                                deleteAllData()
-                                viewRouter.currentPage = .loginView
-                            }
-                        }
-                    }
+//                    authService.deleteUser { result in
+//                        switch result {
+//                        case .failure(let error):
+//                            /// Handle error
+//                            print("Delete user failed: \(error.localizedDescription)")
+//                        case .success:
+//                            withAnimation {
+//                                deleteAllData()
+//                                viewRouter.currentPage = .loginView
+//                            }
+//                        }
+//                    }
                 },
                 secondaryButton: .cancel())
         }
@@ -63,17 +59,6 @@ struct DeleteAccountButton: View {
     // MARK: - Function
     
     private func deleteAllData() {
-        for movement in movementViewModel.movements {
-            if let thawedMovement = movement.thaw() {
-                do {
-                    try realm.write {
-                        realm.delete(thawedMovement.logs)
-                        realm.delete(thawedMovement)
-                    }
-                } catch  {
-                    /// Handle error
-                }
-            }
-        }
+        /// TODO - Delete all data locally
     }
 }

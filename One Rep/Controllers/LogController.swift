@@ -6,34 +6,38 @@
 //
 
 import Foundation
-import RealmSwift
 
 class LogController: ObservableObject {
     
-    // MARK: - Variables
+    // MARK: - Properties
     
     @Published var reps: Int = 0
-    @Published var weight: Double = 0
     @Published var repsStr = ""
+    @Published var editReps: Int = 0
+    @Published var editRepsStr = ""
+    
+    @Published var weight: Double = 0
     @Published var weightStr = ""
+    @Published var editWeight: Double = 0
+    @Published var editWeightStr = ""
+    
+    @Published var addWeightToBodyweight: Bool = false
     
     @Published var lastLog: Log? = nil
     
     // MARK: - Functions (Weight)
     
-    /// Set weight and rep fields to most recent log
-    func setMostRecentLog(_ logs: List<Log>, weightSelection: String) {
-            var logs = logs.sorted(by: \Log.date, ascending: false)
-            if weightSelection != "All" {
-                logs = logs.sorted(by: \Log.date, ascending: false).where {
-                    ($0.weight == Double(weightSelection) ?? 0)
-                }
-            }
-            lastLog = logs.first
-            reps = lastLog?.reps ?? 12
-            repsStr = String(lastLog?.reps ?? 12)
-            weight = lastLog?.weight ?? 135
-            weightStr = String(lastLog?.weight ?? 135)
+    func setMostRecentLog(_ logs: [Log], weightSelection: String, isBodyweight: Bool) {
+        var sortedLogs = logs.sorted(by: { $0.timeAdded > $1.timeAdded })
+        if weightSelection != WeightSelection.All.rawValue  {
+            let selectedWeight = Double(weightSelection) ?? 0.0
+            sortedLogs = sortedLogs.filter { $0.weight == selectedWeight }
+        }
+        lastLog = logs.first
+        reps = lastLog?.reps ?? 12
+        repsStr = String(lastLog?.reps ?? 12)
+        weight = lastLog?.weight ?? 135
+        weightStr = String(lastLog?.weight ?? 135)
     }
     
     func mutateWeight(_ mutatingValue: Double) {
@@ -43,7 +47,14 @@ class LogController: ObservableObject {
         }
     }
     
-    // MARK: - Functions (Weight)
+    func mutateEditWeight(_ mutatingValue: Double) {
+        if editWeight + mutatingValue >= 0 && editWeight + mutatingValue <= 999 {
+            editWeight += mutatingValue
+            editWeightStr = editWeight.clean
+        }
+    }
+    
+    // MARK: - Functions (Reps)
     
     func mutateReps(_ mutatingValue: Int) {
         if reps > 0 || reps < 999 {
@@ -67,6 +78,29 @@ class LogController: ObservableObject {
             repsStr = String(repsStr.prefix(upper))
         }
     }
+    
+    func mutateEditReps(_ mutatingValue: Int) {
+        if editReps > 0 || editReps < 999 {
+            editReps += mutatingValue
+            editRepsStr = String(editReps)
+        }
+    }
+    
+    func bindEditRepValues() {
+        if editRepsStr.isEmpty {
+            editReps = 0
+        } else if let value = Int(editRepsStr) {
+            editReps = value
+        } else {
+            editRepsStr = String(editReps)
+        }
+    }
+    
+    func limitEditRepsText(_ upper: Int) {
+        if editRepsStr.count > upper {
+            editRepsStr = String(editRepsStr.prefix(upper))
+        }
+    }
 }
 
 extension Double {
@@ -80,7 +114,7 @@ extension NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 1 // You can set this to a reasonable number for your use case
+        formatter.maximumFractionDigits = 1 /// You can set this to a reasonable number for your use case
         return formatter
     }
 }
