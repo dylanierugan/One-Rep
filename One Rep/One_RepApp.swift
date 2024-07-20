@@ -13,15 +13,15 @@ struct One_RepApp: SwiftUI.App {
     
     // MARK: - StateObjects
 
-    @StateObject var authManager = AuthManager()
-    @StateObject var dateViewModel = DateViewModel()
-    @StateObject var errorHandler = ErrorHandler()
-    @StateObject var movementsViewModel = MovementsViewModel()
-    @StateObject var logViewModel = LogViewModel(unit: UserDefaults.standard.unitSelection)
-    @StateObject var logController = LogController()
-    @StateObject var viewRouter = ViewRouter()
-    @StateObject var themeModel = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue)
-    @StateObject var userViewModel = UserViewModel()
+    @StateObject private var authManager = AuthManager()
+    @StateObject private var dateViewModel = DateViewModel()
+    @StateObject private var errorHandler = ErrorHandler()
+    @StateObject private var movementsViewModel = MovementsViewModel()
+    @StateObject private var logViewModel = LogViewModel(unit: UserDefaults.standard.unitSelection)
+    @StateObject private var logController = LogController()
+    @StateObject private var viewRouter = ViewRouter()
+    @StateObject private var themeModel = ThemeModel(accent: UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue, colorScheme: UserDefaults.standard.appColorScheme == .dark ? .dark : .light)
+    @StateObject private var userViewModel = UserViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -44,6 +44,7 @@ struct One_RepApp: SwiftUI.App {
                 .environmentObject(viewRouter)
                 .environmentObject(userViewModel)
                 .environment(\.sizeCategory, .extraSmall)
+                .environment(\.colorScheme, themeModel.colorScheme)
         }
     }
 }

@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ThemeModel: ObservableObject {
     
-    init(accent: String) {
+    init(accent: String, colorScheme: ColorScheme) {
         self.accent = accent
         self.backgroundColor = Colors.BackgroundColor.rawValue
         self.backgroundElementColor = Colors.BackgroundElementColor.rawValue
@@ -39,6 +40,8 @@ class ThemeModel: ObservableObject {
             self.darkBaseColor = Colors.DarkGreen.rawValue
             self.lightBaseColor = Colors.LightGreen.rawValue
         }
+        
+        self.colorScheme = colorScheme
     }
     
     @Published var accent: String
@@ -60,6 +63,8 @@ class ThemeModel: ObservableObject {
     
     @Published var darkRed: String
     @Published var lightRed: String
+    
+    @Published var colorScheme: ColorScheme
     
     func changeColor(color: String) {
         if color == Colors.LightGreen.rawValue {

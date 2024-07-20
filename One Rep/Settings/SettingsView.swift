@@ -25,6 +25,7 @@ struct SettingsView: View {
                         AccountSection()
                         BodyweightSection()
                         UnitSection()
+                        AppearanceSection()
                         ThemeSection()
                     }
                     .padding(.horizontal, 16)

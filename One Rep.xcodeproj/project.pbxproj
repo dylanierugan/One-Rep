@@ -73,6 +73,7 @@
 		376B58992C44431D007C82E9 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58982C44431D007C82E9 /* FirebaseStorageCombine-Community */; };
 		376B589B2C44431D007C82E9 /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 376B589A2C44431D007C82E9 /* FirebaseVertexAI-Preview */; };
 		376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */; };
+		376B58A52C4C52D5007C82E9 /* AppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */; };
 		37881F502C05AC1800ABBF42 /* OneRepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */; };
 		37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */; };
 		37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */; };
@@ -167,6 +168,7 @@
 		3740697B2C2FC26D00692ECD /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		3742229E2C37226300A7AEFA /* MovementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
+		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepProgressView.swift; sourceTree = "<group>"; };
 		37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTypePicker.swift; sourceTree = "<group>"; };
 		37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightSection.swift; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
 				3707305F2BF0679600E95989 /* AccountSection.swift */,
 				37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */,
+				376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */,
 				37A655612BC1EF6A00B96BEB /* ThemeSection.swift */,
 				3707308C2BFEBA2500E95989 /* UnitSection.swift */,
 				370730A42C01638D00E95989 /* AccountView.swift */,
@@ -646,6 +649,7 @@
 				370730AB2C022C9000E95989 /* AuthService.swift in Sources */,
 				374069702C2E5D9800692ECD /* AuthManager.swift in Sources */,
 				370730722BF3BE8900E95989 /* ActivityView.swift in Sources */,
+				376B58A52C4C52D5007C82E9 /* AppearanceSection.swift in Sources */,
 				37A655262BA5F8A700B96BEB /* SignInWithApple.swift in Sources */,
 				37A655282BA5F8C200B96BEB /* OneRepLogo.swift in Sources */,
 				37A655622BC1EF6A00B96BEB /* ThemeSection.swift in Sources */,

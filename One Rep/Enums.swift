@@ -51,7 +51,7 @@ enum Colors: String {
     case LightPink = "LightPink"
     case LightRed = "LightRed"
     case LightYellow = "LightYellow"
-    case Primary = "Primary"
+    case Primary = "customPrimary"
     case ReversePrimary = "ReversePrimary"
     case SecondaryBackgroundColor = "SecondaryBackgroundColor"
 }
@@ -258,7 +258,10 @@ enum SettingsStrings: String {
     case Account = "Account"
     case NoUser = "No user"
     case Units = "Units"
-    case Theme = "Theme"
+    case Theme = "Accent Color"
+    case Appearance = "Appearance"
+    case Light = "Light"
+    case Dark = "Dark"
 }
 
 enum ToggleEditStrings: String {
@@ -302,6 +305,32 @@ extension UserDefaults {
         }
         set {
             set(newValue.rawValue, forKey: Keys.unitSelection)
+        }
+    }
+}
+
+enum AppColorScheme: String, Identifiable, Codable, CaseIterable {
+    var id: AppColorScheme { self }
+    case light
+    case dark
+    case system
+}
+
+extension UserDefaults {
+    private enum ColorSchemeKeys {
+        static let colorScheme = "colorScheme"
+    }
+    
+    var appColorScheme: AppColorScheme {
+        get {
+            guard let savedValue = string(forKey: ColorSchemeKeys.colorScheme),
+                  let scheme = AppColorScheme(rawValue: savedValue) else {
+                return .system // Default value
+            }
+            return scheme
+        }
+        set {
+            set(newValue.rawValue, forKey: ColorSchemeKeys.colorScheme)
         }
     }
 }
