@@ -65,7 +65,7 @@ struct MovementsView: View {
                             }
                         case .Activity:
                             VStack {
-                                // ActivityView(movementsViewModel: movementsViewModel, userModel: userModel)
+                                 ActivityView()
                             }
                         case .Routines:
                             VStack {

@@ -56,6 +56,10 @@ enum Colors: String {
     case SecondaryBackgroundColor = "SecondaryBackgroundColor"
 }
 
+enum DateStrings: String {
+    case monthDayFormat = "MMMM d"
+}
+
 enum DefaultKeys: String {
     case AccentColor = "AccentColor"
 }
@@ -260,7 +264,8 @@ enum ToggleEditStrings: String {
     case Edit = "Edit"
 }
 
-enum Weekdays: String {
+enum Weekdays: String, Identifiable, Codable, CaseIterable {
+    var id: Weekdays { self }
     case Sun = "Sun"
     case Mon = "Mon"
     case Tue = "Tue"
