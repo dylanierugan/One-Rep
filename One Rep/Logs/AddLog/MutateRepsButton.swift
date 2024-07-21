@@ -15,6 +15,7 @@ struct MutateRepsButton: View {
     
     // MARK: - Public Properties
     
+    @State var isEditing: Bool
     var color: Color
     var icon: String
     var mutatingValue: Int
@@ -23,7 +24,11 @@ struct MutateRepsButton: View {
     
     var body: some View {
         Button {
-            logController.mutateReps(mutatingValue)
+            if isEditing {
+                logController.mutateEditReps(mutatingValue)
+            } else {
+                logController.mutateReps(mutatingValue)
+            }
             HapticManager.instance.impact(style: .soft)
         } label: {
             ZStack {

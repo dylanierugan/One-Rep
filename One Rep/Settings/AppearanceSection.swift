@@ -21,7 +21,7 @@ struct AppearanceSection: View {
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             VStack(alignment: .leading) {
-                HStack(spacing: 24) {
+                HStack(spacing: 16) {
                     AppearanceButton(appearanceString: SettingsStrings.Dark.rawValue, colorScheme: .dark)
                     AppearanceButton(appearanceString: SettingsStrings.Light.rawValue, colorScheme: .light)
                     Spacer()

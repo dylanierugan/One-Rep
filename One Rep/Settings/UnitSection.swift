@@ -17,7 +17,7 @@ struct UnitSection: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(SettingsStrings.Settings.rawValue)
+            Text(SettingsStrings.Units.rawValue)
                 .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 .foregroundColor(.secondary)
             VStack(alignment: .leading) {

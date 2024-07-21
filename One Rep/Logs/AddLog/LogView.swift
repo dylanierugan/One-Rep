@@ -52,7 +52,7 @@ struct LogView: View {
                     LogViewSubHeading(movement: movement)
                     LogListView(movement: movement, isEditingLogs: $isEditingLogs, showLogSetView: $showLogSetView, showDoneToolBar: $showDoneToolBar, selectedLog: $selectedLog)
                 }
-                .padding(.top, 16)
+                .padding(.top, movement.movementType == .Weight && logViewModel.listOfWeights.count >= 3 ? 16 : 0)
             }
             .background(Color(theme.backgroundColor))
             .padding(.top, showLogSetView ? -8 : 0)

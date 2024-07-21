@@ -17,6 +17,7 @@ struct EditLogView: View {
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var errorHandler: ErrorHandler
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
     
@@ -42,11 +43,25 @@ struct EditLogView: View {
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                         .padding(.top, 32)
                     VStack(spacing: 32) {
-                        HStack(spacing: 16) {
+                        if movement.movementType == .Bodyweight {
                             VStack(alignment: .center, spacing: 4) {
-                                Text(EditLogStrings.EditWeight.rawValue)
+                                Text(EditLogStrings.EditBodyweight.rawValue)
                                     .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                                     .foregroundColor(.secondary)
+                                EditBodyweightTextField()
+                            }
+                        }
+                        HStack(spacing: 16) {
+                            VStack(alignment: .center, spacing: 4) {
+                                if movement.movementType == .Bodyweight {
+                                    Text(EditLogStrings.EditAddedWeight.rawValue)
+                                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                                        .foregroundColor(.secondary)
+                                } else {
+                                    Text(EditLogStrings.EditWeight.rawValue)
+                                        .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
+                                        .foregroundColor(.secondary)
+                                }
                                 EditWeightTextField(log: log, movement: movement, isInputActive: _isInputActive)
                             }
                             VStack(alignment: .center, spacing: 4) {
@@ -112,6 +127,9 @@ struct EditLogView: View {
         logController.editWeightStr = log.weight.clean
         logController.editReps = log.reps
         logController.editRepsStr = String(log.reps)
+        if let bodyweightEntry = userViewModel.bodyweightEntries.first {
+            logController.editBodyweight = bodyweightEntry.bodyweight
+        }
     }
     
     private func updateLog() {
@@ -119,6 +137,7 @@ struct EditLogView: View {
             isUpdatingLog = true
             log.weight = logController.editWeight
             log.reps = logController.editReps
+            log.bodyweight = logController.editBodyweight
             log.timeAdded = date.timeIntervalSince1970
             let result = await logViewModel.updateLog(log: log)
             errorHandler.handleUpdateLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)

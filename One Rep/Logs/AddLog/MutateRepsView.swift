@@ -28,7 +28,7 @@ struct MutateRepsView: View {
                 .foregroundColor(.secondary).opacity(0.7)
             
             HStack(spacing: 0) {
-                MutateRepsButton(color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
+                MutateRepsButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
                 
                 TextField("", text: $logController.repsStr)
                     .onChange(of: logController.repsStr) { newText, _ in
@@ -44,7 +44,7 @@ struct MutateRepsView: View {
                     .onReceive(Just(logController.reps)) { _ in logController.limitRepsText(3) }
                     .focused($isInputActive)
                 
-                MutateRepsButton(color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
+                MutateRepsButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
             }
         }
     }    

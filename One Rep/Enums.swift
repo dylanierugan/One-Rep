@@ -67,11 +67,13 @@ enum DefaultKeys: String {
 enum EditLogStrings: String {
     case EditLog = "Edit Log"
     case EditWeight = "Edit weight"
+    case EditAddedWeight = "Edit added weight"
     case EditReps = "Edit reps"
     case DateTime = "Date/Time"
     case Done = "Done"
     case Update = "Update"
     case Delete = "Delete"
+    case EditBodyweight = "Edit Bodyweight"
 }
 
 enum EditMovementStrings: String {

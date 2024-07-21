@@ -21,6 +21,8 @@ class LogController: ObservableObject {
     @Published var editWeight: Double = 0
     @Published var editWeightStr = ""
     
+    @Published var editBodyweight: Double = 0
+    
     @Published var addWeightToBodyweight: Bool = false
     
     @Published var lastLog: Log? = nil

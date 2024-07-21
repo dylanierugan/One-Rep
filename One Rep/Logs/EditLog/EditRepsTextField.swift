@@ -24,7 +24,7 @@ struct EditRepsTextField: View {
     
     var body: some View {
         HStack(spacing: 8) {
-            MutateRepsButton(color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
+            MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
             TextField("", text: $logController.editRepsStr)
                 .onChange(of: logController.editRepsStr) { newText, _ in
                     logController.bindEditRepValues()
@@ -46,7 +46,7 @@ struct EditRepsTextField: View {
                         logController.editRepsStr = String(log.reps)
                     }
                 }
-            MutateRepsButton(color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
+            MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
         }
     }
 }
