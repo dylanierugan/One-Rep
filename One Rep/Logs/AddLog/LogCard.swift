@@ -54,6 +54,7 @@ struct LogCard: View {
         .sheet(isPresented: $showEditMovementPopup) {
             EditLogView(log: $log, movement: movement)
                 .environment(\.sizeCategory, .extraSmall)
+                .environment(\.colorScheme, theme.colorScheme)
                 .onDisappear { showDoneToolBar = true }
         }
     }

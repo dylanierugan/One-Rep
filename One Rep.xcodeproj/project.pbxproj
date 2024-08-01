@@ -44,6 +44,7 @@
 		3740697A2C2F14AC00692ECD /* LoadDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069792C2F14AC00692ECD /* LoadDataView.swift */; };
 		3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740697B2C2FC26D00692ECD /* LogViewModel.swift */; };
 		3742229F2C37226300A7AEFA /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3742229E2C37226300A7AEFA /* MovementViewModel.swift */; };
+		3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5A62C560DD000182530 /* AddRoutineButton.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -75,6 +76,14 @@
 		376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */; };
 		376B58A52C4C52D5007C82E9 /* AppearanceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */; };
 		376B58A72C4C8D79007C82E9 /* EditBodyweightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */; };
+		376B58A92C4CD78D007C82E9 /* RoutinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58A82C4CD78D007C82E9 /* RoutinesViewModel.swift */; };
+		376B58AC2C4D659E007C82E9 /* RoutinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58AB2C4D659E007C82E9 /* RoutinesView.swift */; };
+		376B58AE2C4D69CC007C82E9 /* AddRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58AD2C4D69CC007C82E9 /* AddRoutineView.swift */; };
+		376B58B02C4D6B92007C82E9 /* AddRoutineToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58AF2C4D6B92007C82E9 /* AddRoutineToolButton.swift */; };
+		376B58B22C4F4B65007C82E9 /* RoutineNameTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58B12C4F4B65007C82E9 /* RoutineNameTextfield.swift */; };
+		376B58B42C4F4DB8007C82E9 /* RoutineIconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58B32C4F4DB8007C82E9 /* RoutineIconPicker.swift */; };
+		376B58B62C50A2AA007C82E9 /* SelectMovementsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58B52C50A2AA007C82E9 /* SelectMovementsButton.swift */; };
+		376B58B82C50A3D7007C82E9 /* SelectMovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B58B72C50A3D7007C82E9 /* SelectMovementsView.swift */; };
 		37881F502C05AC1800ABBF42 /* OneRepProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */; };
 		37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */; };
 		37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */; };
@@ -168,9 +177,18 @@
 		374069792C2F14AC00692ECD /* LoadDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataView.swift; sourceTree = "<group>"; };
 		3740697B2C2FC26D00692ECD /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		3742229E2C37226300A7AEFA /* MovementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
+		3753E5A62C560DD000182530 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
+		376B58A82C4CD78D007C82E9 /* RoutinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesViewModel.swift; sourceTree = "<group>"; };
+		376B58AB2C4D659E007C82E9 /* RoutinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesView.swift; sourceTree = "<group>"; };
+		376B58AD2C4D69CC007C82E9 /* AddRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineView.swift; sourceTree = "<group>"; };
+		376B58AF2C4D6B92007C82E9 /* AddRoutineToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineToolButton.swift; sourceTree = "<group>"; };
+		376B58B12C4F4B65007C82E9 /* RoutineNameTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineNameTextfield.swift; sourceTree = "<group>"; };
+		376B58B32C4F4DB8007C82E9 /* RoutineIconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineIconPicker.swift; sourceTree = "<group>"; };
+		376B58B52C50A2AA007C82E9 /* SelectMovementsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMovementsButton.swift; sourceTree = "<group>"; };
+		376B58B72C50A3D7007C82E9 /* SelectMovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMovementsView.swift; sourceTree = "<group>"; };
 		37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepProgressView.swift; sourceTree = "<group>"; };
 		37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTypePicker.swift; sourceTree = "<group>"; };
 		37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightSection.swift; sourceTree = "<group>"; };
@@ -283,7 +301,7 @@
 			path = Activity;
 			sourceTree = "<group>";
 		};
-		370730742BF723BB00E95989 /* MovementsView */ = {
+		370730742BF723BB00E95989 /* Movements */ = {
 			isa = PBXGroup;
 			children = (
 				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
@@ -292,7 +310,7 @@
 				37A655422BAA902300B96BEB /* AddMovementToolButton.swift */,
 				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
 			);
-			path = MovementsView;
+			path = Movements;
 			sourceTree = "<group>";
 		};
 		370730832BF9D54E00E95989 /* Calendar */ = {
@@ -364,6 +382,21 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		376B58AA2C4D6535007C82E9 /* Routines */ = {
+			isa = PBXGroup;
+			children = (
+				376B58AB2C4D659E007C82E9 /* RoutinesView.swift */,
+				376B58AD2C4D69CC007C82E9 /* AddRoutineView.swift */,
+				376B58AF2C4D6B92007C82E9 /* AddRoutineToolButton.swift */,
+				376B58B12C4F4B65007C82E9 /* RoutineNameTextfield.swift */,
+				376B58B32C4F4DB8007C82E9 /* RoutineIconPicker.swift */,
+				376B58B52C50A2AA007C82E9 /* SelectMovementsButton.swift */,
+				376B58B72C50A3D7007C82E9 /* SelectMovementsView.swift */,
+				3753E5A62C560DD000182530 /* AddRoutineButton.swift */,
+			);
+			path = Routines;
+			sourceTree = "<group>";
+		};
 		37A654FD2BA5385600B96BEB = {
 			isa = PBXGroup;
 			children = (
@@ -390,9 +423,10 @@
 				37A655232BA5F88200B96BEB /* TabHolderView.swift */,
 				37A6552F2BA5F98C00B96BEB /* Enums.swift */,
 				37A655312BA745A300B96BEB /* Login */,
-				370730742BF723BB00E95989 /* MovementsView */,
+				370730742BF723BB00E95989 /* Movements */,
 				37A655572BBDAD5300B96BEB /* AddMovement */,
-				37A655592BBDADAD00B96BEB /* Edit Movement */,
+				37A655592BBDADAD00B96BEB /* EditMovement */,
+				376B58AA2C4D6535007C82E9 /* Routines */,
 				37A655652BC6018700B96BEB /* Logs */,
 				370730732BF7239D00E95989 /* Activity */,
 				37A655342BA745D400B96BEB /* Settings */,
@@ -470,14 +504,14 @@
 			path = AddMovement;
 			sourceTree = "<group>";
 		};
-		37A655592BBDADAD00B96BEB /* Edit Movement */ = {
+		37A655592BBDADAD00B96BEB /* EditMovement */ = {
 			isa = PBXGroup;
 			children = (
 				37A655552BBDAD4F00B96BEB /* EditMovementView.swift */,
 				37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */,
 				37A6555A2BBDADD100B96BEB /* DeleteMovementButton.swift */,
 			);
-			path = "Edit Movement";
+			path = EditMovement;
 			sourceTree = "<group>";
 		};
 		37A655652BC6018700B96BEB /* Logs */ = {
@@ -513,6 +547,7 @@
 			children = (
 				3707305B2BEE7DA600E95989 /* Routine.swift */,
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
+				376B58A82C4CD78D007C82E9 /* RoutinesViewModel.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -645,7 +680,9 @@
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
 				37881F5E2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift in Sources */,
 				37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */,
+				376B58AC2C4D659E007C82E9 /* RoutinesView.swift in Sources */,
 				376B58A72C4C8D79007C82E9 /* EditBodyweightTextField.swift in Sources */,
+				376B58AE2C4D69CC007C82E9 /* AddRoutineView.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementToolButton.swift in Sources */,
 				3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
@@ -659,8 +696,10 @@
 				37A655622BC1EF6A00B96BEB /* ThemeSection.swift in Sources */,
 				370730782BF72A1800E95989 /* CalendarDateButton.swift in Sources */,
 				370730962BFF13AD00E95989 /* EditLogView.swift in Sources */,
+				376B58A92C4CD78D007C82E9 /* RoutinesViewModel.swift in Sources */,
 				376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
+				376B58B62C50A2AA007C82E9 /* SelectMovementsButton.swift in Sources */,
 				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
 				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
 				37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */,
@@ -668,11 +707,13 @@
 				37881F642C1DEA5D00ABBF42 /* LogBodyweightSection.swift in Sources */,
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
 				3740697A2C2F14AC00692ECD /* LoadDataView.swift in Sources */,
+				376B58B42C4F4DB8007C82E9 /* RoutineIconPicker.swift in Sources */,
 				37A6553F2BAA8BCE00B96BEB /* AddMovementView.swift in Sources */,
 				37A655692BC602CC00B96BEB /* MutateRepsButton.swift in Sources */,
 				37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */,
 				37881F5C2C0F624100ABBF42 /* AddNewBodyweightButton.swift in Sources */,
 				37A6556B2BC602F000B96BEB /* MutateWeightButton.swift in Sources */,
+				376B58B22C4F4B65007C82E9 /* RoutineNameTextfield.swift in Sources */,
 				37881F562C0DAAB700ABBF42 /* RecordBodyweightView.swift in Sources */,
 				374069722C2E5EB400692ECD /* AppleSignInManager.swift in Sources */,
 				37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */,
@@ -721,13 +762,16 @@
 				37C70C322BDD52C200B0375A /* LogCard.swift in Sources */,
 				370730872BF9D64F00E95989 /* ActivityMovementDataView.swift in Sources */,
 				370730A22BFFF58D00E95989 /* LogController.swift in Sources */,
+				3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */,
 				3707305E2BF063CC00E95989 /* RoutineViewModel.swift in Sources */,
 				370730762BF7240F00E95989 /* CalendarView.swift in Sources */,
 				370730662BF07BA500E95989 /* ToggleEditLogButton.swift in Sources */,
 				37A655562BBDAD4F00B96BEB /* EditMovementView.swift in Sources */,
 				370730A82C01668A00E95989 /* DeleteAccountButton.swift in Sources */,
 				37A655522BB30DDA00B96BEB /* HorizontalScroller.swift in Sources */,
+				376B58B02C4D6B92007C82E9 /* AddRoutineToolButton.swift in Sources */,
 				374069742C2E664900692ECD /* LoginView.swift in Sources */,
+				376B58B82C50A3D7007C82E9 /* SelectMovementsView.swift in Sources */,
 				37A655222BA5F86600B96BEB /* MotherView.swift in Sources */,
 				37FAB2692C44278400FDD05B /* UserViewModel.swift in Sources */,
 			);
@@ -857,12 +901,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Rep/One_Rep.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"One Rep/Preview Content\"";
 				DEVELOPMENT_TEAM = GSRZAW977J;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -895,12 +940,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Rep/One_Rep.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"One Rep/Preview Content\"";
 				DEVELOPMENT_TEAM = GSRZAW977J;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

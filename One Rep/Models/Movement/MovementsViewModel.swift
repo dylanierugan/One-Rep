@@ -40,16 +40,31 @@ class MovementsViewModel: ObservableObject {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.MovementCollection.rawValue)
                 .whereField(MovementAttributes.UserId.rawValue, isEqualTo: userId)
-                .addSnapshotListener() { querySnapshot, error in
+                .addSnapshotListener { querySnapshot, error in
                     if let error = error {
                         completion(.failure(error))
                         return
                     }
-                    guard let documents = querySnapshot?.documents else {
+                    guard let querySnapshot = querySnapshot else {
+                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: ""])
+                        completion(.failure(error))
                         return
                     }
-                    self.movements = documents.compactMap { documentSnapshot in
-                        try? documentSnapshot.data(as: Movement.self)
+                    self.movements = []
+                    for document in querySnapshot.documents {
+                        let docId = document.documentID
+                        let userId = document[MovementAttributes.UserId.rawValue] as? String ?? ""
+                        let name = document[MovementAttributes.Name.rawValue] as? String ?? ""
+                        let muscleGroupString = document[MovementAttributes.MuscleGroup.rawValue] as? String ?? ""
+                        let muscleGroup = MuscleGroup(rawValue: muscleGroupString) ?? MuscleGroup.Arms
+                        let movementTypeString = document[MovementAttributes.MovementType.rawValue] as? String ?? ""
+                        let movementType = MovementType(rawValue: movementTypeString) ?? MovementType.Weight
+                        let timeAdded = document[MovementAttributes.TimeAdded.rawValue] as? Double ?? 0
+                        let isPremium = document[MovementAttributes.IsPremium.rawValue] as? Bool ?? false
+                        let mutatingValue = document[MovementAttributes.MutatingValue.rawValue] as? Double ?? 0
+                        let routineIds = document[MovementAttributes.RoutineIds.rawValue] as? [String] ?? []
+                        let movement = Movement(id: docId, userId: userId, name: name, muscleGroup: muscleGroup, movementType: movementType, timeAdded: timeAdded, isPremium: isPremium, mutatingValue: mutatingValue)
+                        self.movements.append(movement)
                     }
                     completion(.success)
                 }

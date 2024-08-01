@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct DeleteAccountButton: View {
     
-    // MARK: - Properties
+    // MARK: - Global Properties
     
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
+    
+    // MARK: - Global Properties
     
     @State private var showDeleteMovementAlert = false
     
@@ -39,24 +42,26 @@ struct DeleteAccountButton: View {
                 title: Text("Are you sure you want to delete your account and all the data associated with it?"),
                 message: Text("There is no way to undo this action."),
                 primaryButton: .destructive(Text("Delete")) {
-//                    authService.deleteUser { result in
-//                        switch result {
-//                        case .failure(let error):
-//                            /// Handle error
-//                            print("Delete user failed: \(error.localizedDescription)")
-//                        case .success:
-//                            withAnimation {
-//                                deleteAllData()
-//                                viewRouter.currentPage = .loginView
-//                            }
-//                        }
-//                    }
+
                 },
                 secondaryButton: .cancel())
         }
     }
     
     // MARK: - Function
+    
+    private func deleteUser() {
+        let user = Auth.auth().currentUser
+        user?.delete { error in
+          if let error = error {
+              /// TODO - Error handle
+              print(error)
+          } else {
+              deleteAllData()
+              viewRouter.currentPage = .loginView
+          }
+        }
+    }
     
     private func deleteAllData() {
         /// TODO - Delete all data locally

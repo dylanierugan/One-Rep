@@ -7,12 +7,25 @@
 
 import Foundation
 
+enum ActivityViewStrings: String {
+    case ID = "one-rep-hpeel"
+    case MovementKey = "user_movements"
+    case UserKey = "user_model"
+}
+
 enum AddMovementStrings: String {
     case NewMovement = "New Movement"
     case MovementName = "Movement name"
     case MovementType = "Movement type"
     case MuscleGroup = "Muscle group"
     case Add = "Add"
+}
+
+enum AddRoutineStrings: String {
+    case NewRoutine = "New Routine"
+    case RoutineName = "Routine name"
+    case RoutineIcon = "Routine icon"
+    case SelectMovements = "Select Movements"
 }
 
 enum AppConstants: String {
@@ -95,6 +108,7 @@ enum ErrorMessage: String {
 enum FirebaseCollection: String {
     case MovementCollection = "Movements"
     case LogsCollection = "Logs"
+    case RoutinesCollection = "Routines"
     case UserCollection = "User"
 }
 
@@ -145,6 +159,7 @@ enum Icons: String {
     case PencilAndOutline = "pencil.and.outline"
     case PersonFill = "person.fill"
     case Plus = "plus"
+    case PlusApp = "plus.app"
     case PlusAppFill = "plus.app.fill"
     case PlusCircle = "plus.circle"
     case PlusCircleFill = "plus.circle.fill"
@@ -161,11 +176,14 @@ enum Icons: String {
 }
 
 enum InfoText: String {
-    case CreateNewMovement = "Click on the + to create a new movement to track your sets"
+    case CreateNewMovement = "Tap on the + button on the top right to create a new movement to track your sets"
     case DeleteAllDataConfirmation = "Are you sure you want to delete this movement and all the logged data associated with it?"
     case NoData = "No data\nLog some sets"
     case NoDataOnDay = "No data logged for this day"
     case NoWayToUndo = "There is no way to undo this action."
+    case NoMovementForRoutines = "There are no movements to create a routine."
+    case CreateNewRoutine = "Tap on the + button on the top right to create a new routine"
+    case ChooseMovements = "Choose the movements you want to include in this routine"
 }
 
 enum KeyboardStrings: String {
@@ -193,7 +211,7 @@ enum LoginStrings: String {
 }
 
 enum LogoString: String {
-    case OneRep = "1 Rep"
+    case OneRep = "1  Rep"
 }
 
 enum LogSetString: String {
@@ -225,6 +243,7 @@ enum MovementAttributes: String {
     case TimeAdded = "timeAdded"
     case IsPremium = "isPremium"
     case MutatingValue = "mutatingValue"
+    case RoutineIds = "routineIds"
 }
 
 enum MuscleGroup: String, Identifiable, Codable, CaseIterable {
@@ -243,6 +262,12 @@ enum MutateStrings: String {
     case Weight = "Weight"
 }
 
+enum NavigationTitleStrings: String {
+    case Library = "Library"
+    case Routines = "Routines"
+    case Activity = "Activity"
+}
+
 enum ProgressText: String {
     case OneRep = "One Rep"
     case Loading = "Loading..."
@@ -253,6 +278,17 @@ enum RepType: String, Identifiable, Codable, CaseIterable {
     case WarmUp = "Warm Up"
     case WorkingSet = "Working Set"
     case PR = "PR"
+}
+
+enum RoutineAttributes: String {
+    case UserId = "userId"
+    case Name = "name"
+    case Icon = "icon"
+    case MovementIds = "MovementIds"
+}
+
+enum RoutineStrings: String {
+    case Routines = "Routines"
 }
 
 enum SettingsStrings: String {

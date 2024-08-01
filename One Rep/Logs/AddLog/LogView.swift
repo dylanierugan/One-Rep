@@ -59,6 +59,7 @@ struct LogView: View {
             .sheet(isPresented: $showEditMovementPopup) {
                 EditMovementView(movementViewModel: MovementViewModel(movement: movement), showDoneToolBar: $showDoneToolBar)
                     .environment(\.sizeCategory, .extraSmall)
+                    .environment(\.colorScheme, theme.colorScheme)
             }
         }
         .toolbar {

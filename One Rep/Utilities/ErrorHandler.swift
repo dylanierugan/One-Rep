@@ -65,7 +65,20 @@ class ErrorHandler: ObservableObject {
         }
     }
     
-    // MARK: - Movement Functions
+    // MARK: - Routine Functions
+    
+    func handleAddRoutine(result: FirebaseResult?, dismiss: DismissAction, dismissBothViews: inout Bool) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            dismissBothViews = true
+            dismiss()
+        case .failure(_):
+            handleFailure()
+        }
+    }
+    
+    // MARK: - Bodyweight Functions
     
     func handleAddBodyweight(result: FirebaseResult?, dismiss: DismissAction) {
         guard let result = result else { return }

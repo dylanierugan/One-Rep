@@ -22,6 +22,17 @@ struct MovementsView: View {
     @State private var menuSelection: MuscleGroup = .All
     @State private var selectedMovement: Movement?
     @State private var showAddMovementPopup = false
+    @State private var showAddRoutinePopup = false
+    private var navigationTitle: String {
+        switch movementSelection {
+        case .Activity:
+            return NavigationTitleStrings.Activity.rawValue
+        case .Routines:
+            return NavigationTitleStrings.Routines.rawValue
+        case .Library:
+            return NavigationTitleStrings.Library.rawValue
+        }
+    }
     
     private var filteredMovements: [Movement] {
         if searchText.isEmpty {
@@ -69,6 +80,7 @@ struct MovementsView: View {
                             }
                         case .Routines:
                             VStack {
+                                RoutinesView()
                             }
                         }
                     }
@@ -77,12 +89,19 @@ struct MovementsView: View {
             .sheet(isPresented: $showAddMovementPopup) {
                 AddMovementView()
                     .environment(\.sizeCategory, .extraSmall)
+                    .environment(\.colorScheme, theme.colorScheme)
             }
-            .navigationTitle(MovementsStrings.Movements.rawValue)
+            .navigationTitle(navigationTitle)
             .toolbar(content: {
                 if movementSelection == .Library {
                     ToolbarItem(placement: .topBarTrailing) {
                         AddMovementToolButton(showAddMovementPopup: $showAddMovementPopup)
+                    }
+                }
+                ToolbarItem(placement: .principal) {
+                    HStack{
+                        Text(LogoString.OneRep.rawValue)
+                            .customFont(size: .body, weight: .bold, kerning: 0.5, design: .rounded)
                     }
                 }
             })

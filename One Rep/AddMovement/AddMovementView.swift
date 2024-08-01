@@ -13,6 +13,7 @@ struct AddMovementView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
+    @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @Environment(\.dismiss) private var dismiss
     
@@ -40,7 +41,7 @@ struct AddMovementView: View {
                     Text(AddMovementStrings.NewMovement.rawValue)
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: 6) {
                         Text(AddMovementStrings.MovementName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
@@ -51,7 +52,7 @@ struct AddMovementView: View {
                     MovementTypePicker(movementTypeSelection: $movementType, captionText: AddMovementStrings.MovementType.rawValue)
                         .padding(.horizontal, 16)
                     
-                    VStack(alignment: .leading,  spacing: 4) {
+                    VStack(alignment: .leading,  spacing: 6) {
                         Text(AddMovementStrings.MuscleGroup.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)

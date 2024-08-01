@@ -251,4 +251,16 @@ class LogViewModel: ObservableObject {
         }
     }
     
+    func deleteAllMovementLogs(movementId: String) async -> FirebaseResult {
+        let logsToDelete = logs.filter { $0.movementId == movementId }
+        for log in logsToDelete {
+            do {
+                try await db.collection(FirebaseCollection.LogsCollection.rawValue).document(log.id).delete()
+            } catch {
+                return .failure(error)
+            }
+        }
+        return .success
+    }
+    
 }
