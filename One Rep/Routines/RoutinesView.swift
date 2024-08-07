@@ -18,16 +18,14 @@ struct RoutinesView: View {
     
     @State private var showAddRoutinePopup = false
     
-    private let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20)
-    ]
+    private var sortedRoutines: [Routine] {
+        return routinesViewModel.routines.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending
+        }
+    }
     
     // MARK: - View
     
     var body: some View {
-        
-        NavigationView {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
@@ -39,6 +37,12 @@ struct RoutinesView: View {
                             .foregroundStyle(.secondary)
                             .padding(.horizontal, 36)
                             .padding(.top, 32)
+                    } else {
+                        VStack(spacing: 16) {
+                            ForEach(sortedRoutines, id: \.id) { routine in
+                                RoutineCard(routine: routine)
+                            }
+                        }
                     }
                 }
             }
@@ -47,7 +51,6 @@ struct RoutinesView: View {
                     .environment(\.sizeCategory, .extraSmall)
                     .environment(\.colorScheme, theme.colorScheme)
             }
-        }
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {
                 AddRoutineToolButton(showAddRoutinePopup: $showAddRoutinePopup)

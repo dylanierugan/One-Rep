@@ -78,6 +78,16 @@ class ErrorHandler: ObservableObject {
         }
     }
     
+    func handleUpdateRoutine(result: FirebaseResult?) {
+        guard let result = result else { return }
+        switch result {
+        case .success:
+            print("Success")
+        case .failure(_):
+            handleFailure()
+        }
+    }
+    
     // MARK: - Bodyweight Functions
     
     func handleAddBodyweight(result: FirebaseResult?, dismiss: DismissAction) {

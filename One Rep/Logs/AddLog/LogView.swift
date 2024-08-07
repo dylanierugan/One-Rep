@@ -40,7 +40,6 @@ struct LogView: View {
                 } else {
                     if let _ = userViewModel.bodyweightEntries.first {
                         LogBodyweightSection(movement: movement)
-                        .padding(.top, -16)
                     } else {
                         SetBodyweightButtonLink()
                     }

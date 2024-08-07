@@ -12,6 +12,7 @@ struct SelectMovementsButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
     
@@ -31,7 +32,7 @@ struct SelectMovementsButton: View {
                     .font(.body.weight(.regular))
                 Image(systemName: Icons.ArrowshapeForwardFill.rawValue)
             }
-            .foregroundColor(isFormValid ? Color(theme.lightBaseColor) : Color.secondary)
+            .foregroundColor(isFormValid ? (colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor)) : Color.secondary)
         }
         .disabled(!isFormValid)
     }

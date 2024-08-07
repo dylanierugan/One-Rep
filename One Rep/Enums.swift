@@ -184,6 +184,7 @@ enum InfoText: String {
     case NoMovementForRoutines = "There are no movements to create a routine."
     case CreateNewRoutine = "Tap on the + button on the top right to create a new routine"
     case ChooseMovements = "Choose the movements you want to include in this routine"
+    case RoutineNoMovements = "All the movements in this routine have been deleted\n\nClick on the button in the top right to add more movements"
 }
 
 enum KeyboardStrings: String {
@@ -284,11 +285,12 @@ enum RoutineAttributes: String {
     case UserId = "userId"
     case Name = "name"
     case Icon = "icon"
-    case MovementIds = "MovementIds"
+    case MovementIds = "movementIDs"
 }
 
 enum RoutineStrings: String {
     case Routines = "Routines"
+    case MovementsToAdd = "Movements to add"
 }
 
 enum SettingsStrings: String {

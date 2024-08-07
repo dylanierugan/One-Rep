@@ -86,21 +86,19 @@ struct LogSetButton: View {
                 )
             }
         } else {
-            if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
-                log = Log(
-                    id: docId,
-                    userId: logViewModel.userId,
-                    movementId: movement.id,
-                    reps: logController.reps,
-                    weight: logController.weight,
-                    bodyweight: 0,
-                    isBodyWeight: movement.movementType == .Bodyweight,
-                    timeAdded: Date.now.timeIntervalSince1970,
-                    unit: logViewModel.unit
-                )
-            }
+            log = Log(
+                id: docId,
+                userId: logViewModel.userId,
+                movementId: movement.id,
+                reps: logController.reps,
+                weight: logController.weight,
+                bodyweight: 0,
+                isBodyWeight: movement.movementType == .Bodyweight,
+                timeAdded: Date.now.timeIntervalSince1970,
+                unit: logViewModel.unit
+            )
         }
-
+        
         Task {
             addingLog = true
             let result = await logViewModel.addLog(log: log)
@@ -111,7 +109,7 @@ struct LogSetButton: View {
                 movement: movement
             )
         }
-
+        
         HapticManager.instance.impact(style: .light)
     }
 }

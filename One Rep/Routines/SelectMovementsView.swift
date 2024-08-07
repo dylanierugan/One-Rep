@@ -15,6 +15,7 @@ struct SelectMovementsView: View {
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
+    @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
@@ -73,13 +74,13 @@ struct SelectMovementsView: View {
                                                 }
                                                 .padding(.vertical, 8)
                                                 .padding(.horizontal, 12)
-                                                .foregroundColor(selectedMovments.contains(movement) ? Color(theme.lightBaseColor) : Color(theme.lightBaseColor).opacity(0.5))
+                                                .foregroundColor(selectedMovments.contains(movement) ? (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)) : (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)).opacity(0.5))
                                                 .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                                                 .background(.ultraThickMaterial)
                                                 .cornerRadius(12)
                                                 .overlay(
                                                     RoundedRectangle(cornerRadius: 12)
-                                                        .stroke(selectedMovments.contains(movement) ? Color(theme.lightBaseColor) : Color.clear, lineWidth: 4)
+                                                        .stroke(selectedMovments.contains(movement) ? (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)) : (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)).opacity(0.5), lineWidth: 4)
                                                 )
                                                 .cornerRadius(12)
                                             }

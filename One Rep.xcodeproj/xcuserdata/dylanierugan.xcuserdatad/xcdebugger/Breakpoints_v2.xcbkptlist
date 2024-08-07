@@ -398,8 +398,8 @@
             filePath = "One Rep/Utilities/ErrorHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "handleLogSet(result:logViewModel:logController:movement:)"
             landmarkType = "7">
          </BreakpointContent>
