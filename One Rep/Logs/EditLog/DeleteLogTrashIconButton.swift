@@ -14,6 +14,7 @@ struct DeleteLogTrashIconButton: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController
+    @EnvironmentObject var errorHandler: ErrorHandler
     
     // MARK: - Public Properties
     
@@ -28,7 +29,7 @@ struct DeleteLogTrashIconButton: View {
             selectedLog = log
             Task {
                 let result = await logViewModel.deleteLog(docId: log.id)
-                handleDeleteLog(result: result, errorMessage: "")
+                await handleDeleteLog()
             }
             HapticManager.instance.impact(style: .light)
         } label: {
@@ -44,19 +45,10 @@ struct DeleteLogTrashIconButton: View {
     
     // MARK: - Functions
     
-    func handleDeleteLog(result: FirebaseResult?, errorMessage: String) {
-        guard let result = result else { return }
-        switch result {
-        case .success:
-            if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
-                logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-            } else {
-                logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
-            }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
-            return
-        case .failure(_):
-            print(errorMessage)
+    func handleDeleteLog() async {
+        Task {
+            let result = await logViewModel.deleteLog(docId: log.id)
+            errorHandler.handleDeleteLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
         }
     }
 }

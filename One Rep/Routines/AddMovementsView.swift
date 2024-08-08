@@ -83,7 +83,7 @@ struct AddMovementsView: View {
             }
         }
         if movementsToAdd.count == 0 {
-            dismiss
+            dismiss()
         }
     }
     
@@ -92,7 +92,7 @@ struct AddMovementsView: View {
         routineViewModel.routine.movementIDs.append(movementId)
         Task {
             let result = await routineViewModel.updateRoutine()
-            errorHandler.handleUpdateRoutine(result: result)
+            errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
             setMovementsArray()
         }
     }

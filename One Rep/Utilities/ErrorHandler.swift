@@ -78,11 +78,13 @@ class ErrorHandler: ObservableObject {
         }
     }
     
-    func handleUpdateRoutine(result: FirebaseResult?) {
+    func handleUpdateRoutine(result: FirebaseResult?, dismiss: DismissAction?) {
         guard let result = result else { return }
         switch result {
         case .success:
-            print("Success")
+            if let dismiss {
+                dismiss()
+            }
         case .failure(_):
             handleFailure()
         }

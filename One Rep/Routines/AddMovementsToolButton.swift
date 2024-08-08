@@ -25,7 +25,7 @@ struct AddMovementsToolButton: View {
             showAddMovmenetsSheet.toggle()
         } label: {
             Image(systemName: Icons.TextBadgePlus.rawValue)
-                .customFont(size: .body, weight: .regular)
+                .customFont(size: .caption, weight: .semibold)
         }
     }
 }

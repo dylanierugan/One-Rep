@@ -98,8 +98,16 @@ enum EditMovementStrings: String {
     case Delete = "Delete"
 }
 
+enum EditRoutineStrings: String {
+    case EditRoutine = "Edit Routine"
+    case EditName = "Edit name"
+    case Update = "Update"
+    case Delete = "Delete"
+}
+
 enum ErrorMessage: String {
     case DeleteMovmentConfirmation = "Are you sure you want to delete this movement and all the logged data associated with it?"
+    case DeleteRoutineConfirmation = "Are you sure you want to delete this routine and all the logged data associated with it?"
     case ErrorAddMovement = "There was an error adding the movement."
     case ErrorGetMovements = "There was an error loading movements."
     case NoWayToUndo = "There is no way to undo this action."

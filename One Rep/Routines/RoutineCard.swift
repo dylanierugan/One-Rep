@@ -18,6 +18,8 @@ struct RoutineCard: View {
     
     var routine: Routine
     
+    // MARK: - View
+    
     var body: some View {
         NavigationLink {
             SelectedRoutineView(routineViewModel: RoutineViewModel(routine: routine))

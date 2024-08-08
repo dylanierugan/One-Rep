@@ -64,7 +64,6 @@ struct LogView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
-                
             }
             ToolbarItem(placement: .principal) {
                 HStack(spacing: 12) {
