@@ -38,7 +38,7 @@ struct LogBodyweightSection: View {
                             MutateRepsView()
                             Spacer()
                         }
-                        MutateWeightView(movementViewModel: MovementViewModel(movement: movement))
+                        MutateWeightView(movementViewModel: MovementViewModel(movement: movement), isInputActive: _isInputActive)
                     }
                 } else {
                     HStack {
@@ -46,7 +46,20 @@ struct LogBodyweightSection: View {
                         BodyweightView()
                             .frame(width: 148)
                         Spacer()
-                        MutateRepsView()
+                        MutateRepsView(isInputActive: _isInputActive)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    Spacer()
+                                    Button {
+                                        isInputActive = false
+                                    } label: {
+                                        Text(KeyboardStrings.Done.rawValue)
+                                            .foregroundStyle(.primary)
+                                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 28)
                         Spacer()
                     }
                 }
