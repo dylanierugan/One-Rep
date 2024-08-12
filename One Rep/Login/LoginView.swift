@@ -36,7 +36,7 @@ struct LoginView: View {
                     .padding(.horizontal, 32)
             }
         }
-        .onAppear{ onAppearSetViewRouter() }
+        .onAppear { onAppearSetViewRouter() }
     }
     
     // MARK: - Functions

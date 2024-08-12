@@ -28,7 +28,7 @@ struct DeleteAccountButton: View {
         } label: {
             HStack(spacing: 16) {
                 Image(systemName: Icons.Trash.rawValue)
-                Text("Delete Account")
+                Text(DeleteAccountStrings.DeleteAccount.rawValue)
                 Spacer()
             }
             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
@@ -39,9 +39,9 @@ struct DeleteAccountButton: View {
         }
         .alert(isPresented: $showDeleteMovementAlert) {
             Alert(
-                title: Text("Are you sure you want to delete your account and all the data associated with it?"),
-                message: Text("There is no way to undo this action."),
-                primaryButton: .destructive(Text("Delete")) {
+                title: Text(DeleteAccountStrings.DeleteAccountConfirmation.rawValue),
+                message: Text(DeleteAccountStrings.NoWayToUndo.rawValue),
+                primaryButton: .destructive(Text(DeleteAccountStrings.Delete.rawValue)) {
 
                 },
                 secondaryButton: .cancel())

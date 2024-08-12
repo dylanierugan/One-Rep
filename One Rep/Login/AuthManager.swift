@@ -63,7 +63,6 @@ class AuthManager: ObservableObject {
             }
             catch let error as NSError {
                 /// TODO - Error handle
-                print(error)
                 throw error
             }
         }

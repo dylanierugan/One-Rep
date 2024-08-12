@@ -77,6 +77,13 @@ enum DefaultKeys: String {
     case AccentColor = "AccentColor"
 }
 
+enum DeleteAccountStrings: String {
+    case DeleteAccount = "Delete Account"
+    case DeleteAccountConfirmation = "Are you sure you want to delete your account and all the data associated with it?"
+    case NoWayToUndo = "There is no way to undo this action."
+    case Delete = "Delete"
+}
+
 enum EditLogStrings: String {
     case EditLog = "Edit Log"
     case EditWeight = "Edit weight"
@@ -225,6 +232,10 @@ enum LogoString: String {
 
 enum LogSetString: String {
     case Log = "Log"
+}
+
+enum LogOutStrings: String {
+    case LogOut = "Log Out"
 }
 
 enum MovementSelection: String, Identifiable {

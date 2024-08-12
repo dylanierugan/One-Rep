@@ -39,6 +39,10 @@ class LogViewModel: ObservableObject {
     
     // MARK: - Data functions
     
+    func clearData() {
+        logs = []
+    }
+    
     /// Filter logs for the movementId
     func filterLogs(movementId: String) {
         self.filteredLogs = []

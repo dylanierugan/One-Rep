@@ -38,6 +38,10 @@ class RoutinesViewModel: ObservableObject {
         }
     }
     
+    func clearData() {
+        routines = []
+    }
+    
     func subscribeToRoutines(completion: @escaping (FirebaseResult) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.RoutinesCollection.rawValue)

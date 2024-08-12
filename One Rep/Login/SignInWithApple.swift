@@ -49,7 +49,7 @@ struct SignInWithApple: View {
                         nonce: AppleSignInManager.nonce
                     )
                     if result != nil {
-                        viewRouter.currentPage = .tabView
+                        viewRouter.currentPage = .loadDataView
                     }
                 } catch {
                     /// TODO - Error handle

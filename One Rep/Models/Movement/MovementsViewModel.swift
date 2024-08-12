@@ -36,6 +36,10 @@ class MovementsViewModel: ObservableObject {
         }
     }
     
+    func clearData() {
+        movements = []
+    }
+    
     func subscribeToMovements(completion: @escaping (FirebaseResult) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.MovementCollection.rawValue)

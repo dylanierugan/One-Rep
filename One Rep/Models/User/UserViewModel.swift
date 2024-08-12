@@ -36,6 +36,10 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func clearData() {
+        bodyweightEntries = []
+    }
+    
     func subscribeToUser(completion: @escaping (FirebaseResult) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.UserCollection.rawValue)
