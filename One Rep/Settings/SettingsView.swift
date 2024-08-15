@@ -24,9 +24,10 @@ struct SettingsView: View {
                     VStack(spacing: 16) {
                         AccountSection()
                         BodyweightSection()
-                        UnitSection()
-                        AppearanceSection()
                         ThemeSection()
+                        AppearanceSection()
+                        UnitSection()
+                        HelpSection()
                     }
                     .padding(.horizontal, 16)
                 }

@@ -127,6 +127,12 @@ enum FirebaseCollection: String {
     case UserCollection = "User"
 }
 
+enum HelpSectionStrings: String {
+    case Help = "Help"
+    case ContactSupport = "Contact Support"
+    case SupportMessage = "Please leave any questions, comments, or issues below"
+}
+
 enum Icons: String {
     case ArrowCounterclockwise = "arrow.counterclockwise"
     case ArrowshapeForwardFill = "arrowshape.forward.fill"

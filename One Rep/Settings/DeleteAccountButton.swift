@@ -64,6 +64,6 @@ struct DeleteAccountButton: View {
     }
     
     private func deleteAllData() {
-        /// TODO - Delete all data locally
+        
     }
 }

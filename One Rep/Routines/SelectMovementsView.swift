@@ -45,6 +45,7 @@ struct SelectMovementsView: View {
                 Text(InfoText.ChooseMovements.rawValue)
                     .customFont(size: .caption, weight: .semibold, kerning: 0, design: .rounded)
                     .multilineTextAlignment(.center)
+                    .foregroundStyle(.secondary)
                 VStack(spacing: 16) {
                     ForEach(MuscleGroup.allCases, id: \.rawValue) { muscle in
                         VStack(spacing: 16) {
