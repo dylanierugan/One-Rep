@@ -20,7 +20,6 @@ struct BodyweightTextField: View {
     
     @Binding var bodyweight: Double
     
-    
     // MARK: - View
     
     var body: some View {
@@ -45,9 +44,6 @@ struct BodyweightTextField: View {
                     .cornerRadius(10)
                     .focused($isInputActive)
                 Spacer()
-                // Text(logViewModel.unit.rawValue)
-                    .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
-                    .padding(.horizontal, 16)
             }
             .padding(.vertical, 8)
             .background(.secondary.opacity(0.05))

@@ -41,13 +41,12 @@
 		374069742C2E664900692ECD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069732C2E664900692ECD /* LoginView.swift */; };
 		374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069752C2E945700692ECD /* MovementsViewModel.swift */; };
 		3740697A2C2F14AC00692ECD /* LoadDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069792C2F14AC00692ECD /* LoadDataView.swift */; };
-		3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740697B2C2FC26D00692ECD /* LogViewModel.swift */; };
+		3740697C2C2FC26D00692ECD /* LogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740697B2C2FC26D00692ECD /* LogsViewModel.swift */; };
 		3742229F2C37226300A7AEFA /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3742229E2C37226300A7AEFA /* MovementViewModel.swift */; };
 		3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5A62C560DD000182530 /* AddRoutineButton.swift */; };
 		3753E5AB2C5C3A3500182530 /* RoutineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5AA2C5C3A3500182530 /* RoutineCard.swift */; };
 		3753E5AD2C5D399900182530 /* SelectedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5AC2C5D399900182530 /* SelectedRoutineView.swift */; };
 		3753E5AF2C5D47D500182530 /* RoutineMovementCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5AE2C5D47D500182530 /* RoutineMovementCard.swift */; };
-		3753E5B12C5D4D9D00182530 /* RoutineTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5B02C5D4D9D00182530 /* RoutineTitle.swift */; };
 		3753E5B32C61C3A100182530 /* AddMovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5B22C61C3A100182530 /* AddMovementsView.swift */; };
 		3753E5B52C61C3B000182530 /* AddMovementsToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5B42C61C3B000182530 /* AddMovementsToolButton.swift */; };
 		3753E5B92C6443C100182530 /* EditRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5B82C6443C100182530 /* EditRoutineView.swift */; };
@@ -184,13 +183,12 @@
 		374069732C2E664900692ECD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		374069752C2E945700692ECD /* MovementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsViewModel.swift; sourceTree = "<group>"; };
 		374069792C2F14AC00692ECD /* LoadDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataView.swift; sourceTree = "<group>"; };
-		3740697B2C2FC26D00692ECD /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
+		3740697B2C2FC26D00692ECD /* LogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewModel.swift; sourceTree = "<group>"; };
 		3742229E2C37226300A7AEFA /* MovementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
 		3753E5A62C560DD000182530 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		3753E5AA2C5C3A3500182530 /* RoutineCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCard.swift; sourceTree = "<group>"; };
 		3753E5AC2C5D399900182530 /* SelectedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineView.swift; sourceTree = "<group>"; };
 		3753E5AE2C5D47D500182530 /* RoutineMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineMovementCard.swift; sourceTree = "<group>"; };
-		3753E5B02C5D4D9D00182530 /* RoutineTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTitle.swift; sourceTree = "<group>"; };
 		3753E5B22C61C3A100182530 /* AddMovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementsView.swift; sourceTree = "<group>"; };
 		3753E5B42C61C3B000182530 /* AddMovementsToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementsToolButton.swift; sourceTree = "<group>"; };
 		3753E5B82C6443C100182530 /* EditRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoutineView.swift; sourceTree = "<group>"; };
@@ -324,11 +322,7 @@
 		370730742BF723BB00E95989 /* Movements */ = {
 			isa = PBXGroup;
 			children = (
-				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
-				3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */,
-				37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */,
-				37A655422BAA902300B96BEB /* AddMovementToolButton.swift */,
-				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
+				3753E5E52C77E16400182530 /* ViewMovements */,
 				37A655572BBDAD5300B96BEB /* AddMovement */,
 				37A655592BBDADAD00B96BEB /* EditMovement */,
 			);
@@ -401,27 +395,134 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		376B58AA2C4D6535007C82E9 /* Routines */ = {
+		3753E5E52C77E16400182530 /* ViewMovements */ = {
+			isa = PBXGroup;
+			children = (
+				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
+				3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */,
+				37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */,
+				37A655422BAA902300B96BEB /* AddMovementToolButton.swift */,
+				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
+			);
+			path = ViewMovements;
+			sourceTree = "<group>";
+		};
+		3753E5E62C77E19200182530 /* ViewRoutines */ = {
 			isa = PBXGroup;
 			children = (
 				376B58AB2C4D659E007C82E9 /* RoutinesView.swift */,
 				3753E5AA2C5C3A3500182530 /* RoutineCard.swift */,
-				3753E5B02C5D4D9D00182530 /* RoutineTitle.swift */,
+				376B58AF2C4D6B92007C82E9 /* AddRoutineToolButton.swift */,
+			);
+			path = ViewRoutines;
+			sourceTree = "<group>";
+		};
+		3753E5E72C77E78900182530 /* SelectedRoutine */ = {
+			isa = PBXGroup;
+			children = (
 				3753E5AC2C5D399900182530 /* SelectedRoutineView.swift */,
 				3753E5AE2C5D47D500182530 /* RoutineMovementCard.swift */,
+			);
+			path = SelectedRoutine;
+			sourceTree = "<group>";
+		};
+		3753E5E82C77E7A100182530 /* AddRoutine */ = {
+			isa = PBXGroup;
+			children = (
 				376B58AD2C4D69CC007C82E9 /* AddRoutineView.swift */,
-				376B58AF2C4D6B92007C82E9 /* AddRoutineToolButton.swift */,
 				376B58B12C4F4B65007C82E9 /* RoutineNameTextfield.swift */,
 				376B58B32C4F4DB8007C82E9 /* RoutineIconPicker.swift */,
 				376B58B52C50A2AA007C82E9 /* SelectMovementsButton.swift */,
 				376B58B72C50A3D7007C82E9 /* SelectMovementsView.swift */,
 				3753E5A62C560DD000182530 /* AddRoutineButton.swift */,
-				3753E5B22C61C3A100182530 /* AddMovementsView.swift */,
+			);
+			path = AddRoutine;
+			sourceTree = "<group>";
+		};
+		3753E5E92C77E7AB00182530 /* EditRoutine */ = {
+			isa = PBXGroup;
+			children = (
 				3753E5B42C61C3B000182530 /* AddMovementsToolButton.swift */,
+				3753E5B22C61C3A100182530 /* AddMovementsView.swift */,
 				3753E5B82C6443C100182530 /* EditRoutineView.swift */,
 				3753E5BA2C64442900182530 /* EditRoutineButton.swift */,
 				3753E5BC2C646CAF00182530 /* UpdateRoutineButton.swift */,
 				3753E5BE2C646FA600182530 /* DeleteRoutineButton.swift */,
+			);
+			path = EditRoutine;
+			sourceTree = "<group>";
+		};
+		3753E5EA2C77E82A00182530 /* SelectedMovement */ = {
+			isa = PBXGroup;
+			children = (
+				37A655662BC6025300B96BEB /* LogView.swift */,
+				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
+			);
+			path = SelectedMovement;
+			sourceTree = "<group>";
+		};
+		3753E5EC2C77E85B00182530 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				3707305F2BF0679600E95989 /* AccountSection.swift */,
+				370730A42C01638D00E95989 /* AccountView.swift */,
+				370730612BF06A9E00E95989 /* LogOutButton.swift */,
+				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		3753E5ED2C77E86F00182530 /* Bodyweight */ = {
+			isa = PBXGroup;
+			children = (
+				37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */,
+				37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */,
+				37881F592C0E950500ABBF42 /* BodyweightTextField.swift */,
+				37881F5B2C0F624100ABBF42 /* AddNewBodyweightButton.swift */,
+			);
+			path = Bodyweight;
+			sourceTree = "<group>";
+		};
+		3753E5EE2C77E88A00182530 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
+		3753E5EF2C77E8B700182530 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				37A655612BC1EF6A00B96BEB /* ThemeSection.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		3753E5F02C77E8D200182530 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				3707308C2BFEBA2500E95989 /* UnitSection.swift */,
+			);
+			path = Units;
+			sourceTree = "<group>";
+		};
+		3753E5F12C77E8D600182530 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				3753E5C02C6BB40D00182530 /* HelpSection.swift */,
+				3753E5C22C6D862300182530 /* ContactSupportSheet.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		376B58AA2C4D6535007C82E9 /* Routines */ = {
+			isa = PBXGroup;
+			children = (
+				3753E5E62C77E19200182530 /* ViewRoutines */,
+				3753E5E72C77E78900182530 /* SelectedRoutine */,
+				3753E5E82C77E7A100182530 /* AddRoutine */,
+				3753E5E92C77E7AB00182530 /* EditRoutine */,
 			);
 			path = Routines;
 			sourceTree = "<group>";
@@ -504,19 +605,12 @@
 			isa = PBXGroup;
 			children = (
 				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
-				3707305F2BF0679600E95989 /* AccountSection.swift */,
-				370730A42C01638D00E95989 /* AccountView.swift */,
-				370730612BF06A9E00E95989 /* LogOutButton.swift */,
-				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
-				37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */,
-				376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */,
-				37A655612BC1EF6A00B96BEB /* ThemeSection.swift */,
-				3707308C2BFEBA2500E95989 /* UnitSection.swift */,
-				3753E5C02C6BB40D00182530 /* HelpSection.swift */,
-				3753E5C22C6D862300182530 /* ContactSupportSheet.swift */,
-				37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */,
-				37881F592C0E950500ABBF42 /* BodyweightTextField.swift */,
-				37881F5B2C0F624100ABBF42 /* AddNewBodyweightButton.swift */,
+				3753E5EC2C77E85B00182530 /* Account */,
+				3753E5ED2C77E86F00182530 /* Bodyweight */,
+				3753E5EF2C77E8B700182530 /* Theme */,
+				3753E5EE2C77E88A00182530 /* Appearance */,
+				3753E5F02C77E8D200182530 /* Units */,
+				3753E5F12C77E8D600182530 /* Help */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -546,8 +640,7 @@
 		37A655652BC6018700B96BEB /* Logs */ = {
 			isa = PBXGroup;
 			children = (
-				37A655662BC6025300B96BEB /* LogView.swift */,
-				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
+				3753E5EA2C77E82A00182530 /* SelectedMovement */,
 				3707309C2BFF734C00E95989 /* AddLog */,
 				370730992BFF719C00E95989 /* EditLog */,
 			);
@@ -568,7 +661,7 @@
 			isa = PBXGroup;
 			children = (
 				37A655372BA7470B00B96BEB /* Log.swift */,
-				3740697B2C2FC26D00692ECD /* LogViewModel.swift */,
+				3740697B2C2FC26D00692ECD /* LogsViewModel.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -715,7 +808,7 @@
 				3753E5AD2C5D399900182530 /* SelectedRoutineView.swift in Sources */,
 				376B58AE2C4D69CC007C82E9 /* AddRoutineView.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementToolButton.swift in Sources */,
-				3740697C2C2FC26D00692ECD /* LogViewModel.swift in Sources */,
+				3740697C2C2FC26D00692ECD /* LogsViewModel.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
 				3753E5BF2C646FA600182530 /* DeleteRoutineButton.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,
@@ -756,7 +849,6 @@
 				37C70C2E2BD4504E00B0375A /* UpdateMovementButton.swift in Sources */,
 				370730602BF0679600E95989 /* AccountSection.swift in Sources */,
 				37A655602BC1B95A00B96BEB /* FontModifier.swift in Sources */,
-				3753E5B12C5D4D9D00182530 /* RoutineTitle.swift in Sources */,
 				3707305C2BEE7DA600E95989 /* Routine.swift in Sources */,
 				37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */,
 				3753E5B92C6443C100182530 /* EditRoutineView.swift in Sources */,

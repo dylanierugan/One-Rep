@@ -12,7 +12,6 @@ struct LogViewSubHeading: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
