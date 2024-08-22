@@ -12,7 +12,7 @@ struct DeleteLogTrashIconButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var errorHandler: ErrorHandler
     
@@ -28,7 +28,7 @@ struct DeleteLogTrashIconButton: View {
         Button {
             selectedLog = log
             Task {
-                let result = await logViewModel.deleteLog(docId: log.id)
+                let result = await logsViewModel.deleteLog(docId: log.id)
                 await handleDeleteLog()
             }
             HapticManager.instance.impact(style: .light)
@@ -47,8 +47,8 @@ struct DeleteLogTrashIconButton: View {
     
     func handleDeleteLog() async {
         Task {
-            let result = await logViewModel.deleteLog(docId: log.id)
-            errorHandler.handleDeleteLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
+            let result = await logsViewModel.deleteLog(docId: log.id)
+            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logController: logController, movement: movement)
         }
     }
 }

@@ -11,7 +11,7 @@ struct ActivityMovementCard: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
     
@@ -32,7 +32,7 @@ struct ActivityMovementCard: View {
                     .foregroundStyle(.primary)
             }
             Spacer()
-            DataLabel(data: logViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
+            DataLabel(data: logsViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
             Spacer()
             DataLabel(data: repStr, dataType: LogCardStrings.Reps.rawValue)
         }

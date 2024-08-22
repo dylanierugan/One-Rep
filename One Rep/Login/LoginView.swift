@@ -12,7 +12,6 @@ struct LoginView: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
     
@@ -20,12 +19,10 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
             
             VStack(spacing: 16) {
-                
                 Spacer()
                 
                 VStack(spacing: 8) {
@@ -44,8 +41,9 @@ struct LoginView: View {
                 Spacer()
                 
                 Link(PrivacyPolicy.Text.rawValue, destination: URL(string: PrivacyPolicy.Link.rawValue)!)
-                    .customFont(size: .caption, weight: .semibold, design: .rounded)
+                    .customFont(size: .caption, weight: .bold, design: .rounded)
                     .foregroundColor(.primary)
+                    .padding(.bottom, 16)
             }
         }
         .onAppear { onAppearSetViewRouter() }

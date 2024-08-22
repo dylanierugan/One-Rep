@@ -14,7 +14,7 @@ struct MutateWeightView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var movementViewModel = MovementViewModel()
     
@@ -34,7 +34,7 @@ struct MutateWeightView: View {
             Menu {
                 Picker("", selection: $mutatingValue) {
                     ForEach(mutatingValues, id: \.self) { value in
-                        Text("± \(value.clean) \(logViewModel.unit.rawValue)")
+                        Text("± \(value.clean) \(logsViewModel.unit.rawValue)")
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary).opacity(0.7)
                     }
@@ -42,7 +42,7 @@ struct MutateWeightView: View {
                 .onChange(of: mutatingValue) { pickerOnChangeSetMutatingValue() }
             } label: {
                 HStack {
-                    Text("\(MutateStrings.Weight.rawValue) (\(logViewModel.unit.rawValue))")
+                    Text("\(MutateStrings.Weight.rawValue) (\(logsViewModel.unit.rawValue))")
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary).opacity(0.7)
                     Image(systemName: Icons.ChevronCompactDown.rawValue)

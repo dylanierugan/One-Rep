@@ -13,7 +13,7 @@ struct LogView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
@@ -51,7 +51,7 @@ struct LogView: View {
                     LogViewSubHeading(movement: movement)
                     LogListView(movement: movement, isEditingLogs: $isEditingLogs, showLogSetView: $showLogSetView, showDoneToolBar: $showDoneToolBar, selectedLog: $selectedLog)
                 }
-                .padding(.top, movement.movementType == .Weight && logViewModel.listOfWeights.count >= 3 ? 16 : 0)
+                .padding(.top, movement.movementType == .Weight && logsViewModel.listOfWeights.count >= 3 ? 16 : 0)
             }
             .background(Color(theme.backgroundColor))
             .padding(.top, showLogSetView ? -8 : 0)
@@ -85,7 +85,7 @@ struct LogView: View {
     // MARK: - Functions
     
     private func setLogsOnAppear() {
-        logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-        logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
+        logController.setMostRecentLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
 }

@@ -13,7 +13,7 @@ struct ActivityView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Private Properties
     
@@ -50,8 +50,8 @@ struct ActivityView: View {
             }
         })
         .onAppear {
-            logViewModel.populateListOfDatesAllLogs()
-            logViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
+            logsViewModel.populateListOfDatesAllLogs()
+            logsViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
             dateViewModel.setDate()
         }
     }

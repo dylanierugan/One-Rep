@@ -12,7 +12,7 @@ struct LogSetButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var logController: LogController
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
@@ -61,50 +61,50 @@ struct LogSetButton: View {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
                 log = Log(
                     id: docId,
-                    userId: logViewModel.userId,
+                    userId: logsViewModel.userId,
                     movementId: movement.id,
                     reps: logController.reps,
                     weight: logController.weight,
                     bodyweight: bodyWeightEntry.bodyweight,
                     isBodyWeight: movement.movementType == .Bodyweight,
                     timeAdded: Date.now.timeIntervalSince1970,
-                    unit: logViewModel.unit
+                    unit: logsViewModel.unit
                 )
             }
         } else if movement.movementType == .Bodyweight && !logController.addWeightToBodyweight {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
                 log = Log(
                     id: docId,
-                    userId: logViewModel.userId,
+                    userId: logsViewModel.userId,
                     movementId: movement.id,
                     reps: logController.reps,
                     weight: 0,
                     bodyweight: bodyWeightEntry.bodyweight,
                     isBodyWeight: movement.movementType == .Bodyweight,
                     timeAdded: Date.now.timeIntervalSince1970,
-                    unit: logViewModel.unit
+                    unit: logsViewModel.unit
                 )
             }
         } else {
             log = Log(
                 id: docId,
-                userId: logViewModel.userId,
+                userId: logsViewModel.userId,
                 movementId: movement.id,
                 reps: logController.reps,
                 weight: logController.weight,
                 bodyweight: 0,
                 isBodyWeight: movement.movementType == .Bodyweight,
                 timeAdded: Date.now.timeIntervalSince1970,
-                unit: logViewModel.unit
+                unit: logsViewModel.unit
             )
         }
         
         Task {
             addingLog = true
-            let result = await logViewModel.addLog(log: log)
+            let result = await logsViewModel.addLog(log: log)
             errorHandler.handleLogSet(
                 result: result,
-                logViewModel: logViewModel,
+                logsViewModel: logsViewModel,
                 logController: logController,
                 movement: movement
             )

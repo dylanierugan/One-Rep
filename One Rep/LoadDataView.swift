@@ -13,7 +13,7 @@ struct LoadDataView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var viewRouter: ViewRouter
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var userViewModel: UserViewModel
@@ -87,9 +87,9 @@ struct LoadDataView: View {
     }
     
     private func getLogs(userId: String) {
-        if logViewModel.logs.isEmpty {
-            logViewModel.userId = userId
-            logViewModel.getLogsAddSnapshot { result in
+        if logsViewModel.logs.isEmpty {
+            logsViewModel.userId = userId
+            logsViewModel.getLogsAddSnapshot { result in
                 switch result {
                 case .success:
                     DispatchQueue.main.async {

@@ -12,7 +12,7 @@ struct ActivityMovementDataView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     
     // MARK: - Public Properties
@@ -22,7 +22,7 @@ struct ActivityMovementDataView: View {
     // MARK: - View
     
     var body: some View {
-        if let movementLogMap = logViewModel.dateMovementLogMap[logViewModel.formatDate(date: dateViewModel.selectedDate.timeIntervalSince1970)] {
+        if let movementLogMap = logsViewModel.dateMovementLogMap[logsViewModel.formatDate(date: dateViewModel.selectedDate.timeIntervalSince1970)] {
             let sortedMovements = Array(movementLogMap.keys).sorted { $0.name < $1.name }
             VStack {
                 ForEach(Array(sortedMovements), id: \.self) { movement in

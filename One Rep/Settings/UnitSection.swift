@@ -40,7 +40,7 @@ struct UnitPickerButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
     
@@ -51,7 +51,7 @@ struct UnitPickerButton: View {
     var body: some View {
         Button(action: {
             withAnimation() {
-                logViewModel.unit = unitSelection
+                logsViewModel.unit = unitSelection
                 UserDefaults.standard.unitSelection = unitSelection
                 HapticManager.instance.impact(style: .soft)
             }
@@ -61,8 +61,8 @@ struct UnitPickerButton: View {
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
             }
             .frame(width: 32, height: 28)
-            .foregroundStyle(unitSelection == logViewModel.unit ? Color(.reversePrimary): .secondary)
-            .background(unitSelection == logViewModel.unit ? Color(.customPrimary) : .clear)
+            .foregroundStyle(unitSelection == logsViewModel.unit ? Color(.reversePrimary): .secondary)
+            .background(unitSelection == logsViewModel.unit ? Color(.customPrimary) : .clear)
             .cornerRadius(8)
         })
     }

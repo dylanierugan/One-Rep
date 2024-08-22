@@ -11,7 +11,7 @@ struct BodyweightView: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - View
@@ -28,7 +28,7 @@ struct BodyweightView: View {
                     if let bodyweightEntry = userViewModel.bodyweightEntries.first {
                         Image(systemName: Icons.FigureArmsOpen.rawValue)
                             .fontWeight(.black)
-                        Text("\(bodyweightEntry.bodyweight.clean)  \(logViewModel.unit.rawValue)")
+                        Text("\(bodyweightEntry.bodyweight.clean)  \(logsViewModel.unit.rawValue)")
                     }
                 }
             }

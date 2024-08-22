@@ -104,17 +104,17 @@ class ErrorHandler: ObservableObject {
     
     // MARK: - Log Functions
     
-    func handleUpdateLog(result: FirebaseResult?, logViewModel: LogViewModel, logController: LogController, movement: Movement) {
+    func handleUpdateLog(result: FirebaseResult?, logsViewModel: LogsViewModel, logController: LogController, movement: Movement) {
         guard let result = result else { return }
         switch result {
         case .success:
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                if logViewModel.weightSelection == WeightSelection.All.rawValue  {
-                    logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
+                if logsViewModel.weightSelection == WeightSelection.All.rawValue  {
+                    logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
                 } else {
-                    logViewModel.repopulateViewModel(weightSelection: logController.editWeightStr, movement: movement)
+                    logsViewModel.repopulateViewModel(weightSelection: logController.editWeightStr, movement: movement)
                 }
-                logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+                logController.setMostRecentLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
             }
             return
         case .failure(_):
@@ -123,32 +123,32 @@ class ErrorHandler: ObservableObject {
     }
 
     @MainActor
-    func handleDeleteLog(result: FirebaseResult?, logViewModel: LogViewModel, logController: LogController, movement: Movement) {
+    func handleDeleteLog(result: FirebaseResult?, logsViewModel: LogsViewModel, logController: LogController, movement: Movement) {
         guard let result = result else { return }
         switch result {
         case .success:
-            if logViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logViewModel.weightSelection) {
-                logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
+            if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
+                logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
             } else {
-                logViewModel.repopulateViewModel(weightSelection: logViewModel.weightSelection, movement: movement)
+                logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
             }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+            logController.setMostRecentLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
         case .failure(_):
             handleFailure()
         }
     }
     
     @MainActor
-    func handleLogSet(result: FirebaseResult?, logViewModel: LogViewModel, logController: LogController, movement: Movement) {
+    func handleLogSet(result: FirebaseResult?, logsViewModel: LogsViewModel, logController: LogController, movement: Movement) {
         guard let result = result else { return }
         switch result {
         case .success:
-            if logViewModel.weightSelection != WeightSelection.All.rawValue  {
-                logViewModel.repopulateViewModel(weightSelection: logController.weightStr, movement: movement)
+            if logsViewModel.weightSelection != WeightSelection.All.rawValue  {
+                logsViewModel.repopulateViewModel(weightSelection: logController.weightStr, movement: movement)
             } else {
-                logViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
+                logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
             }
-            logController.setMostRecentLog(logViewModel.filteredLogs, weightSelection: logViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+            logController.setMostRecentLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
             return
         case .failure(_):
             handleFailure()

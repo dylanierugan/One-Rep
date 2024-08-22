@@ -6,14 +6,12 @@
 //
 
 import Foundation
-
-import Foundation
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
 
 @MainActor
-class LogViewModel: ObservableObject {
+class LogsViewModel: ObservableObject {
     
     // MARK: - Variables
     

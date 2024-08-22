@@ -17,7 +17,7 @@ struct DeleteAccountButton: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Global Properties
@@ -71,7 +71,7 @@ struct DeleteAccountButton: View {
     private func deleteAllData() async {
         _ = await movementsViewModel.deleteAllUserMovements()
         _ = await routinesViewModel.deleteAllUserRoutines()
-        _ = await logViewModel.deleteAllUserLogs()
+        _ = await logsViewModel.deleteAllUserLogs()
         _ = await userViewModel.deleteAllUserBodyweightEntries()
         /// TODO - Handle errors
     }

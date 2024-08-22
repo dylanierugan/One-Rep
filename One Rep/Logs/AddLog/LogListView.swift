@@ -13,7 +13,7 @@ struct LogListView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logController: LogController
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
     
@@ -26,8 +26,8 @@ struct LogListView: View {
     // MARK: - View
     
     var body: some View {
-        ForEach(0..<logViewModel.listOfDates.count, id: \.self) { index in
-            let date = logViewModel.listOfDates[index]
+        ForEach(0..<logsViewModel.listOfDates.count, id: \.self) { index in
+            let date = logsViewModel.listOfDates[index]
             Section(header: HStack {
                 Text(date)
                     .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
@@ -42,7 +42,7 @@ struct LogListView: View {
                 .padding(.horizontal, 20))
             {
                 VStack {
-                    if let logs = logViewModel.dateLogMap[date] {
+                    if let logs = logsViewModel.dateLogMap[date] {
                         VStack {
                             ForEach(Array(logs.reversed().enumerated()), id: \.element.id) { index, log in
                                 HStack {

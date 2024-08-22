@@ -16,7 +16,7 @@ struct LogOutButton: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - View
@@ -51,8 +51,8 @@ struct LogOutButton: View {
                 movementsViewModel.clearData()
                 routinesViewModel.unsubscribe()
                 routinesViewModel.clearData()
-                logViewModel.unsubscribe()
-                logViewModel.clearData()
+                logsViewModel.unsubscribe()
+                logsViewModel.clearData()
                 userViewModel.unsubscribe()
                 userViewModel.clearData()
             } catch {

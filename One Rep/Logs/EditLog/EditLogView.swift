@@ -14,7 +14,7 @@ struct EditLogView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
@@ -139,8 +139,8 @@ struct EditLogView: View {
             log.reps = logController.editReps
             log.bodyweight = logController.editBodyweight
             log.timeAdded = date.timeIntervalSince1970
-            let result = await logViewModel.updateLog(log: log)
-            errorHandler.handleUpdateLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
+            let result = await logsViewModel.updateLog(log: log)
+            errorHandler.handleUpdateLog(result: result, logsViewModel: logsViewModel, logController: logController, movement: movement)
             dismiss()
         }
     }
@@ -148,8 +148,8 @@ struct EditLogView: View {
     private func deleteLog() {
         Task {
             isDeletingLog = true
-            let result = await logViewModel.deleteLog(docId: log.id)
-            errorHandler.handleDeleteLog(result: result, logViewModel: logViewModel, logController: logController, movement: movement)
+            let result = await logsViewModel.deleteLog(docId: log.id)
+            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logController: logController, movement: movement)
         }
     }
 }

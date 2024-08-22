@@ -13,7 +13,7 @@ struct EditMovementView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var movementViewModel = MovementViewModel()
     @Environment(\.dismiss) private var dismiss
@@ -106,7 +106,7 @@ struct EditMovementView: View {
         Task {
             showDeleteProgressView = true
             var result = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
-            result = await logViewModel.deleteAllMovementLogs(movementId: movementViewModel.movement.id)
+            result = await logsViewModel.deleteAllMovementLogs(movementId: movementViewModel.movement.id)
             errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
         }
     }

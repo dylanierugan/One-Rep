@@ -12,7 +12,7 @@ struct LogBodyweightSection: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logController: LogController
     @EnvironmentObject var userViewModel: UserViewModel
     @ObservedObject var movementViewModel = MovementViewModel()

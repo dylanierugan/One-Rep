@@ -13,7 +13,6 @@ struct TabHolderView: View {
     
     var body: some View {
         TabView() {
-            
             MovementsView()
                 .tabItem {
                     Image(systemName: Icons.FigureStrengthTraining.rawValue)
@@ -23,7 +22,6 @@ struct TabHolderView: View {
                 .tabItem {
                     Image(systemName: Icons.PersonFill.rawValue)
                 }
-            
         }
         .font(.headline)
         .accentColor(.primary)

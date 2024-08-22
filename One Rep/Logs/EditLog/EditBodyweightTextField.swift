@@ -12,7 +12,6 @@ struct EditBodyweightTextField: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var logController: LogController
     
     // MARK: - Public Properties

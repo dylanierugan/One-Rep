@@ -13,7 +13,7 @@ struct LogViewSubHeading: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var logController: LogController
-    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
     
@@ -23,7 +23,7 @@ struct LogViewSubHeading: View {
     
     var body: some View {
         VStack {
-            if logViewModel.filteredLogs.count != 0 {
+            if logsViewModel.filteredLogs.count != 0 {
                 if movement.movementType != .Bodyweight {
                     WeightHorizontalScroller(movement: movement)
                 }
