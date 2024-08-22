@@ -19,8 +19,11 @@ struct DayPicker: View {
     // MARK: - Global Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var dateViewModel: DateViewModel
     @EnvironmentObject var logViewModel: LogViewModel
+    
+    // MARK: - Public Properties
+    
+    @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
     

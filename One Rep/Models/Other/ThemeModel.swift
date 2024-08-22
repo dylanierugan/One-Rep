@@ -78,4 +78,12 @@ class ThemeModel: ObservableObject {
             self.darkBaseColor = Colors.Primary.rawValue
         }
     }
+    
+    static func getAccentColor() -> String {
+        return UserDefaults.standard.string(forKey: DefaultKeys.AccentColor.rawValue) ?? Colors.LightGreen.rawValue
+    }
+
+    static func getColorScheme() -> ColorScheme {
+        return UserDefaults.standard.appColorScheme == .dark ? .dark : .light
+    }
 }

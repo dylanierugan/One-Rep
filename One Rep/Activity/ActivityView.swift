@@ -14,10 +14,10 @@ struct ActivityView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var dateViewModel: DateViewModel
     
     // MARK: - Private Properties
     
+    @StateObject private var dateViewModel = DateViewModel()
     @State private var showCalendar = false
     
     // MARK: - View
@@ -26,21 +26,21 @@ struct ActivityView: View {
         VStack {
             if !showCalendar {
                 HStack {
-                    DateView()
+                    DateView(dateViewModel: dateViewModel)
                     Spacer()
-                    MoveWeekButtons()
+                    MoveWeekButtons(dateViewModel: dateViewModel)
                 }
                 .padding(.top, 8)
                 .padding(.horizontal, 24)
-                DayPicker()
+                DayPicker(dateViewModel: dateViewModel)
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             } else {
-                CalendarView()
+                CalendarView(dateViewModel: dateViewModel)
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             }
-            ActivityMovementDataView()
+            ActivityMovementDataView(dateViewModel: dateViewModel)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
         }
@@ -49,7 +49,7 @@ struct ActivityView: View {
                 ShowCalendarButton(showCalendar: $showCalendar)
             }
         })
-        .onAppear() {
+        .onAppear {
             logViewModel.populateListOfDatesAllLogs()
             logViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
             dateViewModel.setDate()

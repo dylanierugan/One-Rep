@@ -69,10 +69,10 @@ struct DeleteAccountButton: View {
     }
     
     private func deleteAllData() async {
-        let deleteMovementResults = await movementsViewModel.deleteAllUserMovements()
-        let deleteRoutineResults = await routinesViewModel.deleteAllUserRoutines()
-        let deleteLogResults = await logViewModel.deleteAllUserLogs()
-        let deleteBodyweightResults = await userViewModel.deleteAllUserBodyweightEntries()
+        _ = await movementsViewModel.deleteAllUserMovements()
+        _ = await routinesViewModel.deleteAllUserRoutines()
+        _ = await logViewModel.deleteAllUserLogs()
+        _ = await userViewModel.deleteAllUserBodyweightEntries()
         /// TODO - Handle errors
     }
 }

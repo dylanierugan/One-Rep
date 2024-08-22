@@ -13,17 +13,17 @@ struct CalendarDateButton: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var dateViewModel: DateViewModel
-    
-    // MARK: - Public Properties
-    
-    @State var dateObject: DateValue
     
     // MARK: - Private Properties
     
     private var computedDate: String {
         return logViewModel.formatDate(date: dateObject.date.timeIntervalSince1970)
     }
+    
+    // MARK: - Public Properties
+    
+    @State var dateObject: DateValue
+    @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
     

@@ -44,7 +44,8 @@ class MovementsViewModel: ObservableObject {
         var results = [FirebaseResult]()
         for movement in movements {
             if movement.userId == userId {
-                let results = await self.deleteMovement(docId: movement.id)
+                let result = await self.deleteMovement(docId: movement.id)
+                results.append(result)
             }
         }
         return results
@@ -76,7 +77,6 @@ class MovementsViewModel: ObservableObject {
                         let timeAdded = document[MovementAttributes.TimeAdded.rawValue] as? Double ?? 0
                         let isPremium = document[MovementAttributes.IsPremium.rawValue] as? Bool ?? false
                         let mutatingValue = document[MovementAttributes.MutatingValue.rawValue] as? Double ?? 0
-                        let routineIds = document[MovementAttributes.RoutineIds.rawValue] as? [String] ?? []
                         let movement = Movement(id: docId, userId: userId, name: name, muscleGroup: muscleGroup, movementType: movementType, timeAdded: timeAdded, isPremium: isPremium, mutatingValue: mutatingValue)
                         self.movements.append(movement)
                     }

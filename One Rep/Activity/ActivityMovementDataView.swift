@@ -13,8 +13,11 @@ struct ActivityMovementDataView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var dateViewModel: DateViewModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
+    
+    // MARK: - Public Properties
+    
+    @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
     

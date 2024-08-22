@@ -71,6 +71,7 @@ struct AddMovementsView: View {
             }
         }
         .onAppear { setMovementsArray() }
+        .onDisappear { routineViewModel.setMovements(movements: movementsViewModel.movements, errorHandler: errorHandler) }
     }
     
     // MARK: - Functions

@@ -15,6 +15,9 @@ class RoutineViewModel: ObservableObject {
     
     @Published var routine: Routine
     @Published var modified = false
+    @Published var movements = [Movement]()
+    
+    @Published private var movementIDdict = [String : Movement]()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -30,7 +33,7 @@ class RoutineViewModel: ObservableObject {
             .store(in: &self.cancellables)
     }
     
-    // MARK: - Firestore
+    // MARK: - Functions 
     
     private var db = Firestore.firestore()
     
@@ -41,6 +44,27 @@ class RoutineViewModel: ObservableObject {
         }
         catch {
             return .failure(error)
+        }
+    }
+    
+    func setMovements(movements: [Movement], errorHandler: ErrorHandler) {
+        self.movements = []
+        for movement in movements {
+            movementIDdict[movement.id] = movement
+        }
+        for movementID in routine.movementIDs {
+            if let movement = movementIDdict[movementID] {
+                self.movements.append(movement)
+            } else {
+                let index = routine.movementIDs.firstIndex(of: movementID)
+                if let index = index {
+                    routine.movementIDs.remove(at: index)
+                    Task {
+                        let result = await updateRoutine()
+                        errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
+                    }
+                }
+            }
         }
     }
 }

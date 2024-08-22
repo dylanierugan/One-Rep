@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MoveWeekButtons: View {
     
-    // MARK: - Global Properties
+    // MARK: - Public Properties
     
-    @EnvironmentObject var dateViewModel: DateViewModel
+    @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
     

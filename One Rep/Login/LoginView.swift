@@ -20,10 +20,14 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
+            
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
+            
             VStack(spacing: 16) {
+                
                 Spacer()
+                
                 VStack(spacing: 8) {
                     OneRepLogo(size: .title)
                     Text(LoginStrings.DeleteMovmentConfirmation.rawValue)
@@ -31,11 +35,14 @@ struct LoginView: View {
                         .multilineTextAlignment(.center)
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 }
+                
                 SignInWithApple()
                     .frame(height: 32)
                     .padding(.top, 8)
                     .padding(.horizontal, 32)
+                
                 Spacer()
+                
                 Link(PrivacyPolicy.Text.rawValue, destination: URL(string: PrivacyPolicy.Link.rawValue)!)
                     .customFont(size: .caption, weight: .semibold, design: .rounded)
                     .foregroundColor(.primary)

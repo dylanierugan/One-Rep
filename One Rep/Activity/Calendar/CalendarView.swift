@@ -18,12 +18,15 @@ struct CalendarView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var dateViewModel: DateViewModel
     
     // MARK: - Private Properties
     
     private let days: [Weekdays] = [.Sun, .Mon, .Tue, .Wed, .Thu, .Fri, .Sat]
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
+    
+    // MARK: - Public Properties
+    
+    @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
     
@@ -31,9 +34,9 @@ struct CalendarView: View {
         VStack(spacing: 32) {
             
             HStack {
-                DateView()
+                DateView(dateViewModel: dateViewModel)
                 Spacer()
-                MoveMonthButtons()
+                MoveMonthButtons(dateViewModel: dateViewModel)
             }
             .padding(.horizontal, 8)
 
@@ -48,7 +51,7 @@ struct CalendarView: View {
             
             LazyVGrid(columns: columns, spacing: 12) {
                 ForEach( dateViewModel.extractCurrentMonth() ) { dateObject in
-                    CalendarDateButton(dateObject: dateObject)
+                    CalendarDateButton(dateObject: dateObject, dateViewModel: dateViewModel)
                 }
             }
         }

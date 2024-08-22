@@ -23,8 +23,6 @@ struct SelectedRoutineView: View {
     
     // MARK: - Private Properties
     
-    @State private var movementIDdict = [String : Movement]()
-    @State private var movements = [Movement]()
     @State private var showAddMovmenetsSheet = false
     @State private var showEditRoutinePopup = false
     
@@ -43,7 +41,7 @@ struct SelectedRoutineView: View {
                 }
             } else {
                 List {
-                    ForEach(movements, id: \.self) { movement in
+                    ForEach(routineViewModel.movements, id: \.self) { movement in
                         RoutineMovementCard(
                             index: (routineViewModel.routine.movementIDs.firstIndex(of: movement.id) ?? 0) + 1,
                             movement: movement
@@ -91,31 +89,10 @@ struct SelectedRoutineView: View {
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
         }
-        .onAppear { setMovements() }
+        .onAppear { routineViewModel.setMovements(movements: movementsViewModel.movements, errorHandler: errorHandler) }
     }
     
     // MARK: - Function
-    
-    private func setMovements() {
-        self.movements = []
-        for movement in movementsViewModel.movements {
-            movementIDdict[movement.id] = movement
-        }
-        for movementID in routineViewModel.routine.movementIDs {
-            if let movement = movementIDdict[movementID] {
-                self.movements.append(movement)
-            } else {
-                let index = routineViewModel.routine.movementIDs.firstIndex(of: movementID)
-                if let index = index {
-                    routineViewModel.routine.movementIDs.remove(at: index)
-                    Task {
-                        let result = await routineViewModel.updateRoutine()
-                        errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
-                    }
-                }
-            }
-        }
-    }
     
     private func onDelete(offsets: IndexSet) async {
         DispatchQueue.main.async {
