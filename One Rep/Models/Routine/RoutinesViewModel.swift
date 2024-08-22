@@ -42,6 +42,16 @@ class RoutinesViewModel: ObservableObject {
         routines = []
     }
     
+    func deleteAllUserRoutines() async -> [FirebaseResult] {
+        var results = [FirebaseResult]()
+        for routine in routines {
+            if routine.userId == userId {
+                let results = await self.deleteRoutine(docId: routine.id)
+            }
+        }
+        return results
+    }
+    
     func subscribeToRoutines(completion: @escaping (FirebaseResult) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.RoutinesCollection.rawValue)

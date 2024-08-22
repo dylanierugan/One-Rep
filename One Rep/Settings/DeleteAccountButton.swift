@@ -15,6 +15,10 @@ struct DeleteAccountButton: View {
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var movementsViewModel: MovementsViewModel
+    @EnvironmentObject var routinesViewModel: RoutinesViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Global Properties
     
@@ -42,7 +46,7 @@ struct DeleteAccountButton: View {
                 title: Text(DeleteAccountStrings.DeleteAccountConfirmation.rawValue),
                 message: Text(DeleteAccountStrings.NoWayToUndo.rawValue),
                 primaryButton: .destructive(Text(DeleteAccountStrings.Delete.rawValue)) {
-
+                    deleteUser()
                 },
                 secondaryButton: .cancel())
         }
@@ -51,19 +55,24 @@ struct DeleteAccountButton: View {
     // MARK: - Function
     
     private func deleteUser() {
-        let user = Auth.auth().currentUser
-        user?.delete { error in
-          if let error = error {
-              /// TODO - Error handle
-              print(error)
-          } else {
-              deleteAllData()
-              viewRouter.currentPage = .loginView
-          }
+        Task {
+            do {
+                try await authManager.deleteUser()
+                await deleteAllData()
+                withAnimation {
+                    viewRouter.currentPage = .loginView
+                }
+            } catch {
+                /// Todo - Handle error
+            } 
         }
     }
     
-    private func deleteAllData() {
-        
+    private func deleteAllData() async {
+        let deleteMovementResults = await movementsViewModel.deleteAllUserMovements()
+        let deleteRoutineResults = await routinesViewModel.deleteAllUserRoutines()
+        let deleteLogResults = await logViewModel.deleteAllUserLogs()
+        let deleteBodyweightResults = await userViewModel.deleteAllUserBodyweightEntries()
+        /// TODO - Handle errors
     }
 }

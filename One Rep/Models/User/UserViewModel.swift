@@ -40,6 +40,16 @@ class UserViewModel: ObservableObject {
         bodyweightEntries = []
     }
     
+    func deleteAllUserBodyweightEntries() async -> [FirebaseResult] {
+        var results = [FirebaseResult]()
+        for bodyweightEntry in bodyweightEntries {
+            if bodyweightEntry.userId == userId {
+                let results = await self.deleteBodyweight(docId: bodyweightEntry.id)
+            }
+        }
+        return results
+    }
+    
     func subscribeToUser(completion: @escaping (FirebaseResult) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.UserCollection.rawValue)
@@ -69,4 +79,12 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func deleteBodyweight(docId: String) async -> FirebaseResult {
+        do {
+            try await db.collection(FirebaseCollection.UserCollection.rawValue).document(docId).delete()
+            return .success
+        } catch {
+            return .failure(error)
+        }
+    }
 }

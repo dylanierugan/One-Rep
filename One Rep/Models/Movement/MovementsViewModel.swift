@@ -40,6 +40,16 @@ class MovementsViewModel: ObservableObject {
         movements = []
     }
     
+    func deleteAllUserMovements() async -> [FirebaseResult] {
+        var results = [FirebaseResult]()
+        for movement in movements {
+            if movement.userId == userId {
+                let results = await self.deleteMovement(docId: movement.id)
+            }
+        }
+        return results
+    }
+    
     func subscribeToMovements(completion: @escaping (FirebaseResult) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.MovementCollection.rawValue)
@@ -77,7 +87,7 @@ class MovementsViewModel: ObservableObject {
     
     func addMovement(movement: Movement) async -> FirebaseResult {
         do {
-            try db.collection(FirebaseCollection.MovementCollection.rawValue).document(movement.id ).setData(from: movement)
+            try db.collection(FirebaseCollection.MovementCollection.rawValue).document(movement.id).setData(from: movement)
             return .success
         } catch {
             return .failure(error)

@@ -23,6 +23,7 @@ struct LoginView: View {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
             VStack(spacing: 16) {
+                Spacer()
                 VStack(spacing: 8) {
                     OneRepLogo(size: .title)
                     Text(LoginStrings.DeleteMovmentConfirmation.rawValue)
@@ -34,6 +35,10 @@ struct LoginView: View {
                     .frame(height: 32)
                     .padding(.top, 8)
                     .padding(.horizontal, 32)
+                Spacer()
+                Link(PrivacyPolicy.Text.rawValue, destination: URL(string: PrivacyPolicy.Link.rawValue)!)
+                    .customFont(size: .caption, weight: .semibold, design: .rounded)
+                    .foregroundColor(.primary)
             }
         }
         .onAppear { onAppearSetViewRouter() }

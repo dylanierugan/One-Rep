@@ -372,5 +372,210 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F0DDB258-0B3F-4A31-A6A4-CF792BDECF07"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/Settings/DeleteAccountButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A8BB275-0BDB-4A1F-BE64-9A22F5AB4810"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/Settings/DeleteAccountButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "deleteUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6A8BB275-0BDB-4A1F-BE64-9A22F5AB4810 - 8a4291d00f0d8d35"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "6A8BB275-0BDB-4A1F-BE64-9A22F5AB4810 - 9aa880308bd7c4f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "6A8BB275-0BDB-4A1F-BE64-9A22F5AB4810 - 3ed0ad7fb126c12b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "6A8BB275-0BDB-4A1F-BE64-9A22F5AB4810 - 1b7fe0e90e6ce728"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62E33BC0-8F49-498B-A817-7657574E9814"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/Settings/DeleteAccountButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "deleteUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "62E33BC0-8F49-498B-A817-7657574E9814 - 3ed0ad7fb126c14c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "62E33BC0-8F49-498B-A817-7657574E9814 - cc8f7a0e62d7b02a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "62E33BC0-8F49-498B-A817-7657574E9814 - 52a6f91b5b7f054e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7B53BDC-647C-46E0-9CF1-4F6D69BA2A2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "One Rep/Settings/DeleteAccountButton.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "deleteUser()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B7B53BDC-647C-46E0-9CF1-4F6D69BA2A2F - 52a6f91b5b7f056f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "B7B53BDC-647C-46E0-9CF1-4F6D69BA2A2F - 410bd7dc3b63e79"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 @Sendable () async -&gt; () in One_Rep.DeleteAccountButton.deleteUser() -&gt; ()"
+                  moduleName = "One Rep"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dylanierugan/Documents/One-Rep/One%20Rep/Settings/DeleteAccountButton.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

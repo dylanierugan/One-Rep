@@ -14,8 +14,6 @@ struct AccountSection: View {
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     
-    // @ObservedRealmObject var movementViewModel: MovementViewModel
-    
     // MARK: - View
     
     var body: some View {
@@ -30,7 +28,11 @@ struct AccountSection: View {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
                             Image(systemName: Icons.PersonFill.rawValue)
-                            Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
+                            if authManager.user?.isAnonymous == true {
+                                Text(SettingsStrings.Anonymous.rawValue)
+                            } else {
+                                Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
+                            }
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         Spacer()

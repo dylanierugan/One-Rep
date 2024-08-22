@@ -294,6 +294,11 @@ enum NavigationTitleStrings: String {
     case Activity = "Activity"
 }
 
+enum PrivacyPolicy: String {
+    case Text = "Privacy Policy"
+    case Link = "https://one-rep.apphq.online/"
+}
+
 enum ProgressText: String {
     case OneRep = "One Rep"
     case Loading = "Loading..."
@@ -327,6 +332,7 @@ enum SettingsStrings: String {
     case Appearance = "Appearance"
     case Light = "Light"
     case Dark = "Dark"
+    case Anonymous = "Anonymous Email"
 }
 
 enum ToggleEditStrings: String {

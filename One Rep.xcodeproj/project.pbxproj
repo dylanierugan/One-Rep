@@ -99,7 +99,6 @@
 		37881F522C0DA22A00ABBF42 /* MovementTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */; };
 		37881F542C0DAA6300ABBF42 /* BodyweightSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */; };
 		37881F562C0DAAB700ABBF42 /* RecordBodyweightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */; };
-		37881F582C0E17CE00ABBF42 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F572C0E17CE00ABBF42 /* UserModel.swift */; };
 		37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F592C0E950500ABBF42 /* BodyweightTextField.swift */; };
 		37881F5C2C0F624100ABBF42 /* AddNewBodyweightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5B2C0F624100ABBF42 /* AddNewBodyweightButton.swift */; };
 		37881F5E2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37881F5D2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift */; };
@@ -215,7 +214,6 @@
 		37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTypePicker.swift; sourceTree = "<group>"; };
 		37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightSection.swift; sourceTree = "<group>"; };
 		37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBodyweightView.swift; sourceTree = "<group>"; };
-		37881F572C0E17CE00ABBF42 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		37881F592C0E950500ABBF42 /* BodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightTextField.swift; sourceTree = "<group>"; };
 		37881F5B2C0F624100ABBF42 /* AddNewBodyweightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewBodyweightButton.swift; sourceTree = "<group>"; };
 		37881F5D2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBodyweightButtonLink.swift; sourceTree = "<group>"; };
@@ -507,15 +505,15 @@
 			children = (
 				37A6552D2BA5F91100B96BEB /* SettingsView.swift */,
 				3707305F2BF0679600E95989 /* AccountSection.swift */,
+				370730A42C01638D00E95989 /* AccountView.swift */,
+				370730612BF06A9E00E95989 /* LogOutButton.swift */,
+				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
 				37881F532C0DAA6300ABBF42 /* BodyweightSection.swift */,
 				376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */,
 				37A655612BC1EF6A00B96BEB /* ThemeSection.swift */,
 				3707308C2BFEBA2500E95989 /* UnitSection.swift */,
 				3753E5C02C6BB40D00182530 /* HelpSection.swift */,
 				3753E5C22C6D862300182530 /* ContactSupportSheet.swift */,
-				370730A42C01638D00E95989 /* AccountView.swift */,
-				370730612BF06A9E00E95989 /* LogOutButton.swift */,
-				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
 				37881F552C0DAAB700ABBF42 /* RecordBodyweightView.swift */,
 				37881F592C0E950500ABBF42 /* BodyweightTextField.swift */,
 				37881F5B2C0F624100ABBF42 /* AddNewBodyweightButton.swift */,
@@ -597,7 +595,6 @@
 		37FAB26E2C442E7A00FDD05B /* User */ = {
 			isa = PBXGroup;
 			children = (
-				37881F572C0E17CE00ABBF42 /* UserModel.swift */,
 				37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */,
 				37FAB2682C44278400FDD05B /* UserViewModel.swift */,
 			);
@@ -796,7 +793,6 @@
 				370730A52C01638D00E95989 /* AccountView.swift in Sources */,
 				37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */,
 				37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */,
-				37881F582C0E17CE00ABBF42 /* UserModel.swift in Sources */,
 				3707307C2BF88AE500E95989 /* DateViewModel.swift in Sources */,
 				37A655672BC6025300B96BEB /* LogView.swift in Sources */,
 				37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */,

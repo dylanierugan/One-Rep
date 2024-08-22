@@ -68,6 +68,15 @@ class AuthManager: ObservableObject {
         }
     }
     
+    func deleteUser() async throws {
+        let user = Auth.auth().currentUser
+        do {
+            try await user?.delete()
+        } catch let error {
+            throw error
+        }
+    }
+    
     func appleAuth(_ appleIDCredential: ASAuthorizationAppleIDCredential, nonce: String?) async throws -> AuthDataResult? {
         guard let nonce = nonce else {
             /// TODO - Error handle

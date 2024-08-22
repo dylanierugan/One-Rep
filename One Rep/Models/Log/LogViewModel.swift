@@ -43,6 +43,16 @@ class LogViewModel: ObservableObject {
         logs = []
     }
     
+    func deleteAllUserLogs() async -> [FirebaseResult] {
+        var results = [FirebaseResult]()
+        for log in logs {
+            if log.userId == userId {
+                let results = await self.deleteLog(docId: log.id)
+            }
+        }
+        return results
+    }
+    
     /// Filter logs for the movementId
     func filterLogs(movementId: String) {
         self.filteredLogs = []
