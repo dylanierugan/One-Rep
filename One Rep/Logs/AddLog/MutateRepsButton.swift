@@ -11,8 +11,9 @@ struct MutateRepsButton: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var logController: LogController
-    
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
+        
     // MARK: - Public Properties
     
     @State var isEditing: Bool
@@ -25,9 +26,9 @@ struct MutateRepsButton: View {
     var body: some View {
         Button {
             if isEditing {
-                logController.mutateEditReps(mutatingValue)
+                editLogViewModel.mutateEditReps(mutatingValue)
             } else {
-                logController.mutateReps(mutatingValue)
+                logViewModel.mutateReps(mutatingValue)
             }
             HapticManager.instance.impact(style: .soft)
         } label: {

@@ -12,7 +12,6 @@ struct LogListView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties

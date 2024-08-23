@@ -13,7 +13,8 @@ struct MutateRepsView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
     
     // MARK: - Public Properties
     
@@ -30,9 +31,9 @@ struct MutateRepsView: View {
             HStack(spacing: 0) {
                 MutateRepsButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
                 
-                TextField("", text: $logController.repsStr)
-                    .onChange(of: logController.repsStr) { newText, _ in
-                        logController.bindRepValues()
+                TextField("", text: $logViewModel.repsStr)
+                    .onChange(of: logViewModel.repsStr) { newText, _ in
+                        logViewModel.bindRepValues()
                     }
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
@@ -41,7 +42,7 @@ struct MutateRepsView: View {
                     .frame(width: 72, alignment: .center)
                     .cornerRadius(10)
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
-                    .onReceive(Just(logController.reps)) { _ in logController.limitRepsText(3) }
+                    .onReceive(Just(logViewModel.reps)) { _ in logViewModel.limitRepsText(3) }
                     .focused($isInputActive)
                 
                 MutateRepsButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)

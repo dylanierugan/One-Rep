@@ -17,7 +17,6 @@ struct One_RepApp: SwiftUI.App {
     @StateObject private var errorHandler = ErrorHandler()
     @StateObject private var movementsViewModel = MovementsViewModel()
     @StateObject private var logsViewModel = LogsViewModel(unit: UserDefaults.standard.unitSelection)
-    @StateObject private var logController = LogController()
     @StateObject private var routinesViewModel = RoutinesViewModel()
     @StateObject private var viewRouter = ViewRouter()
     @StateObject private var themeModel = ThemeModel(accent: ThemeModel.getAccentColor(),
@@ -35,7 +34,6 @@ struct One_RepApp: SwiftUI.App {
             MotherView()
                 .environmentObject(authManager)
                 .environmentObject(errorHandler)
-                .environmentObject(logController)
                 .environmentObject(logsViewModel)
                 .environmentObject(movementsViewModel)
                 .environmentObject(routinesViewModel)

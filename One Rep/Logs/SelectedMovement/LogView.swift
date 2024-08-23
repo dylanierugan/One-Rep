@@ -12,7 +12,6 @@ struct LogView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
@@ -23,6 +22,7 @@ struct LogView: View {
     
     // MARK: - Private Properties
     
+    @StateObject private var logViewModel = LogViewModel()
     @State private var selectedLog: Log = Log()
     @State private var showEditMovementPopup = false
     @State private var showDoneToolBar = true
@@ -61,6 +61,7 @@ struct LogView: View {
                     .environment(\.colorScheme, theme.colorScheme)
             }
         }
+        .environmentObject(logViewModel)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
@@ -86,6 +87,6 @@ struct LogView: View {
     
     private func setLogsOnAppear() {
         logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-        logController.setMostRecentLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
 }

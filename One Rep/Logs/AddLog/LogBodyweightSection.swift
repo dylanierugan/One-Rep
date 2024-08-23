@@ -13,12 +13,12 @@ struct LogBodyweightSection: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var userViewModel: UserViewModel
-    @ObservedObject var movementViewModel = MovementViewModel()
+    @EnvironmentObject var logViewModel: LogViewModel
     
     // MARK: - Public Properties
     
+    @ObservedObject var movementViewModel = MovementViewModel()
     var movement: Movement
     @FocusState var isInputActive: Bool
     
@@ -28,7 +28,7 @@ struct LogBodyweightSection: View {
         HStack {
             Spacer()
             VStack(spacing: 16) {
-                if logController.addWeightToBodyweight {
+                if logViewModel.addWeightToBodyweight {
                     VStack(spacing: 16) {
                         HStack {
                             Spacer()
@@ -66,14 +66,14 @@ struct LogBodyweightSection: View {
                 
                 Button {
                     withAnimation {
-                        logController.addWeightToBodyweight.toggle()
-                        if logController.weight == 0 {
-                            logController.weight = 10
-                            logController.weightStr = "10"
+                        logViewModel.addWeightToBodyweight.toggle()
+                        if logViewModel.weight == 0 {
+                            logViewModel.weight = 10
+                            logViewModel.weightStr = "10"
                         }
                     }
                 } label: {
-                    Text(logController.addWeightToBodyweight ? BodyweightStrings.RemoveWeight.rawValue : BodyweightStrings.AddWeight.rawValue)
+                    Text(logViewModel.addWeightToBodyweight ? BodyweightStrings.RemoveWeight.rawValue : BodyweightStrings.AddWeight.rawValue)
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                         .foregroundColor(.secondary).opacity(0.5)
                 }

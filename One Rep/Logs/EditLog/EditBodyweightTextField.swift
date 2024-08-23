@@ -12,7 +12,7 @@ struct EditBodyweightTextField: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
     
     // MARK: - Public Properties
     
@@ -21,7 +21,7 @@ struct EditBodyweightTextField: View {
     // MARK: - View
     
     var body: some View {
-        TextField("", value: $logController.editBodyweight,
+        TextField("", value: $editLogViewModel.editBodyweight,
                   formatter: NumberFormatter.noDecimalUnlessNeeded)
         .accentColor(Color(theme.darkBaseColor))
         .multilineTextAlignment(.center)

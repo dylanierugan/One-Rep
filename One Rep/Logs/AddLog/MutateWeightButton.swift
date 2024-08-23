@@ -11,8 +11,9 @@ struct MutateWieghtButton: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var logController: LogController
-    
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
+      
     // MARK: - Public Properties
     
     @State var isEditing: Bool
@@ -25,9 +26,9 @@ struct MutateWieghtButton: View {
     var body: some View {
         Button {
             if isEditing {
-                logController.mutateEditWeight(mutatingValue)
+                editLogViewModel.mutateEditWeight(mutatingValue)
             } else {
-                logController.mutateWeight(mutatingValue)
+                logViewModel.mutateWeight(mutatingValue)
             }
             HapticManager.instance.impact(style: .soft)
         } label: {

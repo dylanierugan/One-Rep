@@ -15,7 +15,7 @@ struct EditLogView: View {
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
-    @EnvironmentObject var logController: LogController
+    @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
     
@@ -27,9 +27,18 @@ struct EditLogView: View {
     
     // MARK: - Private Properties
 
+    @StateObject private var editLogViewModel: EditLogViewModel
     @State private var isDeletingLog = false
     @State private var isUpdatingLog = false
     @State private var date = Date()
+    
+    // MARK: - Init
+    
+    init(log: Binding<Log>, movement: Movement, logViewModel: LogViewModel) {
+        self._log = log
+        self._movement = State(initialValue: movement)
+        self._editLogViewModel = StateObject(wrappedValue: EditLogViewModel(lastLog: log.wrappedValue))
+    }
     
     // MARK: - View
     
@@ -117,30 +126,31 @@ struct EditLogView: View {
                 setLogControllerOnAppear()
             }
         }
+        .environmentObject(editLogViewModel)
     }
     
     // MARK: - Functions
     
     private func setLogControllerOnAppear() {
         date = Date(timeIntervalSince1970: log.timeAdded)
-        logController.editWeight = log.weight
-        logController.editWeightStr = log.weight.clean
-        logController.editReps = log.reps
-        logController.editRepsStr = String(log.reps)
+        editLogViewModel.editWeight = log.weight
+        editLogViewModel.editWeightStr = log.weight.clean
+        editLogViewModel.editReps = log.reps
+        editLogViewModel.editRepsStr = String(log.reps)
         if let bodyweightEntry = userViewModel.bodyweightEntries.first {
-            logController.editBodyweight = bodyweightEntry.bodyweight
+            editLogViewModel.editBodyweight = bodyweightEntry.bodyweight
         }
     }
     
     private func updateLog() {
         Task {
             isUpdatingLog = true
-            log.weight = logController.editWeight
-            log.reps = logController.editReps
-            log.bodyweight = logController.editBodyweight
+            log.weight = editLogViewModel.editWeight
+            log.reps = editLogViewModel.editReps
+            log.bodyweight = editLogViewModel.editBodyweight
             log.timeAdded = date.timeIntervalSince1970
             let result = await logsViewModel.updateLog(log: log)
-            errorHandler.handleUpdateLog(result: result, logsViewModel: logsViewModel, logController: logController, movement: movement)
+            errorHandler.handleUpdateLog(result: result, logsViewModel: logsViewModel, logViewModel: logViewModel, editLogViewModel: editLogViewModel, movement: movement)
             dismiss()
         }
     }
@@ -149,7 +159,7 @@ struct EditLogView: View {
         Task {
             isDeletingLog = true
             let result = await logsViewModel.deleteLog(docId: log.id)
-            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logController: logController, movement: movement)
+            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logViewModel: logViewModel, movement: movement)
         }
     }
 }

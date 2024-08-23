@@ -11,9 +11,9 @@ struct LogSetButton: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
     @Environment(\.colorScheme) var colorScheme
@@ -57,27 +57,27 @@ struct LogSetButton: View {
         var log = Log()
         
         /// If log is of type body weight and weight is added
-        if movement.movementType == .Bodyweight && logController.addWeightToBodyweight {
+        if movement.movementType == .Bodyweight && logViewModel.addWeightToBodyweight {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
                 log = Log(
                     id: docId,
                     userId: logsViewModel.userId,
                     movementId: movement.id,
-                    reps: logController.reps,
-                    weight: logController.weight,
+                    reps: logViewModel.reps,
+                    weight: logViewModel.weight,
                     bodyweight: bodyWeightEntry.bodyweight,
                     isBodyWeight: movement.movementType == .Bodyweight,
                     timeAdded: Date.now.timeIntervalSince1970,
                     unit: logsViewModel.unit
                 )
             }
-        } else if movement.movementType == .Bodyweight && !logController.addWeightToBodyweight {
+        } else if movement.movementType == .Bodyweight && !logViewModel.addWeightToBodyweight {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
                 log = Log(
                     id: docId,
                     userId: logsViewModel.userId,
                     movementId: movement.id,
-                    reps: logController.reps,
+                    reps: logViewModel.reps,
                     weight: 0,
                     bodyweight: bodyWeightEntry.bodyweight,
                     isBodyWeight: movement.movementType == .Bodyweight,
@@ -90,8 +90,8 @@ struct LogSetButton: View {
                 id: docId,
                 userId: logsViewModel.userId,
                 movementId: movement.id,
-                reps: logController.reps,
-                weight: logController.weight,
+                reps: logViewModel.reps,
+                weight: logViewModel.weight,
                 bodyweight: 0,
                 isBodyWeight: movement.movementType == .Bodyweight,
                 timeAdded: Date.now.timeIntervalSince1970,
@@ -105,7 +105,7 @@ struct LogSetButton: View {
             errorHandler.handleLogSet(
                 result: result,
                 logsViewModel: logsViewModel,
-                logController: logController,
+                logViewModel: logViewModel,
                 movement: movement
             )
         }

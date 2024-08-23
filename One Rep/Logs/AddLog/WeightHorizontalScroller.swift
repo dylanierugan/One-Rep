@@ -13,7 +13,7 @@ struct WeightHorizontalScroller: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
-    @EnvironmentObject var logController: LogController
+    @EnvironmentObject var logViewModel: LogViewModel
     
     // MARK: - Public Properties
     
@@ -28,7 +28,7 @@ struct WeightHorizontalScroller: View {
                     ForEach(logsViewModel.listOfWeights, id: \.self) { weight in
                         Button {
                             logsViewModel.repopulateViewModel(weightSelection: weight, movement: movement)
-                            logController.setMostRecentLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+                            logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
                             HapticManager.instance.impact(style: .soft)
                         } label: {
                             if weight == WeightSelection.All.rawValue  {

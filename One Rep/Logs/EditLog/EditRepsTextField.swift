@@ -13,7 +13,8 @@ struct EditRepsTextField: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
     
     // MARK: - Public Properties
     
@@ -25,9 +26,9 @@ struct EditRepsTextField: View {
     var body: some View {
         HStack(spacing: 8) {
             MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
-            TextField("", text: $logController.editRepsStr)
-                .onChange(of: logController.editRepsStr) { newText, _ in
-                    logController.bindEditRepValues()
+            TextField("", text: $editLogViewModel.editRepsStr)
+                .onChange(of: editLogViewModel.editRepsStr) { newText, _ in
+                    editLogViewModel.bindEditRepValues()
                 }
                 .accentColor(Color(theme.darkBaseColor))
                 .multilineTextAlignment(.center)
@@ -38,12 +39,12 @@ struct EditRepsTextField: View {
                 .frame(width: 84, alignment: .center)
                 .cornerRadius(10)
                 .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                .onReceive(Just(logController.editReps)) { _ in logController.limitEditRepsText(3) }
+                .onReceive(Just(editLogViewModel.editReps)) { _ in editLogViewModel.limitEditRepsText(3) }
                 .focused($isInputActive)
                 .onAppear() {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        logController.editReps = log.reps
-                        logController.editRepsStr = String(log.reps)
+                        editLogViewModel.editReps = log.reps
+                        editLogViewModel.editRepsStr = String(log.reps)
                     }
                 }
             MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)

@@ -13,13 +13,13 @@ struct MutateWeightView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var logsViewModel: LogsViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
-    @ObservedObject var movementViewModel = MovementViewModel()
     
     // MARK: - Public Properties
     
+    @ObservedObject var movementViewModel = MovementViewModel()
     @FocusState var isInputActive: Bool
     
     // MARK: - Private Properties
@@ -55,7 +55,7 @@ struct MutateWeightView: View {
             HStack {
                 MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -movementViewModel.movement.mutatingValue)
                 
-                TextField("", value: $logController.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
+                TextField("", value: $logViewModel.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)

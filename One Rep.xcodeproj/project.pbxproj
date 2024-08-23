@@ -32,7 +32,6 @@
 		3707309B2BFF71E800E95989 /* EditRepsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707309A2BFF71E800E95989 /* EditRepsTextField.swift */; };
 		3707309E2BFF843400E95989 /* UpdateLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707309D2BFF843400E95989 /* UpdateLogButton.swift */; };
 		370730A02BFF84B400E95989 /* DeleteLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707309F2BFF84B400E95989 /* DeleteLogButton.swift */; };
-		370730A22BFFF58D00E95989 /* LogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A12BFFF58D00E95989 /* LogController.swift */; };
 		370730A52C01638D00E95989 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A42C01638D00E95989 /* AccountView.swift */; };
 		370730A82C01668A00E95989 /* DeleteAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A72C01668A00E95989 /* DeleteAccountButton.swift */; };
 		374069582C2E530C00692ECD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 374069572C2E530C00692ECD /* GoogleService-Info.plist */; };
@@ -55,6 +54,8 @@
 		3753E5BF2C646FA600182530 /* DeleteRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5BE2C646FA600182530 /* DeleteRoutineButton.swift */; };
 		3753E5C12C6BB40D00182530 /* HelpSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5C02C6BB40D00182530 /* HelpSection.swift */; };
 		3753E5C32C6D862300182530 /* ContactSupportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5C22C6D862300182530 /* ContactSupportSheet.swift */; };
+		3753E5F32C77EE6100182530 /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F22C77EE6100182530 /* LogViewModel.swift */; };
+		3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -174,7 +175,6 @@
 		3707309A2BFF71E800E95989 /* EditRepsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRepsTextField.swift; sourceTree = "<group>"; };
 		3707309D2BFF843400E95989 /* UpdateLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLogButton.swift; sourceTree = "<group>"; };
 		3707309F2BFF84B400E95989 /* DeleteLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLogButton.swift; sourceTree = "<group>"; };
-		370730A12BFFF58D00E95989 /* LogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogController.swift; sourceTree = "<group>"; };
 		370730A42C01638D00E95989 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		370730A72C01668A00E95989 /* DeleteAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountButton.swift; sourceTree = "<group>"; };
 		374069572C2E530C00692ECD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -197,6 +197,8 @@
 		3753E5BE2C646FA600182530 /* DeleteRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRoutineButton.swift; sourceTree = "<group>"; };
 		3753E5C02C6BB40D00182530 /* HelpSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpSection.swift; sourceTree = "<group>"; };
 		3753E5C22C6D862300182530 /* ContactSupportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSupportSheet.swift; sourceTree = "<group>"; };
+		3753E5F22C77EE6100182530 /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
+		3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogViewModel.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
@@ -375,14 +377,6 @@
 			path = AddLog;
 			sourceTree = "<group>";
 		};
-		370730A92C022C4900E95989 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				370730A12BFFF58D00E95989 /* LogController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		374069542C2E482500692ECD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,7 +552,6 @@
 				37A655652BC6018700B96BEB /* Logs */,
 				370730732BF7239D00E95989 /* Activity */,
 				37A655342BA745D400B96BEB /* Settings */,
-				370730A92C022C4900E95989 /* Controllers */,
 				37A655322BA745C700B96BEB /* Models */,
 				374069542C2E482500692ECD /* Utilities */,
 				37A6550D2BA5385800B96BEB /* Assets.xcassets */,
@@ -661,6 +654,8 @@
 			isa = PBXGroup;
 			children = (
 				37A655372BA7470B00B96BEB /* Log.swift */,
+				3753E5F22C77EE6100182530 /* LogViewModel.swift */,
+				3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */,
 				3740697B2C2FC26D00692ECD /* LogsViewModel.swift */,
 			);
 			path = Log;
@@ -812,6 +807,7 @@
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
 				3753E5BF2C646FA600182530 /* DeleteRoutineButton.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,
+				3753E5F32C77EE6100182530 /* LogViewModel.swift in Sources */,
 				374069702C2E5D9800692ECD /* AuthManager.swift in Sources */,
 				370730722BF3BE8900E95989 /* ActivityView.swift in Sources */,
 				376B58A52C4C52D5007C82E9 /* AppearanceSection.swift in Sources */,
@@ -882,6 +878,7 @@
 				37A655362BA7466300B96BEB /* Movement.swift in Sources */,
 				374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */,
 				3753E5C12C6BB40D00182530 /* HelpSection.swift in Sources */,
+				3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */,
 				370730A52C01638D00E95989 /* AccountView.swift in Sources */,
 				37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */,
 				37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */,
@@ -892,7 +889,6 @@
 				37C70C322BDD52C200B0375A /* LogCard.swift in Sources */,
 				370730872BF9D64F00E95989 /* ActivityMovementDataView.swift in Sources */,
 				3753E5B52C61C3B000182530 /* AddMovementsToolButton.swift in Sources */,
-				370730A22BFFF58D00E95989 /* LogController.swift in Sources */,
 				3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */,
 				3707305E2BF063CC00E95989 /* RoutineViewModel.swift in Sources */,
 				370730762BF7240F00E95989 /* CalendarView.swift in Sources */,

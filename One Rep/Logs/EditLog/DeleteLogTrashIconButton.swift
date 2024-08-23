@@ -13,8 +13,8 @@ struct DeleteLogTrashIconButton: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var errorHandler: ErrorHandler
+    @EnvironmentObject var logViewModel: LogViewModel
     
     // MARK: - Public Properties
     
@@ -48,7 +48,7 @@ struct DeleteLogTrashIconButton: View {
     func handleDeleteLog() async {
         Task {
             let result = await logsViewModel.deleteLog(docId: log.id)
-            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logController: logController, movement: movement)
+            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logViewModel: logViewModel, movement: movement)
         }
     }
 }

@@ -12,8 +12,9 @@ struct LogCard: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logController: LogController
     @EnvironmentObject var logsViewModel: LogsViewModel
+    @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
     
     // MARK: - Public Properties
     
@@ -52,7 +53,7 @@ struct LogCard: View {
                 .padding(.vertical, 6)
         }
         .sheet(isPresented: $showEditMovementPopup) {
-            EditLogView(log: $log, movement: movement)
+            EditLogView(log: $log, movement: movement, logViewModel: logViewModel)
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
                 .onDisappear { showDoneToolBar = true }
