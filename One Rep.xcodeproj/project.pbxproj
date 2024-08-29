@@ -56,6 +56,7 @@
 		3753E5C32C6D862300182530 /* ContactSupportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5C22C6D862300182530 /* ContactSupportSheet.swift */; };
 		3753E5F32C77EE6100182530 /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F22C77EE6100182530 /* LogViewModel.swift */; };
 		3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */; };
+		3753E62D2C813EFB00182530 /* MovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E62C2C813EFB00182530 /* MovementsView.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -114,7 +115,7 @@
 		37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655232BA5F88200B96BEB /* TabHolderView.swift */; };
 		37A655262BA5F8A700B96BEB /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655252BA5F8A700B96BEB /* SignInWithApple.swift */; };
 		37A655282BA5F8C200B96BEB /* OneRepLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655272BA5F8C200B96BEB /* OneRepLogo.swift */; };
-		37A6552C2BA5F8FA00B96BEB /* MovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */; };
+		37A6552C2BA5F8FA00B96BEB /* MovementSectionHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552B2BA5F8FA00B96BEB /* MovementSectionHolderView.swift */; };
 		37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552D2BA5F91100B96BEB /* SettingsView.swift */; };
 		37A655302BA5F98C00B96BEB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552F2BA5F98C00B96BEB /* Enums.swift */; };
 		37A655362BA7466300B96BEB /* Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655352BA7466300B96BEB /* Movement.swift */; };
@@ -199,6 +200,7 @@
 		3753E5C22C6D862300182530 /* ContactSupportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSupportSheet.swift; sourceTree = "<group>"; };
 		3753E5F22C77EE6100182530 /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogViewModel.swift; sourceTree = "<group>"; };
+		3753E62C2C813EFB00182530 /* MovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsView.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
@@ -231,7 +233,7 @@
 		37A655232BA5F88200B96BEB /* TabHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHolderView.swift; sourceTree = "<group>"; };
 		37A655252BA5F8A700B96BEB /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		37A655272BA5F8C200B96BEB /* OneRepLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepLogo.swift; sourceTree = "<group>"; };
-		37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsView.swift; sourceTree = "<group>"; };
+		37A6552B2BA5F8FA00B96BEB /* MovementSectionHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementSectionHolderView.swift; sourceTree = "<group>"; };
 		37A6552D2BA5F91100B96BEB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		37A6552F2BA5F98C00B96BEB /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		37A655352BA7466300B96BEB /* Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movement.swift; sourceTree = "<group>"; };
@@ -392,7 +394,8 @@
 		3753E5E52C77E16400182530 /* ViewMovements */ = {
 			isa = PBXGroup;
 			children = (
-				37A6552B2BA5F8FA00B96BEB /* MovementsView.swift */,
+				37A6552B2BA5F8FA00B96BEB /* MovementSectionHolderView.swift */,
+				3753E62C2C813EFB00182530 /* MovementsView.swift */,
 				3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */,
 				37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */,
 				37A655422BAA902300B96BEB /* AddMovementToolButton.swift */,
@@ -856,6 +859,7 @@
 				37881F622C166B6D00ABBF42 /* BodyweightEntry.swift in Sources */,
 				37A655792BC60E5D00B96BEB /* LogSetButton.swift in Sources */,
 				3707308D2BFEBA2500E95989 /* UnitSection.swift in Sources */,
+				3753E62D2C813EFB00182530 /* MovementsView.swift in Sources */,
 				37A655452BAA965C00B96BEB /* MusclePicker.swift in Sources */,
 				370730A02BFF84B400E95989 /* DeleteLogButton.swift in Sources */,
 				37A655472BAA98AC00B96BEB /* AddMovementButton.swift in Sources */,
@@ -869,7 +873,7 @@
 				37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */,
 				3753E5BD2C646CAF00182530 /* UpdateRoutineButton.swift in Sources */,
 				370730682BF07E6F00E95989 /* ShowFullScreenButton.swift in Sources */,
-				37A6552C2BA5F8FA00B96BEB /* MovementsView.swift in Sources */,
+				37A6552C2BA5F8FA00B96BEB /* MovementSectionHolderView.swift in Sources */,
 				37A655382BA7470B00B96BEB /* Log.swift in Sources */,
 				370730942BFF0C7200E95989 /* EditWeightTextField.swift in Sources */,
 				37A655302BA5F98C00B96BEB /* Enums.swift in Sources */,

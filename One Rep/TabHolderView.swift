@@ -13,7 +13,7 @@ struct TabHolderView: View {
     
     var body: some View {
         TabView() {
-            MovementsView()
+            MovementSectionHolderView()
                 .tabItem {
                     Image(systemName: Icons.FigureStrengthTraining.rawValue)
                 }
