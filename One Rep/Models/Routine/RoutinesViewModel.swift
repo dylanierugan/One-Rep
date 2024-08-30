@@ -73,7 +73,6 @@ class RoutinesViewModel: ObservableObject {
                         let name = document[RoutineAttributes.Name.rawValue] as? String ?? ""
                         let icon = document[RoutineAttributes.Icon.rawValue] as? String ?? ""
                         let movementIds = document[RoutineAttributes.MovementIds.rawValue] as? [String] ?? []
-                        print(movementIds)
                         let routine = Routine(id: docId, userId: userId, name: name, icon: icon, movementIDs: movementIds)
                         self.routines.append(routine)
                     }

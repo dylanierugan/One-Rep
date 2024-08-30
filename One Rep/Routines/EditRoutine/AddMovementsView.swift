@@ -19,7 +19,7 @@ struct AddMovementsView: View {
     
     // MARK: - Public Properties
     
-    @ObservedObject var routineViewModel = RoutineViewModel()
+    @ObservedObject var routineViewModel: RoutineViewModel
     
     // MARK: - Private Properties
     
