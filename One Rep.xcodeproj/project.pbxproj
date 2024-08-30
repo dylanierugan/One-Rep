@@ -57,6 +57,7 @@
 		3753E5F32C77EE6100182530 /* LogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F22C77EE6100182530 /* LogViewModel.swift */; };
 		3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */; };
 		3753E62D2C813EFB00182530 /* MovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E62C2C813EFB00182530 /* MovementsView.swift */; };
+		3753E62F2C82674C00182530 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E62E2C82674C00182530 /* ActivityViewModel.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -201,6 +202,7 @@
 		3753E5F22C77EE6100182530 /* LogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewModel.swift; sourceTree = "<group>"; };
 		3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogViewModel.swift; sourceTree = "<group>"; };
 		3753E62C2C813EFB00182530 /* MovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsView.swift; sourceTree = "<group>"; };
+		3753E62E2C82674C00182530 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				37FAB26C2C442E4800FDD05B /* Routine */,
 				37FAB26D2C442E6500FDD05B /* Other */,
 				37FAB26E2C442E7A00FDD05B /* User */,
+				3753E62E2C82674C00182530 /* ActivityViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				370730602BF0679600E95989 /* AccountSection.swift in Sources */,
 				37A655602BC1B95A00B96BEB /* FontModifier.swift in Sources */,
 				3707305C2BEE7DA600E95989 /* Routine.swift in Sources */,
+				3753E62F2C82674C00182530 /* ActivityViewModel.swift in Sources */,
 				37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */,
 				3753E5B92C6443C100182530 /* EditRoutineView.swift in Sources */,
 				3707306A2BF083C300E95989 /* DeleteLogTrashIconButton.swift in Sources */,

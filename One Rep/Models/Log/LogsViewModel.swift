@@ -24,7 +24,6 @@ class LogsViewModel: ObservableObject {
     @Published var weightLogMap = [String: [Log]]()
     @Published var listOfDates = [String]()
     @Published var dateLogMap = [String: [Log]]()
-    @Published var dateMovementLogMap = [String: [Movement:[Log]]]()
     
     @Published var unit: UnitSelection
     
@@ -166,26 +165,6 @@ class LogsViewModel: ObservableObject {
         dateFormatter.dateStyle = .medium
         let stringDate = dateFormatter.string(from: date)
         return stringDate
-    }
-    
-    // MARK: - Date functions
-    
-    /// Populate dateMovementLogMap where the each key is a uniqeue date that holds another map of movements and their logs on that date
-    func populateDateMovementLogMap(movements: [Movement]) {
-        dateMovementLogMap = [String: [Movement:[Log]]]()
-        /// Create all dict keys with empty lists
-        for date in self.listOfDates {
-            self.dateMovementLogMap[date] = [Movement:[Log]]()
-        }
-        for log in logs {
-            let stringDate = formatDate(date: log.timeAdded)
-            let movement = movements.first(where: {$0.id == log.movementId})
-            if dateMovementLogMap[stringDate] != nil {
-                if let movement = movement {
-                    dateMovementLogMap[stringDate]?[movement, default: []].append(log)
-                }
-            }
-        }
     }
     
     // MARK: - Firebase functions

@@ -17,6 +17,7 @@ struct ActivityView: View {
     
     // MARK: - Private Properties
     
+    @StateObject private var activityViewModel = ActivityViewModel(logs: [])
     @StateObject private var dateViewModel = DateViewModel()
     @State private var showCalendar = false
     
@@ -32,15 +33,18 @@ struct ActivityView: View {
                 }
                 .padding(.top, 8)
                 .padding(.horizontal, 24)
-                DayPicker(dateViewModel: dateViewModel)
+                DayPicker(activityViewModel: activityViewModel,
+                          dateViewModel: dateViewModel)
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             } else {
-                CalendarView(dateViewModel: dateViewModel)
+                CalendarView(activityViewModel: activityViewModel,
+                             dateViewModel: dateViewModel)
                     .padding(.top, 8)
                     .padding(.horizontal, 16)
             }
-            ActivityMovementDataView(dateViewModel: dateViewModel)
+            ActivityMovementDataView(activityViewModel: activityViewModel,
+                                     dateViewModel: dateViewModel)
                 .padding(.vertical, 16)
                 .padding(.horizontal, 16)
         }
@@ -50,8 +54,9 @@ struct ActivityView: View {
             }
         })
         .onAppear {
-            logsViewModel.populateListOfDatesAllLogs()
-            logsViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
+            activityViewModel.logs = logsViewModel.logs
+            activityViewModel.populateListOfDatesAllLogs()
+            activityViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
             dateViewModel.setDate()
         }
     }

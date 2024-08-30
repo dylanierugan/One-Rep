@@ -19,14 +19,16 @@ struct CalendarView: View {
     
     @EnvironmentObject var theme: ThemeModel
     
+    
+    // MARK: - Public Properties
+    
+    @ObservedObject var activityViewModel: ActivityViewModel
+    @ObservedObject var dateViewModel: DateViewModel
+    
     // MARK: - Private Properties
     
     private let days: [Weekdays] = [.Sun, .Mon, .Tue, .Wed, .Thu, .Fri, .Sat]
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
-    
-    // MARK: - Public Properties
-    
-    @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
     
@@ -50,8 +52,10 @@ struct CalendarView: View {
             }
             
             LazyVGrid(columns: columns, spacing: 12) {
-                ForEach( dateViewModel.extractCurrentMonth() ) { dateObject in
-                    CalendarDateButton(dateObject: dateObject, dateViewModel: dateViewModel)
+                ForEach(dateViewModel.extractCurrentMonth()) { dateObject in
+                    CalendarDateButton(activityViewModel: activityViewModel,
+                                       dateObject: dateObject,
+                                       dateViewModel: dateViewModel)
                 }
             }
         }

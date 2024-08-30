@@ -19,10 +19,10 @@ struct DayPicker: View {
     // MARK: - Global Variables
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
     
+    @ObservedObject var activityViewModel: ActivityViewModel
     @ObservedObject var dateViewModel: DateViewModel
     
     // MARK: - View
@@ -46,7 +46,7 @@ struct DayPicker: View {
                             .foregroundStyle(dateViewModel.weekday == weekdayObject.weekday ? Color(.customPrimary) : .secondary.opacity(0.5))
                             .customFont(size: .callout, weight: .semibold, kerning: 0, design: .rounded)
                             .frame(maxWidth: .infinity)
-                        if logsViewModel.listOfDates.contains(logsViewModel.formatDate(date: weekdayObject.date.timeIntervalSince1970)) {
+                        if activityViewModel.listOfDates.contains(activityViewModel.formatDate(date: weekdayObject.date.timeIntervalSince1970)) {
                             Circle()
                                 .fill(Color(theme.lightBaseColor))
                                 .frame(width: 8, height: 8)

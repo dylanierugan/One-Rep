@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ActivityMovementCard: View {
     
-    // MARK: - Global Properties
-    
-    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
+    
+    @ObservedObject var activityViewModel: ActivityViewModel
     
     var index: Int
     var log: Log
@@ -32,7 +31,7 @@ struct ActivityMovementCard: View {
                     .foregroundStyle(.primary)
             }
             Spacer()
-            DataLabel(data: logsViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
+            DataLabel(data: activityViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
             Spacer()
             DataLabel(data: repStr, dataType: LogCardStrings.Reps.rawValue)
         }
