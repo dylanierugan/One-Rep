@@ -30,7 +30,7 @@ struct LogSetButton: View {
     
     var body: some View {
         Button {
-            logSet()
+            logSet(userId: userViewModel.userId)
         } label: {
             HStack {
                 Text(LogSetString.Log.rawValue)
@@ -51,7 +51,7 @@ struct LogSetButton: View {
     
     // MARK: - Functions
     
-    func logSet() {
+    func logSet(userId: String) {
         let docId = UUID().uuidString
         
         var log = Log()
@@ -61,7 +61,7 @@ struct LogSetButton: View {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
                 log = Log(
                     id: docId,
-                    userId: logsViewModel.userId,
+                    userId: userId,
                     movementId: movement.id,
                     reps: logViewModel.reps,
                     weight: logViewModel.weight,
@@ -75,7 +75,7 @@ struct LogSetButton: View {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
                 log = Log(
                     id: docId,
-                    userId: logsViewModel.userId,
+                    userId: userId,
                     movementId: movement.id,
                     reps: logViewModel.reps,
                     weight: 0,
@@ -88,7 +88,7 @@ struct LogSetButton: View {
         } else {
             log = Log(
                 id: docId,
-                userId: logsViewModel.userId,
+                userId: userId,
                 movementId: movement.id,
                 reps: logViewModel.reps,
                 weight: logViewModel.weight,
@@ -101,7 +101,7 @@ struct LogSetButton: View {
         
         Task {
             addingLog = true
-            let result = await logsViewModel.addLog(log: log)
+            let result = await logsViewModel.addLog(log)
             errorHandler.handleLogSet(
                 result: result,
                 logsViewModel: logsViewModel,

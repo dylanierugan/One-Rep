@@ -61,6 +61,7 @@
 		3753E6332C850D3500182530 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6322C850D3500182530 /* Extensions.swift */; };
 		3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6342C850E9D00182530 /* MovementNetworkManager.swift */; };
 		3753E6372C85163000182530 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6362C85163000182530 /* UserNetworkManager.swift */; };
+		3753E63A2C85217300182530 /* LogsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6392C85217300182530 /* LogsNetworkManager.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -209,6 +210,7 @@
 		3753E6322C850D3500182530 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3753E6342C850E9D00182530 /* MovementNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementNetworkManager.swift; sourceTree = "<group>"; };
 		3753E6362C85163000182530 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
+		3753E6392C85217300182530 /* LogsNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsNetworkManager.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 				3753E5F22C77EE6100182530 /* LogViewModel.swift */,
 				3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */,
 				3740697B2C2FC26D00692ECD /* LogsViewModel.swift */,
+				3753E6392C85217300182530 /* LogsNetworkManager.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				37A655622BC1EF6A00B96BEB /* ThemeSection.swift in Sources */,
 				370730782BF72A1800E95989 /* CalendarDateButton.swift in Sources */,
 				370730962BFF13AD00E95989 /* EditLogView.swift in Sources */,
+				3753E63A2C85217300182530 /* LogsNetworkManager.swift in Sources */,
 				376B58A92C4CD78D007C82E9 /* RoutinesViewModel.swift in Sources */,
 				376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,

@@ -18,10 +18,7 @@ struct LoadDataView: View {
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-    
-    // MARK: - Private Properties
-    @State private var movementsLoading = true
-    @State private var logsLoading = true
+
     @State private var routinesLoading = true
     
     // MARK: - View
@@ -30,19 +27,22 @@ struct LoadDataView: View {
         ZStack {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
-            if userViewModel.userLoading || movementsViewModel.movementsLoading || logsLoading || routinesLoading {
+            if userViewModel.userLoading ||
+                movementsViewModel.movementsLoading ||
+                logsViewModel.logsLoading ||
+                routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
-                    .onAppear() {
+                    .onAppear {
                         if let user = Auth.auth().currentUser {
                             gerUser(userId: user.uid)
                             getMovements()
-                            getLogs(userId: user.uid)
+                            getLogs()
                             getRoutines(userId: user.uid)
                         }
                     }
             } else {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
-                    .onAppear() {
+                    .onAppear {
                         withAnimation {
                             viewRouter.currentPage = .tabView
                         }
@@ -66,20 +66,9 @@ struct LoadDataView: View {
         }
     }
     
-    private func getLogs(userId: String) {
+    private func getLogs() {
         if logsViewModel.logs.isEmpty {
-            logsViewModel.userId = userId
-            logsViewModel.getLogsAddSnapshot { result in
-                switch result {
-                case .success:
-                    DispatchQueue.main.async {
-                        logsLoading = false
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    /// TODO - Error handle
-                }
-            }
+            logsViewModel.getLogsAddSnapshot(userId: userViewModel.userId)
         }
     }
     

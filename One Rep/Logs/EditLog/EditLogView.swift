@@ -149,7 +149,7 @@ struct EditLogView: View {
             log.reps = editLogViewModel.editReps
             log.bodyweight = editLogViewModel.editBodyweight
             log.timeAdded = date.timeIntervalSince1970
-            let result = await logsViewModel.updateLog(log: log)
+            let result = await logsViewModel.updateLog(log)
             errorHandler.handleUpdateLog(result: result, logsViewModel: logsViewModel, logViewModel: logViewModel, editLogViewModel: editLogViewModel, movement: movement)
             dismiss()
         }
