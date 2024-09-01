@@ -62,6 +62,7 @@
 		3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6342C850E9D00182530 /* MovementNetworkManager.swift */; };
 		3753E6372C85163000182530 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6362C85163000182530 /* UserNetworkManager.swift */; };
 		3753E63A2C85217300182530 /* LogsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6392C85217300182530 /* LogsNetworkManager.swift */; };
+		3753E63C2C8523FF00182530 /* RoutineNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E63B2C8523FF00182530 /* RoutineNetworkManager.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -211,6 +212,7 @@
 		3753E6342C850E9D00182530 /* MovementNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementNetworkManager.swift; sourceTree = "<group>"; };
 		3753E6362C85163000182530 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		3753E6392C85217300182530 /* LogsNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsNetworkManager.swift; sourceTree = "<group>"; };
+		3753E63B2C8523FF00182530 /* RoutineNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineNetworkManager.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				3707305B2BEE7DA600E95989 /* Routine.swift */,
 				3707305D2BF063CC00E95989 /* RoutineViewModel.swift */,
 				376B58A82C4CD78D007C82E9 /* RoutinesViewModel.swift */,
+				3753E63B2C8523FF00182530 /* RoutineNetworkManager.swift */,
 			);
 			path = Routine;
 			sourceTree = "<group>";
@@ -824,6 +827,7 @@
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
 				37881F5E2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift in Sources */,
 				37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */,
+				3753E63C2C8523FF00182530 /* RoutineNetworkManager.swift in Sources */,
 				376B58AC2C4D659E007C82E9 /* RoutinesView.swift in Sources */,
 				376B58A72C4C8D79007C82E9 /* EditBodyweightTextField.swift in Sources */,
 				3753E5AD2C5D399900182530 /* SelectedRoutineView.swift in Sources */,

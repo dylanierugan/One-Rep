@@ -102,7 +102,7 @@ struct EditRoutineView: View {
     private func deleteRoutine() {
         Task {
             showDeleteProgressView = true
-            let result = await routinesViewModel.deleteRoutine(docId: routineViewModel.routine.id)
+            let result = await routinesViewModel.deleteRoutine(routineViewModel.routine)
             errorHandler.handleUpdateRoutine(result: result, dismiss: dismiss)
         }
     }

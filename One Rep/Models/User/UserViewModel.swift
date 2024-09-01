@@ -29,8 +29,8 @@ class UserViewModel: ObservableObject {
                 return
             }
             self?.bodyweightEntries = bodyweightEntries ?? []
-            self?.userLoading = false
         }
+        userLoading = false
     }
     
     func addBodyweight(_ bodyweight: BodyweightEntry) async -> FirebaseResult {

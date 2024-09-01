@@ -39,8 +39,8 @@ class MovementsViewModel: ObservableObject {
                 return
             }
             self?.movements = movements ?? []
-            self?.movementsLoading = false
         }
+        movementsLoading = false
     }
     
     func addMovement(_ movement: Movement) async -> FirebaseResult {

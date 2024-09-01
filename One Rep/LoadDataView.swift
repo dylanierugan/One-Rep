@@ -18,8 +18,6 @@ struct LoadDataView: View {
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-
-    @State private var routinesLoading = true
     
     // MARK: - View
     
@@ -30,14 +28,14 @@ struct LoadDataView: View {
             if userViewModel.userLoading ||
                 movementsViewModel.movementsLoading ||
                 logsViewModel.logsLoading ||
-                routinesLoading {
+                routinesViewModel.routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
                     .onAppear {
                         if let user = Auth.auth().currentUser {
                             gerUser(userId: user.uid)
                             getMovements()
                             getLogs()
-                            getRoutines(userId: user.uid)
+                            getRoutines()
                         }
                     }
             } else {
@@ -72,20 +70,9 @@ struct LoadDataView: View {
         }
     }
     
-    private func getRoutines(userId: String) {
+    private func getRoutines() {
         if routinesViewModel.routines.isEmpty {
-            routinesViewModel.userId = userId
-            routinesViewModel.subscribeToRoutines { result in
-                switch result {
-                case .success:
-                    DispatchQueue.main.async {
-                        routinesLoading = false
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    /// TODO - Error handle
-                }
-            }
+            routinesViewModel.subscribeToRoutines(userId: userViewModel.userId)
         }
     }
 }

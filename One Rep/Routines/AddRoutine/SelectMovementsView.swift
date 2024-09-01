@@ -14,6 +14,7 @@ struct SelectMovementsView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) private var dismiss
@@ -125,10 +126,10 @@ struct SelectMovementsView: View {
         for movement in selectedMovments {
             selectedMovmentsIDs.append(movement.id)
         }
-        let newRoutine = Routine(id: docId, userId: routinesViewModel.userId, name: routineName, icon: selectedIcon, movementIDs: selectedMovmentsIDs)
+        let newRoutine = Routine(id: docId, userId: userViewModel.userId, name: routineName, icon: selectedIcon, movementIDs: selectedMovmentsIDs)
         Task {
             showProgressView = true
-            let result = await routinesViewModel.addRoutine(routine: newRoutine)
+            let result = await routinesViewModel.addRoutine(newRoutine)
             errorHandler.handleAddRoutine(result: result, dismiss: dismiss, dismissBothViews: &dismissBothViews)
         }
     }
