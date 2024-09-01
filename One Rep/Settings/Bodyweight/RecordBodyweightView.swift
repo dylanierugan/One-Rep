@@ -91,7 +91,7 @@ struct RecordBodyweightView: View {
         prevBodyweight = bodyweight
         Task {
             showProgressView = true
-            let result = await userViewModel.addBodyweight(bodyweight: newBodyweight)
+            let result = await userViewModel.addBodyweight(newBodyweight)
             errorHandler.handleAddBodyweight(result: result, dismiss: dismiss)
         }
     }

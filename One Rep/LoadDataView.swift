@@ -12,6 +12,7 @@ struct LoadDataView: View {
     
     // MARK: - Global Properties
     
+    @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
@@ -19,8 +20,6 @@ struct LoadDataView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Private Properties
-    
-    @State private var userLoading = true
     @State private var movementsLoading = true
     @State private var logsLoading = true
     @State private var routinesLoading = true
@@ -28,13 +27,15 @@ struct LoadDataView: View {
     // MARK: - View
     
     var body: some View {
-        VStack {
-            if userLoading || movementsLoading || logsLoading || routinesLoading {
+        ZStack {
+            Color(theme.backgroundColor)
+                .ignoresSafeArea()
+            if userViewModel.userLoading || movementsViewModel.movementsLoading || logsLoading || routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
                     .onAppear() {
                         if let user = Auth.auth().currentUser {
                             gerUser(userId: user.uid)
-                            getMovements(userId: user.uid)
+                            getMovements()
                             getLogs(userId: user.uid)
                             getRoutines(userId: user.uid)
                         }
@@ -55,34 +56,13 @@ struct LoadDataView: View {
     private func gerUser(userId: String) {
         if userViewModel.bodyweightEntries.isEmpty {
             userViewModel.userId = userId
-            userViewModel.subscribeToUser { result in
-                switch result {
-                case .success:
-                    DispatchQueue.main.async {
-                        userLoading = false
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    /// TODO - Error handle
-                }
-            }
+            userViewModel.subscribeToUser()
         }
     }
     
-    private func getMovements(userId: String) {
+    private func getMovements() {
         if movementsViewModel.movements.isEmpty {
-            movementsViewModel.userId = userId
-            movementsViewModel.subscribeToMovements { result in
-                switch result {
-                case .success:
-                    DispatchQueue.main.async {
-                        movementsLoading = false
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    /// TODO - Error handle
-                }
-            }
+            movementsViewModel.subscribeToMovements(userId: userViewModel.userId)
         }
     }
     

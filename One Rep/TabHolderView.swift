@@ -12,12 +12,11 @@ struct TabHolderView: View {
     // MARK: - View
     
     var body: some View {
-        TabView() {
+        TabView {
             MovementSectionHolderView()
                 .tabItem {
                     Image(systemName: Icons.FigureStrengthTraining.rawValue)
                 }
-            
             SettingsView()
                 .tabItem {
                     Image(systemName: Icons.PersonFill.rawValue)

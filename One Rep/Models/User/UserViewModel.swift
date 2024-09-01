@@ -6,9 +6,6 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseCore
-import FirebaseFirestore
 
 @MainActor
 class UserViewModel: ObservableObject {
@@ -18,73 +15,47 @@ class UserViewModel: ObservableObject {
     @Published var userId: String = ""
     @Published var bodyweightEntries: [BodyweightEntry] = []
     
-    private let db = Firestore.firestore()
-    private var listenerRegistration: ListenerRegistration?
+    @Published var userLoading = true
+    
+    private let networkManager = UserNetworkManager()
     
     // MARK: - Functions
     
-    deinit {
-        Task {
-            await self.unsubscribe()
+    func subscribeToUser() {
+        networkManager.subscribeToUser(userId: userId) { [weak self] bodyweightEntries, error in
+            if let error = error {
+                /// Todo - Error handle
+                print("Error subscribing to user: \(error.localizedDescription)")
+                return
+            }
+            self?.bodyweightEntries = bodyweightEntries ?? []
+            self?.userLoading = false
         }
     }
     
+    func addBodyweight(_ bodyweight: BodyweightEntry) async -> FirebaseResult {
+        return await networkManager.addBodyweight(bodyweight)
+    }
+    
+    func deleteBodyweight(docId: String) async -> FirebaseResult {
+        return await networkManager.deleteBodyweight(docId: docId)
+    }
+    
+    func deleteAllUserBodyweightEntries() async -> [FirebaseResult] {
+        return await networkManager.deleteAllUserBodyweightEntries(for: userId, bodyweightEntries: bodyweightEntries)
+    }
+    
     func unsubscribe() {
-        if listenerRegistration != nil {
-            listenerRegistration?.remove()
-            listenerRegistration = nil
-        }
+        networkManager.unsubscribe()
     }
     
     func clearData() {
         bodyweightEntries = []
     }
     
-    func deleteAllUserBodyweightEntries() async -> [FirebaseResult] {
-        var results = [FirebaseResult]()
-        for bodyweightEntry in bodyweightEntries {
-            if bodyweightEntry.userId == userId {
-                let results = await self.deleteBodyweight(docId: bodyweightEntry.id)
-            }
-        }
-        return results
-    }
-    
-    func subscribeToUser(completion: @escaping (FirebaseResult) -> Void) {
-        if listenerRegistration == nil {
-            listenerRegistration = db.collection(FirebaseCollection.UserCollection.rawValue)
-                .whereField(MovementAttributes.UserId.rawValue, isEqualTo: userId)
-                .addSnapshotListener() { querySnapshot, error in
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
-                    guard let documents = querySnapshot?.documents else {
-                        return
-                    }
-                    self.bodyweightEntries = documents.compactMap { documentSnapshot in
-                        try? documentSnapshot.data(as: BodyweightEntry.self)
-                    }.sorted(by: { $0.timeAdded > $1.timeAdded })
-                    completion(.success)
-                }
-        }
-    }
-    
-    func addBodyweight(bodyweight: BodyweightEntry) async -> FirebaseResult {
-        do {
-            try db.collection(FirebaseCollection.UserCollection.rawValue).document(bodyweight.id ).setData(from: bodyweight)
-            return .success
-        } catch {
-            return .failure(error)
-        }
-    }
-    
-    func deleteBodyweight(docId: String) async -> FirebaseResult {
-        do {
-            try await db.collection(FirebaseCollection.UserCollection.rawValue).document(docId).delete()
-            return .success
-        } catch {
-            return .failure(error)
+    deinit {
+        Task {
+            await self.unsubscribe()
         }
     }
 }

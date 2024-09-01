@@ -15,6 +15,7 @@ struct AddMovementView: View {
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var errorHandler: ErrorHandler
+    @EnvironmentObject var userViewModel: UserViewModel
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - Private Properties
@@ -80,10 +81,10 @@ struct AddMovementView: View {
     
     private func addMovement() {
         let docId = UUID().uuidString
-        let newMovement = Movement(id: docId, userId: movementsViewModel.userId, name: movementName, muscleGroup: muscleGroup, movementType: movementType, timeAdded: Date.now.timeIntervalSince1970, isPremium: false, mutatingValue: 5.0)
+        let newMovement = Movement(id: docId, userId: userViewModel.userId, name: movementName, muscleGroup: muscleGroup, movementType: movementType, timeAdded: Date.now.timeIntervalSince1970, isPremium: false, mutatingValue: 5.0)
         Task {
             showProgressView = true
-            let result = await movementsViewModel.addMovement(movement: newMovement)
+            let result = await movementsViewModel.addMovement(newMovement)
             errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
         }
     }

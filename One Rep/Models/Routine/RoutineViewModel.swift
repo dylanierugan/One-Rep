@@ -40,6 +40,7 @@ class RoutineViewModel: ObservableObject {
     func updateRoutine() async -> FirebaseResult {
         do {
             try db.collection(FirebaseCollection.RoutinesCollection.rawValue).document(routine.id).setData(from: self.routine)
+            print(self.routine)
             return .success
         }
         catch {

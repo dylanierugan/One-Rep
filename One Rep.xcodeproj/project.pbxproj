@@ -58,6 +58,9 @@
 		3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */; };
 		3753E62D2C813EFB00182530 /* MovementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E62C2C813EFB00182530 /* MovementsView.swift */; };
 		3753E62F2C82674C00182530 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E62E2C82674C00182530 /* ActivityViewModel.swift */; };
+		3753E6332C850D3500182530 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6322C850D3500182530 /* Extensions.swift */; };
+		3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6342C850E9D00182530 /* MovementNetworkManager.swift */; };
+		3753E6372C85163000182530 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6362C85163000182530 /* UserNetworkManager.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
 		376B58672C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58662C44431D007C82E9 /* FirebaseAnalyticsOnDeviceConversion */; };
 		376B58692C44431D007C82E9 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58682C44431D007C82E9 /* FirebaseAnalyticsSwift */; };
@@ -203,6 +206,9 @@
 		3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLogViewModel.swift; sourceTree = "<group>"; };
 		3753E62C2C813EFB00182530 /* MovementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsView.swift; sourceTree = "<group>"; };
 		3753E62E2C82674C00182530 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
+		3753E6322C850D3500182530 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3753E6342C850E9D00182530 /* MovementNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementNetworkManager.swift; sourceTree = "<group>"; };
+		3753E6362C85163000182530 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
 		376B58A42C4C52D5007C82E9 /* AppearanceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSection.swift; sourceTree = "<group>"; };
 		376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBodyweightTextField.swift; sourceTree = "<group>"; };
@@ -389,6 +395,7 @@
 				37A655532BB30E1200B96BEB /* HapticManager.swift */,
 				37A6551D2BA5F80300B96BEB /* ViewRouter.swift */,
 				37FAB2622C3A187B00FDD05B /* ErrorHandler.swift */,
+				3753E6322C850D3500182530 /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -515,6 +522,14 @@
 			path = Help;
 			sourceTree = "<group>";
 		};
+		3753E6382C85163800182530 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				3753E62E2C82674C00182530 /* ActivityViewModel.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
 		376B58AA2C4D6535007C82E9 /* Routines */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,12 +605,12 @@
 		37A655322BA745C700B96BEB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3753E6382C85163800182530 /* Activity */,
 				37FAB26A2C442E2C00FDD05B /* Movement */,
 				37FAB26B2C442E3B00FDD05B /* Log */,
 				37FAB26C2C442E4800FDD05B /* Routine */,
 				37FAB26D2C442E6500FDD05B /* Other */,
 				37FAB26E2C442E7A00FDD05B /* User */,
-				3753E62E2C82674C00182530 /* ActivityViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -652,6 +667,7 @@
 				37A655352BA7466300B96BEB /* Movement.swift */,
 				3742229E2C37226300A7AEFA /* MovementViewModel.swift */,
 				374069752C2E945700692ECD /* MovementsViewModel.swift */,
+				3753E6342C850E9D00182530 /* MovementNetworkManager.swift */,
 			);
 			path = Movement;
 			sourceTree = "<group>";
@@ -691,6 +707,7 @@
 			children = (
 				37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */,
 				37FAB2682C44278400FDD05B /* UserViewModel.swift */,
+				3753E6362C85163000182530 /* UserNetworkManager.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -814,6 +831,7 @@
 				3753E5BF2C646FA600182530 /* DeleteRoutineButton.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,
 				3753E5F32C77EE6100182530 /* LogViewModel.swift in Sources */,
+				3753E6372C85163000182530 /* UserNetworkManager.swift in Sources */,
 				374069702C2E5D9800692ECD /* AuthManager.swift in Sources */,
 				370730722BF3BE8900E95989 /* ActivityView.swift in Sources */,
 				376B58A52C4C52D5007C82E9 /* AppearanceSection.swift in Sources */,
@@ -826,6 +844,7 @@
 				376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
 				376B58B62C50A2AA007C82E9 /* SelectMovementsButton.swift in Sources */,
+				3753E6332C850D3500182530 /* Extensions.swift in Sources */,
 				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
 				3753E5B32C61C3A100182530 /* AddMovementsView.swift in Sources */,
 				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
@@ -873,6 +892,7 @@
 				3707308B2BFA691D00E95989 /* LogIndexLabel.swift in Sources */,
 				370730622BF06A9E00E95989 /* LogOutButton.swift in Sources */,
 				37A655642BC1F00A00B96BEB /* ThemeModel.swift in Sources */,
+				3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */,
 				3707309E2BFF843400E95989 /* UpdateLogButton.swift in Sources */,
 				37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */,
 				3753E5BD2C646CAF00182530 /* UpdateRoutineButton.swift in Sources */,
