@@ -117,8 +117,8 @@ class LogsViewModel: ObservableObject {
                 return
             }
             self?.logs = logs ?? []
+            self?.logsLoading = false
         }
-        logsLoading = false
     }
     
     func addLog(_ log: Log) async -> FirebaseResult {

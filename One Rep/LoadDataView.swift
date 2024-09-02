@@ -29,13 +29,9 @@ struct LoadDataView: View {
                 movementsViewModel.movementsLoading ||
                 logsViewModel.logsLoading ||
                 routinesViewModel.routinesLoading {
-                OneRepProgressView(text: ProgressText.OneRep.rawValue)
-                    .onAppear {
+                OneRepProgressView(text: ProgressText.OneRep.rawValue).onAppear {
                         if let user = Auth.auth().currentUser {
-                            gerUser(userId: user.uid)
-                            getMovements()
-                            getLogs()
-                            getRoutines()
+                            loadAllData()
                         }
                     }
             } else {
@@ -50,6 +46,34 @@ struct LoadDataView: View {
     }
     
     // MARK: - Functions
+    
+    private func loadAllData() {
+        let group = DispatchGroup()
+        
+        if let user = Auth.auth().currentUser {
+            group.enter()
+            gerUser(userId: user.uid)
+            group.leave()
+            
+            group.enter()
+            getMovements()
+            group.leave()
+            
+            group.enter()
+            getLogs()
+            group.leave()
+            
+            group.enter()
+            getRoutines()
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            withAnimation {
+                viewRouter.currentPage = .tabView
+            }
+        }
+    }
     
     private func gerUser(userId: String) {
         if userViewModel.bodyweightEntries.isEmpty {

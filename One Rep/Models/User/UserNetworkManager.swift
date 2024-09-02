@@ -13,7 +13,6 @@ class UserNetworkManager {
     private let db = Firestore.firestore()
     private var listenerRegistration: ListenerRegistration?
     
-    // Subscribe to user bodyweight entries
     func subscribeToUser(userId: String, completion: @escaping ([BodyweightEntry]?, Error?) -> Void) {
         if listenerRegistration == nil {
             listenerRegistration = db.collection(FirebaseCollection.UserCollection.rawValue)
@@ -35,7 +34,6 @@ class UserNetworkManager {
         }
     }
     
-    // Unsubscribe from user updates
     func unsubscribe() {
         if listenerRegistration != nil {
             listenerRegistration?.remove()
@@ -43,7 +41,6 @@ class UserNetworkManager {
         }
     }
     
-    // Add a bodyweight entry
     func addBodyweight(_ bodyweight: BodyweightEntry) async -> FirebaseResult {
         do {
             try db.collection(FirebaseCollection.UserCollection.rawValue).document(bodyweight.id).setData(from: bodyweight)
@@ -53,7 +50,6 @@ class UserNetworkManager {
         }
     }
     
-    // Delete a bodyweight entry
     func deleteBodyweight(docId: String) async -> FirebaseResult {
         do {
             try await db.collection(FirebaseCollection.UserCollection.rawValue).document(docId).delete()
@@ -63,7 +59,6 @@ class UserNetworkManager {
         }
     }
     
-    // Delete all bodyweight entries for a user
     func deleteAllUserBodyweightEntries(for userId: String, bodyweightEntries: [BodyweightEntry]) async -> [FirebaseResult] {
         var results = [FirebaseResult]()
         for bodyweightEntry in bodyweightEntries {

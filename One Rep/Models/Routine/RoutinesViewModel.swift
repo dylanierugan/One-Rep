@@ -49,11 +49,11 @@ class RoutinesViewModel: ObservableObject {
         routineNetworkManager.subscribeToRoutines(userId: userId) { [weak self] routines, error in
             if let error = error {
                 print("Error subscribing to routines: \(error)")
-            } else if let routines = routines {
-                self?.routines = routines
+                return
             }
+            self?.routines = routines ?? []
+            self?.routinesLoading = false
         }
-        routinesLoading = false
     }
     
     func addRoutine(_ routine: Routine) async -> FirebaseResult {
