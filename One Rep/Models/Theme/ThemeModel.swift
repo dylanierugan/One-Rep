@@ -10,8 +10,38 @@ import SwiftUI
 
 class ThemeModel: ObservableObject {
     
+    // MARK: - Properties
+    
+    @Published var accent: String
+    @Published var colorScheme: ColorScheme
+    
+    @Published var lightBaseColor: String
+    @Published var darkBaseColor: String
+    
+    @Published var backgroundColor: String
+    @Published var backgroundElementColor: String
+    
+    @Published var darkRed: String
+    @Published var lightRed: String
+    
+    @Published var lightBlue: String
+    @Published var darkBlue: String
+    
+    @Published var darkOrange: String
+    @Published var lightOrange: String
+    
+    @Published var darkPink: String
+    @Published var lightPink: String
+    
+    @Published var darkYellow: String
+    @Published var lightYellow: String
+    
+    // MARK: - Init
+    
     init(accent: String, colorScheme: ColorScheme) {
+        
         self.accent = accent
+        self.colorScheme = colorScheme
         self.backgroundColor = Colors.BackgroundColor.rawValue
         self.backgroundElementColor = Colors.BackgroundElementColor.rawValue
         
@@ -20,10 +50,13 @@ class ThemeModel: ObservableObject {
         
         self.lightBlue = Colors.LightBlue.rawValue
         self.darkBlue = Colors.DarkBlue.rawValue
+        
         self.darkOrange = Colors.DarkOrange.rawValue
         self.lightOrange = Colors.LightOrange.rawValue
+        
         self.darkPink = Colors.DarkPink.rawValue
         self.lightPink = Colors.LightPink.rawValue
+        
         self.darkYellow = Colors.DarkYellow.rawValue
         self.lightYellow = Colors.LightYellow.rawValue
         
@@ -40,31 +73,9 @@ class ThemeModel: ObservableObject {
             self.darkBaseColor = Colors.DarkGreen.rawValue
             self.lightBaseColor = Colors.LightGreen.rawValue
         }
-        
-        self.colorScheme = colorScheme
     }
     
-    @Published var accent: String
-    
-    @Published var lightBaseColor: String
-    @Published var darkBaseColor: String
-    
-    @Published var lightBlue: String
-    @Published var darkBlue: String
-    @Published var darkOrange: String
-    @Published var lightOrange: String
-    @Published var darkPink: String
-    @Published var lightPink: String
-    @Published var darkYellow: String
-    @Published var lightYellow: String
-    
-    @Published var backgroundColor: String
-    @Published var backgroundElementColor: String
-    
-    @Published var darkRed: String
-    @Published var lightRed: String
-    
-    @Published var colorScheme: ColorScheme
+    // MARK: - Functions
     
     func changeColor(color: String) {
         if color == Colors.LightGreen.rawValue {

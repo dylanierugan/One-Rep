@@ -529,6 +529,7 @@
 		3753E6382C85163800182530 /* Activity */ = {
 			isa = PBXGroup;
 			children = (
+				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
 				3753E62E2C82674C00182530 /* ActivityViewModel.swift */,
 			);
 			path = Activity;
@@ -613,7 +614,7 @@
 				37FAB26A2C442E2C00FDD05B /* Movement */,
 				37FAB26B2C442E3B00FDD05B /* Log */,
 				37FAB26C2C442E4800FDD05B /* Routine */,
-				37FAB26D2C442E6500FDD05B /* Other */,
+				37FAB26D2C442E6500FDD05B /* Theme */,
 				37FAB26E2C442E7A00FDD05B /* User */,
 			);
 			path = Models;
@@ -699,13 +700,12 @@
 			path = Routine;
 			sourceTree = "<group>";
 		};
-		37FAB26D2C442E6500FDD05B /* Other */ = {
+		37FAB26D2C442E6500FDD05B /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				3707307B2BF88AE500E95989 /* DateViewModel.swift */,
 				37A655632BC1F00A00B96BEB /* ThemeModel.swift */,
 			);
-			path = Other;
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		37FAB26E2C442E7A00FDD05B /* User */ = {
