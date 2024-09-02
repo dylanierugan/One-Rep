@@ -342,13 +342,13 @@ enum ToggleEditStrings: String {
 
 enum Weekdays: String, Identifiable, Codable, CaseIterable {
     var id: Weekdays { self }
-    case Sun = "Sun"
     case Mon = "Mon"
     case Tue = "Tue"
     case Wed = "Wed"
     case Thu = "Thu"
     case Fri = "Fri"
     case Sat = "Sat"
+    case Sun = "Sun"
 }
 
 enum UnitSelection: String, Identifiable, Codable, CaseIterable {

@@ -27,7 +27,6 @@ struct CalendarView: View {
     
     // MARK: - Private Properties
     
-    private let days: [Weekdays] = [.Sun, .Mon, .Tue, .Wed, .Thu, .Fri, .Sat]
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
     // MARK: - View
