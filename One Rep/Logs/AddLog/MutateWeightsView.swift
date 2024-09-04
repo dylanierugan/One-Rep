@@ -15,7 +15,6 @@ struct MutateWeightView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
     
     // MARK: - Public Properties
     
@@ -77,7 +76,7 @@ struct MutateWeightView: View {
         Task {
             movementViewModel.movement.mutatingValue = mutatingValue
             let result = await movementViewModel.updateMovement()
-            errorHandler.handleResult(result: result)
+            ResultHandler.shared.handleResult(result: result) {}
         }
     }
     

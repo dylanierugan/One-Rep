@@ -12,7 +12,6 @@ struct AddRoutineButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
@@ -22,6 +21,7 @@ struct AddRoutineButton: View {
     // MARK: - Private Properties
     
     @State private var addRoutineClicked = false
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     

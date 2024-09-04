@@ -48,7 +48,7 @@ class RoutineViewModel: ObservableObject {
         }
     }
     
-    func setMovements(movements: [Movement], errorHandler: ErrorHandler) {
+    func setMovements(movements: [Movement]) {
         self.movements = []
         for movement in movements {
             movementIDdict[movement.id] = movement
@@ -57,12 +57,15 @@ class RoutineViewModel: ObservableObject {
             if let movement = movementIDdict[movementID] {
                 self.movements.append(movement)
             } else {
+                // If movement was deleted, remove it from the routine
                 let index = routine.movementIDs.firstIndex(of: movementID)
                 if let index = index {
                     routine.movementIDs.remove(at: index)
                     Task {
                         let result = await updateRoutine()
-                        errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
+                        ResultHandler.shared.handleResult(result: result) {
+                            /// Todo - Error handle
+                        }
                     }
                 }
             }

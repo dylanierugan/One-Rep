@@ -73,11 +73,23 @@ class LogsViewModel: ObservableObject {
     }
     
     func populateListOfDates() {
-        listOfDates = Array(Set(filteredLogs.map { formatDate(date: $0.timeAdded) }))
+        listOfDates = []
+        for log in filteredLogs {
+            let stringDate = formatDate(date: log.timeAdded)
+            if !self.listOfDates.contains(stringDate) {
+                self.listOfDates.append(stringDate)
+            }
+        }
     }
     
     func populateListOfDatesAllLogs() {
-        listOfDates = Array(Set(logs.map { formatDate(date: $0.timeAdded) }))
+        listOfDates = []
+        for log in logs {
+            let stringDate = formatDate(date: log.timeAdded)
+            if !self.listOfDates.contains(stringDate) {
+                self.listOfDates.append(stringDate)
+            }
+        }
     }
     
     func populateDateLogMap() {

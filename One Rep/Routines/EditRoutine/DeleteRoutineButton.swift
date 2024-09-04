@@ -12,13 +12,16 @@ struct DeleteRoutineButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
     @Binding var deleteConfirmedClicked: Bool
     @Binding var showingDeleteRoutineAlert: Bool
     var deleteRoutineInFirebase: () -> Void
+    
+    // MARK: - Private Properties
+    
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     

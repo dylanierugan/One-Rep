@@ -12,7 +12,6 @@ struct SelectMovementsButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
     
@@ -20,6 +19,10 @@ struct SelectMovementsButton: View {
     @Binding var selectedIcon: String
     @Binding var dismissBothViews: Bool
     var isFormValid: Bool
+    
+    // MARK: - Private Properties
+    
+    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - View
     

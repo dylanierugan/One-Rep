@@ -13,7 +13,6 @@ struct AddRoutineView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Private Properties
     
@@ -21,6 +20,7 @@ struct AddRoutineView: View {
     @State private var selectedIcon = Icons.Bench.rawValue
     @State private var showProgressView = false
     @State private var dismissBothViews = false
+    @Environment(\.dismiss) private var dismiss
     
     private var isFormValid: Bool {
         !routineName.isEmpty

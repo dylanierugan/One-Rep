@@ -13,8 +13,6 @@ struct EditRoutineView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
@@ -28,6 +26,7 @@ struct EditRoutineView: View {
     @State private var deleteConfirmedClicked = false
     @State private var showingDeleteRoutineAlert = false
     @State private var showDeleteProgressView = false
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     
@@ -95,7 +94,9 @@ struct EditRoutineView: View {
             routineViewModel.routine.name = newRoutineName
             routineViewModel.routine.icon = newIcon
             let result = await routineViewModel.updateRoutine()
-            errorHandler.handleUpdateRoutine(result: result, dismiss: dismiss)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                dismiss()
+            }) // Todo - Handle error
         }
     }
     
@@ -103,7 +104,9 @@ struct EditRoutineView: View {
         Task {
             showDeleteProgressView = true
             let result = await routinesViewModel.deleteRoutine(routineViewModel.routine)
-            errorHandler.handleUpdateRoutine(result: result, dismiss: dismiss)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                dismiss()
+            }) // Todo - Handle error
         }
     }
     

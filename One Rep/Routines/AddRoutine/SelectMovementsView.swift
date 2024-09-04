@@ -15,9 +15,6 @@ struct SelectMovementsView: View {
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
-    @Environment(\.colorScheme) var colorScheme
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
@@ -31,6 +28,8 @@ struct SelectMovementsView: View {
     @State private var showProgressView = false
     @State private var selectedMovments = [Movement]()
     @State private var selectedMovmentsIDs = [String]()
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.dismiss) private var dismiss
     
     private var isFormValid: Bool {
         selectedMovments.count != 0
@@ -103,7 +102,8 @@ struct SelectMovementsView: View {
                 if showProgressView {
                     ProgressView()
                 } else {
-                    AddRoutineButton(isFormValid: isFormValid, addRoutineToFirebase: addRoutine)
+                    AddRoutineButton(isFormValid: isFormValid,
+                                     addRoutineToFirebase: addRoutine)
                 }
             }
         }
@@ -121,16 +121,28 @@ struct SelectMovementsView: View {
         }
     }
     
-    private func addRoutine() {
+    private func createAndReturnRoutine() -> Routine {
         let docId = UUID().uuidString
         for movement in selectedMovments {
             selectedMovmentsIDs.append(movement.id)
         }
-        let newRoutine = Routine(id: docId, userId: userViewModel.userId, name: routineName, icon: selectedIcon, movementIDs: selectedMovmentsIDs)
+        let newRoutine = Routine(id: docId,
+                                 userId: userViewModel.userId,
+                                 name: routineName,
+                                 icon: selectedIcon,
+                                 movementIDs: selectedMovmentsIDs)
+        return newRoutine
+    }
+    
+    private func addRoutine() {
+        let newRoutine = createAndReturnRoutine()
         Task {
             showProgressView = true
             let result = await routinesViewModel.addRoutine(newRoutine)
-            errorHandler.handleAddRoutine(result: result, dismiss: dismiss, dismissBothViews: &dismissBothViews)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                dismissBothViews = true
+                dismiss()
+            })
         }
     }
 }

@@ -14,9 +14,7 @@ struct AddMovementView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Private Properties
     
@@ -24,6 +22,7 @@ struct AddMovementView: View {
     @State private var muscleGroup: MuscleGroup = .Arms
     @State private var movementType: MovementType = .Weight
     @State private var showProgressView = false
+    @Environment(\.dismiss) private var dismiss
     
     private var isFormValid: Bool {
         !movementName.isEmpty
@@ -68,7 +67,7 @@ struct AddMovementView: View {
                             ProgressView()
                         } else {
                             AddMovementButton(isFormValid: isFormValid, addMovementToFirebase: {
-                                addMovement()
+                                addMovement(newMovement: createAndReturnMovement())
                             })
                         }
                     }
@@ -79,13 +78,26 @@ struct AddMovementView: View {
     
     // MARK: - Functions
     
-    private func addMovement() {
+    private func createAndReturnMovement() -> Movement {
         let docId = UUID().uuidString
-        let newMovement = Movement(id: docId, userId: userViewModel.userId, name: movementName, muscleGroup: muscleGroup, movementType: movementType, timeAdded: Date.now.timeIntervalSince1970, isPremium: false, mutatingValue: 5.0)
+        let newMovement = Movement(id: docId,
+                                   userId: userViewModel.userId,
+                                   name: movementName,
+                                   muscleGroup: muscleGroup,
+                                   movementType: movementType,
+                                   timeAdded: Date.now.timeIntervalSince1970,
+                                   isPremium: false,
+                                   mutatingValue: 5.0)
+        return newMovement
+    }
+    
+    private func addMovement(newMovement: Movement) {
         Task {
-            showProgressView = true
             let result = await movementsViewModel.addMovement(newMovement)
-            errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                showProgressView = false
+                dismiss()
+            })
         }
     }
 }

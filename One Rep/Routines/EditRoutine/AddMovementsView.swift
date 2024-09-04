@@ -13,9 +13,6 @@ struct AddMovementsView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
-    @Environment(\.colorScheme) var colorScheme
-    @Environment(\.dismiss) var dismiss
     
     // MARK: - Public Properties
     
@@ -24,6 +21,8 @@ struct AddMovementsView: View {
     // MARK: - Private Properties
     
     @State private var movementsToAdd: [Movement] = []
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - View
     
@@ -71,7 +70,7 @@ struct AddMovementsView: View {
             }
         }
         .onAppear { setMovementsArray() }
-        .onDisappear { routineViewModel.setMovements(movements: movementsViewModel.movements, errorHandler: errorHandler) }
+        .onDisappear { routineViewModel.setMovements(movements: movementsViewModel.movements) }
     }
     
     // MARK: - Functions
@@ -93,8 +92,10 @@ struct AddMovementsView: View {
         routineViewModel.routine.movementIDs.append(movementId)
         Task {
             let result = await routineViewModel.updateRoutine()
-            errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
-            setMovementsArray()
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                setMovementsArray()
+            })
+            // Todo - Handle error
         }
     }
 }

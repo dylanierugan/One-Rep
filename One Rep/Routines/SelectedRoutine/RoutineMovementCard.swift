@@ -12,12 +12,15 @@ struct RoutineMovementCard: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
     
     var index: Int
     var movement: Movement
+    
+    // MARK: - Private Properties
+    
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - View
     

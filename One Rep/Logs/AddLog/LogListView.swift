@@ -46,10 +46,15 @@ struct LogListView: View {
                             ForEach(Array(logs.reversed().enumerated()), id: \.element.id) { index, log in
                                 HStack {
                                     VStack {
-                                        LogCard(log: log, movement: movement, showDoneToolBar: $showDoneToolBar, index: index + 1)
+                                        LogCard(log: log,
+                                                movement: movement,
+                                                showDoneToolBar: $showDoneToolBar,
+                                                index: index + 1)
                                     }
                                     if isEditingLogs {
-                                        DeleteLogTrashIconButton(movement: movement, log: log, selectedLog: $selectedLog)
+                                        DeleteLogTrashIconButton(movement: movement,
+                                                                 log: log,
+                                                                 selectedLog: $selectedLog)
                                             .padding(.horizontal, 8)
                                             .padding(.vertical, 8)
                                     }

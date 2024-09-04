@@ -38,7 +38,8 @@ struct LogBodyweightSection: View {
                             MutateRepsView()
                             Spacer()
                         }
-                        MutateWeightView(movementViewModel: MovementViewModel(movement: movement), isInputActive: _isInputActive)
+                        MutateWeightView(movementViewModel: MovementViewModel(movement: movement),
+                                         isInputActive: _isInputActive)
                     }
                 } else {
                     HStack {
@@ -59,7 +60,6 @@ struct LogBodyweightSection: View {
                                     }
                                 }
                             }
-                            .padding(.horizontal, 28)
                         Spacer()
                     }
                 }

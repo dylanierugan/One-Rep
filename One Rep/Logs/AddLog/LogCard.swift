@@ -45,15 +45,19 @@ struct LogCard: View {
                     }
                     Spacer()
                     HStack(spacing: 32) {
-                        DataLabel(data: logsViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
-                        DataLabel(data: String(log.reps), dataType: LogCardStrings.Reps.rawValue)
+                        DataLabel(data: logsViewModel.convertWeightDoubleToString(log.weight + log.bodyweight),
+                                  dataType: log.unit.rawValue)
+                        DataLabel(data: String(log.reps),
+                                  dataType: LogCardStrings.Reps.rawValue)
                     }
                 }
                 .padding(.horizontal, 4)
                 .padding(.vertical, 6)
         }
         .sheet(isPresented: $showEditMovementPopup) {
-            EditLogView(log: $log, movement: movement, logViewModel: logViewModel)
+            EditLogView(log: $log,
+                        movement: movement,
+                        logViewModel: logViewModel)
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
                 .onDisappear { showDoneToolBar = true }

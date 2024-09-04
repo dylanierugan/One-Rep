@@ -14,9 +14,7 @@ struct LogSetButton: View {
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
-    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
     
@@ -25,6 +23,7 @@ struct LogSetButton: View {
     // MARK: - Private Properties
     
     @State private var addingLog = true
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - View
     
@@ -102,12 +101,14 @@ struct LogSetButton: View {
         Task {
             addingLog = true
             let result = await logsViewModel.addLog(log)
-            errorHandler.handleLogSet(
-                result: result,
-                logsViewModel: logsViewModel,
-                logViewModel: logViewModel,
-                movement: movement
-            )
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                if logsViewModel.weightSelection != WeightSelection.All.rawValue  {
+                    logsViewModel.repopulateViewModel(weightSelection: logViewModel.weightStr, movement: movement)
+                } else {
+                    logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
+                }
+                logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+            }) // Todo - Error handle
         }
         
         HapticManager.instance.impact(style: .light)

@@ -12,11 +12,14 @@ struct UpdateRoutineButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
     var updateRoutineInFirebase: () -> Void
+    
+    // MARK: - Private Properties
+    
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     

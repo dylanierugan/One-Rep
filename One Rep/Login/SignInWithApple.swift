@@ -12,13 +12,13 @@ struct SignInWithApple: View {
     
     // MARK: - Global Properties
     
-    @Environment(\.colorScheme) var currentScheme
     @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var viewRouter: ViewRouter
     
     // MARK: - Private Properties
     
     @State private var identityTokenString = ""
+    @Environment(\.colorScheme) private var currentScheme
     
     // MARK: - View
     

@@ -150,7 +150,7 @@
 		37C70C2E2BD4504E00B0375A /* UpdateMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */; };
 		37C70C322BDD52C200B0375A /* LogCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C312BDD52C200B0375A /* LogCard.swift */; };
 		37C70C342BE2806100B0375A /* WeightHorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */; };
-		37FAB2632C3A187B00FDD05B /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2622C3A187B00FDD05B /* ErrorHandler.swift */; };
+		37FAB2632C3A187B00FDD05B /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2622C3A187B00FDD05B /* ResultHandler.swift */; };
 		37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */; };
 		37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2662C3B013C00FDD05B /* LogListView.swift */; };
 		37FAB2692C44278400FDD05B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2682C44278400FDD05B /* UserViewModel.swift */; };
@@ -274,7 +274,7 @@
 		37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMovementButton.swift; sourceTree = "<group>"; };
 		37C70C312BDD52C200B0375A /* LogCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCard.swift; sourceTree = "<group>"; };
 		37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightHorizontalScroller.swift; sourceTree = "<group>"; };
-		37FAB2622C3A187B00FDD05B /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		37FAB2622C3A187B00FDD05B /* ResultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHandler.swift; sourceTree = "<group>"; };
 		37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewSubHeading.swift; sourceTree = "<group>"; };
 		37FAB2662C3B013C00FDD05B /* LogListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogListView.swift; sourceTree = "<group>"; };
 		37FAB2682C44278400FDD05B /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 				37A6555F2BC1B95A00B96BEB /* FontModifier.swift */,
 				37A655532BB30E1200B96BEB /* HapticManager.swift */,
 				37A6551D2BA5F80300B96BEB /* ViewRouter.swift */,
-				37FAB2622C3A187B00FDD05B /* ErrorHandler.swift */,
+				37FAB2622C3A187B00FDD05B /* ResultHandler.swift */,
 				3753E6322C850D3500182530 /* Extensions.swift */,
 			);
 			path = Utilities;
@@ -895,7 +895,7 @@
 				370730A02BFF84B400E95989 /* DeleteLogButton.swift in Sources */,
 				37A655472BAA98AC00B96BEB /* AddMovementButton.swift in Sources */,
 				3753E5AB2C5C3A3500182530 /* RoutineCard.swift in Sources */,
-				37FAB2632C3A187B00FDD05B /* ErrorHandler.swift in Sources */,
+				37FAB2632C3A187B00FDD05B /* ResultHandler.swift in Sources */,
 				37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */,
 				3707308B2BFA691D00E95989 /* LogIndexLabel.swift in Sources */,
 				370730622BF06A9E00E95989 /* LogOutButton.swift in Sources */,

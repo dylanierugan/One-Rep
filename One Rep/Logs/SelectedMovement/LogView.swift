@@ -24,6 +24,7 @@ struct LogView: View {
     
     @StateObject private var logViewModel = LogViewModel()
     @State private var selectedLog: Log = Log()
+    
     @State private var showEditMovementPopup = false
     @State private var showDoneToolBar = true
     @State private var showLogSetView = true
@@ -49,14 +50,19 @@ struct LogView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
                     LogViewSubHeading(movement: movement)
-                    LogListView(movement: movement, isEditingLogs: $isEditingLogs, showLogSetView: $showLogSetView, showDoneToolBar: $showDoneToolBar, selectedLog: $selectedLog)
+                    LogListView(movement: movement,
+                                isEditingLogs: $isEditingLogs,
+                                showLogSetView: $showLogSetView,
+                                showDoneToolBar: $showDoneToolBar,
+                                selectedLog: $selectedLog)
                 }
                 .padding(.top, movement.movementType == .Weight && logsViewModel.listOfWeights.count >= 3 ? 16 : 0)
             }
             .background(Color(theme.backgroundColor))
             .padding(.top, showLogSetView ? -8 : 0)
             .sheet(isPresented: $showEditMovementPopup) {
-                EditMovementView(movementViewModel: MovementViewModel(movement: movement), showDoneToolBar: $showDoneToolBar)
+                EditMovementView(movementViewModel: MovementViewModel(movement: movement),
+                                 showDoneToolBar: $showDoneToolBar)
                     .environment(\.sizeCategory, .extraSmall)
                     .environment(\.colorScheme, theme.colorScheme)
             }
@@ -64,7 +70,8 @@ struct LogView: View {
         .environmentObject(logViewModel)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                EditMovementButton(showEditMovementPopup: $showEditMovementPopup, showDoneToolBar: $showDoneToolBar)
+                EditMovementButton(showEditMovementPopup: $showEditMovementPopup,
+                                   showDoneToolBar: $showDoneToolBar)
             }
             ToolbarItem(placement: .principal) {
                 HStack(spacing: 12) {
@@ -86,7 +93,10 @@ struct LogView: View {
     // MARK: - Functions
     
     private func setLogsOnAppear() {
-        logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue,
+                                          movement: movement)
+        logViewModel.setLastLog(logsViewModel.filteredLogs,
+                                weightSelection: logsViewModel.weightSelection,
+                                isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
 }

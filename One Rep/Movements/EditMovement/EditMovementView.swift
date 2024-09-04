@@ -14,9 +14,7 @@ struct EditMovementView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var logsViewModel: LogsViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
     @ObservedObject var movementViewModel = MovementViewModel()
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
@@ -32,6 +30,7 @@ struct EditMovementView: View {
     @State private var showingDeleteMovementAlert = false
     @State private var showEditProgressView = false
     @State private var showDeleteProgressView = false
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     
@@ -91,23 +90,35 @@ struct EditMovementView: View {
         newMuscleGroup = movementViewModel.movement.muscleGroup
     }
     
+    private func updateMovement() {
+        movementViewModel.movement.name = newMovementName
+        movementViewModel.movement.movementType = newMovementType
+        movementViewModel.movement.muscleGroup = newMuscleGroup
+    }
+    
     private func editMovement() {
+        showEditProgressView = true
+        updateMovement()
         Task {
-            showEditProgressView = true
-            movementViewModel.movement.name = newMovementName
-            movementViewModel.movement.movementType = newMovementType
-            movementViewModel.movement.muscleGroup = newMuscleGroup
             let result = await movementViewModel.updateMovement()
-            errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                dismiss()
+            })
         }
     }
     
     private func deleteMovement() {
         Task {
             showDeleteProgressView = true
-            var result = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
-            result = await logsViewModel.deleteAllMovementLogs(movementId: movementViewModel.movement.id)
-            errorHandler.handleMovementUpdate(result: result, dismiss: dismiss)
+            let result = await logsViewModel.deleteAllMovementLogs(movementId: movementViewModel.movement.id)
+            ResultHandler.shared.handleResult(result: result) {
+                Task {
+                    let newResult = await movementsViewModel.deleteMovement(docId: movementViewModel.movement.id)
+                    ResultHandler.shared.handleResult(result: newResult) {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }

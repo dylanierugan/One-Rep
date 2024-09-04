@@ -11,12 +11,9 @@ struct EditLogView: View {
     
     // MARK: - Global Properties
     
-    @Environment(\.dismiss) var dismiss
-    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logViewModel: LogViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
@@ -26,11 +23,13 @@ struct EditLogView: View {
     @FocusState var isInputActive: Bool
     
     // MARK: - Private Properties
-
+    
     @StateObject private var editLogViewModel: EditLogViewModel
     @State private var isDeletingLog = false
     @State private var isUpdatingLog = false
     @State private var date = Date()
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - Init
     
@@ -116,7 +115,7 @@ struct EditLogView: View {
                             ProgressView()
                         } else {
                             UpdateLogButton(updateLogInFirebase: {
-                                updateLog()
+                                updateLogFirebase()
                             })
                         }
                     }
@@ -143,15 +142,28 @@ struct EditLogView: View {
     }
     
     private func updateLog() {
+        isUpdatingLog = true
+        log.weight = editLogViewModel.editWeight
+        log.reps = editLogViewModel.editReps
+        log.bodyweight = editLogViewModel.editBodyweight
+        log.timeAdded = date.timeIntervalSince1970
+    }
+    
+    private func updateLogFirebase() {
+        updateLog()
         Task {
-            isUpdatingLog = true
-            log.weight = editLogViewModel.editWeight
-            log.reps = editLogViewModel.editReps
-            log.bodyweight = editLogViewModel.editBodyweight
-            log.timeAdded = date.timeIntervalSince1970
             let result = await logsViewModel.updateLog(log)
-            errorHandler.handleUpdateLog(result: result, logsViewModel: logsViewModel, logViewModel: logViewModel, editLogViewModel: editLogViewModel, movement: movement)
-            dismiss()
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    if logsViewModel.weightSelection == WeightSelection.All.rawValue  {
+                        logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
+                    } else {
+                        logsViewModel.repopulateViewModel(weightSelection: editLogViewModel.editWeightStr, movement: movement)
+                    }
+                    logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+                    dismiss()
+                } // Todo - Handle error
+            })
         }
     }
     
@@ -159,7 +171,15 @@ struct EditLogView: View {
         Task {
             isDeletingLog = true
             let result = await logsViewModel.deleteLog(docId: log.id)
-            errorHandler.handleDeleteLog(result: result, logsViewModel: logsViewModel, logViewModel: logViewModel, movement: movement)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
+                    logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
+                } else {
+                    logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
+                }
+                logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+                dismiss()
+            }) // Todo - Handle error
         }
     }
 }

@@ -12,7 +12,6 @@ struct ContactSupportSheet: View {
     
     // MARK: - Global Properties
     
-    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var theme: ThemeModel
     
     // MARK: - Private Properties
@@ -22,6 +21,7 @@ struct ContactSupportSheet: View {
     @State private var showError = false
     @State private var errorMessage = ""
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - View
     

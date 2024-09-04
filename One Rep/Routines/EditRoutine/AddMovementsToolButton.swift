@@ -12,11 +12,14 @@ struct AddMovementsToolButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
     
     @Binding var showAddMovmenetsSheet: Bool
+    
+    // MARK: - Private Properties
+    
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - View
     

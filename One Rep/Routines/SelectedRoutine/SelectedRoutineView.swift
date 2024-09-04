@@ -14,8 +14,6 @@ struct SelectedRoutineView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    @EnvironmentObject var errorHandler: ErrorHandler
-    @Environment(\.colorScheme) var colorScheme
     
     // MARK: - Public Properties
     
@@ -25,6 +23,7 @@ struct SelectedRoutineView: View {
     
     @State private var showAddMovmenetsSheet = false
     @State private var showEditRoutinePopup = false
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - View
     
@@ -89,7 +88,7 @@ struct SelectedRoutineView: View {
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
         }
-        .onAppear { routineViewModel.setMovements(movements: movementsViewModel.movements, errorHandler: errorHandler) }
+        .onAppear { routineViewModel.setMovements(movements: movementsViewModel.movements) }
     }
     
     // MARK: - Function
@@ -100,7 +99,8 @@ struct SelectedRoutineView: View {
         }
         Task {
             let result = await routineViewModel.updateRoutine()
-            errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {})
+            // Todo - Error handle
         }
     }
     
@@ -110,7 +110,8 @@ struct SelectedRoutineView: View {
         }
         Task {
             let result = await routineViewModel.updateRoutine()
-            errorHandler.handleUpdateRoutine(result: result, dismiss: nil)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {})
+            // Todo - Error handle
         }
     }
 }

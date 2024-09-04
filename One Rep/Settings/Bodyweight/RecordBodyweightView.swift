@@ -12,9 +12,7 @@ struct RecordBodyweightView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var errorHandler: ErrorHandler
     @EnvironmentObject var userViewModel: UserViewModel
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Public Properties
     
@@ -26,6 +24,7 @@ struct RecordBodyweightView: View {
     @State private var bodyweight: Double = 130
     @State private var prevBodyweight: Double = 0
     @State private var showProgressView = false
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Views
     
@@ -92,7 +91,9 @@ struct RecordBodyweightView: View {
         Task {
             showProgressView = true
             let result = await userViewModel.addBodyweight(newBodyweight)
-            errorHandler.handleAddBodyweight(result: result, dismiss: dismiss)
+            ResultHandler.shared.handleResult(result: result, onSuccess: {
+                dismiss()
+            }) // Todo - Error handle
         }
     }
 }
