@@ -40,7 +40,6 @@ struct EditRoutineView: View {
                     Text(EditRoutineStrings.EditRoutine.rawValue)
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     
-                    /// Textfield
                     VStack(alignment: .leading, spacing: 6) {
                         Text(EditRoutineStrings.EditName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -48,7 +47,6 @@ struct EditRoutineView: View {
                         RoutineNameTextfield(focus: false, routineName: $newRoutineName, text: "")
                     }
                     
-                    /// Icon Picker
                     VStack(alignment: .leading, spacing: 6) {
                         Text(AddRoutineStrings.RoutineIcon.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -71,7 +69,7 @@ struct EditRoutineView: View {
                             ProgressView()
                         } else {
                             UpdateRoutineButton(updateRoutineInFirebase: {
-                                editRoutine()
+                                editRoutineFirebase()
                             })
                         }
                     }
@@ -89,10 +87,14 @@ struct EditRoutineView: View {
     }
     
     private func editRoutine() {
+        showEditProgressView = true
+        routineViewModel.routine.name = newRoutineName
+        routineViewModel.routine.icon = newIcon
+    }
+    
+    private func editRoutineFirebase() {
+        editRoutine() 
         Task {
-            showEditProgressView = true
-            routineViewModel.routine.name = newRoutineName
-            routineViewModel.routine.icon = newIcon
             let result = await routineViewModel.updateRoutine()
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 dismiss()

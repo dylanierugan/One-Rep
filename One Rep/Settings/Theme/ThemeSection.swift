@@ -52,7 +52,6 @@ struct ColorButton: View {
     
     var body: some View {
         Button {
-            /// Set choice in defaults
             UserDefaults.standard.set(stringColor, forKey: DefaultKeys.AccentColor.rawValue)
             themeColor.accent = stringColor
             themeColor.changeColor(color: stringColor)

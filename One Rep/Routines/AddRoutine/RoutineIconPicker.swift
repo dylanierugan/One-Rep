@@ -19,7 +19,18 @@ struct RoutineIconPicker: View {
     
     // MARK: - Private Properties
     
-    var icons: [String] = [Icons.Bench.rawValue, Icons.FigureStrengthTraining.rawValue, Icons.FigureStrengthTrainingFunctional.rawValue, Icons.FigureRower.rawValue, Icons.FigureHighIntensityIntervaltraining.rawValue, Icons.FigureCoreTraining.rawValue, Icons.DumbellFill.rawValue, Icons.CircleFill.rawValue, Icons.TriangleFill.rawValue, Icons.SquareFill.rawValue, Icons.HeartFill.rawValue, Icons.CircleHexagongrid.rawValue, Icons.Atom.rawValue]
+    var icons: [String] = [Icons.Bench.rawValue, Icons.FigureStrengthTraining.rawValue,
+                           Icons.FigureStrengthTrainingFunctional.rawValue,
+                           Icons.FigureRower.rawValue,
+                           Icons.FigureHighIntensityIntervaltraining.rawValue,
+                           Icons.FigureCoreTraining.rawValue,
+                           Icons.DumbellFill.rawValue,
+                           Icons.CircleFill.rawValue,
+                           Icons.TriangleFill.rawValue,
+                           Icons.SquareFill.rawValue,
+                           Icons.HeartFill.rawValue,
+                           Icons.CircleHexagongrid.rawValue,
+                           Icons.Atom.rawValue]
     
     // MARK: - View
     

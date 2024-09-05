@@ -29,7 +29,7 @@ struct LogSetButton: View {
     
     var body: some View {
         Button {
-            logSet(userId: userViewModel.userId)
+            logSetInFirebase()
         } label: {
             HStack {
                 Text(LogSetString.Log.rawValue)
@@ -50,11 +50,9 @@ struct LogSetButton: View {
     
     // MARK: - Functions
     
-    func logSet(userId: String) {
+    private func buildAndReturnLog(userId: String) -> Log {
         let docId = UUID().uuidString
-        
         var log = Log()
-        
         /// If log is of type body weight and weight is added
         if movement.movementType == .Bodyweight && logViewModel.addWeightToBodyweight {
             if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
@@ -97,20 +95,27 @@ struct LogSetButton: View {
                 unit: logsViewModel.unit
             )
         }
-        
+        return log
+    }
+    
+    private func handeSuccessLog() {
+        if logsViewModel.weightSelection != WeightSelection.All.rawValue  {
+            logsViewModel.repopulateViewModel(weightSelection: logViewModel.weightStr, movement: movement)
+        } else {
+            logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
+        }
+        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+    }
+    
+    private func logSetInFirebase() {
+        addingLog = true
+        let log = buildAndReturnLog(userId: userViewModel.userId)
         Task {
-            addingLog = true
             let result = await logsViewModel.addLog(log)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
-                if logsViewModel.weightSelection != WeightSelection.All.rawValue  {
-                    logsViewModel.repopulateViewModel(weightSelection: logViewModel.weightStr, movement: movement)
-                } else {
-                    logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
-                }
-                logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+                handeSuccessLog()
             }) // Todo - Error handle
         }
-        
         HapticManager.instance.impact(style: .light)
     }
 }

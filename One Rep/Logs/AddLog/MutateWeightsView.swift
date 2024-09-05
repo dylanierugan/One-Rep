@@ -79,5 +79,4 @@ struct MutateWeightView: View {
             ResultHandler.shared.handleResult(result: result) {}
         }
     }
-    
 }

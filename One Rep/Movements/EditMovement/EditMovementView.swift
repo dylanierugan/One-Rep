@@ -71,7 +71,7 @@ struct EditMovementView: View {
                             ProgressView()
                         } else {
                             UpdateMovementButton(updateMovementInFirebase: {
-                                editMovement()
+                                editMovementInFirebase()
                             })
                         }
                     }
@@ -90,15 +90,15 @@ struct EditMovementView: View {
         newMuscleGroup = movementViewModel.movement.muscleGroup
     }
     
-    private func updateMovement() {
+    private func updateMovementViewModel() {
         movementViewModel.movement.name = newMovementName
         movementViewModel.movement.movementType = newMovementType
         movementViewModel.movement.muscleGroup = newMuscleGroup
     }
     
-    private func editMovement() {
+    private func editMovementInFirebase() {
         showEditProgressView = true
-        updateMovement()
+        updateMovementViewModel()
         Task {
             let result = await movementViewModel.updateMovement()
             ResultHandler.shared.handleResult(result: result, onSuccess: {

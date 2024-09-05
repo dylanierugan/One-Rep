@@ -122,7 +122,7 @@ struct EditLogView: View {
                 }
             }
             .onAppear {
-                setLogControllerOnAppear()
+                setLogEditModel()
             }
         }
         .environmentObject(editLogViewModel)
@@ -130,7 +130,7 @@ struct EditLogView: View {
     
     // MARK: - Functions
     
-    private func setLogControllerOnAppear() {
+    private func setLogEditModel() {
         date = Date(timeIntervalSince1970: log.timeAdded)
         editLogViewModel.editWeight = log.weight
         editLogViewModel.editWeightStr = log.weight.clean
@@ -149,22 +149,36 @@ struct EditLogView: View {
         log.timeAdded = date.timeIntervalSince1970
     }
     
+    private func updateLogSuccess() {
+        if logsViewModel.weightSelection == WeightSelection.All.rawValue  {
+            logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
+        } else {
+            logsViewModel.repopulateViewModel(weightSelection: editLogViewModel.editWeightStr, movement: movement)
+        }
+        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        dismiss()
+    }
+    
     private func updateLogFirebase() {
         updateLog()
         Task {
             let result = await logsViewModel.updateLog(log)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    if logsViewModel.weightSelection == WeightSelection.All.rawValue  {
-                        logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
-                    } else {
-                        logsViewModel.repopulateViewModel(weightSelection: editLogViewModel.editWeightStr, movement: movement)
-                    }
-                    logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
-                    dismiss()
+                    updateLogSuccess()
                 } // Todo - Handle error
             })
         }
+    }
+    
+    private func deleteLogSuccess() {
+        if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
+            logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
+        } else {
+            logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
+        }
+        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        dismiss()
     }
     
     private func deleteLog() {
@@ -172,13 +186,7 @@ struct EditLogView: View {
             isDeletingLog = true
             let result = await logsViewModel.deleteLog(docId: log.id)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
-                if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
-                    logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-                } else {
-                    logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
-                }
-                logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
-                dismiss()
+                deleteLogSuccess()
             }) // Todo - Handle error
         }
     }

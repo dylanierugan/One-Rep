@@ -53,11 +53,15 @@ struct ActivityView: View {
                 ShowCalendarButton(showCalendar: $showCalendar)
             }
         })
-        .onAppear {
-            activityViewModel.logs = logsViewModel.logs
-            activityViewModel.populateListOfDatesAllLogs()
-            activityViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
-            dateViewModel.setDate()
-        }
+        .onAppear { setActivityModel() }
+    }
+    
+    // MARK: - Functions
+    
+    private func setActivityModel() {
+        activityViewModel.logs = logsViewModel.logs
+        activityViewModel.populateListOfDatesAllLogs()
+        activityViewModel.populateDateMovementLogMap(movements: movementsViewModel.movements)
+        dateViewModel.setDate()
     }
 }

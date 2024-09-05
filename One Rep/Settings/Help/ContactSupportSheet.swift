@@ -33,7 +33,7 @@ struct ContactSupportSheet: View {
                 VStack {
                     
                     if showError {
-                        Text("Your Apple Mail is not set up. You can directly email support at tarekatonerep@gmail.com")
+                        Text(ContactSupportStrings.NotSetUp.rawValue)
                             .customFont(size: .caption, weight: .semibold, design: .rounded)
                             .foregroundColor(.primary)
                             .padding(.top, 16)
@@ -62,7 +62,8 @@ struct ContactSupportSheet: View {
                     .padding(.top, 16)
                 }
                 .sheet(isPresented: $showingMail) {
-                    MailComposeViewController(toRecipients: ["dylan@dylfyt.com", "tarekatonerep@gmail.com"], mailBody: message) {
+                    MailComposeViewController(toRecipients: [ContactSupportStrings.DylanRecipient.rawValue,
+                                                             ContactSupportStrings.TarekRecipient.rawValue], mailBody: message) {
                         dismiss()
                     }
                 }
@@ -95,13 +96,17 @@ struct ContactSupportSheet: View {
         }
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    // MARK: - Functions
+    
+    private func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
 }
 
+// MARK: - Extension
+
 struct MailComposeViewController: UIViewControllerRepresentable {
-    // Logic to popup email
+    
     var toRecipients: [String]
     var mailBody: String
     var didFinish: ()->()

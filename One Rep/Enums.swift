@@ -49,6 +49,12 @@ enum BodyweightStrings: String {
     case Done = "Done"
 }
 
+enum ContactSupportStrings: String {
+    case NotSetUp = "Body weight"
+    case DylanRecipient = "dylan@dylfyt.com"
+    case TarekRecipient = "tarekatonerep@gmail.com"
+}
+
 enum Colors: String {
     case BackgroundElementColor = "BackgroundElementColor"
     case BackgroundColor = "BackgroundColor"

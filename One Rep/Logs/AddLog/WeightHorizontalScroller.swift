@@ -27,9 +27,7 @@ struct WeightHorizontalScroller: View {
                 HStack(spacing: 12) {
                     ForEach(logsViewModel.listOfWeights, id: \.self) { weight in
                         Button {
-                            logsViewModel.repopulateViewModel(weightSelection: weight, movement: movement)
-                            logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
-                            HapticManager.instance.impact(style: .soft)
+                            weightButtonTapped(weight: weight)
                         } label: {
                             if weight == WeightSelection.All.rawValue  {
                                 Text(weight)
@@ -53,5 +51,13 @@ struct WeightHorizontalScroller: View {
                 }
             }
         }
+    }
+    
+    // MARK: - Functions
+    
+    private func weightButtonTapped(weight: String) {
+        logsViewModel.repopulateViewModel(weightSelection: weight, movement: movement)
+        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        HapticManager.instance.impact(style: .soft)
     }
 }

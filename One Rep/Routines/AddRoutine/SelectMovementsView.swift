@@ -24,8 +24,8 @@ struct SelectMovementsView: View {
     
     // MARK: - Private Properties
     
-    @State private var muscleGroupMovementDict: [String: [Movement]] = [:]
     @State private var showProgressView = false
+    @State private var muscleGroupMovementDict: [String: [Movement]] = [:]
     @State private var selectedMovments = [Movement]()
     @State private var selectedMovmentsIDs = [String]()
     @Environment(\.colorScheme) private var colorScheme

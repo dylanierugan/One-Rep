@@ -60,7 +60,7 @@ struct DayPicker: View {
     
     // MARK: - Functions
     
-    func getCurrentWeek() -> [Date] {
+    private func getCurrentWeek() -> [Date] {
         let calendar = Calendar.current
         let startOfWeek = calendar.dateInterval(of: .weekOfYear, for: dateViewModel.selectedDate)!.start
         return (0...6).compactMap { day -> Date in
@@ -68,7 +68,7 @@ struct DayPicker: View {
         }
     }
     
-    func extractCurrentWeek() -> [WeekdayValue] {
+    private func extractCurrentWeek() -> [WeekdayValue] {
         let calendar = Calendar.current
         let currentWeek = getCurrentWeek()
         let days = currentWeek.compactMap { date -> WeekdayValue in

@@ -35,11 +35,9 @@ struct AddRoutineView: View {
                     .ignoresSafeArea()
                 VStack(spacing: 36) {
                     
-                    /// Title
                     Text(AddRoutineStrings.NewRoutine.rawValue)
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     
-                    /// Textfield
                     VStack(alignment: .leading, spacing: 6) {
                         Text(AddRoutineStrings.RoutineName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -47,7 +45,6 @@ struct AddRoutineView: View {
                         RoutineNameTextfield(focus: false, routineName: $routineName, text: "")
                     }
                     
-                    /// Icon Picker
                     VStack(alignment: .leading, spacing: 6) {
                         Text(AddRoutineStrings.RoutineIcon.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
@@ -57,7 +54,6 @@ struct AddRoutineView: View {
                         }
                     }
                     
-                    /// Select movments
                     SelectMovementsButton(routineName: $routineName, selectedIcon: $selectedIcon, dismissBothViews: $dismissBothViews, isFormValid: isFormValid)
                         .padding(.top, 32)
                 }

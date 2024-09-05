@@ -43,17 +43,21 @@ struct DeleteLogTrashIconButton: View {
     
     // MARK: - Functions
     
-    func handleDeleteLog() async {
+    private func deleteLogSuccess() {
+        if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
+            logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
+        } else {
+            logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
+        }
+        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+    }
+    
+    private func handleDeleteLog() async {
         Task {
             let result = await logsViewModel.deleteLog(docId: log.id)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
-                if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
-                    logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-                } else {
-                    logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
-                }
-                logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
-            })
+                deleteLogSuccess()
+            }) // Todo - Handle error
         }
     }
 }
