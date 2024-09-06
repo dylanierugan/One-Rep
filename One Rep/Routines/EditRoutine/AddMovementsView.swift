@@ -70,7 +70,6 @@ struct AddMovementsView: View {
             }
         }
         .onAppear { setMovementsArray() }
-        .onDisappear { routineViewModel.setMovements(movements: movementsViewModel.movements) }
     }
     
     // MARK: - Functions
@@ -94,6 +93,7 @@ struct AddMovementsView: View {
             let result = await routineViewModel.updateRoutine()
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 setMovementsArray()
+                routineViewModel.setMovements(movements: movementsViewModel.movements)
             })
             // Todo - Handle error
         }

@@ -19,7 +19,8 @@ struct RoutineIconPicker: View {
     
     // MARK: - Private Properties
     
-    var icons: [String] = [Icons.Bench.rawValue, Icons.FigureStrengthTraining.rawValue,
+    var icons: [String] = [Icons.Bench.rawValue,
+                           Icons.FigureStrengthTraining.rawValue,
                            Icons.FigureStrengthTrainingFunctional.rawValue,
                            Icons.FigureRower.rawValue,
                            Icons.FigureHighIntensityIntervaltraining.rawValue,

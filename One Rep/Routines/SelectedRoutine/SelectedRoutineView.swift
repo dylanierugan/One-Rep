@@ -17,7 +17,7 @@ struct SelectedRoutineView: View {
     
     // MARK: - Public Properties
     
-    @ObservedObject var routineViewModel = RoutineViewModel()
+    @StateObject var routineViewModel = RoutineViewModel()
     
     // MARK: - Private Properties
     
@@ -40,7 +40,7 @@ struct SelectedRoutineView: View {
                 }
             } else {
                 List {
-                    ForEach(routineViewModel.movements, id: \.self) { movement in
+                    ForEach(routineViewModel.movements, id: \.id) { movement in
                         RoutineMovementCard(
                             index: (routineViewModel.routine.movementIDs.firstIndex(of: movement.id) ?? 0) + 1,
                             movement: movement
@@ -94,24 +94,26 @@ struct SelectedRoutineView: View {
     // MARK: - Function
     
     private func onDelete(offsets: IndexSet) async {
-        DispatchQueue.main.async {
-            routineViewModel.routine.movementIDs.remove(atOffsets: offsets)
-        }
+        routineViewModel.routine.movementIDs.remove(atOffsets: offsets)
         Task {
             let result = await routineViewModel.updateRoutine()
-            ResultHandler.shared.handleResult(result: result, onSuccess: {})
-            // Todo - Error handle
+            await MainActor.run {
+                ResultHandler.shared.handleResult(result: result, onSuccess: {
+                    routineViewModel.setMovements(movements: movementsViewModel.movements)
+                })
+            } // Todo - Error handle
         }
     }
     
     private func onMove(source: IndexSet, destination: Int) {
-        DispatchQueue.main.async {
-            routineViewModel.routine.movementIDs.move(fromOffsets: source, toOffset: destination)
-        }
+        routineViewModel.routine.movementIDs.move(fromOffsets: source, toOffset: destination)
         Task {
             let result = await routineViewModel.updateRoutine()
-            ResultHandler.shared.handleResult(result: result, onSuccess: {})
-            // Todo - Error handle
+            await MainActor.run {
+                ResultHandler.shared.handleResult(result: result, onSuccess: {
+                    routineViewModel.setMovements(movements: movementsViewModel.movements)
+                })
+            }
         }
     }
 }

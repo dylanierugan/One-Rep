@@ -107,7 +107,7 @@ struct SelectMovementsView: View {
                 }
             }
         }
-        .onAppear {populateMuscleMovementDictionary()}
+        .onAppear { populateMuscleMovementDictionary() }
     }
     
     // MARK: - Functions

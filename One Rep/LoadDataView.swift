@@ -30,7 +30,7 @@ struct LoadDataView: View {
                 logsViewModel.logsLoading ||
                 routinesViewModel.routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue).onAppear {
-                        if let user = Auth.auth().currentUser {
+                    if Auth.auth().currentUser != nil {
                             loadAllData()
                         }
                     }
