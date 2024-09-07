@@ -198,6 +198,7 @@ enum Icons: String {
     case TableCells = "tablecells"
     case TextBadgePlus = "text.badge.plus"
     case Trash = "trash"
+    case TrashFill = "trash.fill"
     case TrashCircleFill = "trash.circle.fill"
     case TriangleFill = "triangle.fill"
 }

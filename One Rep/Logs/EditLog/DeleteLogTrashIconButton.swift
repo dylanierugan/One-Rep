@@ -31,8 +31,8 @@ struct DeleteLogTrashIconButton: View {
             }
             HapticManager.instance.impact(style: .light)
         } label: {
-            Image(systemName: Icons.TrashCircleFill.rawValue)
-                .font(.title2.weight(.regular))
+            Image(systemName: Icons.TrashFill.rawValue)
+                .font(.body.weight(.regular))
                 .foregroundStyle(.linearGradient(colors: [
                     Color(theme.lightRed),
                     Color(theme.lightRed),
