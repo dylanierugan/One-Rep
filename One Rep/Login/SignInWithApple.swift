@@ -27,7 +27,9 @@ struct SignInWithApple: View {
             SignInWithAppleButton(.signIn, onRequest: { request in
                 AppleSignInManager.shared.requestAppleAuthorization(request)
             }, onCompletion: { result in
-                handleAppleID(result)
+                authManager.handleAppleID(result) {
+                    viewRouter.currentPage = .loadDataView
+                }
             })
             .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
             .cornerRadius(16)
@@ -38,26 +40,18 @@ struct SignInWithApple: View {
     
     func handleAppleID(_ result: Result<ASAuthorization, Error>) {
         if case let .success(auth) = result {
-            guard let appleIDCredentials = auth.credential as? ASAuthorizationAppleIDCredential else {
-                /// TODO - Error handle
-                return
-            }
+            guard let appleIDCredentials = auth.credential as? ASAuthorizationAppleIDCredential else { return }
             Task {
                 do {
-                    let result = try await authManager.appleAuth(
-                        appleIDCredentials,
-                        nonce: AppleSignInManager.nonce
-                    )
-                    if result != nil {
+                    if (try await authManager.appleAuth(appleIDCredentials, nonce: AppleSignInManager.nonce)) != nil {
                         viewRouter.currentPage = .loadDataView
                     }
                 } catch {
-                    /// TODO - Error handle
+                    // TODO: Handle error
                 }
             }
-        }
-        else if case let .failure(error) = result {
-            /// TODO - Error handle
+        } else if case let .failure(error) = result {
+            // TODO: Handle error
             print(error.localizedDescription)
         }
     }

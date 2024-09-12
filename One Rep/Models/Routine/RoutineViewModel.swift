@@ -64,7 +64,7 @@ class RoutineViewModel: ObservableObject {
                     Task {
                         let result = await updateRoutine()
                         ResultHandler.shared.handleResult(result: result) {
-                            /// Todo - Error handle
+                            // TODO: Handle error
                         }
                     }
                 }

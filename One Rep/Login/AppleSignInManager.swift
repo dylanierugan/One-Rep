@@ -42,7 +42,7 @@ extension AppleSignInManager {
         var randomBytes = [UInt8](repeating: 0, count: length)
         let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
         if errorCode != errSecSuccess {
-            /// TODO - Error handle
+            // TODO: Handle error
             fatalError(
                 "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
             )

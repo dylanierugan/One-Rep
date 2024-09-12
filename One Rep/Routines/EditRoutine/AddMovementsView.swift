@@ -95,7 +95,7 @@ struct AddMovementsView: View {
                 setMovementsArray()
                 routineViewModel.setMovements(movements: movementsViewModel.movements)
             })
-            // Todo - Handle error
+            // TODO: Handle error
         }
     }
 }

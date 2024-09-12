@@ -101,7 +101,7 @@ struct SelectedRoutineView: View {
                 ResultHandler.shared.handleResult(result: result, onSuccess: {
                     routineViewModel.setMovements(movements: movementsViewModel.movements)
                 })
-            } // Todo - Error handle
+            } // TODO: Handle error
         }
     }
     

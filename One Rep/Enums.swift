@@ -85,6 +85,7 @@ enum DefaultKeys: String {
 
 enum DeleteAccountStrings: String {
     case DeleteAccount = "Delete Account"
+    case DeleteAccountInstructions = "To delete your account, please reauthenticate. Once reauthentication is complete, your account and all associated data will be permanently deleted."
     case DeleteAccountConfirmation = "Are you sure you want to delete your account and all the data associated with it?"
     case NoWayToUndo = "There is no way to undo this action."
     case Delete = "Delete"

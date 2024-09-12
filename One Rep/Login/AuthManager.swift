@@ -62,7 +62,7 @@ class AuthManager: ObservableObject {
                 try Auth.auth().signOut()
             }
             catch let error as NSError {
-                /// TODO - Error handle
+                // TODO: Handle error
                 throw error
             }
         }
@@ -77,17 +77,33 @@ class AuthManager: ObservableObject {
         }
     }
     
+    func handleAppleID(_ result: Result<ASAuthorization, Error>, onSuccess: @escaping () -> Void) {
+        if case let .success(auth) = result {
+            guard let appleIDCredentials = auth.credential as? ASAuthorizationAppleIDCredential else { return }
+            Task {
+                do {
+                    if let result = try await appleAuth(appleIDCredentials, nonce: AppleSignInManager.nonce) {
+                        onSuccess()
+                    }
+                } catch {
+                    // TODO: Handle error
+                }
+            }
+        } else if case let .failure(error) = result {
+            // TODO: Handle error
+            print(error.localizedDescription)
+        }
+    }
+    
     func appleAuth(_ appleIDCredential: ASAuthorizationAppleIDCredential, nonce: String?) async throws -> AuthDataResult? {
         guard let nonce = nonce else {
-            /// TODO - Error handle
+            // TODO: Handle error
             fatalError("Invalid state: A login callback was received, but no login request was sent.")
         }
         guard let appleIDToken = appleIDCredential.identityToken else {
-            /// TODO - Error handle - unable to fetch identity
             return nil
         }
         guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-            /// TODO - Error handle
             return nil
         }
         let credentials = OAuthProvider.appleCredential(withIDToken: idTokenString,
@@ -97,7 +113,7 @@ class AuthManager: ObservableObject {
             return try await authenticateUser(credentials: credentials)
         }
         catch {
-            /// TODO - Error handle
+            // TODO: Handle error
             throw error
         }
     }
@@ -115,7 +131,7 @@ class AuthManager: ObservableObject {
             return result
         }
         catch {
-            /// TODO - Error handle
+            // TODO: Handle error
             print(error)
             throw error
         }

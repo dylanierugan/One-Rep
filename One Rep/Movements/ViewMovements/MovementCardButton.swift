@@ -43,7 +43,7 @@ struct MovementCardButton: View {
                     Spacer()
                 }
                 .padding(20)
-                .frame(height: 56)
+                .frame(height: 52)
                 .background(Color(theme.backgroundElementColor))
                 .cornerRadius(16)
                 .padding(.horizontal, 16)

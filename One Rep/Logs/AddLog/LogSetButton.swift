@@ -114,7 +114,7 @@ struct LogSetButton: View {
             let result = await logsViewModel.addLog(log)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 handeSuccessLog()
-            }) // Todo - Error handle
+            }) // TODO: Handle error
         }
         HapticManager.instance.impact(style: .light)
     }

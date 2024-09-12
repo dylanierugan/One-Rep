@@ -32,11 +32,11 @@ struct HorizontalScroller: View {
                                 if muscleGroup == .All {
                                     Image(systemName: Icons.Infinity.rawValue)
                                         .font(.caption.weight(.bold))
-                                        .padding(.trailing, 16)
+                                        .padding(.trailing, 12)
                                 } else {
                                     Image(muscleGroup.rawValue.lowercased())
                                         .font(.caption.weight(.regular))
-                                        .padding(.trailing, 16)
+                                        .padding(.trailing, 12)
                                 }
                             }
                             .foregroundStyle(muscleSelection == muscleGroup ?

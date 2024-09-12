@@ -24,7 +24,7 @@ class UserViewModel: ObservableObject {
     func subscribeToUser() {
         networkManager.subscribeToUser(userId: userId) { [weak self] bodyweightEntries, error in
             if let error = error {
-                /// Todo - Error handle
+                // TODO: Handle error
                 print("Error subscribing to user: \(error.localizedDescription)")
                 return
             }

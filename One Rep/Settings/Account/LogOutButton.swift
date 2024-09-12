@@ -31,10 +31,7 @@ struct LogOutButton: View {
                 Spacer()
             }
             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-            .foregroundStyle(.linearGradient(colors: [
-                Color(theme.lightBaseColor),
-                Color(theme.darkBaseColor)
-            ], startPoint: .top, endPoint: .bottom))
+            .foregroundStyle(.primary)
         }
     }
     
@@ -56,7 +53,7 @@ struct LogOutButton: View {
                 userViewModel.unsubscribe()
                 userViewModel.clearData()
             } catch {
-                /// TODO - Handle error
+                // TODO: Handle error
                 print("\(error.localizedDescription)")
             }
         }

@@ -93,7 +93,7 @@ struct RecordBodyweightView: View {
             let result = await userViewModel.addBodyweight(newBodyweight)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 dismiss()
-            }) // Todo - Error handle
+            }) // TODO: Handle error
         }
     }
 }

@@ -22,17 +22,10 @@ struct AccountView: View {
                 .ignoresSafeArea()
             VStack {
                 VStack(alignment: .leading, spacing: 16) {
-                    HStack(spacing: 16) {
-                        Image(systemName: Icons.PersonFill.rawValue)
-                        Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
-                    }
-                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                    Divider()
-                        .padding(.leading, 32)
+                    DeleteAccountNavLink()
+                        Divider()
+                            .padding(.leading, 32)
                     LogOutButton()
-                    Divider()
-                        .padding(.leading, 32)
-                    DeleteAccountButton()
                 }
                 .padding(16)
                 .background(Color(theme.backgroundElementColor))

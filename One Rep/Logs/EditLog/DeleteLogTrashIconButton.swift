@@ -57,7 +57,8 @@ struct DeleteLogTrashIconButton: View {
             let result = await logsViewModel.deleteLog(docId: log.id)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 deleteLogSuccess()
-            }) // Todo - Handle error
+            }) 
+            // TODO: Handle error
         }
     }
 }

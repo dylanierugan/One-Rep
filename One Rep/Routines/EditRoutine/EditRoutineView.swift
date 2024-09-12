@@ -108,7 +108,7 @@ struct EditRoutineView: View {
             let result = await routinesViewModel.deleteRoutine(routineViewModel.routine)
             ResultHandler.shared.handleResult(result: result, onSuccess: {
                 dismiss()
-            }) // Todo - Handle error
+            }) // TODO: Handle error
         }
     }
     

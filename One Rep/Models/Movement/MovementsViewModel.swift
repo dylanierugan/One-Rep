@@ -34,7 +34,7 @@ class MovementsViewModel: ObservableObject {
     func subscribeToMovements(userId: String) {
         networkManager.subscribeToMovements(userId: userId) { [weak self] movements, error in
             if let error = error {
-                /// Todo - Error handle
+                // TODO: Handle error
                 print("Error subscribing to movements: \(error.localizedDescription)")
                 return
             }

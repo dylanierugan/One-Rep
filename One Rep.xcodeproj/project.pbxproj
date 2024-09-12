@@ -33,7 +33,8 @@
 		3707309E2BFF843400E95989 /* UpdateLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707309D2BFF843400E95989 /* UpdateLogButton.swift */; };
 		370730A02BFF84B400E95989 /* DeleteLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3707309F2BFF84B400E95989 /* DeleteLogButton.swift */; };
 		370730A52C01638D00E95989 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A42C01638D00E95989 /* AccountView.swift */; };
-		370730A82C01668A00E95989 /* DeleteAccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A72C01668A00E95989 /* DeleteAccountButton.swift */; };
+		370730A82C01668A00E95989 /* DeleteAccountNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A72C01668A00E95989 /* DeleteAccountNavLink.swift */; };
+		373E8BE12C92807F006DE161 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE02C92807F006DE161 /* DeleteAccountView.swift */; };
 		374069582C2E530C00692ECD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 374069572C2E530C00692ECD /* GoogleService-Info.plist */; };
 		374069702C2E5D9800692ECD /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740696F2C2E5D9800692ECD /* AuthManager.swift */; };
 		374069722C2E5EB400692ECD /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069712C2E5EB400692ECD /* AppleSignInManager.swift */; };
@@ -183,7 +184,8 @@
 		3707309D2BFF843400E95989 /* UpdateLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateLogButton.swift; sourceTree = "<group>"; };
 		3707309F2BFF84B400E95989 /* DeleteLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLogButton.swift; sourceTree = "<group>"; };
 		370730A42C01638D00E95989 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
-		370730A72C01668A00E95989 /* DeleteAccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountButton.swift; sourceTree = "<group>"; };
+		370730A72C01668A00E95989 /* DeleteAccountNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountNavLink.swift; sourceTree = "<group>"; };
+		373E8BE02C92807F006DE161 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		374069572C2E530C00692ECD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3740696F2C2E5D9800692ECD /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		374069712C2E5EB400692ECD /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
@@ -477,7 +479,8 @@
 				3707305F2BF0679600E95989 /* AccountSection.swift */,
 				370730A42C01638D00E95989 /* AccountView.swift */,
 				370730612BF06A9E00E95989 /* LogOutButton.swift */,
-				370730A72C01668A00E95989 /* DeleteAccountButton.swift */,
+				370730A72C01668A00E95989 /* DeleteAccountNavLink.swift */,
+				373E8BE02C92807F006DE161 /* DeleteAccountView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -923,6 +926,7 @@
 				37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */,
 				370730702BF16ECD00E95989 /* MovementSelectionPicker.swift in Sources */,
 				37C70C322BDD52C200B0375A /* LogCard.swift in Sources */,
+				373E8BE12C92807F006DE161 /* DeleteAccountView.swift in Sources */,
 				370730872BF9D64F00E95989 /* ActivityMovementDataView.swift in Sources */,
 				3753E5B52C61C3B000182530 /* AddMovementsToolButton.swift in Sources */,
 				3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */,
@@ -931,7 +935,7 @@
 				370730662BF07BA500E95989 /* ToggleEditLogButton.swift in Sources */,
 				3753E5BB2C64442900182530 /* EditRoutineButton.swift in Sources */,
 				37A655562BBDAD4F00B96BEB /* EditMovementView.swift in Sources */,
-				370730A82C01668A00E95989 /* DeleteAccountButton.swift in Sources */,
+				370730A82C01668A00E95989 /* DeleteAccountNavLink.swift in Sources */,
 				37A655522BB30DDA00B96BEB /* HorizontalScroller.swift in Sources */,
 				376B58B02C4D6B92007C82E9 /* AddRoutineToolButton.swift in Sources */,
 				374069742C2E664900692ECD /* LoginView.swift in Sources */,
