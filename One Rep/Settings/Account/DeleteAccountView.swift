@@ -12,7 +12,7 @@ struct DeleteAccountView: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var authManager: AuthManager
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
     @EnvironmentObject var logsViewModel: LogsViewModel
@@ -32,16 +32,21 @@ struct DeleteAccountView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.primary)
                     .customFont(size: .body, weight: .semibold, design: .rounded)
-                SignInWithAppleButton(.signIn, onRequest: { request in
-                    AppleSignInManager.shared.requestAppleAuthorization(request)
-                }, onCompletion: { result in
-                    authManager.handleAppleID(result) {
-                        callDeleteUser()
+                Button {
+                    Task {
+                        do {
+                            try await authenticationViewModel.signInWithApple()
+                            deleteUser()
+                        } catch {
+                            // TODO: Handle error
+                        }
                     }
-                })
-                .signInWithAppleButtonStyle(currentScheme == .light ? .black : .white)
-                .cornerRadius(16)
-                .frame(height: 32)
+                } label: {
+                    SignInWithAppleButtonViewRepresentable(type: .default, style: currentScheme == .light ? .black : .white)
+                        .allowsHitTesting(false)
+                        .frame(height: 32)
+                        .cornerRadius(16)
+                }
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 48)
@@ -50,10 +55,10 @@ struct DeleteAccountView: View {
     
     // MARK: - Functions
     
-    private func callDeleteUser() {
+    private func deleteUser() {
         Task {
             do {
-                try await authManager.deleteUser()
+                try await AuthenticationManager.shared.deleteUser()
                 await deleteAllData()
                 withAnimation {
                     viewRouter.currentPage = .loginView
@@ -68,7 +73,6 @@ struct DeleteAccountView: View {
         _ = await movementsViewModel.deleteAllUserMovements(userId: userViewModel.userId)
         _ = await routinesViewModel.deleteAllUserRoutines(userId: userViewModel.userId)
         _ = await logsViewModel.deleteAllUserLogs(userId: userViewModel.userId)
-        _ = await userViewModel.deleteAllUserBodyweightEntries()
-        // TODO: Handle error
+        userViewModel.deleteAllBodyweightEntries()
     }
 }

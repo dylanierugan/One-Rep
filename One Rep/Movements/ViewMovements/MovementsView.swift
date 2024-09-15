@@ -15,21 +15,17 @@ struct MovementsView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     
-    // MARK: - Private Properties
-    
-    @State private var menuSelection: MuscleGroup = .All
-    
     // MARK: - View
     
     var body: some View {
         VStack(spacing: 16) {
-            HorizontalScroller(muscleSelection: $menuSelection)
+            HorizontalScroller(muscleSelection: $movementsViewModel.currentMuscleSelection)
             ForEach(movementsViewModel.filteredMovements, id: \.id) { movement in
-                if (movement.muscleGroup == menuSelection) || (menuSelection == .All) {
+                if (movement.muscleGroup == movementsViewModel.currentMuscleSelection) || (movementsViewModel.currentMuscleSelection == .All) {
                     MovementCardButton(movement: movement)
                 }
             }
-            if (movementsViewModel.movements.count == 0) || (menuSelection != .All && movementsViewModel.movements.filter({$0.muscleGroup == menuSelection}).count == 0) {
+            if (movementsViewModel.movements.count == 0) || (movementsViewModel.currentMuscleSelection != .All && movementsViewModel.movements.filter({$0.muscleGroup == movementsViewModel.currentMuscleSelection}).count == 0) {
                 Text(InfoText.CreateNewMovement.rawValue)
                     .customFont(size: .body, weight: .semibold, kerning: 0, design: .rounded)
                     .multilineTextAlignment(.center)

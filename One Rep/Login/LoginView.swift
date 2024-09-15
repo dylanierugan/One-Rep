@@ -14,6 +14,7 @@ struct LoginView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - View
     
@@ -33,8 +34,7 @@ struct LoginView: View {
                         .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                 }
                 
-                SignInWithApple()
-                    .frame(height: 32)
+                SignInWithAppleView()
                     .padding(.top, 8)
                     .padding(.horizontal, 32)
                 
@@ -52,7 +52,7 @@ struct LoginView: View {
     // MARK: - Functions
     
     private func onAppearSetViewRouter() {
-        if Auth.auth().currentUser != nil {
+        if let _ = Auth.auth().currentUser {
             viewRouter.currentPage = .loadDataView
         }
     }

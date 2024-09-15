@@ -13,7 +13,7 @@ struct One_RepApp: SwiftUI.App {
     
     // MARK: - StateObjects
 
-    @StateObject private var authManager = AuthManager()
+    @StateObject private var authenticationViewModel = AuthenticationViewModel()
     @StateObject private var movementsViewModel = MovementsViewModel()
     @StateObject private var logsViewModel = LogsViewModel(unit: UserDefaults.standard.unitSelection)
     @StateObject private var routinesViewModel = RoutinesViewModel()
@@ -31,15 +31,15 @@ struct One_RepApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             MotherView()
-                .environmentObject(authManager)
+                .environmentObject(authenticationViewModel)
                 .environmentObject(logsViewModel)
                 .environmentObject(movementsViewModel)
                 .environmentObject(routinesViewModel)
                 .environmentObject(themeModel)
                 .environmentObject(viewRouter)
-                .environmentObject(userViewModel)
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, themeModel.colorScheme)
+                .environmentObject(userViewModel)
         }
     }
 }

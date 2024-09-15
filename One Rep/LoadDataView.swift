@@ -25,12 +25,13 @@ struct LoadDataView: View {
         ZStack {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
-            if userViewModel.userLoading ||
-                movementsViewModel.movementsLoading ||
-                logsViewModel.logsLoading ||
-                routinesViewModel.routinesLoading {
+            if userViewModel.userLoading {
+                //                movementsViewModel.movementsLoading ||
+                //                logsViewModel.logsLoading ||
+                //                routinesViewModel.routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
-                    .onAppear { loadAllData() }
+                    .task { await loadAllData() }
+                    .environmentObject(userViewModel)
             } else {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
                     .onAppear {
@@ -38,26 +39,31 @@ struct LoadDataView: View {
                             viewRouter.currentPage = .tabView
                         }
                     }
+                    .environmentObject(userViewModel)
             }
         }
     }
     
     // MARK: - Functions
     
-    private func loadAllData() {
-        if let user = Auth.auth().currentUser {
-            gerUser(userId: user.uid)
-            getMovements()
-            getLogs()
-            getRoutines()
+    private func setUserViewModelUserId() {
+        do {
+            let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
+            userViewModel.userId = userId
+        } catch {
+            // TODO: Handle error - got back to login
         }
     }
     
-    private func gerUser(userId: String) {
-        if userViewModel.bodyweightEntries.isEmpty {
-            userViewModel.userId = userId
-            userViewModel.subscribeToUser()
-        }
+    private func loadAllData() async {
+        setUserViewModelUserId()
+        await gerUser()
+        
+    }
+    
+    private func gerUser() async {
+        try? await userViewModel.loadCurrentUser()
+        userViewModel.addListenerForBodyweightEntries()
     }
     
     private func getMovements() {

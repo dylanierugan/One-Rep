@@ -12,7 +12,6 @@ struct LogOutButton: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var viewRouter: ViewRouter
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
@@ -40,7 +39,7 @@ struct LogOutButton: View {
     private func logOutUser() {
         Task {
             do {
-                try await authManager.signOut()
+                try await AuthenticationManager.shared.signOut()
                 withAnimation {
                     viewRouter.currentPage = .loginView
                 }
@@ -50,8 +49,8 @@ struct LogOutButton: View {
                 routinesViewModel.clearData()
                 logsViewModel.unsubscribe()
                 logsViewModel.clearData()
-                userViewModel.unsubscribe()
-                userViewModel.clearData()
+                userViewModel.userManager.removeListenerForAllUserFavoriteProducts()
+                userViewModel.clearLocalBodyweightEntries()
             } catch {
                 // TODO: Handle error
                 print("\(error.localizedDescription)")

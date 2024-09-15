@@ -11,8 +11,8 @@ struct AccountSection: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - View
     
@@ -28,10 +28,10 @@ struct AccountSection: View {
                     HStack(spacing: 24) {
                         HStack(spacing: 16) {
                             Image(systemName: Icons.PersonFill.rawValue)
-                            if authManager.user?.isAnonymous == true {
+                            if AuthenticationManager.shared.user?.isAnonymous == true {
                                 Text(SettingsStrings.Anonymous.rawValue)
                             } else {
-                                Text(authManager.user?.email ?? SettingsStrings.NoUser.rawValue)
+                                Text(userViewModel.user?.email ?? SettingsStrings.NoUser.rawValue)
                             }
                         }
                         .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)

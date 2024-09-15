@@ -12,6 +12,7 @@ struct SettingsView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var userViewModel: UserViewModel
 
     // MARK: - View
     

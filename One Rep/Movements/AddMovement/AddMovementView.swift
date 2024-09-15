@@ -72,11 +72,17 @@ struct AddMovementView: View {
                         }
                     }
                 }
-            }
+            } .onAppear { setMuscleGroup() }
         }
     }
     
     // MARK: - Functions
+    
+    private func setMuscleGroup() {
+        if movementsViewModel.currentMuscleSelection != .All {
+            muscleGroup = movementsViewModel.currentMuscleSelection
+        }
+    }
     
     private func createAndReturnMovement() -> Movement {
         let docId = UUID().uuidString

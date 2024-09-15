@@ -10,21 +10,23 @@ import SwiftUI
 struct AddNewBodyweightButton: View {
     
     // MARK: - Global Proporties
+    
     @EnvironmentObject var theme: ThemeModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Proporties
     
     @Binding var bodyweight: Double
     @Binding var prevBodyweight: Double
-    var addBodyweightToFirebase: () -> Void
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     
     var body: some View {
         Button {
-            DispatchQueue.main.async {
-                addBodyweightToFirebase()
-            }
+            userViewModel.addBodyweightEntry(bodyweight: bodyweight)
+            prevBodyweight = bodyweight
+            dismiss()
         } label: {
             HStack {
                 Text(BodyweightStrings.Set.rawValue)

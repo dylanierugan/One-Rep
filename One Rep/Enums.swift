@@ -40,7 +40,7 @@ enum AppleSignInManagerStrings: String {
 }
 
 enum BodyweightStrings: String {
-    case Bodyweight = "Body weight"
+    case Bodyweight = "Bodyweight"
     case SetBodyweight = "Set  bodyweight"
     case RemoveWeight = "Remove weight"
     case AddWeight = "Add weight"
@@ -131,7 +131,8 @@ enum FirebaseCollection: String {
     case MovementCollection = "Movements"
     case LogsCollection = "Logs"
     case RoutinesCollection = "Routines"
-    case UserCollection = "User"
+    case UserCollection = "users"
+    case BodyweightCollection = "bodyweightEntrties"
 }
 
 enum HelpSectionStrings: String {

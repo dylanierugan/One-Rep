@@ -15,6 +15,7 @@ class MovementsViewModel: ObservableObject {
     @Published var movements = [Movement]()
     
     @Published var movementsLoading = true
+    @Published var currentMuscleSelection: MuscleGroup = .All
     
     @Published private var searchText = ""
     var filteredMovements: [Movement] {

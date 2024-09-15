@@ -35,8 +35,13 @@
 		370730A52C01638D00E95989 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A42C01638D00E95989 /* AccountView.swift */; };
 		370730A82C01668A00E95989 /* DeleteAccountNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370730A72C01668A00E95989 /* DeleteAccountNavLink.swift */; };
 		373E8BE12C92807F006DE161 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE02C92807F006DE161 /* DeleteAccountView.swift */; };
+		373E8BE32C948BB9006DE161 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE22C948BB9006DE161 /* UserModel.swift */; };
+		373E8BE52C948D2E006DE161 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE42C948D2E006DE161 /* UserManager.swift */; };
+		373E8BE82C95302C006DE161 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE72C95302C006DE161 /* AuthenticationViewModel.swift */; };
+		373E8BEA2C9530BA006DE161 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE92C9530BA006DE161 /* AppleSignInHelper.swift */; };
+		373E8BED2C96ACD4006DE161 /* Query+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BEC2C96ACD4006DE161 /* Query+EXT.swift */; };
 		374069582C2E530C00692ECD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 374069572C2E530C00692ECD /* GoogleService-Info.plist */; };
-		374069702C2E5D9800692ECD /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740696F2C2E5D9800692ECD /* AuthManager.swift */; };
+		374069702C2E5D9800692ECD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740696F2C2E5D9800692ECD /* AuthenticationManager.swift */; };
 		374069722C2E5EB400692ECD /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069712C2E5EB400692ECD /* AppleSignInManager.swift */; };
 		374069742C2E664900692ECD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069732C2E664900692ECD /* LoginView.swift */; };
 		374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069752C2E945700692ECD /* MovementsViewModel.swift */; };
@@ -61,7 +66,6 @@
 		3753E62F2C82674C00182530 /* ActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E62E2C82674C00182530 /* ActivityViewModel.swift */; };
 		3753E6332C850D3500182530 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6322C850D3500182530 /* Extensions.swift */; };
 		3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6342C850E9D00182530 /* MovementNetworkManager.swift */; };
-		3753E6372C85163000182530 /* UserNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6362C85163000182530 /* UserNetworkManager.swift */; };
 		3753E63A2C85217300182530 /* LogsNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E6392C85217300182530 /* LogsNetworkManager.swift */; };
 		3753E63C2C8523FF00182530 /* RoutineNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E63B2C8523FF00182530 /* RoutineNetworkManager.swift */; };
 		376B58652C44431D007C82E9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 376B58642C44431D007C82E9 /* FirebaseAnalytics */; };
@@ -120,7 +124,7 @@
 		37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6551D2BA5F80300B96BEB /* ViewRouter.swift */; };
 		37A655222BA5F86600B96BEB /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655212BA5F86600B96BEB /* MotherView.swift */; };
 		37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655232BA5F88200B96BEB /* TabHolderView.swift */; };
-		37A655262BA5F8A700B96BEB /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655252BA5F8A700B96BEB /* SignInWithApple.swift */; };
+		37A655262BA5F8A700B96BEB /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655252BA5F8A700B96BEB /* SignInWithAppleView.swift */; };
 		37A655282BA5F8C200B96BEB /* OneRepLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655272BA5F8C200B96BEB /* OneRepLogo.swift */; };
 		37A6552C2BA5F8FA00B96BEB /* MovementSectionHolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552B2BA5F8FA00B96BEB /* MovementSectionHolderView.swift */; };
 		37A6552E2BA5F91100B96BEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6552D2BA5F91100B96BEB /* SettingsView.swift */; };
@@ -186,8 +190,13 @@
 		370730A42C01638D00E95989 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		370730A72C01668A00E95989 /* DeleteAccountNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountNavLink.swift; sourceTree = "<group>"; };
 		373E8BE02C92807F006DE161 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
+		373E8BE22C948BB9006DE161 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		373E8BE42C948D2E006DE161 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		373E8BE72C95302C006DE161 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		373E8BE92C9530BA006DE161 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
+		373E8BEC2C96ACD4006DE161 /* Query+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+EXT.swift"; sourceTree = "<group>"; };
 		374069572C2E530C00692ECD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3740696F2C2E5D9800692ECD /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		3740696F2C2E5D9800692ECD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		374069712C2E5EB400692ECD /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
 		374069732C2E664900692ECD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		374069752C2E945700692ECD /* MovementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsViewModel.swift; sourceTree = "<group>"; };
@@ -212,7 +221,6 @@
 		3753E62E2C82674C00182530 /* ActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewModel.swift; sourceTree = "<group>"; };
 		3753E6322C850D3500182530 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3753E6342C850E9D00182530 /* MovementNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementNetworkManager.swift; sourceTree = "<group>"; };
-		3753E6362C85163000182530 /* UserNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNetworkManager.swift; sourceTree = "<group>"; };
 		3753E6392C85217300182530 /* LogsNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsNetworkManager.swift; sourceTree = "<group>"; };
 		3753E63B2C8523FF00182530 /* RoutineNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineNetworkManager.swift; sourceTree = "<group>"; };
 		376B589C2C4C20AA007C82E9 /* ActivityMovementCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMovementCard.swift; sourceTree = "<group>"; };
@@ -245,7 +253,7 @@
 		37A6551D2BA5F80300B96BEB /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
 		37A655212BA5F86600B96BEB /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
 		37A655232BA5F88200B96BEB /* TabHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHolderView.swift; sourceTree = "<group>"; };
-		37A655252BA5F8A700B96BEB /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
+		37A655252BA5F8A700B96BEB /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		37A655272BA5F8C200B96BEB /* OneRepLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneRepLogo.swift; sourceTree = "<group>"; };
 		37A6552B2BA5F8FA00B96BEB /* MovementSectionHolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementSectionHolderView.swift; sourceTree = "<group>"; };
 		37A6552D2BA5F91100B96BEB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -391,6 +399,25 @@
 				37A655782BC60E5D00B96BEB /* LogSetButton.swift */,
 			);
 			path = AddLog;
+			sourceTree = "<group>";
+		};
+		373E8BE62C952FF8006DE161 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3740696F2C2E5D9800692ECD /* AuthenticationManager.swift */,
+				374069712C2E5EB400692ECD /* AppleSignInManager.swift */,
+				373E8BE72C95302C006DE161 /* AuthenticationViewModel.swift */,
+				373E8BE92C9530BA006DE161 /* AppleSignInHelper.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		373E8BEB2C96ACA0006DE161 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				373E8BEC2C96ACD4006DE161 /* Query+EXT.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		374069542C2E482500692ECD /* Utilities */ = {
@@ -574,6 +601,7 @@
 				374069792C2F14AC00692ECD /* LoadDataView.swift */,
 				37A655232BA5F88200B96BEB /* TabHolderView.swift */,
 				37A6552F2BA5F98C00B96BEB /* Enums.swift */,
+				373E8BE62C952FF8006DE161 /* Authentication */,
 				37A655312BA745A300B96BEB /* Login */,
 				370730742BF723BB00E95989 /* Movements */,
 				376B58AA2C4D6535007C82E9 /* Routines */,
@@ -581,6 +609,7 @@
 				370730732BF7239D00E95989 /* Activity */,
 				37A655342BA745D400B96BEB /* Settings */,
 				37A655322BA745C700B96BEB /* Models */,
+				373E8BEB2C96ACA0006DE161 /* Extensions */,
 				374069542C2E482500692ECD /* Utilities */,
 				37A6550D2BA5385800B96BEB /* Assets.xcassets */,
 				37A6550F2BA5385800B96BEB /* One_Rep.entitlements */,
@@ -601,11 +630,9 @@
 			isa = PBXGroup;
 			children = (
 				374069732C2E664900692ECD /* LoginView.swift */,
+				37A655252BA5F8A700B96BEB /* SignInWithAppleView.swift */,
 				37A655272BA5F8C200B96BEB /* OneRepLogo.swift */,
 				37881F4F2C05AC1800ABBF42 /* OneRepProgressView.swift */,
-				37A655252BA5F8A700B96BEB /* SignInWithApple.swift */,
-				3740696F2C2E5D9800692ECD /* AuthManager.swift */,
-				374069712C2E5EB400692ECD /* AppleSignInManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -714,9 +741,10 @@
 		37FAB26E2C442E7A00FDD05B /* User */ = {
 			isa = PBXGroup;
 			children = (
-				37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */,
+				373E8BE22C948BB9006DE161 /* UserModel.swift */,
+				373E8BE42C948D2E006DE161 /* UserManager.swift */,
 				37FAB2682C44278400FDD05B /* UserViewModel.swift */,
-				3753E6362C85163000182530 /* UserNetworkManager.swift */,
+				37881F612C166B6D00ABBF42 /* BodyweightEntry.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -841,11 +869,11 @@
 				3753E5BF2C646FA600182530 /* DeleteRoutineButton.swift in Sources */,
 				37A655772BC60E4400B96BEB /* EditMovementButton.swift in Sources */,
 				3753E5F32C77EE6100182530 /* LogViewModel.swift in Sources */,
-				3753E6372C85163000182530 /* UserNetworkManager.swift in Sources */,
-				374069702C2E5D9800692ECD /* AuthManager.swift in Sources */,
+				373E8BE52C948D2E006DE161 /* UserManager.swift in Sources */,
+				374069702C2E5D9800692ECD /* AuthenticationManager.swift in Sources */,
 				370730722BF3BE8900E95989 /* ActivityView.swift in Sources */,
 				376B58A52C4C52D5007C82E9 /* AppearanceSection.swift in Sources */,
-				37A655262BA5F8A700B96BEB /* SignInWithApple.swift in Sources */,
+				37A655262BA5F8A700B96BEB /* SignInWithAppleView.swift in Sources */,
 				37A655282BA5F8C200B96BEB /* OneRepLogo.swift in Sources */,
 				37A655622BC1EF6A00B96BEB /* ThemeSection.swift in Sources */,
 				370730782BF72A1800E95989 /* CalendarDateButton.swift in Sources */,
@@ -860,6 +888,7 @@
 				3753E5B32C61C3A100182530 /* AddMovementsView.swift in Sources */,
 				370730852BF9D57000E95989 /* MoveMonthButtons.swift in Sources */,
 				37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */,
+				373E8BE82C95302C006DE161 /* AuthenticationViewModel.swift in Sources */,
 				3707309B2BFF71E800E95989 /* EditRepsTextField.swift in Sources */,
 				37881F642C1DEA5D00ABBF42 /* LogBodyweightSection.swift in Sources */,
 				37A655412BAA8DD500B96BEB /* MovementNameTextField.swift in Sources */,
@@ -885,6 +914,7 @@
 				3753E62F2C82674C00182530 /* ActivityViewModel.swift in Sources */,
 				37A6555B2BBDADD100B96BEB /* DeleteMovementButton.swift in Sources */,
 				3753E5B92C6443C100182530 /* EditRoutineView.swift in Sources */,
+				373E8BED2C96ACD4006DE161 /* Query+EXT.swift in Sources */,
 				3707306A2BF083C300E95989 /* DeleteLogTrashIconButton.swift in Sources */,
 				37881F662C1DF34D00ABBF42 /* BodyweightView.swift in Sources */,
 				37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */,
@@ -906,9 +936,11 @@
 				3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */,
 				3707309E2BFF843400E95989 /* UpdateLogButton.swift in Sources */,
 				37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */,
+				373E8BEA2C9530BA006DE161 /* AppleSignInHelper.swift in Sources */,
 				3753E5BD2C646CAF00182530 /* UpdateRoutineButton.swift in Sources */,
 				370730682BF07E6F00E95989 /* ShowFullScreenButton.swift in Sources */,
 				37A6552C2BA5F8FA00B96BEB /* MovementSectionHolderView.swift in Sources */,
+				373E8BE32C948BB9006DE161 /* UserModel.swift in Sources */,
 				37A655382BA7470B00B96BEB /* Log.swift in Sources */,
 				370730942BFF0C7200E95989 /* EditWeightTextField.swift in Sources */,
 				37A655302BA5F98C00B96BEB /* Enums.swift in Sources */,
@@ -1069,7 +1101,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Rep/One_Rep.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"One Rep/Preview Content\"";
 				DEVELOPMENT_TEAM = GSRZAW977J;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1094,10 +1126,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dylanierugan.One-Rep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1108,7 +1141,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "One Rep/One_Rep.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"One Rep/Preview Content\"";
 				DEVELOPMENT_TEAM = GSRZAW977J;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1133,10 +1166,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dylanierugan.One-Rep";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

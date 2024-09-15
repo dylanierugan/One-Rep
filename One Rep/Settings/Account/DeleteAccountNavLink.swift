@@ -12,7 +12,6 @@ struct DeleteAccountNavLink: View {
     
     // MARK: - Global Properties
     
-    @EnvironmentObject var authManager: AuthManager
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var viewRouter: ViewRouter
     

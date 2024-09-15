@@ -24,7 +24,6 @@ struct RecordBodyweightView: View {
     @State private var bodyweight: Double = 130
     @State private var prevBodyweight: Double = 0
     @State private var showProgressView = false
-    @Environment(\.dismiss) private var dismiss
     
     // MARK: - Views
     
@@ -48,9 +47,8 @@ struct RecordBodyweightView: View {
                     if showProgressView {
                         ProgressView()
                     } else {
-                        AddNewBodyweightButton(bodyweight: $bodyweight, prevBodyweight: $prevBodyweight) {
-                            addBodyweight()
-                        }
+                        AddNewBodyweightButton(bodyweight: $bodyweight,
+                                               prevBodyweight: $prevBodyweight)
                     }
                 }
                 ToolbarItemGroup(placement: .keyboard) {
@@ -66,34 +64,24 @@ struct RecordBodyweightView: View {
             }
             .padding(.horizontal, 16)
         }
-        .onAppear() {
-            if let bodyweightEntry = userViewModel.bodyweightEntries.first {
-                bodyweight = bodyweightEntry.bodyweight
-                prevBodyweight = bodyweightEntry.bodyweight
-            }
-        }
+        .onAppear { setLastBodyweightEntry() }
     }
     
     // MARK: - Functions
+    
+    private func setLastBodyweightEntry() {
+        userViewModel.bodyweightEntries = userViewModel.bodyweightEntries.sorted { $0.timeCreated > $1.timeCreated }
+        if let bodyweightEntry = userViewModel.bodyweightEntries.first {
+            bodyweight = bodyweightEntry.bodyweight
+            prevBodyweight = bodyweightEntry.bodyweight
+        }
+    }
     
     private func formatWeightString(_ weight: Double) -> String {
         if weight.truncatingRemainder(dividingBy: 1) == 0 {
             return String(format: "%.0f", weight)
         } else {
             return String(format: "%.1f", weight)
-        }
-    }
-    
-    private func addBodyweight() {
-        let docId = UUID().uuidString
-        let newBodyweight = BodyweightEntry(id: docId, userId: userViewModel.userId, bodyweight: bodyweight, timeAdded: Date().timeIntervalSince1970)
-        prevBodyweight = bodyweight
-        Task {
-            showProgressView = true
-            let result = await userViewModel.addBodyweight(newBodyweight)
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                dismiss()
-            }) // TODO: Handle error
         }
     }
 }
