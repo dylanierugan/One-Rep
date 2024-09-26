@@ -10,76 +10,78 @@ import FirebaseFirestore
 
 class MovementsNetworkManager {
     
-    private let db = Firestore.firestore()
-    private var listenerRegistration: ListenerRegistration?
+    static let shared = MovementsNetworkManager()
     
-    func subscribeToMovements(userId: String, completion: @escaping ([Movement]?, Error?) -> Void) {
-        if listenerRegistration == nil {
-            listenerRegistration = db.collection(FirebaseCollection.MovementCollection.rawValue)
-                .whereField(MovementAttributes.UserId.rawValue, isEqualTo: userId)
-                .addSnapshotListener { querySnapshot, error in
-                    if let error = error {
-                        completion(nil, error)
-                        return
-                    }
-                    guard let querySnapshot = querySnapshot else {
-                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"])
-                        completion(nil, error)
-                        return
-                    }
-                    var movements = [Movement]()
-                    for document in querySnapshot.documents {
-                        let docId = document.documentID
-                        let userId = document[MovementAttributes.UserId.rawValue] as? String ?? ""
-                        let name = document[MovementAttributes.Name.rawValue] as? String ?? ""
-                        let muscleGroupString = document[MovementAttributes.MuscleGroup.rawValue] as? String ?? ""
-                        let muscleGroup = MuscleGroup(rawValue: muscleGroupString) ?? MuscleGroup.Arms
-                        let movementTypeString = document[MovementAttributes.MovementType.rawValue] as? String ?? ""
-                        let movementType = MovementType(rawValue: movementTypeString) ?? MovementType.Weight
-                        let timeAdded = document[MovementAttributes.TimeAdded.rawValue] as? Double ?? 0
-                        let isPremium = document[MovementAttributes.IsPremium.rawValue] as? Bool ?? false
-                        let mutatingValue = document[MovementAttributes.MutatingValue.rawValue] as? Double ?? 0
-                        let movement = Movement(id: docId, userId: userId, name: name, muscleGroup: muscleGroup, movementType: movementType, timeAdded: timeAdded, isPremium: isPremium, mutatingValue: mutatingValue)
-                        movements.append(movement)
-                    }
-                    completion(movements, nil)
-                }
-        }
+    // MARK: - Properties
+    
+    private let userCollection: CollectionReference = Firestore.firestore().collection(FirebaseCollection.UserCollection.rawValue)
+    
+    private func userDocument(userId: String) -> DocumentReference {
+        userCollection.document(userId)
     }
     
-    func unsubscribe() {
-        if listenerRegistration != nil {
-            listenerRegistration?.remove()
-            listenerRegistration = nil
-        }
+    private func movementCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
     }
     
-    func addMovement(_ movement: Movement) async -> FirebaseResult {
-        do {
-            try db.collection(FirebaseCollection.MovementCollection.rawValue).document(movement.id).setData(from: movement)
-            return .success
-        } catch {
-            return .failure(error)
-        }
+    private func userMovementDocument(userId: String, movementId: String) -> DocumentReference {
+        movementCollection(userId: userId).document(movementId)
     }
     
-    func deleteMovement(docId: String) async -> FirebaseResult {
-        do {
-            try await db.collection(FirebaseCollection.MovementCollection.rawValue).document(docId).delete()
-            return .success
-        } catch {
-            return .failure(error)
+    // MARK: - Functions
+    
+    func getMovements(userId: String) async throws -> [Movement] {
+        let snapshot = try await movementCollection(userId: userId).getDocuments(as: Movement.self)
+        var movements: [Movement] = []
+        for document in snapshot {
+            movements.append(document)
         }
+        return movements
     }
-
-    func deleteAllUserMovements(for userId: String, movements: [Movement]) async -> [FirebaseResult] {
-        var results = [FirebaseResult]()
+    
+    func addMovement(userId: String, newMovement: Movement) async throws {
+        let document = movementCollection(userId: userId).document()
+        let documentId = document.documentID
+        let data: [String:Any] = [
+            Movement.CodingKeys.id.rawValue : documentId,
+            Movement.CodingKeys.name.rawValue : newMovement.name,
+            Movement.CodingKeys.muscleGroup.rawValue : newMovement.muscleGroup.rawValue,
+            Movement.CodingKeys.movementType.rawValue : newMovement.movementType.rawValue,
+            Movement.CodingKeys.timeCreated.rawValue : newMovement.timeCreated,
+            Movement.CodingKeys.isPremium.rawValue : newMovement.isPremium,
+            Movement.CodingKeys.mutatingValue.rawValue : newMovement.mutatingValue,
+        ]
+        try await document.setData(data, merge: false)
+    }
+    
+    func updateMovementAttributes(userId: String, movement: Movement) async throws {
+        let data: [String:Any] = [
+            Movement.CodingKeys.name.rawValue : movement.name,
+            Movement.CodingKeys.muscleGroup.rawValue : movement.muscleGroup.rawValue,
+            Movement.CodingKeys.movementType.rawValue : movement.movementType.rawValue,
+        ]
+        try await userMovementDocument(userId: userId, movementId: movement.id).updateData(data)
+    }
+    
+    func updateMovementMutatingValue(userId: String, movement: Movement) async throws {
+        let data: [String:Any] = [
+            Movement.CodingKeys.mutatingValue.rawValue : movement.mutatingValue,
+        ]
+        try await userMovementDocument(userId: userId, movementId: movement.id).updateData(data)
+    }
+    
+    func deleteMovement(userId: String, movementId: String) async throws {
+        try await userMovementDocument(userId: userId, movementId: movementId).delete()
+    }
+    
+    func deleteMovementNoReturn(userId: String, movementId: String) async throws {
+        try await userMovementDocument(userId: userId, movementId: movementId).delete()
+    }
+    
+    func deleteAllMovements(userId: String) async throws {
+        let movements = try await getMovements(userId: userId)
         for movement in movements {
-            if movement.userId == userId {
-                let result = await deleteMovement(docId: movement.id)
-                results.append(result)
-            }
+            let _ = try await deleteMovementNoReturn(userId: userId, movementId: movement.id)
         }
-        return results
     }
 }

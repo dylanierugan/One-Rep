@@ -19,15 +19,15 @@ final class UserManager {
         userCollection.document(userId)
     }
     
-    private let encoder: Firestore.Encoder = {
-        let encoder = Firestore.Encoder()
-        return encoder
-    }()
-
-    private let decoder: Firestore.Decoder = {
-        let decoder = Firestore.Decoder()
-        return decoder
-    }()
+//    private let encoder: Firestore.Encoder = {
+//        let encoder = Firestore.Encoder()
+//        return encoder
+//    }()
+//
+//    private let decoder: Firestore.Decoder = {
+//        let decoder = Firestore.Decoder()
+//        return decoder
+//    }()
     
     // MARK: - Public Functions
     
@@ -36,12 +36,7 @@ final class UserManager {
     }
     
     func getUser(userId: String) async throws -> UserModel {
-        do {
-            return try await userDocument(userId: userId).getDocument(as: UserModel.self)
-        } catch {
-            print(error)
-            throw error
-        }
+        return try await userDocument(userId: userId).getDocument(as: UserModel.self)
     }
     
     func updateUserPremiumStatus(userId: String, isPremium: Bool) async throws {
@@ -53,18 +48,12 @@ final class UserManager {
     
     // MARK: - Bodyweight Functions
     
-    private var bodyweightListener: ListenerRegistration? = nil
-    
     private func bodyweightCollection(userId: String) -> CollectionReference {
         userDocument(userId: userId).collection(FirebaseCollection.BodyweightCollection.rawValue)
     }
     
     private func userBodyweightDocument(userId: String, bodyweightEntryId: String) -> DocumentReference {
         bodyweightCollection(userId: userId).document(bodyweightEntryId)
-    }
-    
-    func removeListenerForAllUserFavoriteProducts() {
-        self.bodyweightListener?.remove()
     }
     
     func getBodyweightEntries(userId: String) async throws -> [BodyweightEntry] {
@@ -76,23 +65,7 @@ final class UserManager {
         return bodyweightEntries
     }
     
-    func addListenerForBodyweightEntries(userId: String, completion: @escaping (Result<[BodyweightEntry], Error>) -> Void) {
-        self.bodyweightListener = bodyweightCollection(userId: userId).addSnapshotListener { querySnapshot, error in
-            if let error = error {
-                completion(.failure(error)) // Return error if there is one
-                return
-            }
-            guard let documents = querySnapshot?.documents else {
-                completion(.success([])) // Return empty array if no documents
-                return
-            }
-            let bodyweightEntries: [BodyweightEntry] = documents.compactMap { try? $0.data(as: BodyweightEntry.self) }
-            completion(.success(bodyweightEntries)) // Return the entries
-        }
-    }
-
-    
-    func addUserBodyweight(userId: String, bodyweight: Double) async throws {
+    func addUserBodyweight(userId: String, bodyweight: Double) async throws -> [BodyweightEntry] {
         let document = bodyweightCollection(userId: userId).document()
         let documentId = document.documentID
         let data: [String:Any] = [
@@ -101,16 +74,18 @@ final class UserManager {
             BodyweightEntry.CodingKeys.timeCreated.rawValue : Date()
         ]
         try await document.setData(data, merge: false)
+        return try await getBodyweightEntries(userId: userId)
     }
     
-    func removeBodyweight(userId: String, bodyweightEntryId: String) async throws {
+    func removeBodyweight(userId: String, bodyweightEntryId: String) async throws -> [BodyweightEntry] {
         try await userBodyweightDocument(userId: userId, bodyweightEntryId: bodyweightEntryId).delete()
+        return try await getBodyweightEntries(userId: userId)
     }
     
     func deleteAllBodyweightEntries(userId: String) async throws {
         let bodyweightEntries = try await getBodyweightEntries(userId: userId)
         for entry in bodyweightEntries {
-            try await removeBodyweight(userId: userId, bodyweightEntryId: entry.id)
+            let _ = try await removeBodyweight(userId: userId, bodyweightEntryId: entry.id)
         }
     }
     

@@ -12,11 +12,12 @@ struct LogListView: View {
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
-    @EnvironmentObject var logsViewModel: LogsViewModel
     
     // MARK: - Public Properties
     
     var movement: Movement
+    @ObservedObject var logsViewModel: LogsViewModel
+    
     @Binding var isEditingLogs: Bool
     @Binding var showLogSetView: Bool
     @Binding var showDoneToolBar: Bool
@@ -53,8 +54,7 @@ struct LogListView: View {
                                     }
                                     if isEditingLogs {
                                         DeleteLogTrashIconButton(movement: movement,
-                                                                 log: log,
-                                                                 selectedLog: $selectedLog)
+                                                                 log: log)
                                             .padding(.horizontal, 8)
                                             .padding(.vertical, 8)
                                     }

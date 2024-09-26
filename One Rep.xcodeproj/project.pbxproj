@@ -40,6 +40,9 @@
 		373E8BE82C95302C006DE161 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE72C95302C006DE161 /* AuthenticationViewModel.swift */; };
 		373E8BEA2C9530BA006DE161 /* AppleSignInHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BE92C9530BA006DE161 /* AppleSignInHelper.swift */; };
 		373E8BED2C96ACD4006DE161 /* Query+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BEC2C96ACD4006DE161 /* Query+EXT.swift */; };
+		373E8BEF2CA494F4006DE161 /* AddMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BEE2CA494F4006DE161 /* AddMovementViewModel.swift */; };
+		373E8BF12CA49881006DE161 /* EditMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BF02CA49881006DE161 /* EditMovementViewModel.swift */; };
+		373E8BF32CA4A2E0006DE161 /* SelectedMovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373E8BF22CA4A2E0006DE161 /* SelectedMovementViewModel.swift */; };
 		374069582C2E530C00692ECD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 374069572C2E530C00692ECD /* GoogleService-Info.plist */; };
 		374069702C2E5D9800692ECD /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740696F2C2E5D9800692ECD /* AuthenticationManager.swift */; };
 		374069722C2E5EB400692ECD /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069712C2E5EB400692ECD /* AppleSignInManager.swift */; };
@@ -47,7 +50,6 @@
 		374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069752C2E945700692ECD /* MovementsViewModel.swift */; };
 		3740697A2C2F14AC00692ECD /* LoadDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374069792C2F14AC00692ECD /* LoadDataView.swift */; };
 		3740697C2C2FC26D00692ECD /* LogsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740697B2C2FC26D00692ECD /* LogsViewModel.swift */; };
-		3742229F2C37226300A7AEFA /* MovementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3742229E2C37226300A7AEFA /* MovementViewModel.swift */; };
 		3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5A62C560DD000182530 /* AddRoutineButton.swift */; };
 		3753E5AB2C5C3A3500182530 /* RoutineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5AA2C5C3A3500182530 /* RoutineCard.swift */; };
 		3753E5AD2C5D399900182530 /* SelectedRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753E5AC2C5D399900182530 /* SelectedRoutineView.swift */; };
@@ -145,7 +147,7 @@
 		37A655602BC1B95A00B96BEB /* FontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6555F2BC1B95A00B96BEB /* FontModifier.swift */; };
 		37A655622BC1EF6A00B96BEB /* ThemeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655612BC1EF6A00B96BEB /* ThemeSection.swift */; };
 		37A655642BC1F00A00B96BEB /* ThemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655632BC1F00A00B96BEB /* ThemeModel.swift */; };
-		37A655672BC6025300B96BEB /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655662BC6025300B96BEB /* LogView.swift */; };
+		37A655672BC6025300B96BEB /* SelectedMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655662BC6025300B96BEB /* SelectedMovementView.swift */; };
 		37A655692BC602CC00B96BEB /* MutateRepsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A655682BC602CC00B96BEB /* MutateRepsButton.swift */; };
 		37A6556B2BC602F000B96BEB /* MutateWeightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6556A2BC602F000B96BEB /* MutateWeightButton.swift */; };
 		37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A6556C2BC60CD300B96BEB /* MutateRepsView.swift */; };
@@ -195,6 +197,9 @@
 		373E8BE72C95302C006DE161 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		373E8BE92C9530BA006DE161 /* AppleSignInHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInHelper.swift; sourceTree = "<group>"; };
 		373E8BEC2C96ACD4006DE161 /* Query+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Query+EXT.swift"; sourceTree = "<group>"; };
+		373E8BEE2CA494F4006DE161 /* AddMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovementViewModel.swift; sourceTree = "<group>"; };
+		373E8BF02CA49881006DE161 /* EditMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovementViewModel.swift; sourceTree = "<group>"; };
+		373E8BF22CA4A2E0006DE161 /* SelectedMovementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMovementViewModel.swift; sourceTree = "<group>"; };
 		374069572C2E530C00692ECD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3740696F2C2E5D9800692ECD /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		374069712C2E5EB400692ECD /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
@@ -202,7 +207,6 @@
 		374069752C2E945700692ECD /* MovementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsViewModel.swift; sourceTree = "<group>"; };
 		374069792C2F14AC00692ECD /* LoadDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDataView.swift; sourceTree = "<group>"; };
 		3740697B2C2FC26D00692ECD /* LogsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewModel.swift; sourceTree = "<group>"; };
-		3742229E2C37226300A7AEFA /* MovementViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovementViewModel.swift; sourceTree = "<group>"; };
 		3753E5A62C560DD000182530 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		3753E5AA2C5C3A3500182530 /* RoutineCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCard.swift; sourceTree = "<group>"; };
 		3753E5AC2C5D399900182530 /* SelectedRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineView.swift; sourceTree = "<group>"; };
@@ -274,7 +278,7 @@
 		37A6555F2BC1B95A00B96BEB /* FontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontModifier.swift; sourceTree = "<group>"; };
 		37A655612BC1EF6A00B96BEB /* ThemeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSection.swift; sourceTree = "<group>"; };
 		37A655632BC1F00A00B96BEB /* ThemeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeModel.swift; sourceTree = "<group>"; };
-		37A655662BC6025300B96BEB /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		37A655662BC6025300B96BEB /* SelectedMovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMovementView.swift; sourceTree = "<group>"; };
 		37A655682BC602CC00B96BEB /* MutateRepsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutateRepsButton.swift; sourceTree = "<group>"; };
 		37A6556A2BC602F000B96BEB /* MutateWeightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutateWeightButton.swift; sourceTree = "<group>"; };
 		37A6556C2BC60CD300B96BEB /* MutateRepsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutateRepsView.swift; sourceTree = "<group>"; };
@@ -348,8 +352,9 @@
 		370730742BF723BB00E95989 /* Movements */ = {
 			isa = PBXGroup;
 			children = (
-				3753E5E52C77E16400182530 /* ViewMovements */,
+				3753E5E52C77E16400182530 /* MovementTabView */,
 				37A655572BBDAD5300B96BEB /* AddMovement */,
+				37A655652BC6018700B96BEB /* SelectedMovement */,
 				37A655592BBDADAD00B96BEB /* EditMovement */,
 			);
 			path = Movements;
@@ -368,6 +373,7 @@
 		370730992BFF719C00E95989 /* EditLog */ = {
 			isa = PBXGroup;
 			children = (
+				3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */,
 				370730952BFF13AD00E95989 /* EditLogView.swift */,
 				376B58A62C4C8D79007C82E9 /* EditBodyweightTextField.swift */,
 				370730932BFF0C7200E95989 /* EditWeightTextField.swift */,
@@ -382,6 +388,7 @@
 		3707309C2BFF734C00E95989 /* AddLog */ = {
 			isa = PBXGroup;
 			children = (
+				3753E5F22C77EE6100182530 /* LogViewModel.swift */,
 				37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */,
 				37FAB2662C3B013C00FDD05B /* LogListView.swift */,
 				37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */,
@@ -433,9 +440,10 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		3753E5E52C77E16400182530 /* ViewMovements */ = {
+		3753E5E52C77E16400182530 /* MovementTabView */ = {
 			isa = PBXGroup;
 			children = (
+				374069752C2E945700692ECD /* MovementsViewModel.swift */,
 				37A6552B2BA5F8FA00B96BEB /* MovementSectionHolderView.swift */,
 				3753E62C2C813EFB00182530 /* MovementsView.swift */,
 				3707306F2BF16ECD00E95989 /* MovementSelectionPicker.swift */,
@@ -443,7 +451,7 @@
 				37A655422BAA902300B96BEB /* AddMovementToolButton.swift */,
 				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
 			);
-			path = ViewMovements;
+			path = MovementTabView;
 			sourceTree = "<group>";
 		};
 		3753E5E62C77E19200182530 /* ViewRoutines */ = {
@@ -489,15 +497,6 @@
 				3753E5BE2C646FA600182530 /* DeleteRoutineButton.swift */,
 			);
 			path = EditRoutine;
-			sourceTree = "<group>";
-		};
-		3753E5EA2C77E82A00182530 /* SelectedMovement */ = {
-			isa = PBXGroup;
-			children = (
-				37A655662BC6025300B96BEB /* LogView.swift */,
-				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
-			);
-			path = SelectedMovement;
 			sourceTree = "<group>";
 		};
 		3753E5EC2C77E85B00182530 /* Account */ = {
@@ -605,7 +604,6 @@
 				37A655312BA745A300B96BEB /* Login */,
 				370730742BF723BB00E95989 /* Movements */,
 				376B58AA2C4D6535007C82E9 /* Routines */,
-				37A655652BC6018700B96BEB /* Logs */,
 				370730732BF7239D00E95989 /* Activity */,
 				37A655342BA745D400B96BEB /* Settings */,
 				37A655322BA745C700B96BEB /* Models */,
@@ -667,6 +665,7 @@
 		37A655572BBDAD5300B96BEB /* AddMovement */ = {
 			isa = PBXGroup;
 			children = (
+				373E8BEE2CA494F4006DE161 /* AddMovementViewModel.swift */,
 				37A6553E2BAA8BCE00B96BEB /* AddMovementView.swift */,
 				37A655402BAA8DD500B96BEB /* MovementNameTextField.swift */,
 				37881F512C0DA22A00ABBF42 /* MovementTypePicker.swift */,
@@ -679,6 +678,7 @@
 		37A655592BBDADAD00B96BEB /* EditMovement */ = {
 			isa = PBXGroup;
 			children = (
+				373E8BF02CA49881006DE161 /* EditMovementViewModel.swift */,
 				37A655552BBDAD4F00B96BEB /* EditMovementView.swift */,
 				37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */,
 				37A6555A2BBDADD100B96BEB /* DeleteMovementButton.swift */,
@@ -686,22 +686,23 @@
 			path = EditMovement;
 			sourceTree = "<group>";
 		};
-		37A655652BC6018700B96BEB /* Logs */ = {
+		37A655652BC6018700B96BEB /* SelectedMovement */ = {
 			isa = PBXGroup;
 			children = (
-				3753E5EA2C77E82A00182530 /* SelectedMovement */,
+				3740697B2C2FC26D00692ECD /* LogsViewModel.swift */,
+				373E8BF22CA4A2E0006DE161 /* SelectedMovementViewModel.swift */,
+				37A655662BC6025300B96BEB /* SelectedMovementView.swift */,
+				37A655762BC60E4400B96BEB /* EditMovementButton.swift */,
 				3707309C2BFF734C00E95989 /* AddLog */,
 				370730992BFF719C00E95989 /* EditLog */,
 			);
-			path = Logs;
+			path = SelectedMovement;
 			sourceTree = "<group>";
 		};
 		37FAB26A2C442E2C00FDD05B /* Movement */ = {
 			isa = PBXGroup;
 			children = (
 				37A655352BA7466300B96BEB /* Movement.swift */,
-				3742229E2C37226300A7AEFA /* MovementViewModel.swift */,
-				374069752C2E945700692ECD /* MovementsViewModel.swift */,
 				3753E6342C850E9D00182530 /* MovementNetworkManager.swift */,
 			);
 			path = Movement;
@@ -711,9 +712,6 @@
 			isa = PBXGroup;
 			children = (
 				37A655372BA7470B00B96BEB /* Log.swift */,
-				3753E5F22C77EE6100182530 /* LogViewModel.swift */,
-				3753E5F42C77EEEE00182530 /* EditLogViewModel.swift */,
-				3740697B2C2FC26D00692ECD /* LogsViewModel.swift */,
 				3753E6392C85217300182530 /* LogsNetworkManager.swift */,
 			);
 			path = Log;
@@ -854,11 +852,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3707307A2BF8805900E95989 /* DayPicker.swift in Sources */,
-				3742229F2C37226300A7AEFA /* MovementViewModel.swift in Sources */,
 				37A6551E2BA5F80300B96BEB /* ViewRouter.swift in Sources */,
 				37881F5E2C164C5C00ABBF42 /* SetBodyweightButtonLink.swift in Sources */,
 				37881F602C164CDC00ABBF42 /* LogWeightSection.swift in Sources */,
 				3753E63C2C8523FF00182530 /* RoutineNetworkManager.swift in Sources */,
+				373E8BF12CA49881006DE161 /* EditMovementViewModel.swift in Sources */,
 				376B58AC2C4D659E007C82E9 /* RoutinesView.swift in Sources */,
 				376B58A72C4C8D79007C82E9 /* EditBodyweightTextField.swift in Sources */,
 				3753E5AD2C5D399900182530 /* SelectedRoutineView.swift in Sources */,
@@ -883,6 +881,7 @@
 				376B589D2C4C20AA007C82E9 /* ActivityMovementCard.swift in Sources */,
 				37A655242BA5F88200B96BEB /* TabHolderView.swift in Sources */,
 				376B58B62C50A2AA007C82E9 /* SelectMovementsButton.swift in Sources */,
+				373E8BEF2CA494F4006DE161 /* AddMovementViewModel.swift in Sources */,
 				3753E6332C850D3500182530 /* Extensions.swift in Sources */,
 				370730822BF9D39C00E95989 /* MoveWeekButtons.swift in Sources */,
 				3753E5B32C61C3A100182530 /* AddMovementsView.swift in Sources */,
@@ -949,12 +948,13 @@
 				37A655362BA7466300B96BEB /* Movement.swift in Sources */,
 				374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */,
 				3753E5C12C6BB40D00182530 /* HelpSection.swift in Sources */,
+				373E8BF32CA4A2E0006DE161 /* SelectedMovementViewModel.swift in Sources */,
 				3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */,
 				370730A52C01638D00E95989 /* AccountView.swift in Sources */,
 				37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */,
 				37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */,
 				3707307C2BF88AE500E95989 /* DateViewModel.swift in Sources */,
-				37A655672BC6025300B96BEB /* LogView.swift in Sources */,
+				37A655672BC6025300B96BEB /* SelectedMovementView.swift in Sources */,
 				37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */,
 				370730702BF16ECD00E95989 /* MovementSelectionPicker.swift in Sources */,
 				37C70C322BDD52C200B0375A /* LogCard.swift in Sources */,

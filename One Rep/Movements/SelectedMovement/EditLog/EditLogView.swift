@@ -14,29 +14,28 @@ struct EditLogView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var editLogViewModel: EditLogViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
     
-    @Binding var log: Log
-    @State var movement: Movement
+    var log: Log
+    var movement: Movement
     @FocusState var isInputActive: Bool
     
     // MARK: - Private Properties
     
-    @StateObject private var editLogViewModel: EditLogViewModel
-    @State private var isDeletingLog = false
-    @State private var isUpdatingLog = false
-    @State private var date = Date()
+    
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - Init
     
-    init(log: Binding<Log>, movement: Movement, logViewModel: LogViewModel) {
-        self._log = log
-        self._movement = State(initialValue: movement)
-        self._editLogViewModel = StateObject(wrappedValue: EditLogViewModel(lastLog: log.wrappedValue))
+    init(log: Log,
+         movement: Movement,
+         logViewModel: LogViewModel) {
+        self.log = log
+        self.movement = movement
     }
     
     // MARK: - View
@@ -79,7 +78,7 @@ struct EditLogView: View {
                                 EditRepsTextField(log: log, isInputActive: _isInputActive)
                             }
                         }
-                        DatePicker(EditLogStrings.DateTime.rawValue, selection: $date)
+                        DatePicker(EditLogStrings.DateTime.rawValue, selection: $editLogViewModel.date)
                             .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                             .datePickerStyle(.automatic)
                             .padding(.horizontal)
@@ -102,7 +101,7 @@ struct EditLogView: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
-                        if isDeletingLog {
+                        if editLogViewModel.isDeletingLog {
                             ProgressView()
                         } else {
                             DeleteLogButton() {
@@ -111,84 +110,50 @@ struct EditLogView: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        if isUpdatingLog {
+                        if editLogViewModel.isUpdatingLog {
                             ProgressView()
                         } else {
                             UpdateLogButton(updateLogInFirebase: {
-                                updateLogFirebase()
+                                updateLog()
                             })
                         }
                     }
                 }
             }
             .onAppear {
-                setLogEditModel()
+                editLogViewModel.log = log
+                editLogViewModel.setEditingValues(userViewModel: userViewModel)
             }
         }
-        .environmentObject(editLogViewModel)
     }
     
     // MARK: - Functions
     
-    private func setLogEditModel() {
-        date = Date(timeIntervalSince1970: log.timeAdded)
-        editLogViewModel.editWeight = log.weight
-        editLogViewModel.editWeightStr = log.weight.clean
-        editLogViewModel.editReps = log.reps
-        editLogViewModel.editRepsStr = String(log.reps)
-        if let bodyweightEntry = userViewModel.bodyweightEntries.first {
-            editLogViewModel.editBodyweight = bodyweightEntry.bodyweight
-        }
-    }
-    
     private func updateLog() {
-        isUpdatingLog = true
-        log.weight = editLogViewModel.editWeight
-        log.reps = editLogViewModel.editReps
-        log.bodyweight = editLogViewModel.editBodyweight
-        log.timeAdded = date.timeIntervalSince1970
-    }
-    
-    private func updateLogSuccess() {
-        if logsViewModel.weightSelection == WeightSelection.All.rawValue  {
-            logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue , movement: movement)
-        } else {
-            logsViewModel.repopulateViewModel(weightSelection: editLogViewModel.editWeightStr, movement: movement)
-        }
-        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
+        editLogViewModel.updateLog(userId: userViewModel.userId,
+                                   movement: movement) // TODO: Error handle
+        logsViewModel.updateLogInLocalList(editLogViewModel.log)
+        updateLogViewModel()
         dismiss()
     }
     
-    private func updateLogFirebase() {
-        updateLog()
-        Task {
-            let result = await logsViewModel.updateLog(log)
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    updateLogSuccess()
-                } // Todo - Handle error
-            })
-        }
-    }
-    
-    private func deleteLogSuccess() {
-        if logsViewModel.checkIfWeightDeleted(movementId: movement.id, weightSelection: logsViewModel.weightSelection) {
-            logsViewModel.repopulateViewModel(weightSelection: WeightSelection.All.rawValue, movement: movement)
-        } else {
-            logsViewModel.repopulateViewModel(weightSelection: logsViewModel.weightSelection, movement: movement)
-        }
-        logViewModel.setLastLog(logsViewModel.filteredLogs, weightSelection: logsViewModel.weightSelection, isBodyweight: movement.movementType == .Bodyweight ? true : false)
-        dismiss()
+    private func updateLogViewModel() {
+        logsViewModel.repopulateViewModel(movement: movement)
+        logViewModel.setLastLog(logsViewModel.filteredLogs,
+                                isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
     
     private func deleteLog() {
-        Task {
-            isDeletingLog = true
-            let result = await logsViewModel.deleteLog(docId: log.id)
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                deleteLogSuccess()
-            }) 
-            // TODO: Handle error
-        }
+        editLogViewModel.deleteLog(userId: userViewModel.userId,
+                                   movement: movement) // TODO: Error handle
+        logsViewModel.deleteLogInLocalList(editLogViewModel.log)
+        deleteLogViewModel()
+        dismiss()
+    }
+    
+    private func deleteLogViewModel() {
+        logsViewModel.repopulateViewModel(movement: movement)
+        logViewModel.setLastLog(logsViewModel.filteredLogs,
+                                isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
 }

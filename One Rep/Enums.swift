@@ -128,8 +128,8 @@ enum ErrorMessage: String {
 }
 
 enum FirebaseCollection: String {
-    case MovementCollection = "Movements"
-    case LogsCollection = "Logs"
+    case MovementCollection = "movements"
+    case LogsCollection = "logs"
     case RoutinesCollection = "Routines"
     case UserCollection = "users"
     case BodyweightCollection = "bodyweightEntrties"

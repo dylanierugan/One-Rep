@@ -25,8 +25,9 @@ struct LoadDataView: View {
         ZStack {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
-            if userViewModel.userLoading {
-                //                movementsViewModel.movementsLoading ||
+            if userViewModel.userLoading ||
+                movementsViewModel.movementsLoading ||
+                logsViewModel.logsLoading {
                 //                logsViewModel.logsLoading ||
                 //                routinesViewModel.routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
@@ -57,30 +58,31 @@ struct LoadDataView: View {
     
     private func loadAllData() async {
         setUserViewModelUserId()
-        await gerUser()
-        
+        await loadUser()
+        await loadMovements()
+        await loadLogs()
     }
     
-    private func gerUser() async {
+    private func loadUser() async {
         try? await userViewModel.loadCurrentUser()
-        userViewModel.addListenerForBodyweightEntries()
+        try? await userViewModel.loadBodyweightEntries()
     }
     
-    private func getMovements() {
+    private func loadMovements() async {
         if movementsViewModel.movements.isEmpty {
-            movementsViewModel.subscribeToMovements(userId: userViewModel.userId)
+            try? await movementsViewModel.loadMovements(userId: userViewModel.userId)
         }
     }
     
-    private func getLogs() {
+    private func loadLogs() async {
         if logsViewModel.logs.isEmpty {
-            logsViewModel.getLogsAddSnapshot(userId: userViewModel.userId)
+            try? await logsViewModel.loadLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
         }
     }
-    
-    private func getRoutines() {
-        if routinesViewModel.routines.isEmpty {
-            routinesViewModel.subscribeToRoutines(userId: userViewModel.userId)
-        }
-    }
+    //
+    //    private func getRoutines() {
+    //        if routinesViewModel.routines.isEmpty {
+    //            routinesViewModel.subscribeToRoutines(userId: userViewModel.userId)
+    //        }
+    //    }
 }

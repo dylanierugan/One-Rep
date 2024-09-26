@@ -15,10 +15,12 @@ struct MutateWeightView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var logsViewModel: LogsViewModel
     @EnvironmentObject var logViewModel: LogViewModel
+    @EnvironmentObject var movementsViewModel: MovementsViewModel
+    @EnvironmentObject var selectedMovementViewModel: SelectedMovementViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
     
-    @ObservedObject var movementViewModel = MovementViewModel()
     @FocusState var isInputActive: Bool
     
     // MARK: - Private Properties
@@ -38,7 +40,11 @@ struct MutateWeightView: View {
                             .foregroundColor(.secondary).opacity(0.7)
                     }
                 }
-                .onChange(of: mutatingValue) { pickerOnChangeSetMutatingValue() }
+                .onChange(of: mutatingValue) { 
+                    Task {
+                        await pickerOnChangeSetMutatingValue()
+                    }
+                }
             } label: {
                 HStack {
                     Text("\(MutateStrings.Weight.rawValue) (\(logsViewModel.unit.rawValue))")
@@ -52,7 +58,9 @@ struct MutateWeightView: View {
             .padding(.bottom, 6)
             
             HStack {
-                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -movementViewModel.movement.mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary,
+                                   icon: Icons.Minus.rawValue,
+                                   mutatingValue: -selectedMovementViewModel.movement.mutatingValue)
                 
                 TextField("", value: $logViewModel.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
                     .accentColor(Color(theme.darkBaseColor))
@@ -64,19 +72,18 @@ struct MutateWeightView: View {
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .focused($isInputActive)
                 
-                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: movementViewModel.movement.mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary,
+                                   icon: Icons.Plus.rawValue, mutatingValue: selectedMovementViewModel.movement.mutatingValue)
             }
         }
-        .onAppear() { mutatingValue = movementViewModel.movement.mutatingValue }
+        .onAppear() { mutatingValue = selectedMovementViewModel.movement.mutatingValue }
     }
     
     // MARK: - Functions
     
-    private func pickerOnChangeSetMutatingValue() {
-        Task {
-            movementViewModel.movement.mutatingValue = mutatingValue
-            let result = await movementViewModel.updateMovement()
-            ResultHandler.shared.handleResult(result: result) {}
-        }
+    private func pickerOnChangeSetMutatingValue() async {
+        selectedMovementViewModel.movement.mutatingValue = mutatingValue
+        selectedMovementViewModel.updateMovementMutatingValue(userId: userViewModel.userId)
+        movementsViewModel.updateMovementInList(selectedMovementViewModel.movement)
     }
 }

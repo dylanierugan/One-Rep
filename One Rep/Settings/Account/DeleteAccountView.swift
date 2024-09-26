@@ -70,9 +70,9 @@ struct DeleteAccountView: View {
     }
     
     private func deleteAllData() async {
-        _ = await movementsViewModel.deleteAllUserMovements(userId: userViewModel.userId)
+        movementsViewModel.deleteAllMovements(userId: userViewModel.userId)
         _ = await routinesViewModel.deleteAllUserRoutines(userId: userViewModel.userId)
-        _ = await logsViewModel.deleteAllUserLogs(userId: userViewModel.userId)
+//        _ = await logsViewModel.deleteAllUserLogs(userId: userViewModel.userId)
         userViewModel.deleteAllBodyweightEntries()
     }
 }

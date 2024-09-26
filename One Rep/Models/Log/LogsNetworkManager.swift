@@ -10,92 +10,95 @@ import FirebaseFirestore
 
 class LogsNetworkManager {
     
-    private let db = Firestore.firestore()
-    private var listenerRegistration: ListenerRegistration?
+    static let shared = LogsNetworkManager()
     
-    func getLogsAddSnapshot(userId: String, completion: @escaping ([Log]?, Error?) -> Void) {
-        db.collection(FirebaseCollection.LogsCollection.rawValue)
-            .whereField(LogAttributes.UserId.rawValue, isEqualTo: userId)
-            .addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    completion(nil, error)
-                    return
-                }
-                guard let querySnapshot = querySnapshot else {
-                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data found"])
-                    completion(nil, error)
-                    return
-                }
-                let logs = querySnapshot.documents.compactMap { document -> Log? in
-                    let docId = document.documentID
-                    let movementId = document[LogAttributes.MovementId.rawValue] as? String ?? ""
-                    let reps = document[LogAttributes.Reps.rawValue] as? Int ?? 0
-                    let weight = document[LogAttributes.Weight.rawValue] as? Double ?? 0
-                    let bodyweight = document[LogAttributes.Bodyweight.rawValue] as? Double ?? 0
-                    let isBodyWeight = document[LogAttributes.IsBodyWeight.rawValue] as? Bool ?? false
-                    let timeAdded = document[LogAttributes.TimeAdded.rawValue] as? Double ?? 0
-                    let unitString = document[LogAttributes.Unit.rawValue] as? String ?? ""
-                    let unit = UnitSelection(rawValue: unitString) ?? UnitSelection.lbs
-                    return Log(id: docId, userId: userId, movementId: movementId, reps: reps, weight: weight, bodyweight: bodyweight, isBodyWeight: isBodyWeight, timeAdded: timeAdded, unit: unit, index: 0)
-                }
-                completion(logs, nil)
-            }
-    }
-
-    func addLog(_ log: Log) async -> FirebaseResult {
-        do {
-            try db.collection(FirebaseCollection.LogsCollection.rawValue).document(log.id).setData(from: log)
-            return .success
-        } catch {
-            return .failure(error)
-        }
+    // MARK: - Properties
+    
+    private let userCollection: CollectionReference = Firestore.firestore().collection(FirebaseCollection.UserCollection.rawValue)
+    
+    private func userDocument(userId: String) -> DocumentReference {
+        userCollection.document(userId)
     }
     
-    func updateLog(_ log: Log) async -> FirebaseResult {
-        do {
-            try db.collection(FirebaseCollection.LogsCollection.rawValue).document(log.id).setData(from: log)
-            return .success
-        } catch {
-            return .failure(error)
-        }
+    private func movementCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
     }
     
-    func deleteLog(docId: String) async -> FirebaseResult {
-        do {
-            try await db.collection(FirebaseCollection.LogsCollection.rawValue).document(docId).delete()
-            return .success
-        } catch {
-            return .failure(error)
-        }
+    private func userMovementDocument(userId: String, movementId: String) -> DocumentReference {
+        movementCollection(userId: userId).document(movementId)
     }
     
-    func deleteAllMovementLogs(movementId: String, logs: [Log]) async -> FirebaseResult {
-        let logsToDelete = logs.filter { $0.movementId == movementId }
-        for log in logsToDelete {
-            do {
-                try await db.collection(FirebaseCollection.LogsCollection.rawValue).document(log.id).delete()
-            } catch {
-                return .failure(error)
+    private func movementLogsCollection(userId: String, movementId: String) -> CollectionReference {
+        userMovementDocument(userId: userId, movementId: movementId).collection(FirebaseCollection.LogsCollection.rawValue)
+    }
+    
+    private func movementLogDocument(userId: String, movementId: String, logId: String) -> DocumentReference {
+        movementLogsCollection(userId: userId, movementId: movementId).document(logId)
+    }
+    
+    // MARK: - Functions
+    
+    func getLogs(userId: String, movements: [Movement]) async throws -> [Log] {
+        var logs: [Log] = []
+        for movement in movements {
+            let snapshot = try await movementLogsCollection(userId: userId, movementId: movement.id).getDocuments(as: Log.self)
+            for document in snapshot {
+                logs.append(document)
             }
         }
-        return .success
+        return logs
     }
     
-    func deleteAllUserLogs(userId: String, logs: [Log]) async -> [FirebaseResult] {
-        var results = [FirebaseResult]()
-        for log in logs {
-            if log.userId == userId {
-                let result = await deleteLog(docId: log.id)
-                results.append(result)
-            }
+    func addLog(userId: String,
+                movement: Movement,
+                newLog: Log) async throws {
+        let document = movementLogsCollection(userId: userId, movementId: movement.id).document()
+        let documentId = document.documentID
+        let data: [String:Any] = [
+            Log.CodingKeys.id.rawValue : documentId,
+            Log.CodingKeys.userId.rawValue : userId,
+            Log.CodingKeys.movementId.rawValue: movement.id,
+            Log.CodingKeys.reps.rawValue : newLog.reps,
+            Log.CodingKeys.weight.rawValue : newLog.weight,
+            Log.CodingKeys.bodyweight.rawValue : newLog.bodyweight,
+            Log.CodingKeys.isBodyWeight.rawValue : newLog.isBodyWeight,
+            Log.CodingKeys.timeAdded.rawValue : newLog.timeAdded,
+            Log.CodingKeys.unit.rawValue : newLog.unit.rawValue
+        ]
+        try await document.setData(data, merge: false)
+    }
+    
+    func updateLog(userId: String,
+                   movement: Movement,
+                   log: Log) async throws {
+        let data: [String:Any] = [
+            Log.CodingKeys.reps.rawValue : log.reps,
+            Log.CodingKeys.weight.rawValue : log.weight,
+            Log.CodingKeys.bodyweight.rawValue : log.bodyweight,
+            Log.CodingKeys.unit.rawValue : log.unit.rawValue
+        ]
+        do {
+            try await movementLogDocument(userId: userId, movementId: movement.id, logId: log.id).updateData(data)
+        } catch {
+            print(error.localizedDescription)
         }
-        return results
     }
     
-    func unsubscribe() {
-        if listenerRegistration != nil {
-            listenerRegistration?.remove()
-            listenerRegistration = nil
+    func deleteLog(userId: String,
+                   movement: Movement,
+                   log: Log) async throws {
+        try await movementLogDocument(userId: userId, movementId: movement.id, logId: log.id).delete()
+    }
+    
+    func deleteAllLogs(userId: String,
+                       movements: [Movement],
+                       logs: [Log]) async throws {
+        for movement in movements {
+            for log in logs {
+                let _ = try await deleteLog(userId: userId,
+                                            movement: movement,
+                                            log: log)
+            }
         }
     }
 }

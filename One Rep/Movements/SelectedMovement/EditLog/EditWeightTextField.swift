@@ -1,14 +1,14 @@
 //
-//  EditRepsTextField.swift
+//  EditWeightTextfield.swift
 //  One Rep
 //
-//  Created by Dylan Ierugan on 5/23/24.
+//  Created by Dylan Ierugan on 5/22/24.
 //
 
-import Combine
 import SwiftUI
+import Combine
 
-struct EditRepsTextField: View {
+struct EditWeightTextField: View {
     
     // MARK: - Global Properties
     
@@ -19,35 +19,32 @@ struct EditRepsTextField: View {
     // MARK: - Public Properties
     
     @State var log: Log
+    @State var movement: Movement
     @FocusState var isInputActive: Bool
     
     // MARK: - View
     
     var body: some View {
         HStack(spacing: 8) {
-            MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
-            TextField("", text: $editLogViewModel.editRepsStr)
-                .onChange(of: editLogViewModel.editRepsStr) { newText, _ in
-                    editLogViewModel.bindEditRepValues()
-                }
+            MutateWieghtButton(isEditing: true, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -movement.mutatingValue)
+            TextField("", value: $editLogViewModel.weight,
+                      formatter: NumberFormatter.noDecimalUnlessNeeded)
                 .accentColor(Color(theme.darkBaseColor))
                 .multilineTextAlignment(.center)
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 .background(.secondary.opacity(0.05))
                 .frame(width: 84, alignment: .center)
                 .cornerRadius(10)
                 .customFont(size: .title3, weight: .semibold, kerning: 0, design: .rounded)
-                .onReceive(Just(editLogViewModel.editReps)) { _ in editLogViewModel.limitEditRepsText(3) }
                 .focused($isInputActive)
                 .onAppear() {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        editLogViewModel.editReps = log.reps
-                        editLogViewModel.editRepsStr = String(log.reps)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        logViewModel.weight = log.weight
                     }
                 }
-            MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
+            MutateWieghtButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: movement.mutatingValue)
         }
     }
 }

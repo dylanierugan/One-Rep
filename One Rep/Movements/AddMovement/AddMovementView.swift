@@ -18,15 +18,9 @@ struct AddMovementView: View {
     
     // MARK: - Private Properties
     
-    @State private var movementName = ""
-    @State private var muscleGroup: MuscleGroup = .Arms
-    @State private var movementType: MovementType = .Weight
-    @State private var showProgressView = false
-    @Environment(\.dismiss) private var dismiss
+    @StateObject private var addMovementViewModel = AddMovementViewModel()
     
-    private var isFormValid: Bool {
-        !movementName.isEmpty
-    }
+    @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
     
@@ -45,34 +39,35 @@ struct AddMovementView: View {
                         Text(AddMovementStrings.MovementName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
-                        MovementNameTextField(focus: true, movementName: $movementName, text: "")
+                        MovementNameTextField(focus: true, movementName: $addMovementViewModel.movementName, text: "")
                     }
                     .padding(.horizontal, 16)
                     
-                    MovementTypePicker(movementTypeSelection: $movementType, captionText: AddMovementStrings.MovementType.rawValue)
+                    MovementTypePicker(movementTypeSelection: $addMovementViewModel.movementType, captionText: AddMovementStrings.MovementType.rawValue)
                         .padding(.horizontal, 16)
                     
                     VStack(alignment: .leading,  spacing: 6) {
                         Text(AddMovementStrings.MuscleGroup.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
-                        MusclePicker(muscleGroup: $muscleGroup)
+                        MusclePicker(muscleGroup: $addMovementViewModel.muscleGroup)
                     }
                     .padding(.horizontal, 16)
                 }
                 .padding(.vertical, 24)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
-                        if showProgressView {
+                        if addMovementViewModel.showAddingMovementProgressView {
                             ProgressView()
                         } else {
-                            AddMovementButton(isFormValid: isFormValid, addMovementToFirebase: {
-                                addMovement(newMovement: createAndReturnMovement())
+                            AddMovementButton(isFormValid: addMovementViewModel.isFormValid, addMovementToFirebase: {
+                                addMovement()
                             })
                         }
                     }
                 }
-            } .onAppear { setMuscleGroup() }
+            }
+            .onAppear { setMuscleGroup() }
         }
     }
     
@@ -80,30 +75,13 @@ struct AddMovementView: View {
     
     private func setMuscleGroup() {
         if movementsViewModel.currentMuscleSelection != .All {
-            muscleGroup = movementsViewModel.currentMuscleSelection
+            addMovementViewModel.muscleGroup = movementsViewModel.currentMuscleSelection
         }
     }
     
-    private func createAndReturnMovement() -> Movement {
-        let docId = UUID().uuidString
-        let newMovement = Movement(id: docId,
-                                   userId: userViewModel.userId,
-                                   name: movementName,
-                                   muscleGroup: muscleGroup,
-                                   movementType: movementType,
-                                   timeAdded: Date.now.timeIntervalSince1970,
-                                   isPremium: false,
-                                   mutatingValue: 5.0)
-        return newMovement
-    }
-    
-    private func addMovement(newMovement: Movement) {
-        Task {
-            let result = await movementsViewModel.addMovement(newMovement)
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                showProgressView = false
-                dismiss()
-            })
-        }
+    private func addMovement() {
+        let newMovement = addMovementViewModel.addMovement(userId: userViewModel.userId) // TODO: Handle error
+        movementsViewModel.movements.append(newMovement)
+        dismiss()
     }
 }

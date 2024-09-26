@@ -15,7 +15,6 @@ class LogsViewModel: ObservableObject {
     @Published var logs = [Log]()
     
     @Published var filteredLogs = [Log]()
-    @Published var weightSelection = WeightSelection.All.rawValue
     @Published var listOfWeights = [String]()
     @Published var weightLogMap = [String: [Log]]()
     @Published var listOfDates = [String]()
@@ -33,18 +32,46 @@ class LogsViewModel: ObservableObject {
         self.unit = unit
     }
     
-    // MARK: - Data functions
+    // MARK: - Functions
+    
+    func loadLogs(userId: String, movements: [Movement]) async throws {
+        do {
+            logs = try await LogsNetworkManager.shared.getLogs(userId: userId, movements: movements)
+        } catch {
+            // TODO: Handle error
+        }
+        logsLoading = false
+    }
+    
+    func updateLogInLocalList(_ updatedLog: Log) {
+        if let index = logs.firstIndex(where: { $0.id == updatedLog.id }) {
+            logs[index] = updatedLog
+        }
+    }
+    
+    func deleteLogInLocalList(_ log: Log) {
+        if let index = logs.firstIndex(where: { $0.id == log.id }) {
+            logs.remove(at: index)
+        }
+    }
+    
+//    func deleteAllMovementLogs(movementId: String) async -> FirebaseResult {
+//        // return await networkManager.deleteAllMovementLogs(movementId: movementId, logs: logs)
+//    }
+    
+    // MARK: - Old Functions
     
     func clearData() {
         logs = []
     }
     
-    func deleteAllUserLogs(userId: String) async -> [FirebaseResult] {
-        return await networkManager.deleteAllUserLogs(userId: userId, logs: logs)
-    }
+//    func deleteAllUserLogs(userId: String) async -> [FirebaseResult] {
+//        // return await networkManager.deleteAllUserLogs(userId: userId, logs: logs)
+//    }
     
     func filterLogs(movementId: String) {
         filteredLogs = logs.filter { $0.movementId == movementId }
+        filteredLogs.sort { $0.timeAdded > $1.timeAdded }
     }
     
     func populateListOfWeights() {
@@ -63,19 +90,10 @@ class LogsViewModel: ObservableObject {
         return weightLogMap[weightSelection] == nil
     }
     
-    func filterWeightAndPopulateData(movementId: String) {
-        filterLogs(movementId: movementId)
-        if weightSelection != WeightSelection.All.rawValue {
-            let weight = (weightSelection as NSString).doubleValue
-            filteredLogs = filteredLogs.filter { $0.weight == weight }
-        }
-        filteredLogs.sort { $0.timeAdded > $1.timeAdded }
-    }
-    
     func populateListOfDates() {
         listOfDates = []
         for log in filteredLogs {
-            let stringDate = formatDate(date: log.timeAdded)
+            let stringDate = formatDate(date: log.timeAdded.timeIntervalSince1970)
             if !self.listOfDates.contains(stringDate) {
                 self.listOfDates.append(stringDate)
             }
@@ -85,7 +103,7 @@ class LogsViewModel: ObservableObject {
     func populateListOfDatesAllLogs() {
         listOfDates = []
         for log in logs {
-            let stringDate = formatDate(date: log.timeAdded)
+            let stringDate = formatDate(date: log.timeAdded.timeIntervalSince1970)
             if !self.listOfDates.contains(stringDate) {
                 self.listOfDates.append(stringDate)
             }
@@ -93,14 +111,12 @@ class LogsViewModel: ObservableObject {
     }
     
     func populateDateLogMap() {
-        dateLogMap = Dictionary(grouping: filteredLogs) { formatDate(date: $0.timeAdded) }
+        dateLogMap = Dictionary(grouping: filteredLogs) { formatDate(date: $0.timeAdded.timeIntervalSince1970) }
     }
     
-    func repopulateViewModel(weightSelection: String, movement: Movement) {
-        self.weightSelection = weightSelection
+    func repopulateViewModel(movement: Movement) {
         filterLogs(movementId: movement.id)
         populateListOfWeights()
-        filterWeightAndPopulateData(movementId: movement.id)
         populateListOfDates()
         populateDateLogMap()
     }
@@ -116,46 +132,4 @@ class LogsViewModel: ObservableObject {
         return dateFormatter.string(from: date)
     }
     
-    // MARK: - Firebase functions
-    
-    func unsubscribe() {
-        networkManager.unsubscribe()
-    }
-    
-    func getLogsAddSnapshot(userId: String) {
-        networkManager.getLogsAddSnapshot(userId: userId) { [weak self] logs, error in
-            if let error = error {
-                print("Error getting logs: \(error.localizedDescription)")
-                return
-            }
-            self?.logs = logs ?? []
-            self?.logsLoading = false
-        }
-    }
-    
-    func addLog(_ log: Log) async -> FirebaseResult {
-        let result = await networkManager.addLog(log)
-        if case .success = result {
-            logs.append(log)
-        }
-        return result
-    }
-    
-    func updateLog(_ log: Log) async -> FirebaseResult {
-        return await networkManager.updateLog(log)
-    }
-    
-    func deleteLog(docId: String) async -> FirebaseResult {
-        return await networkManager.deleteLog(docId: docId)
-    }
-    
-    func deleteAllMovementLogs(movementId: String) async -> FirebaseResult {
-        return await networkManager.deleteAllMovementLogs(movementId: movementId, logs: logs)
-    }
-    
-    deinit {
-        Task {
-            await self.unsubscribe()
-        }
-    }
 }

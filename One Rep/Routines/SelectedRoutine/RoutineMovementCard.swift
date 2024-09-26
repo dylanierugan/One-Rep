@@ -50,7 +50,7 @@ struct RoutineMovementCard: View {
             .frame(height: 52)
             .background(Color(theme.backgroundElementColor))
             .cornerRadius(16)
-            NavigationLink(destination: LogView(movement: movement)) {
+            NavigationLink(destination: SelectedMovementView(movement: movement)) {
                 EmptyView()
             } .opacity(0)
         }

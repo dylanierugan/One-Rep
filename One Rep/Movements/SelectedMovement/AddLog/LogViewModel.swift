@@ -11,24 +11,57 @@ class LogViewModel: ObservableObject {
     
     // MARK: - Properties
     
+    @Published var lastLog: Log? = nil
+    
     @Published var reps: Int = 0
     @Published var repsStr = ""
-    
     @Published var weight: Double = 0
     @Published var weightStr = ""
-    
     @Published var addWeightToBodyweight: Bool = false
-    
-    @Published var lastLog: Log? = nil
     
     // MARK: - Functions
     
-    func setLastLog(_ logs: [Log], weightSelection: String, isBodyweight: Bool) {
-        var sortedLogs = logs.sorted(by: { $0.timeAdded > $1.timeAdded })
-        if weightSelection != WeightSelection.All.rawValue  {
-            let selectedWeight = Double(weightSelection) ?? 0.0
-            sortedLogs = sortedLogs.filter { $0.weight == selectedWeight }
+    @MainActor 
+    func addLog(userId: String, movement: Movement, userViewModel: UserViewModel, unit: UnitSelection) -> Log {
+        let newLog = buildAndReturnLog(userId: userId, movement: movement, userViewModel: userViewModel, unit: unit)
+        Task {
+            do {
+                try await LogsNetworkManager.shared.addLog(userId: userId,
+                                                           movement: movement,
+                                                           newLog: newLog)
+            } catch {
+                // TODO: Handle error
+            }
         }
+        return newLog
+    }
+    
+    @MainActor 
+    func buildAndReturnLog(userId: String,
+                           movement: Movement,
+                           userViewModel: UserViewModel,
+                           unit: UnitSelection) -> Log {
+        let docId = UUID().uuidString
+        var log = Log()
+        if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
+            log = Log(
+                id: docId,
+                userId: userId,
+                movementId: movement.id,
+                reps: reps,
+                weight: addWeightToBodyweight == true ? weight : 0,
+                bodyweight: bodyWeightEntry.bodyweight,
+                isBodyWeight: movement.movementType == .Bodyweight,
+                timeAdded: Date(),
+                unit: unit
+            )
+        }
+        return log
+    }
+    
+    // MARK: - Mutating Functions
+    
+    func setLastLog(_ logs: [Log], isBodyweight: Bool) {
         lastLog = logs.first
         reps = lastLog?.reps ?? 12
         repsStr = String(lastLog?.reps ?? 12)
@@ -67,6 +100,8 @@ class LogViewModel: ObservableObject {
     }
 }
 
+// MARK: - Extensions
+
 extension Double {
     var clean: String {
        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
@@ -78,7 +113,7 @@ extension NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 1 /// You can set this to a reasonable number for your use case
+        formatter.maximumFractionDigits = 1
         return formatter
     }
 }

@@ -43,13 +43,10 @@ struct LogOutButton: View {
                 withAnimation {
                     viewRouter.currentPage = .loginView
                 }
-                movementsViewModel.unsubscribe()
-                movementsViewModel.clearData()
+                movementsViewModel.clearMovments()
                 routinesViewModel.unsubscribe()
                 routinesViewModel.clearData()
-                logsViewModel.unsubscribe()
                 logsViewModel.clearData()
-                userViewModel.userManager.removeListenerForAllUserFavoriteProducts()
                 userViewModel.clearLocalBodyweightEntries()
             } catch {
                 // TODO: Handle error

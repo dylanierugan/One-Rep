@@ -22,7 +22,7 @@ struct MovementCardButton: View {
     var body: some View {
         ZStack(alignment: .trailing) {
             NavigationLink {
-                LogView(movement: movement)
+                SelectedMovementView(movement: movement)
             } label: {
                 HStack {
                     HStack() {

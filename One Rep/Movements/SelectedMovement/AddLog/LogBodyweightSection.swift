@@ -18,7 +18,6 @@ struct LogBodyweightSection: View {
     
     // MARK: - Public Properties
     
-    @ObservedObject var movementViewModel = MovementViewModel()
     var movement: Movement
     @FocusState var isInputActive: Bool
     
@@ -38,8 +37,7 @@ struct LogBodyweightSection: View {
                             MutateRepsView()
                             Spacer()
                         }
-                        MutateWeightView(movementViewModel: MovementViewModel(movement: movement),
-                                         isInputActive: _isInputActive)
+                        MutateWeightView(isInputActive: _isInputActive)
                     }
                 } else {
                     HStack {
@@ -67,10 +65,6 @@ struct LogBodyweightSection: View {
                 Button {
                     withAnimation {
                         logViewModel.addWeightToBodyweight.toggle()
-                        if logViewModel.weight == 0 {
-                            logViewModel.weight = 10
-                            logViewModel.weightStr = "10"
-                        }
                     }
                 } label: {
                     Text(logViewModel.addWeightToBodyweight ? BodyweightStrings.RemoveWeight.rawValue : BodyweightStrings.AddWeight.rawValue)

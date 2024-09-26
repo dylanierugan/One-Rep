@@ -17,10 +17,6 @@ struct UpdateMovementButton: View {
     
     var updateMovementInFirebase: () -> Void
     
-    // MARK: - Private Properties
-    
-    @Environment(\.dismiss) private var dismiss
-    
     // MARK: - View
     
     var body: some View {

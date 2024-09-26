@@ -21,7 +21,7 @@ struct EditBodyweightTextField: View {
     // MARK: - View
     
     var body: some View {
-        TextField("", value: $editLogViewModel.editBodyweight,
+        TextField("", value: $editLogViewModel.bodyweight,
                   formatter: NumberFormatter.noDecimalUnlessNeeded)
         .accentColor(Color(theme.darkBaseColor))
         .multilineTextAlignment(.center)

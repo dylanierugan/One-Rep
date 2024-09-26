@@ -22,11 +22,7 @@ struct LogViewSubHeading: View {
     
     var body: some View {
         VStack {
-            if logsViewModel.filteredLogs.count != 0 {
-                if movement.movementType != .Bodyweight {
-                    WeightHorizontalScroller(movement: movement)
-                }
-            } else {
+            if logsViewModel.filteredLogs.count == 0 {
                 HStack {
                     Spacer()
                     Text(InfoText.NoData.rawValue)

@@ -28,7 +28,7 @@ class ActivityViewModel: ObservableObject {
     func populateListOfDatesAllLogs() {
         listOfDates = []
         for log in logs {
-            let stringDate = formatDate(date: log.timeAdded)
+            let stringDate = formatDate(date: log.timeAdded.timeIntervalSince1970)
             if !self.listOfDates.contains(stringDate) {
                 self.listOfDates.append(stringDate)
             }
@@ -43,7 +43,7 @@ class ActivityViewModel: ObservableObject {
             self.dateMovementLogMap[date] = [Movement:[Log]]()
         }
         for log in logs {
-            let stringDate = formatDate(date: log.timeAdded)
+            let stringDate = formatDate(date: log.timeAdded.timeIntervalSince1970)
             let movement = movements.first(where: {$0.id == log.movementId})
             if dateMovementLogMap[stringDate] != nil {
                 if let movement = movement {

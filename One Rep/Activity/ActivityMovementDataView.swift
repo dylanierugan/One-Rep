@@ -27,7 +27,7 @@ struct ActivityMovementDataView: View {
             VStack {
                 ForEach(Array(sortedMovements), id: \.self) { movement in
                     NavigationLink {
-                        LogView(movement: movement)
+                        SelectedMovementView(movement: movement)
                     } label: {
                         VStack(alignment: .leading) {
                             Text(movement.name)

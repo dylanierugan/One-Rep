@@ -24,8 +24,7 @@ struct LogWeightSection: View {
     var body: some View {
         VStack(alignment: .center, spacing: 12) {
             HStack(spacing: 8) {
-                MutateWeightView(movementViewModel: MovementViewModel(movement: movement),
-                                 isInputActive: _isInputActive)
+                MutateWeightView(isInputActive: _isInputActive)
                 Spacer()
                 MutateRepsView(isInputActive: _isInputActive)
             }

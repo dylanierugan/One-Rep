@@ -31,9 +31,10 @@ struct ActivityMovementCard: View {
                     .foregroundStyle(.primary)
             }
             Spacer()
-            DataLabel(data: activityViewModel.convertWeightDoubleToString(log.weight + log.bodyweight), dataType: log.unit.rawValue)
+            
+            DataLabelWeight(log: log)
             Spacer()
-            DataLabel(data: repStr, dataType: LogCardStrings.Reps.rawValue)
+            DataLabelReps(log: log)
         }
     }
 }

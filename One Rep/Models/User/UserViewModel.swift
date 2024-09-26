@@ -37,21 +37,7 @@ class UserViewModel: ObservableObject {
     func loadCurrentUser() async throws {
         self.user = try await userManager.getUser(userId: userId)
         userLoading = false
-    }
-    
-    func addListenerForBodyweightEntries() {
-        userManager.addListenerForBodyweightEntries(userId: userId) { [weak self] result in
-            switch result {
-            case .success(let bodyweightEntries):
-                self?.bodyweightEntries = bodyweightEntries
-                self?.bodyweightEntriedLoading = false
-            case .failure(let error):
-                print(error)
-                break // TODO: Handle error
-            }
-        }
-    }
-    
+    }    
     
     func loadBodyweightEntries() async throws { // TODO: Handle error
         bodyweightEntries = try await userManager.getBodyweightEntries(userId: userId)
@@ -69,7 +55,7 @@ class UserViewModel: ObservableObject {
     func addBodyweightEntry(bodyweight: Double) {
         Task {
             do {
-                try await userManager.addUserBodyweight(userId: userId, bodyweight: bodyweight)
+                bodyweightEntries = try await userManager.addUserBodyweight(userId: userId, bodyweight: bodyweight)
             } catch {
                 // TODO: Error handle
             }
