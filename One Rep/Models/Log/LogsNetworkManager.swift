@@ -17,23 +17,23 @@ class LogsNetworkManager {
     private let userCollection: CollectionReference = Firestore.firestore().collection(FirebaseCollection.UserCollection.rawValue)
     
     private func userDocument(userId: String) -> DocumentReference {
-        userCollection.document(userId)
+        return userCollection.document(userId)
     }
     
     private func movementCollection(userId: String) -> CollectionReference {
-        userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
+        return userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
     }
     
     private func userMovementDocument(userId: String, movementId: String) -> DocumentReference {
-        movementCollection(userId: userId).document(movementId)
+        return movementCollection(userId: userId).document(movementId)
     }
     
     private func movementLogsCollection(userId: String, movementId: String) -> CollectionReference {
-        userMovementDocument(userId: userId, movementId: movementId).collection(FirebaseCollection.LogsCollection.rawValue)
+        return userMovementDocument(userId: userId, movementId: movementId).collection(FirebaseCollection.LogsCollection.rawValue)
     }
     
     private func movementLogDocument(userId: String, movementId: String, logId: String) -> DocumentReference {
-        movementLogsCollection(userId: userId, movementId: movementId).document(logId)
+        return movementLogsCollection(userId: userId, movementId: movementId).document(logId)
     }
     
     // MARK: - Functions
@@ -49,9 +49,7 @@ class LogsNetworkManager {
         return logs
     }
     
-    func addLog(userId: String,
-                movement: Movement,
-                newLog: Log) async throws {
+    func addLog(userId: String, movement: Movement, newLog: Log) async throws {
         let document = movementLogsCollection(userId: userId, movementId: movement.id).document()
         let documentId = document.documentID
         let data: [String:Any] = [
@@ -68,9 +66,7 @@ class LogsNetworkManager {
         try await document.setData(data, merge: false)
     }
     
-    func updateLog(userId: String,
-                   movement: Movement,
-                   log: Log) async throws {
+    func updateLog(userId: String, movement: Movement, log: Log) async throws {
         let data: [String:Any] = [
             Log.CodingKeys.reps.rawValue : log.reps,
             Log.CodingKeys.weight.rawValue : log.weight,
@@ -84,20 +80,21 @@ class LogsNetworkManager {
         }
     }
     
-    func deleteLog(userId: String,
-                   movement: Movement,
-                   log: Log) async throws {
+    func deleteLog(userId: String, movement: Movement, log: Log) async throws {
         try await movementLogDocument(userId: userId, movementId: movement.id, logId: log.id).delete()
     }
     
-    func deleteAllLogs(userId: String,
-                       movements: [Movement],
-                       logs: [Log]) async throws {
+    func deleteAllMovementLogs(userId: String, movement: Movement, logs: [Log]) async throws {
+        for log in logs {
+            print(log)
+            try await deleteLog(userId: userId, movement: movement, log: log)
+        }
+    }
+    
+    func deleteAllLogs(userId: String, movements: [Movement], logs: [Log]) async throws {
         for movement in movements {
             for log in logs {
-                let _ = try await deleteLog(userId: userId,
-                                            movement: movement,
-                                            log: log)
+                try await deleteLog(userId: userId, movement: movement, log: log)
             }
         }
     }

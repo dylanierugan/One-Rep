@@ -26,8 +26,9 @@ struct DeleteLogTrashIconButton: View {
     
     var body: some View {
         Button {
-            print(log)
-            deleteLog()
+            Task {
+                await deleteLog()
+            }
             HapticManager.instance.impact(style: .light)
         } label: {
             Image(systemName: Icons.TrashFill.rawValue)
@@ -42,9 +43,9 @@ struct DeleteLogTrashIconButton: View {
     
     // MARK: - Functions
     
-    private func deleteLog() {
+    private func deleteLog() async {
         editLogViewModel.log = log
-        editLogViewModel.deleteLog(userId: userViewModel.userId,
+        await editLogViewModel.deleteLog(userId: userViewModel.userId,
                                    movement: movement)
         logsViewModel.deleteLogInLocalList(log)
         logsViewModel.repopulateViewModel(movement: movement)

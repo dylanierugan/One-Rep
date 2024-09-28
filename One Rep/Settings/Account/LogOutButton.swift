@@ -22,7 +22,9 @@ struct LogOutButton: View {
     
     var body: some View {
         Button {
-            logOutUser()
+            Task {
+                await logOutUser()
+            }
         } label: {
             HStack(spacing: 16) {
                 Image(systemName: Icons.RectanglePortraitAndArrowRight.rawValue)
@@ -36,22 +38,33 @@ struct LogOutButton: View {
     
     // MARK: - Functions
     
-    private func logOutUser() {
-        Task {
-            do {
-                try await AuthenticationManager.shared.signOut()
-                withAnimation {
-                    viewRouter.currentPage = .loginView
-                }
-                movementsViewModel.clearMovments()
-                routinesViewModel.unsubscribe()
-                routinesViewModel.clearData()
-                logsViewModel.clearData()
-                userViewModel.clearLocalBodyweightEntries()
-            } catch {
-                // TODO: Handle error
-                print("\(error.localizedDescription)")
+    private func logOutUser() async {
+        do {
+            try await AuthenticationManager.shared.signOut()
+            withAnimation {
+                viewRouter.currentPage = .loginView
             }
+            clearViewModelData()
+        } catch {
+            // TODO: Handle error
+            print("\(error.localizedDescription)")
         }
+    }
+    
+    private func clearViewModelData() {
+        movementsViewModel.clearMovments()
+        movementsViewModel.movementsLoading = true
+        
+        routinesViewModel.unsubscribe()
+        routinesViewModel.clearData()
+        routinesViewModel.routinesLoading = true
+        
+        logsViewModel.clearLogs()
+        logsViewModel.logsLoading = true
+        
+        userViewModel.clearLocalBodyweightEntries()
+        userViewModel.userLoading = true
+        userViewModel.user = nil
+        userViewModel.userId = ""
     }
 }

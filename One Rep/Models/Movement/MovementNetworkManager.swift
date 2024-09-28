@@ -17,15 +17,15 @@ class MovementsNetworkManager {
     private let userCollection: CollectionReference = Firestore.firestore().collection(FirebaseCollection.UserCollection.rawValue)
     
     private func userDocument(userId: String) -> DocumentReference {
-        userCollection.document(userId)
+        return userCollection.document(userId)
     }
     
     private func movementCollection(userId: String) -> CollectionReference {
-        userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
+        return userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
     }
     
     private func userMovementDocument(userId: String, movementId: String) -> DocumentReference {
-        movementCollection(userId: userId).document(movementId)
+        return movementCollection(userId: userId).document(movementId)
     }
     
     // MARK: - Functions

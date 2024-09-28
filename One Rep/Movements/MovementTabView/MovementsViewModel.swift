@@ -30,13 +30,17 @@ class MovementsViewModel: ObservableObject {
     
     // MARK: - Functions
     
-    func loadMovements(userId: String) async throws {
+    func loadMovements(userId: String) async {
+        defer { movementsLoading = false }
         do {
             movements = try await MovementsNetworkManager.shared.getMovements(userId: userId)
         } catch {
             // TODO: Handle error
         }
-        movementsLoading = false
+    }
+    
+    func clearMovments() {
+        movements = []
     }
     
     func updateMovementInList(_ updatedMovement: Movement) {
@@ -51,13 +55,12 @@ class MovementsViewModel: ObservableObject {
         }
     }
     
-    func clearMovments() {
-        movements = []
-    }
-    
-    func deleteAllMovements(userId: String) { // TODO: Handle error
-        Task {
+    func deleteAllMovements(userId: String) async {
+        do {
             try await MovementsNetworkManager.shared.deleteAllMovements(userId: userId)
+            clearMovments()
+        } catch {
+            // TODO: Handle error
         }
     }
     

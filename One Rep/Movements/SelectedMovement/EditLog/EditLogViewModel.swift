@@ -33,33 +33,27 @@ class EditLogViewModel: ObservableObject {
     
     // MARK: - Firebase Functions
     
-    func updateLog(userId: String, movement: Movement) {
+    func updateLog(userId: String, movement: Movement) async {
         updateLog()
         isUpdatingLog = true
-        Task {
-            do {
-                try await LogsNetworkManager.shared.updateLog(userId: userId,
-                                                              movement: movement,
-                                                              log: log)
-            } catch {
-                // TODO: - Handle error
-            }
+        defer { isUpdatingLog = false }
+        do {
+            try await LogsNetworkManager.shared.updateLog(userId: userId, movement: movement, log: log)
+        } catch {
+            // TODO: - Handle error
         }
-        isUpdatingLog = false
     }
     
-    func deleteLog(userId: String, movement: Movement)  {
+    func deleteLog(userId: String, movement: Movement) async {
         isDeletingLog = true
-        Task {
+        defer { isDeletingLog = false }
+        
             do {
-                try await LogsNetworkManager.shared.deleteLog(userId: userId,
-                                                              movement: movement,
-                                                              log: log)
+                try await LogsNetworkManager.shared.deleteLog(userId: userId, movement: movement, log: log)
             } catch {
                 // TODO: - Handle error
             }
-        }
-        isDeletingLog = false
+        
     }
     
     // MARK: - Mutating Functions

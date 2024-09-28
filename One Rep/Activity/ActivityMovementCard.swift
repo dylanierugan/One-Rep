@@ -20,7 +20,6 @@ struct ActivityMovementCard: View {
     // MARK: - View
     
     var body: some View {
-        let repStr = String(log.reps)
         HStack {
             HStack(alignment: .bottom) {
                 Text(LogCardStrings.Set.rawValue)

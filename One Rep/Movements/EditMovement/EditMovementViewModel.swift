@@ -42,29 +42,24 @@ class EditMovementViewModel: ObservableObject {
         movement.muscleGroup = newMuscleGroup
     }
     
-    func updateMovementAttributes(userId: String) {
+    func updateMovementAttributes(userId: String) async {
         setNewMovementAttributes()
         showEditingMovementProgressView = true
-        Task {
-            do {
-                try await MovementsNetworkManager.shared.updateMovementAttributes(userId: userId, movement: movement)
-            } catch {
-                // TODO: Handle error
-            }
+        defer { showEditingMovementProgressView = false }
+        do {
+            try await MovementsNetworkManager.shared.updateMovementAttributes(userId: userId, movement: movement)
+        } catch {
+            // TODO: Handle error
         }
-        showEditingMovementProgressView = false
     }
     
-    func deleteMovement(userId: String) {
+    func deleteMovement(userId: String) async {
         showDeletingMovementProgressView = true
-        Task {
-            do {
-                try await MovementsNetworkManager.shared.deleteMovement(userId: userId, movementId: movement.id)
-            } catch {
-                // TODO: Handle error
-            }
+        defer { showDeletingMovementProgressView = false }
+        do {
+            try await MovementsNetworkManager.shared.deleteMovement(userId: userId, movementId: movement.id)
+        } catch {
+            // TODO: Handle error
         }
-        showDeletingMovementProgressView = false
     }
-    
 }

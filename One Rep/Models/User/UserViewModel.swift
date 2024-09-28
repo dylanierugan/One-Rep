@@ -16,7 +16,7 @@ class UserViewModel: ObservableObject {
     
     var userManager = UserManager()
     
-    @Published private(set) var user: UserModel? = nil
+    @Published var user: UserModel? = nil
     @Published var bodyweightEntries: [BodyweightEntry] = []
     
     @Published var userLoading = true
@@ -34,13 +34,21 @@ class UserViewModel: ObservableObject {
         bodyweightEntries = []
     }
     
-    func loadCurrentUser() async throws {
-        self.user = try await userManager.getUser(userId: userId)
-        userLoading = false
-    }    
+    func loadCurrentUser() async {
+        defer { userLoading = false }
+        do {
+            self.user = try await userManager.getUser(userId: userId)
+        } catch {
+            // TODO: Handle error
+        }
+    }
     
-    func loadBodyweightEntries() async throws { // TODO: Handle error
-        bodyweightEntries = try await userManager.getBodyweightEntries(userId: userId)
+    func loadBodyweightEntries() async {
+        do {
+            bodyweightEntries = try await userManager.getBodyweightEntries(userId: userId)
+        } catch {
+            // TODO: Handle error
+        }
     }
     
     func togglePremiumStatus() { // TODO: Handle error
@@ -69,13 +77,11 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func deleteAllBodyweightEntries() {
-        Task {
-            do {
-                try await userManager.deleteAllBodyweightEntries(userId: userId)
-            } catch {
-                // TODO: Error handle
-            }
+    func deleteAllBodyweightEntries() async {
+        do {
+            try await userManager.deleteAllBodyweightEntries(userId: userId)
+        } catch {
+            // TODO: Error handle
         }
     }
 }

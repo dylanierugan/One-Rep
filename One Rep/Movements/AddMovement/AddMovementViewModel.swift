@@ -24,7 +24,7 @@ class AddMovementViewModel: ObservableObject {
     
     // MARK: - Functions
     
-    func addMovement(userId: String) -> Movement {
+    func addMovement(userId: String) async -> Movement {
         let docId = UUID().uuidString
         let newMovement = Movement(id: docId,
                                    name: movementName,
@@ -33,14 +33,12 @@ class AddMovementViewModel: ObservableObject {
                                    timeCreated: Date(),
                                    isPremium: false,
                                    mutatingValue: 5.0)
-        Task {
-            showAddingMovementProgressView = true
-            do {
-                try await MovementsNetworkManager.shared.addMovement(userId: userId, newMovement: newMovement)
-            } catch {
-                // TODO: Handle error
-            }
-            showAddingMovementProgressView = false
+        showAddingMovementProgressView = true
+        defer { showAddingMovementProgressView = false }
+        do {
+            try await MovementsNetworkManager.shared.addMovement(userId: userId, newMovement: newMovement)
+        } catch {
+            // TODO: Handle error
         }
         return newMovement
     }

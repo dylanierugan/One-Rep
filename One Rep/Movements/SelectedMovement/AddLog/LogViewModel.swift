@@ -49,12 +49,23 @@ class LogViewModel: ObservableObject {
                 userId: userId,
                 movementId: movement.id,
                 reps: reps,
-                weight: addWeightToBodyweight == true ? weight : 0,
+                weight: weight,
                 bodyweight: bodyWeightEntry.bodyweight,
                 isBodyWeight: movement.movementType == .Bodyweight,
                 timeAdded: Date(),
                 unit: unit
             )
+        } else {
+            log = Log(
+                id: docId,
+                userId: userId,
+                movementId: movement.id,
+                reps: reps,
+                weight: weight,
+                bodyweight: 0,
+                isBodyWeight: movement.movementType == .Bodyweight,
+                timeAdded: Date(),
+                unit: unit)
         }
         return log
     }
@@ -104,7 +115,7 @@ class LogViewModel: ObservableObject {
 
 extension Double {
     var clean: String {
-       return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }
 }
 

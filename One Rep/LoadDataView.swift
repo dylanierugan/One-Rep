@@ -64,19 +64,19 @@ struct LoadDataView: View {
     }
     
     private func loadUser() async {
-        try? await userViewModel.loadCurrentUser()
-        try? await userViewModel.loadBodyweightEntries()
+        await userViewModel.loadCurrentUser()
+        await userViewModel.loadBodyweightEntries()
     }
     
     private func loadMovements() async {
         if movementsViewModel.movements.isEmpty {
-            try? await movementsViewModel.loadMovements(userId: userViewModel.userId)
+            await movementsViewModel.loadMovements(userId: userViewModel.userId)
         }
     }
     
     private func loadLogs() async {
         if logsViewModel.logs.isEmpty {
-            try? await logsViewModel.loadLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
+            await logsViewModel.loadLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
         }
     }
     //

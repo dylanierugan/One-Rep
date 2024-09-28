@@ -75,7 +75,9 @@ struct EditMovementView: View {
                                                  showingDeleteMovementAlert:
                                                     $editMovementViewModel.showingDeleteMovementAlert,
                                                  deleteMovementInFirebase: {
-                                deleteMovement()
+                                Task {
+                                    await deleteMovement()
+                                }
                             })
                         }
                     }
@@ -84,7 +86,9 @@ struct EditMovementView: View {
                             ProgressView()
                         } else {
                             UpdateMovementButton(updateMovementInFirebase: {
-                                editMovement()
+                                Task {
+                                    await editMovement()
+                                }
                             })
                         }
                     }
@@ -97,14 +101,15 @@ struct EditMovementView: View {
     
     // MARK: - Functions
     
-    private func editMovement() {
-        editMovementViewModel.updateMovementAttributes(userId: userViewModel.userId) // TODO: Handle error
+    private func editMovement() async {
+        await editMovementViewModel.updateMovementAttributes(userId: userViewModel.userId) // TODO: Handle error
         movementsViewModel.updateMovementInList(editMovementViewModel.movement)
         dismiss()
     }
     
-    private func deleteMovement() {
-        editMovementViewModel.deleteMovement(userId: userViewModel.userId) // TODO: Handle error
+    private func deleteMovement() async { // TODO: Handle error
+        await editMovementViewModel.deleteMovement(userId: userViewModel.userId)
+        await logsViewModel.deleteAllMovementLogs(userId: userViewModel.userId, movement: editMovementViewModel.movement)
         movementsViewModel.deleteMovementInList(editMovementViewModel.movement)
         dismiss()
     }

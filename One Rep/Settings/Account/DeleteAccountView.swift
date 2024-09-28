@@ -35,8 +35,10 @@ struct DeleteAccountView: View {
                 Button {
                     Task {
                         do {
-                            try await authenticationViewModel.signInWithApple()
-                            deleteUser()
+                            _ = try await authenticationViewModel.signInWithApple()
+                            Task {
+                                await deleteUser()
+                            }
                         } catch {
                             // TODO: Handle error
                         }
@@ -55,24 +57,22 @@ struct DeleteAccountView: View {
     
     // MARK: - Functions
     
-    private func deleteUser() {
-        Task {
-            do {
-                try await AuthenticationManager.shared.deleteUser()
-                await deleteAllData()
-                withAnimation {
-                    viewRouter.currentPage = .loginView
-                }
-            } catch {
-                // TODO: Handle error
+    private func deleteUser() async {
+        do {
+            try await AuthenticationManager.shared.deleteUser()
+            await deleteAllData()
+            withAnimation {
+                viewRouter.currentPage = .loginView
             }
+        } catch {
+            // TODO: Handle error
         }
     }
     
     private func deleteAllData() async {
-        movementsViewModel.deleteAllMovements(userId: userViewModel.userId)
-        _ = await routinesViewModel.deleteAllUserRoutines(userId: userViewModel.userId)
-//        _ = await logsViewModel.deleteAllUserLogs(userId: userViewModel.userId)
-        userViewModel.deleteAllBodyweightEntries()
+        await logsViewModel.deleteAllUserLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
+        await movementsViewModel.deleteAllMovements(userId: userViewModel.userId)
+        // _ = await routinesViewModel.deleteAllUserRoutines(userId: userViewModel.userId)
+        await userViewModel.deleteAllBodyweightEntries()
     }
 }

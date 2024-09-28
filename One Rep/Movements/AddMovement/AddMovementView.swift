@@ -61,7 +61,9 @@ struct AddMovementView: View {
                             ProgressView()
                         } else {
                             AddMovementButton(isFormValid: addMovementViewModel.isFormValid, addMovementToFirebase: {
-                                addMovement()
+                                Task {
+                                    await addMovement()
+                                }
                             })
                         }
                     }
@@ -79,8 +81,8 @@ struct AddMovementView: View {
         }
     }
     
-    private func addMovement() {
-        let newMovement = addMovementViewModel.addMovement(userId: userViewModel.userId) // TODO: Handle error
+    private func addMovement() async {
+        let newMovement = await addMovementViewModel.addMovement(userId: userViewModel.userId)
         movementsViewModel.movements.append(newMovement)
         dismiss()
     }

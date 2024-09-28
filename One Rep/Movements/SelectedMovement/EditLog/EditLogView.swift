@@ -105,7 +105,9 @@ struct EditLogView: View {
                             ProgressView()
                         } else {
                             DeleteLogButton() {
-                                deleteLog()
+                                Task {
+                                    await deleteLog()
+                                }
                             }
                         }
                     }
@@ -114,7 +116,9 @@ struct EditLogView: View {
                             ProgressView()
                         } else {
                             UpdateLogButton(updateLogInFirebase: {
-                                updateLog()
+                                Task {
+                                    await updateLog()
+                                }
                             })
                         }
                     }
@@ -129,8 +133,8 @@ struct EditLogView: View {
     
     // MARK: - Functions
     
-    private func updateLog() {
-        editLogViewModel.updateLog(userId: userViewModel.userId,
+    private func updateLog() async {
+        await editLogViewModel.updateLog(userId: userViewModel.userId,
                                    movement: movement) // TODO: Error handle
         logsViewModel.updateLogInLocalList(editLogViewModel.log)
         updateLogViewModel()
@@ -143,8 +147,8 @@ struct EditLogView: View {
                                 isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
     
-    private func deleteLog() {
-        editLogViewModel.deleteLog(userId: userViewModel.userId,
+    private func deleteLog() async {
+        await editLogViewModel.deleteLog(userId: userViewModel.userId,
                                    movement: movement) // TODO: Error handle
         logsViewModel.deleteLogInLocalList(editLogViewModel.log)
         deleteLogViewModel()

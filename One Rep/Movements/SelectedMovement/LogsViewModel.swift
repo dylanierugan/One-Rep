@@ -34,13 +34,31 @@ class LogsViewModel: ObservableObject {
     
     // MARK: - Functions
     
-    func loadLogs(userId: String, movements: [Movement]) async throws {
+    func loadLogs(userId: String, movements: [Movement]) async {
+        defer { logsLoading = false }
         do {
             logs = try await LogsNetworkManager.shared.getLogs(userId: userId, movements: movements)
         } catch {
             // TODO: Handle error
         }
-        logsLoading = false
+    }
+    
+    func deleteAllMovementLogs(userId: String, movement: Movement) async {
+        filterLogs(movementId: movement.id)
+        do {
+            try await LogsNetworkManager.shared.deleteAllMovementLogs(userId: userId, movement: movement, logs: filteredLogs)
+        } catch {
+            // TODO: Handle error
+        }
+    }
+    
+    func deleteAllUserLogs(userId: String, movements: [Movement]) async {
+        do {
+            try await LogsNetworkManager.shared.deleteAllLogs(userId: userId, movements: movements, logs: logs)
+            clearLogs()
+        } catch {
+            // TODO: Handle error
+        }
     }
     
     func updateLogInLocalList(_ updatedLog: Log) {
@@ -55,19 +73,9 @@ class LogsViewModel: ObservableObject {
         }
     }
     
-//    func deleteAllMovementLogs(movementId: String) async -> FirebaseResult {
-//        // return await networkManager.deleteAllMovementLogs(movementId: movementId, logs: logs)
-//    }
-    
-    // MARK: - Old Functions
-    
-    func clearData() {
+    func clearLogs() {
         logs = []
     }
-    
-//    func deleteAllUserLogs(userId: String) async -> [FirebaseResult] {
-//        // return await networkManager.deleteAllUserLogs(userId: userId, logs: logs)
-//    }
     
     func filterLogs(movementId: String) {
         filteredLogs = logs.filter { $0.movementId == movementId }
