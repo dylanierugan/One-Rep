@@ -21,10 +21,10 @@ struct AccountView: View {
                 .ignoresSafeArea()
             VStack {
                 VStack(alignment: .leading, spacing: 16) {
-                    DeleteAccountNavLink()
-                        Divider()
-                            .padding(.leading, 32)
                     LogOutButton()
+                    Divider()
+                        .padding(.leading, 32)
+                    DeleteAccountNavLink()
                 }
                 .padding(16)
                 .background(Color(theme.backgroundElementColor))

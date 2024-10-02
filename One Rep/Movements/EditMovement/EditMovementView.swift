@@ -102,12 +102,12 @@ struct EditMovementView: View {
     // MARK: - Functions
     
     private func editMovement() async {
-        await editMovementViewModel.updateMovementAttributes(userId: userViewModel.userId) // TODO: Handle error
+        await editMovementViewModel.updateMovementAttributes(userId: userViewModel.userId)
         movementsViewModel.updateMovementInList(editMovementViewModel.movement)
         dismiss()
     }
     
-    private func deleteMovement() async { // TODO: Handle error
+    private func deleteMovement() async {
         await editMovementViewModel.deleteMovement(userId: userViewModel.userId)
         await logsViewModel.deleteAllMovementLogs(userId: userViewModel.userId, movement: editMovementViewModel.movement)
         movementsViewModel.deleteMovementInList(editMovementViewModel.movement)

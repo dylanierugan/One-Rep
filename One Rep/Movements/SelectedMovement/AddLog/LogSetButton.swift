@@ -28,8 +28,10 @@ struct LogSetButton: View {
     
     var body: some View {
         Button {
-            logSet()
-            updateViewModels()
+            Task {
+                await logSet()
+                updateViewModels()
+            }
         } label: {
             HStack {
                 Text(LogSetString.Log.rawValue)
@@ -56,11 +58,12 @@ struct LogSetButton: View {
                                 isBodyweight: movement.movementType == .Bodyweight ? true : false)
     }
     
-    private func logSet() {
-        let newLog = logViewModel.addLog(userId: userViewModel.userId,
-                                         movement: movement,
+    private func logSet() async {
+        let newLog = await logViewModel.addLog(userId: userViewModel.userId,
+                                         movement: movement, logViewModel: logViewModel,
                                          userViewModel: userViewModel,
                                          unit: logsViewModel.unit)
+        guard let newLog = newLog else { return }
         logsViewModel.logs.append(newLog)
         HapticManager.instance.impact(style: .light)
     }

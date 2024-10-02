@@ -22,7 +22,7 @@ struct RoutineCard: View {
     
     var body: some View {
         NavigationLink {
-            SelectedRoutineView(routineViewModel: RoutineViewModel(routine: routine))
+            SelectedRoutineView(selectedRoutineViewModel: SelectedRoutineViewModel(routine: routine))
         } label: {
             HStack {
                 HStack {

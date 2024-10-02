@@ -20,7 +20,7 @@ class MovementsNetworkManager {
         return userCollection.document(userId)
     }
     
-    private func movementCollection(userId: String) -> CollectionReference {
+    func movementCollection(userId: String) -> CollectionReference {
         return userDocument(userId: userId).collection(FirebaseCollection.MovementCollection.rawValue)
     }
     
@@ -39,11 +39,17 @@ class MovementsNetworkManager {
         return movements
     }
     
-    func addMovement(userId: String, newMovement: Movement) async throws {
+    func addMovement(userId: String, addMovementViewModel: AddMovementViewModel) async throws -> Movement {
         let document = movementCollection(userId: userId).document()
-        let documentId = document.documentID
+        let newMovement = await Movement(id: document.documentID,
+                                   name: addMovementViewModel.movementName,
+                                   muscleGroup: addMovementViewModel.muscleGroup,
+                                   movementType: addMovementViewModel.movementType,
+                                   timeCreated: Date(),
+                                   isPremium: false,
+                                   mutatingValue: 5.0)
         let data: [String:Any] = [
-            Movement.CodingKeys.id.rawValue : documentId,
+            Movement.CodingKeys.id.rawValue : newMovement.id,
             Movement.CodingKeys.name.rawValue : newMovement.name,
             Movement.CodingKeys.muscleGroup.rawValue : newMovement.muscleGroup.rawValue,
             Movement.CodingKeys.movementType.rawValue : newMovement.movementType.rawValue,
@@ -52,6 +58,7 @@ class MovementsNetworkManager {
             Movement.CodingKeys.mutatingValue.rawValue : newMovement.mutatingValue,
         ]
         try await document.setData(data, merge: false)
+        return newMovement
     }
     
     func updateMovementAttributes(userId: String, movement: Movement) async throws {
@@ -70,18 +77,18 @@ class MovementsNetworkManager {
         try await userMovementDocument(userId: userId, movementId: movement.id).updateData(data)
     }
     
-    func deleteMovement(userId: String, movementId: String) async throws {
-        try await userMovementDocument(userId: userId, movementId: movementId).delete()
+    func deleteMovement(userId: String, movement: Movement) async throws {
+        try await userMovementDocument(userId: userId, movementId: movement.id).delete()
     }
     
-    func deleteMovementNoReturn(userId: String, movementId: String) async throws {
-        try await userMovementDocument(userId: userId, movementId: movementId).delete()
+    func deleteMovementNoReturn(userId: String, movement: Movement) async throws {
+        try await userMovementDocument(userId: userId, movementId: movement.id).delete()
     }
     
     func deleteAllMovements(userId: String) async throws {
         let movements = try await getMovements(userId: userId)
         for movement in movements {
-            let _ = try await deleteMovementNoReturn(userId: userId, movementId: movement.id)
+            let _ = try await deleteMovementNoReturn(userId: userId, movement: movement)
         }
     }
 }

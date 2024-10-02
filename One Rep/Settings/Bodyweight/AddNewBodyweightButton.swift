@@ -24,9 +24,9 @@ struct AddNewBodyweightButton: View {
     
     var body: some View {
         Button {
-            userViewModel.addBodyweightEntry(bodyweight: bodyweight)
-            prevBodyweight = bodyweight
-            dismiss()
+            Task {
+                await addBodyweight()
+            }
         } label: {
             HStack {
                 Text(BodyweightStrings.Set.rawValue)
@@ -42,5 +42,15 @@ struct AddNewBodyweightButton: View {
             }
         }
         .disabled(prevBodyweight != bodyweight ? false : true)
+    }
+    
+    // MARK: - Functions
+    
+    private func addBodyweight() async {
+        let bodyweightEntry = await userViewModel.addBodyweightEntry(bodyweight: bodyweight)
+        guard let bodyweightEntry = bodyweightEntry else { return }
+        userViewModel.bodyweightEntries.append(bodyweightEntry)
+        self.prevBodyweight = self.bodyweight
+        dismiss()
     }
 }

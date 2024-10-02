@@ -12,58 +12,78 @@ import FirebaseFirestore
 
 class RoutineNetworkManager {
     
-    private let db = Firestore.firestore()
-    private var listenerRegistration: ListenerRegistration?
+    static let shared = RoutineNetworkManager()
     
-    func subscribeToRoutines(userId: String, completion: @escaping ([Routine]?, Error?) -> Void) {
-        if listenerRegistration == nil {
-            listenerRegistration = db.collection(FirebaseCollection.RoutinesCollection.rawValue)
-                .whereField(RoutineAttributes.UserId.rawValue, isEqualTo: userId)
-                .addSnapshotListener { querySnapshot, error in
-                    if let error = error {
-                        completion(nil, error)
-                        return
-                    }
-                    guard let querySnapshot = querySnapshot else {
-                        let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Snapshot missing"])
-                        completion(nil, error)
-                        return
-                    }
-                    var routines = [Routine]()
-                    for document in querySnapshot.documents {
-                        let docId = document.documentID
-                        let userId = document[RoutineAttributes.UserId.rawValue] as? String ?? ""
-                        let name = document[RoutineAttributes.Name.rawValue] as? String ?? ""
-                        let icon = document[RoutineAttributes.Icon.rawValue] as? String ?? ""
-                        let movementIds = document[RoutineAttributes.MovementIds.rawValue] as? [String] ?? []
-                        let routine = Routine(id: docId, userId: userId, name: name, icon: icon, movementIDs: movementIds)
-                        routines.append(routine)
-                    }
-                    completion(routines, nil)
-                }
-        }
+    // MARK: - Properties
+    
+    private let userCollection: CollectionReference = Firestore.firestore().collection(FirebaseCollection.UserCollection.rawValue)
+    
+    private func userDocument(userId: String) -> DocumentReference {
+        return userCollection.document(userId)
     }
     
-    func addRoutine(_ routine: Routine) async -> FirebaseResult {
-        do {
-            try db.collection(FirebaseCollection.RoutinesCollection.rawValue).document(routine.id).setData(from: routine)
-            return .success
-        } catch {
-            return .failure(error)
+    func routineCollection(userId: String) -> CollectionReference {
+        return userDocument(userId: userId).collection(FirebaseCollection.RoutinesCollection.rawValue)
+    }
+    
+    private func userRoutineDocument(userId: String, routineId: String) -> DocumentReference {
+        return routineCollection(userId: userId).document(routineId)
+    }
+    
+    // MARK: - Functions
+    
+    func getRoutines(userId: String) async throws -> [Routine] {
+        let snapshot = try await routineCollection(userId: userId).getDocuments(as: Routine.self)
+        var routines: [Routine] = []
+        for document in snapshot {
+            routines.append(document)
+            print(routines)
         }
+        return routines
+    }
+    
+    func addRoutine(userId: String, addRoutineViewModel: AddRoutineViewModel) async throws -> Routine {
+        let document = routineCollection(userId: userId).document()
+        let newRoutine = Routine(id: document.documentID,
+                                 name: addRoutineViewModel.routineName,
+                                 icon: addRoutineViewModel.selectedIcon,
+                                 movementIDs: addRoutineViewModel.selectedMovmentsIDs,
+                                 timeCreated: Date())
+        let data: [String:Any] = [
+            Routine.CodingKeys.id.rawValue : newRoutine.id,
+            Routine.CodingKeys.name.rawValue : newRoutine.name,
+            Routine.CodingKeys.icon.rawValue : newRoutine.icon,
+            Routine.CodingKeys.movementIDs.rawValue : newRoutine.movementIDs,
+            Routine.CodingKeys.timeCreated.rawValue : newRoutine.timeCreated,
+        ]
+        try await document.setData(data, merge: false)
+        return newRoutine
+    }
+    
+    func updateRoutineAttributes(userId: String, routine: Routine) async throws {
+        let data: [String:Any] = [
+            Routine.CodingKeys.name.rawValue : routine.name,
+            Routine.CodingKeys.icon.rawValue : routine.icon,
+        ]
+        try await userRoutineDocument(userId: userId, routineId: routine.id).updateData(data)
+    }
+    
+    func updateRoutineMovements(userId: String, routine: Routine) async throws {
+        let data: [String:Any] = [
+            Routine.CodingKeys.movementIDs.rawValue : routine.movementIDs,
+        ]
+        try await userRoutineDocument(userId: userId, routineId: routine.id).updateData(data)
     }
 
-    func deleteRoutine(docId: String) async -> FirebaseResult {
-        do {
-            try await db.collection(FirebaseCollection.RoutinesCollection.rawValue).document(docId).delete()
-            return .success
-        } catch {
-            return .failure(error)
+    func deleteRoutine(userId: String, routine: Routine) async throws {
+        try await userRoutineDocument(userId: userId, routineId: routine.id).delete()
+    }
+    
+    func deleteAllRoutines(userId: String) async throws {
+        let routines = try await getRoutines(userId: userId)
+        for routine in routines {
+            let _ = try await deleteRoutine(userId: userId, routine: routine)
         }
     }
     
-    func unsubscribe() {
-        listenerRegistration?.remove()
-        listenerRegistration = nil
-    }
 }

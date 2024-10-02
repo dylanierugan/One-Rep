@@ -60,7 +60,8 @@ struct DeleteAccountView: View {
     private func deleteUser() async {
         do {
             try await AuthenticationManager.shared.deleteUser()
-            await deleteAllData()
+            await deleteAllData(userId: userViewModel.userId)
+            clearData()
             withAnimation {
                 viewRouter.currentPage = .loginView
             }
@@ -69,10 +70,25 @@ struct DeleteAccountView: View {
         }
     }
     
-    private func deleteAllData() async {
-        await logsViewModel.deleteAllUserLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
-        await movementsViewModel.deleteAllMovements(userId: userViewModel.userId)
+    private func deleteAllData(userId: String) async {
+        await logsViewModel.deleteAllUserLogs(userId: userId, movements: movementsViewModel.movements)
+        await movementsViewModel.deleteAllMovements(userId: userId)
         // _ = await routinesViewModel.deleteAllUserRoutines(userId: userViewModel.userId)
         await userViewModel.deleteAllBodyweightEntries()
+        await userViewModel.deleteUser()
+    }
+    
+    private func clearData() {
+        movementsViewModel.clearMovments()
+        movementsViewModel.movementsLoading = true
+        
+        routinesViewModel.clearRoutines()
+        routinesViewModel.routinesLoading = true
+        
+        logsViewModel.clearLogs()
+        logsViewModel.logsLoading = true
+        
+        userViewModel.clearLocalBodyweightEntries()
+        userViewModel.userLoading = true
     }
 }

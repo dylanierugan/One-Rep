@@ -14,10 +14,11 @@ struct SelectedRoutineView: View {
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
     
-    @StateObject var routineViewModel = RoutineViewModel()
+    @StateObject var selectedRoutineViewModel: SelectedRoutineViewModel
     
     // MARK: - Private Properties
     
@@ -29,7 +30,7 @@ struct SelectedRoutineView: View {
     
     var body: some View {
         VStack {
-            if routineViewModel.routine.movementIDs.count == 0 {
+            if selectedRoutineViewModel.routine.movementIDs.count == 0 {
                 ZStack {
                     Color(theme.backgroundColor).ignoresSafeArea()
                     Text(InfoText.RoutineNoMovements.rawValue)
@@ -40,9 +41,9 @@ struct SelectedRoutineView: View {
                 }
             } else {
                 List {
-                    ForEach(routineViewModel.movements, id: \.id) { movement in
+                    ForEach(selectedRoutineViewModel.movements, id: \.id) { movement in
                         RoutineMovementCard(
-                            index: (routineViewModel.routine.movementIDs.firstIndex(of: movement.id) ?? 0) + 1,
+                            index: (selectedRoutineViewModel.routine.movementIDs.firstIndex(of: movement.id) ?? 0) + 1,
                             movement: movement
                         )
                         .listRowBackground(Color(theme.backgroundColor))
@@ -53,7 +54,11 @@ struct SelectedRoutineView: View {
                             await onDelete(offsets: offsets)
                         }
                     }
-                    .onMove(perform: onMove)
+                    .onMove { source, destination in
+                        Task {
+                            await onMove(source: source, destination: destination)
+                        }
+                    }
                     .padding(.bottom, -8)
                 }
                 .listStyle(.inset)
@@ -61,7 +66,7 @@ struct SelectedRoutineView: View {
                 .background(Color(theme.backgroundColor))
             }
         }
-        .navigationTitle(routineViewModel.routine.name)
+        .navigationTitle(selectedRoutineViewModel.routine.name)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
@@ -74,46 +79,36 @@ struct SelectedRoutineView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 AddMovementsToolButton(showAddMovmenetsSheet: $showAddMovmenetsSheet)
-                    .disabled(routineViewModel.routine.movementIDs.count == movementsViewModel.movements.count)
-                    .foregroundColor(routineViewModel.routine.movementIDs.count == movementsViewModel.movements.count ? .secondary : .primary)
+                    .disabled(selectedRoutineViewModel.routine.movementIDs.count == movementsViewModel.movements.count)
+                    .foregroundColor(selectedRoutineViewModel.routine.movementIDs.count == movementsViewModel.movements.count ? .secondary : .primary)
             }
         }
         .sheet(isPresented: $showAddMovmenetsSheet) {
-            AddMovementsView(routineViewModel: routineViewModel)
+            AddMovementsView(selectedRoutineViewModel: selectedRoutineViewModel)
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
         }
         .sheet(isPresented: $showEditRoutinePopup) {
-            EditRoutineView(routineViewModel: routineViewModel)
+            EditRoutineView(routine: selectedRoutineViewModel.routine)
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
         }
-        .onAppear { routineViewModel.setMovements(movements: movementsViewModel.movements) }
+        .onAppear { selectedRoutineViewModel.setMovements(userId: userViewModel.userId, movements: movementsViewModel.movements) }
     }
     
     // MARK: - Function
     
-    private func onDelete(offsets: IndexSet) async {
-        routineViewModel.routine.movementIDs.remove(atOffsets: offsets)
-        Task {
-            let result = await routineViewModel.updateRoutine()
-            await MainActor.run {
-                ResultHandler.shared.handleResult(result: result, onSuccess: {
-                    routineViewModel.setMovements(movements: movementsViewModel.movements)
-                })
-            } // TODO: Handle error
-        }
+    private func onMove(source: IndexSet, destination: Int) async {
+        selectedRoutineViewModel.routine.movementIDs.move(fromOffsets: source, toOffset: destination)
+        await selectedRoutineViewModel.updateRoutineMovementsList(userId: userViewModel.userId)
+        selectedRoutineViewModel.setMovements(userId: userViewModel.userId, movements: movementsViewModel.movements)
+        routinesViewModel.updateRoutineInList(selectedRoutineViewModel.routine)
     }
     
-    private func onMove(source: IndexSet, destination: Int) {
-        routineViewModel.routine.movementIDs.move(fromOffsets: source, toOffset: destination)
-        Task {
-            let result = await routineViewModel.updateRoutine()
-            await MainActor.run {
-                ResultHandler.shared.handleResult(result: result, onSuccess: {
-                    routineViewModel.setMovements(movements: movementsViewModel.movements)
-                })
-            }
-        }
+    private func onDelete(offsets: IndexSet) async {
+        selectedRoutineViewModel.routine.movementIDs.remove(atOffsets: offsets)
+        await selectedRoutineViewModel.updateRoutineMovementsList(userId: userViewModel.userId)
+        selectedRoutineViewModel.setMovements(userId: userViewModel.userId, movements: movementsViewModel.movements)
+        routinesViewModel.updateRoutineInList(selectedRoutineViewModel.routine)
     }
 }

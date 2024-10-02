@@ -20,7 +20,7 @@ class UserViewModel: ObservableObject {
     @Published var bodyweightEntries: [BodyweightEntry] = []
     
     @Published var userLoading = true
-    @Published var bodyweightEntriedLoading = true
+    @Published var bodyweightEntriesLoading = true
     
     var userId: String
     
@@ -51,29 +51,34 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func togglePremiumStatus() { // TODO: Handle error
+    func togglePremiumStatus() async {
         guard let user else { return }
         let currentValue = user.isPremium
-        Task {
+        do {
             try await userManager.updateUserPremiumStatus(userId: userId, isPremium: !currentValue)
             self.user = try await userManager.getUser(userId: userId)
+        } catch {
+            // TODO: Handle error
         }
     }
     
-    func addBodyweightEntry(bodyweight: Double) {
+    func addBodyweightEntry(bodyweight: Double) async -> BodyweightEntry? {
+        do {
+            return try await userManager.addUserBodyweight(userId: userId, bodyweight: bodyweight)
+        } catch {
+            // TODO: Error handle
+        }
+        return nil
+    }
+    
+    func deleteBodyweight(bodyweightEntryId: String) async {
         Task {
             do {
-                bodyweightEntries = try await userManager.addUserBodyweight(userId: userId, bodyweight: bodyweight)
+                try await userManager.removeBodyweight(userId: userId,
+                                                       bodyweightEntryId: bodyweightEntryId)
             } catch {
-                // TODO: Error handle
+                // TODO: Handle error
             }
-        }
-    }
-    
-    func removeFromFavorites(bodyweightEntryId: String) { // TODO: Handle error
-        Task {
-            try? await userManager.removeBodyweight(userId: userId,
-                                                    bodyweightEntryId: bodyweightEntryId)
         }
     }
     
@@ -82,6 +87,16 @@ class UserViewModel: ObservableObject {
             try await userManager.deleteAllBodyweightEntries(userId: userId)
         } catch {
             // TODO: Error handle
+        }
+    }
+    
+    func deleteUser() async {
+        Task {
+            do {
+                try await userManager.deleteUser(userId: userId)
+            } catch {
+                // TODO: Handle error
+            }
         }
     }
 }

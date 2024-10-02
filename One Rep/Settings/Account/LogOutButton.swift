@@ -44,19 +44,18 @@ struct LogOutButton: View {
             withAnimation {
                 viewRouter.currentPage = .loginView
             }
-            clearViewModelData()
+            clearData()
         } catch {
             // TODO: Handle error
             print("\(error.localizedDescription)")
         }
     }
     
-    private func clearViewModelData() {
+    private func clearData() {
         movementsViewModel.clearMovments()
         movementsViewModel.movementsLoading = true
         
-        routinesViewModel.unsubscribe()
-        routinesViewModel.clearData()
+        routinesViewModel.clearRoutines()
         routinesViewModel.routinesLoading = true
         
         logsViewModel.clearLogs()

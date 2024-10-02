@@ -82,7 +82,8 @@ struct AddMovementView: View {
     }
     
     private func addMovement() async {
-        let newMovement = await addMovementViewModel.addMovement(userId: userViewModel.userId)
+        let newMovement = await addMovementViewModel.addMovement(userId: userViewModel.userId, addMovementViewModel: addMovementViewModel)
+        guard let newMovement = newMovement else { return }
         movementsViewModel.movements.append(newMovement)
         dismiss()
     }

@@ -130,7 +130,7 @@ enum ErrorMessage: String {
 enum FirebaseCollection: String {
     case MovementCollection = "movements"
     case LogsCollection = "logs"
-    case RoutinesCollection = "Routines"
+    case RoutinesCollection = "routines"
     case UserCollection = "users"
     case BodyweightCollection = "bodyweightEntrties"
 }
@@ -214,7 +214,7 @@ enum InfoText: String {
     case NoMovementForRoutines = "There are no movements to create a routine."
     case CreateNewRoutine = "Tap on the + button on the top right to create a new routine"
     case ChooseMovements = "Choose the movements you want to include in this routine"
-    case RoutineNoMovements = "All the movements in this routine have been deleted\n\nClick on the button in the top right to add more movements"
+    case RoutineNoMovements = "Tap on the + button in the top right to add movements to this routine"
 }
 
 enum KeyboardStrings: String {
@@ -351,13 +351,13 @@ enum ToggleEditStrings: String {
 
 enum Weekdays: String, Identifiable, Codable, CaseIterable {
     var id: Weekdays { self }
+    case Sun = "Sun"
     case Mon = "Mon"
     case Tue = "Tue"
     case Wed = "Wed"
     case Thu = "Thu"
     case Fri = "Fri"
     case Sat = "Sat"
-    case Sun = "Sun"
 }
 
 enum UnitSelection: String, Identifiable, Codable, CaseIterable {

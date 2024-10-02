@@ -49,11 +49,11 @@ class LogsNetworkManager {
         return logs
     }
     
-    func addLog(userId: String, movement: Movement, newLog: Log) async throws {
+    func addLog(userId: String, movement: Movement, logViewModel: LogViewModel, userViewModel: UserViewModel, unit: UnitSelection) async throws -> Log {
         let document = movementLogsCollection(userId: userId, movementId: movement.id).document()
-        let documentId = document.documentID
+        let newLog = await createAndReturnLog(userId: userId, docId: document.documentID, movement: movement, logViewModel: logViewModel, userViewModel: userViewModel, unit: unit)
         let data: [String:Any] = [
-            Log.CodingKeys.id.rawValue : documentId,
+            Log.CodingKeys.id.rawValue : newLog.id,
             Log.CodingKeys.userId.rawValue : userId,
             Log.CodingKeys.movementId.rawValue: movement.id,
             Log.CodingKeys.reps.rawValue : newLog.reps,
@@ -64,6 +64,55 @@ class LogsNetworkManager {
             Log.CodingKeys.unit.rawValue : newLog.unit.rawValue
         ]
         try await document.setData(data, merge: false)
+        return newLog
+    }
+    
+    @MainActor
+    func createAndReturnLog(userId: String,
+                           docId: String,
+                           movement: Movement,
+                           logViewModel: LogViewModel,
+                           userViewModel: UserViewModel,
+                           unit: UnitSelection) -> Log {
+        var log = Log()
+        if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
+            if logViewModel.addWeightToBodyweight {
+                log = Log(
+                    id: docId,
+                    userId: userId,
+                    movementId: movement.id,
+                    reps: logViewModel.reps,
+                    weight: logViewModel.weight,
+                    bodyweight: bodyWeightEntry.bodyweight,
+                    isBodyWeight: movement.movementType == .Bodyweight,
+                    timeAdded: Date(),
+                    unit: unit
+                )
+            } else {
+                log = Log(
+                    id: docId,
+                    userId: userId,
+                    movementId: movement.id,
+                    reps: logViewModel.reps,
+                    weight: 0,
+                    bodyweight: bodyWeightEntry.bodyweight,
+                    isBodyWeight: movement.movementType == .Bodyweight,
+                    timeAdded: Date(),
+                    unit: unit)
+            }
+        } else {
+            log = Log(
+                id: docId,
+                userId: userId,
+                movementId: movement.id,
+                reps: logViewModel.reps,
+                weight: logViewModel.weight,
+                bodyweight: 0,
+                isBodyWeight: movement.movementType == .Bodyweight,
+                timeAdded: Date(),
+                unit: unit)
+        }
+        return log
     }
     
     func updateLog(userId: String, movement: Movement, log: Log) async throws {

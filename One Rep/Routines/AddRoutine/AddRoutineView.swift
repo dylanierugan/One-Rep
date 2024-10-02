@@ -16,15 +16,8 @@ struct AddRoutineView: View {
     
     // MARK: - Private Properties
     
-    @State private var routineName = ""
-    @State private var selectedIcon = Icons.Bench.rawValue
-    @State private var showProgressView = false
-    @State private var dismissBothViews = false
+    @StateObject private var addRoutineViewModel = AddRoutineViewModel()
     @Environment(\.dismiss) private var dismiss
-    
-    private var isFormValid: Bool {
-        !routineName.isEmpty
-    }
     
     // MARK: - View
     
@@ -42,7 +35,7 @@ struct AddRoutineView: View {
                         Text(AddRoutineStrings.RoutineName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
-                        RoutineNameTextfield(focus: false, routineName: $routineName, text: "")
+                        RoutineNameTextfield(focus: false, routineName: $addRoutineViewModel.routineName, text: "")
                     }
                     
                     VStack(alignment: .leading, spacing: 6) {
@@ -50,17 +43,17 @@ struct AddRoutineView: View {
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
                         HStack {
-                            RoutineIconPicker(selectedIcon: $selectedIcon)
+                            RoutineIconPicker(selectedIcon: $addRoutineViewModel.selectedIcon)
                         }
                     }
                     
-                    SelectMovementsButton(routineName: $routineName, selectedIcon: $selectedIcon, dismissBothViews: $dismissBothViews, isFormValid: isFormValid)
+                    SelectMovementsButton(addRoutineViewModel: addRoutineViewModel)
                         .padding(.top, 32)
                 }
                 .padding(.horizontal, 32)
             }
             .onAppear() {
-                if dismissBothViews {
+                if addRoutineViewModel.dismissBothViews {
                     dismiss()
                 }
             }

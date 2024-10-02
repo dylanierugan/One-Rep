@@ -9,23 +9,21 @@ import SwiftUI
 
 struct EditRoutineView: View {
     
+    init(routine: Routine) {
+        self.routine = routine
+        _editRoutineViewModel = StateObject(wrappedValue: EditRoutineViewModel(routine: routine))
+    }
+    
     // MARK: - Global Properties
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var routinesViewModel: RoutinesViewModel
-    
-    // MARK: - Public Properties
-    
-    @ObservedObject var routineViewModel = RoutineViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Private Properties
     
-    @State private var newRoutineName = ""
-    @State private var newIcon = ""
-    @State private var showEditProgressView = false
-    @State private var deleteConfirmedClicked = false
-    @State private var showingDeleteRoutineAlert = false
-    @State private var showDeleteProgressView = false
+    var routine: Routine
+    @StateObject private var editRoutineViewModel: EditRoutineViewModel
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - View
@@ -44,7 +42,7 @@ struct EditRoutineView: View {
                         Text(EditRoutineStrings.EditName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
-                        RoutineNameTextfield(focus: false, routineName: $newRoutineName, text: "")
+                        RoutineNameTextfield(focus: false, routineName: $editRoutineViewModel.name, text: "")
                     }
                     
                     VStack(alignment: .leading, spacing: 6) {
@@ -52,7 +50,7 @@ struct EditRoutineView: View {
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
                         HStack {
-                            RoutineIconPicker(selectedIcon: $newIcon)
+                            RoutineIconPicker(selectedIcon: $editRoutineViewModel.icon)
                         }
                     }
                     
@@ -60,56 +58,40 @@ struct EditRoutineView: View {
                 .padding(.horizontal, 16)
                 .toolbar(content: {
                     ToolbarItem(placement: .topBarLeading) {
-                        DeleteRoutineButton(deleteConfirmedClicked: $deleteConfirmedClicked, showingDeleteRoutineAlert: $showingDeleteRoutineAlert, deleteRoutineInFirebase: {
-                            deleteRoutine()
+                        DeleteRoutineButton(deleteConfirmedClicked: $editRoutineViewModel.deleteConfirmedClicked, showingDeleteRoutineAlert: $editRoutineViewModel.showingDeleteRoutineAlert, deleteRoutineInFirebase: {
+                            Task {
+                                await deleteRoutine()
+                            }
                         })
                     }
                     ToolbarItem(placement: .topBarTrailing) {
-                        if showEditProgressView {
+                        if editRoutineViewModel.showEditingRoutineProgressView {
                             ProgressView()
                         } else {
                             UpdateRoutineButton(updateRoutineInFirebase: {
-                                editRoutineFirebase()
+                                Task {
+                                    await editRoutine()
+                                }
                             })
                         }
                     }
                 })
             }
-            .onAppear { setValues() }
+            .onAppear { editRoutineViewModel.setEditableAttributes() }
         }
     }
     
     // MARK: - View
     
-    private func setValues() {
-        newRoutineName = routineViewModel.routine.name
-        newIcon = routineViewModel.routine.icon
+    private func editRoutine() async {
+        await editRoutineViewModel.updateRoutineAttributes(userId: userViewModel.userId)
+        routinesViewModel.updateRoutineInList(editRoutineViewModel.routine)
+        dismiss()
     }
     
-    private func editRoutine() {
-        showEditProgressView = true
-        routineViewModel.routine.name = newRoutineName
-        routineViewModel.routine.icon = newIcon
+    private func deleteRoutine() async {
+        await editRoutineViewModel.deleteRoutine(userId: userViewModel.userId)
+        routinesViewModel.deleteRoutineInList(editRoutineViewModel.routine)
+        dismiss()
     }
-    
-    private func editRoutineFirebase() {
-        editRoutine() 
-        Task {
-            let result = await routineViewModel.updateRoutine()
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                dismiss()
-            }) // Todo - Handle error
-        }
-    }
-    
-    private func deleteRoutine() {
-        Task {
-            showDeleteProgressView = true
-            let result = await routinesViewModel.deleteRoutine(routineViewModel.routine)
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                dismiss()
-            }) // TODO: Handle error
-        }
-    }
-    
 }

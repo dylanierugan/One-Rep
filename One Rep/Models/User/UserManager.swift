@@ -7,7 +7,6 @@
 
 import Foundation
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 
 final class UserManager {
     
@@ -65,21 +64,26 @@ final class UserManager {
         return bodyweightEntries
     }
     
-    func addUserBodyweight(userId: String, bodyweight: Double) async throws -> [BodyweightEntry] {
+    func addUserBodyweight(userId: String, bodyweight: Double) async throws -> BodyweightEntry {
         let document = bodyweightCollection(userId: userId).document()
-        let documentId = document.documentID
+        let newBodyweight = BodyweightEntry(id: document.documentID,
+                                            bodyweight: bodyweight,
+                                            timeCreated: Date())
         let data: [String:Any] = [
-            BodyweightEntry.CodingKeys.id.rawValue : documentId,
-            BodyweightEntry.CodingKeys.bodyweight.rawValue : bodyweight,
-            BodyweightEntry.CodingKeys.timeCreated.rawValue : Date()
+            BodyweightEntry.CodingKeys.id.rawValue : newBodyweight.id,
+            BodyweightEntry.CodingKeys.bodyweight.rawValue : newBodyweight.bodyweight,
+            BodyweightEntry.CodingKeys.timeCreated.rawValue : newBodyweight.timeCreated
         ]
         try await document.setData(data, merge: false)
-        return try await getBodyweightEntries(userId: userId)
+        return newBodyweight
     }
     
-    func removeBodyweight(userId: String, bodyweightEntryId: String) async throws -> [BodyweightEntry] {
+    func deleteUser(userId: String) async throws {
+        try await userDocument(userId: userId).delete()
+    }
+    
+    func removeBodyweight(userId: String, bodyweightEntryId: String) async throws {
         try await userBodyweightDocument(userId: userId, bodyweightEntryId: bodyweightEntryId).delete()
-        return try await getBodyweightEntries(userId: userId)
     }
     
     func deleteAllBodyweightEntries(userId: String) async throws {

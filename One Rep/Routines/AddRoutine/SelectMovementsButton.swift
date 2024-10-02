@@ -15,10 +15,7 @@ struct SelectMovementsButton: View {
     
     // MARK: - Public Properties
     
-    @Binding var routineName: String
-    @Binding var selectedIcon: String
-    @Binding var dismissBothViews: Bool
-    var isFormValid: Bool
+    @ObservedObject var addRoutineViewModel: AddRoutineViewModel
     
     // MARK: - Private Properties
     
@@ -28,16 +25,16 @@ struct SelectMovementsButton: View {
     
     var body: some View {
         NavigationLink {
-            SelectMovementsView(routineName: $routineName, selectedIcon: $selectedIcon, dismissBothViews: $dismissBothViews)
+            SelectMovementsView(addRoutineViewModel: addRoutineViewModel)
         } label: {
             HStack {
                 Text(AddRoutineStrings.SelectMovements.rawValue)
                     .font(.body.weight(.regular))
                 Image(systemName: Icons.ArrowshapeForwardFill.rawValue)
             }
-            .foregroundColor(isFormValid ? (colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor)) : Color.secondary)
+            .foregroundColor(addRoutineViewModel.isFormNameValid ? (colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor)) : Color.secondary)
         }
-        .disabled(!isFormValid)
+        .disabled(addRoutineViewModel.isFormNameValid == false)
     }
 }
 

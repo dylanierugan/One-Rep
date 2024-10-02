@@ -24,22 +24,14 @@ class AddMovementViewModel: ObservableObject {
     
     // MARK: - Functions
     
-    func addMovement(userId: String) async -> Movement {
-        let docId = UUID().uuidString
-        let newMovement = Movement(id: docId,
-                                   name: movementName,
-                                   muscleGroup: muscleGroup,
-                                   movementType: movementType,
-                                   timeCreated: Date(),
-                                   isPremium: false,
-                                   mutatingValue: 5.0)
+    func addMovement(userId: String, addMovementViewModel: AddMovementViewModel) async -> Movement? {
         showAddingMovementProgressView = true
         defer { showAddingMovementProgressView = false }
         do {
-            try await MovementsNetworkManager.shared.addMovement(userId: userId, newMovement: newMovement)
+            return try await MovementsNetworkManager.shared.addMovement(userId: userId, addMovementViewModel: addMovementViewModel)
         } catch {
             // TODO: Handle error
         }
-        return newMovement
+        return nil
     }
 }

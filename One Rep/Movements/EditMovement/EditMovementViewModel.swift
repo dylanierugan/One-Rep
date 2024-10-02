@@ -27,7 +27,6 @@ class EditMovementViewModel: ObservableObject {
     @Published var showEditingMovementProgressView = false
     @Published var showDeletingMovementProgressView = false
     
-    
     // MARK: - Functions
     
     func setEditableAttributes() {
@@ -57,7 +56,7 @@ class EditMovementViewModel: ObservableObject {
         showDeletingMovementProgressView = true
         defer { showDeletingMovementProgressView = false }
         do {
-            try await MovementsNetworkManager.shared.deleteMovement(userId: userId, movementId: movement.id)
+            try await MovementsNetworkManager.shared.deleteMovement(userId: userId, movement: movement)
         } catch {
             // TODO: Handle error
         }

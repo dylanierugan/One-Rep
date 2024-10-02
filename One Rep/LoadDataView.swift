@@ -27,9 +27,8 @@ struct LoadDataView: View {
                 .ignoresSafeArea()
             if userViewModel.userLoading ||
                 movementsViewModel.movementsLoading ||
-                logsViewModel.logsLoading {
-                //                logsViewModel.logsLoading ||
-                //                routinesViewModel.routinesLoading {
+                logsViewModel.logsLoading ||
+                routinesViewModel.routinesLoading {
                 OneRepProgressView(text: ProgressText.OneRep.rawValue)
                     .task { await loadAllData() }
                     .environmentObject(userViewModel)
@@ -61,6 +60,7 @@ struct LoadDataView: View {
         await loadUser()
         await loadMovements()
         await loadLogs()
+        await loadRoutines()
     }
     
     private func loadUser() async {
@@ -79,10 +79,10 @@ struct LoadDataView: View {
             await logsViewModel.loadLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
         }
     }
-    //
-    //    private func getRoutines() {
-    //        if routinesViewModel.routines.isEmpty {
-    //            routinesViewModel.subscribeToRoutines(userId: userViewModel.userId)
-    //        }
-    //    }
+    
+    private func loadRoutines() async {
+        if routinesViewModel.routines.isEmpty {
+            await routinesViewModel.loadRoutines(userId: userViewModel.userId)
+        }
+    }
 }

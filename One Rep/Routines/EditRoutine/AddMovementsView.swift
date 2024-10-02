@@ -13,10 +13,12 @@ struct AddMovementsView: View {
     
     @EnvironmentObject var theme: ThemeModel
     @EnvironmentObject var movementsViewModel: MovementsViewModel
+    @EnvironmentObject var routinesViewModel: RoutinesViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     // MARK: - Public Properties
     
-    @ObservedObject var routineViewModel: RoutineViewModel
+    @ObservedObject var selectedRoutineViewModel: SelectedRoutineViewModel
     
     // MARK: - Private Properties
     
@@ -31,7 +33,7 @@ struct AddMovementsView: View {
             Color(theme.backgroundColor).ignoresSafeArea()
             
             VStack(spacing: 36) {
-                Text(routineViewModel.routine.name)
+                Text(selectedRoutineViewModel.routine.name)
                     .customFont(size: .title3, weight: .bold, design: .rounded)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
@@ -45,7 +47,7 @@ struct AddMovementsView: View {
                         Spacer()
                     }
                     ScrollView {
-                        ForEach(movementsToAdd, id: \.id) { movement in
+                        ForEach(selectedRoutineViewModel.movementsToAdd, id: \.id) { movement in
                             VStack {
                                 Divider()
                                 HStack {
@@ -54,7 +56,9 @@ struct AddMovementsView: View {
                                         .foregroundColor(.primary)
                                     Spacer()
                                     Button {
-                                        addMovementTap(movementId: movement.id)
+                                        Task {
+                                            await addMovementTap(movementId: movement.id)
+                                        }
                                     } label: {
                                         Image(systemName: Icons.TextBadgePlus.rawValue)
                                             .customFont(size: .body, weight: .bold, design: .rounded)
@@ -69,33 +73,22 @@ struct AddMovementsView: View {
                 .padding(.horizontal, 24)
             }
         }
-        .onAppear { setMovementsArray() }
+        .onAppear { selectedRoutineViewModel.setMovementsToAddArray(movements: movementsViewModel.movements, dismissAction: {
+                dismiss()
+            })
+        }
     }
     
     // MARK: - Functions
     
-    private func setMovementsArray() {
-        movementsToAdd = []
-        for movement in movementsViewModel.movements {
-            if !routineViewModel.routine.movementIDs.contains(movement.id) {
-                movementsToAdd.append(movement)
-            }
-        }
-        if movementsToAdd.count == 0 {
-            dismiss()
-        }
-    }
-    
-    private func addMovementTap(movementId: String) {
+    private func addMovementTap(movementId: String) async {
         HapticManager.instance.impact(style: .soft)
-        routineViewModel.routine.movementIDs.append(movementId)
-        Task {
-            let result = await routineViewModel.updateRoutine()
-            ResultHandler.shared.handleResult(result: result, onSuccess: {
-                setMovementsArray()
-                routineViewModel.setMovements(movements: movementsViewModel.movements)
-            })
-            // TODO: Handle error
-        }
+        selectedRoutineViewModel.routine.movementIDs.append(movementId)
+        await selectedRoutineViewModel.updateRoutineMovementsList(userId: userViewModel.userId)
+        routinesViewModel.updateRoutineInList(selectedRoutineViewModel.routine)
+        selectedRoutineViewModel.setMovementsToAddArray(movements: movementsViewModel.movements, dismissAction: {
+            dismiss()
+        })
+        selectedRoutineViewModel.setMovements(userId: userViewModel.userId, movements: movementsViewModel.movements)
     }
 }

@@ -61,7 +61,6 @@ struct SelectedMovementView: View {
                                 showDoneToolBar: $selectedMovementViewModel.showDoneToolBar,
                                 selectedLog: $selectedLog)
                 }
-                // .padding(.top, movement.movementType == .Weight && logsViewModel.listOfWeights.count >= 3 ? 3 : 0)
             }
             .background(Color(theme.backgroundColor))
             .padding(.top, selectedMovementViewModel.showLogSetView ? -8 : 0)

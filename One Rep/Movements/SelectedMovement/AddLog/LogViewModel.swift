@@ -21,54 +21,16 @@ class LogViewModel: ObservableObject {
     
     // MARK: - Functions
     
-    @MainActor 
-    func addLog(userId: String, movement: Movement, userViewModel: UserViewModel, unit: UnitSelection) -> Log {
-        let newLog = buildAndReturnLog(userId: userId, movement: movement, userViewModel: userViewModel, unit: unit)
-        Task {
-            do {
-                try await LogsNetworkManager.shared.addLog(userId: userId,
-                                                           movement: movement,
-                                                           newLog: newLog)
-            } catch {
-                // TODO: Handle error
-            }
+    @MainActor
+    func addLog(userId: String, movement: Movement, logViewModel: LogViewModel, userViewModel: UserViewModel, unit: UnitSelection) async -> Log? {
+        do {
+            return try await LogsNetworkManager.shared.addLog(userId: userId, movement: movement, logViewModel: logViewModel, userViewModel: userViewModel, unit: unit)
+        } catch {
+            // TODO: Handle error
+            return nil
         }
-        return newLog
     }
-    
-    @MainActor 
-    func buildAndReturnLog(userId: String,
-                           movement: Movement,
-                           userViewModel: UserViewModel,
-                           unit: UnitSelection) -> Log {
-        let docId = UUID().uuidString
-        var log = Log()
-        if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
-            log = Log(
-                id: docId,
-                userId: userId,
-                movementId: movement.id,
-                reps: reps,
-                weight: weight,
-                bodyweight: bodyWeightEntry.bodyweight,
-                isBodyWeight: movement.movementType == .Bodyweight,
-                timeAdded: Date(),
-                unit: unit
-            )
-        } else {
-            log = Log(
-                id: docId,
-                userId: userId,
-                movementId: movement.id,
-                reps: reps,
-                weight: weight,
-                bodyweight: 0,
-                isBodyWeight: movement.movementType == .Bodyweight,
-                timeAdded: Date(),
-                unit: unit)
-        }
-        return log
-    }
+
     
     // MARK: - Mutating Functions
     
