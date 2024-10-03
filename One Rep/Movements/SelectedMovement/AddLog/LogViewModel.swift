@@ -19,6 +19,8 @@ class LogViewModel: ObservableObject {
     @Published var weightStr = ""
     @Published var addWeightToBodyweight: Bool = false
     
+    @Published var weightSelection: WeightSelection = .All
+    
     // MARK: - Functions
     
     @MainActor

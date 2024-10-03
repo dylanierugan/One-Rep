@@ -32,6 +32,11 @@ struct LogViewSubHeading: View {
                         .padding(.top, 36)
                     Spacer()
                 }
+            } else {
+                if logsViewModel.showWeightSelection {
+                    WeightHorizontalScroller(movement: movement)
+                        .padding(.top, 16)
+                }
             }
         }
     }

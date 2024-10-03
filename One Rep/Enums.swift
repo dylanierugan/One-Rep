@@ -368,6 +368,8 @@ enum UnitSelection: String, Identifiable, Codable, CaseIterable {
 
 enum WeightSelection: String {
     case All = "All"
+    case NoWeight = "No weight"
+    case Zero = "0"
 }
 
 extension UserDefaults {

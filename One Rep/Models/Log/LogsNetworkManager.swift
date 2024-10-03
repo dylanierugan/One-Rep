@@ -76,7 +76,7 @@ class LogsNetworkManager {
                            unit: UnitSelection) -> Log {
         var log = Log()
         if let bodyWeightEntry = userViewModel.bodyweightEntries.first {
-            if logViewModel.addWeightToBodyweight {
+            if (logViewModel.addWeightToBodyweight && movement.movementType == .Bodyweight) || movement.movementType == .Weight {
                 log = Log(
                     id: docId,
                     userId: userId,
@@ -88,7 +88,7 @@ class LogsNetworkManager {
                     timeAdded: Date(),
                     unit: unit
                 )
-            } else {
+            } else if !logViewModel.addWeightToBodyweight && movement.movementType == .Bodyweight {
                 log = Log(
                     id: docId,
                     userId: userId,

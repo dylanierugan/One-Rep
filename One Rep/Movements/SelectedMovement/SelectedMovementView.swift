@@ -55,11 +55,12 @@ struct SelectedMovementView: View {
                 VStack(spacing: 16) {
                     LogViewSubHeading(movement: movement)
                     LogListView(movement: movement,
-                                logsViewModel: logsViewModel, 
+                                logsViewModel: logsViewModel,
                                 isEditingLogs: $selectedMovementViewModel.isEditingLogs,
                                 showLogSetView: $selectedMovementViewModel.showLogSetView,
                                 showDoneToolBar: $selectedMovementViewModel.showDoneToolBar,
                                 selectedLog: $selectedLog)
+                        
                 }
             }
             .background(Color(theme.backgroundColor))

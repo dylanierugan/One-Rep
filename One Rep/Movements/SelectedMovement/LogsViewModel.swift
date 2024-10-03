@@ -20,6 +20,15 @@ class LogsViewModel: ObservableObject {
     @Published var listOfDates = [String]()
     @Published var dateLogMap = [String: [Log]]()
     
+    enum WeightSelectionEnum {
+        case allSelected
+        case weightSelected
+    }
+    
+    @Published var weightSelection: String = "All"
+    @Published var weightSelectionEnum: WeightSelectionEnum = .allSelected
+    @Published var showWeightSelection = false
+    
     @Published var logsLoading = true
     
     @Published var unit: UnitSelection
@@ -44,7 +53,7 @@ class LogsViewModel: ObservableObject {
     }
     
     func deleteAllMovementLogs(userId: String, movement: Movement) async {
-        filterLogs(movementId: movement.id)
+        filterLogsByMovement(movementId: movement.id)
         do {
             try await LogsNetworkManager.shared.deleteAllMovementLogs(userId: userId, movement: movement, logs: filteredLogs)
         } catch {
@@ -77,15 +86,48 @@ class LogsViewModel: ObservableObject {
         logs = []
     }
     
-    func filterLogs(movementId: String) {
+    func filterLogsByMovement(movementId: String) {
         filteredLogs = logs.filter { $0.movementId == movementId }
         filteredLogs.sort { $0.timeAdded > $1.timeAdded }
+    }
+    
+    func setWeightSelectionEnum(weightSelection: String) {
+        if weightSelection == "All" {
+            self.weightSelectionEnum = .allSelected
+        } else {
+            self.weightSelectionEnum = .weightSelected
+        }
+    }
+    
+    func filterLogsByWeightSelection(weightSelection: String, movementId: String) {
+        setWeightSelectionEnum(weightSelection: weightSelection)
+        switch weightSelectionEnum {
+        case .allSelected:
+            filterLogsByMovement(movementId: movementId)
+            populateListOfDates()
+            populateDateLogMap()
+            return
+        case .weightSelected:
+            let weightDouble = Double(weightSelection)
+            filterLogsByMovement(movementId: movementId)
+            filteredLogs = filteredLogs.filter { $0.weight == weightDouble }
+            filteredLogs.sort { $0.timeAdded > $1.timeAdded }
+            populateListOfDates()
+            populateDateLogMap()
+        }
     }
     
     func populateListOfWeights() {
         listOfWeights = Array(Set(filteredLogs.map { convertWeightDoubleToString($0.weight) }))
         listOfWeights.sort { $0.localizedStandardCompare($1) == .orderedAscending }
         listOfWeights.insert(WeightSelection.All.rawValue, at: 0)
+        print(listOfWeights)
+        print(listOfWeights.count)
+        if listOfWeights.count > 2 {
+            showWeightSelection = true
+        } else {
+            showWeightSelection = false
+        }
     }
     
     func populateWeightLogMap() {
@@ -93,7 +135,7 @@ class LogsViewModel: ObservableObject {
     }
     
     func checkIfWeightDeleted(movementId: String, weightSelection: String) -> Bool {
-        filterLogs(movementId: movementId)
+        filterLogsByMovement(movementId: movementId)
         populateWeightLogMap()
         return weightLogMap[weightSelection] == nil
     }
@@ -123,7 +165,9 @@ class LogsViewModel: ObservableObject {
     }
     
     func repopulateViewModel(movement: Movement) {
-        filterLogs(movementId: movement.id)
+        filterLogsByMovement(movementId: movement.id)
+        weightSelection = "All"
+        weightSelectionEnum = .allSelected
         populateListOfWeights()
         populateListOfDates()
         populateDateLogMap()

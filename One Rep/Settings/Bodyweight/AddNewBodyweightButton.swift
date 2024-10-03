@@ -49,7 +49,7 @@ struct AddNewBodyweightButton: View {
     private func addBodyweight() async {
         let bodyweightEntry = await userViewModel.addBodyweightEntry(bodyweight: bodyweight)
         guard let bodyweightEntry = bodyweightEntry else { return }
-        userViewModel.bodyweightEntries.append(bodyweightEntry)
+        userViewModel.bodyweightEntries.insert(bodyweightEntry, at: 0)
         self.prevBodyweight = self.bodyweight
         dismiss()
     }
