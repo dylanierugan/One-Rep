@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class EditLogViewModel: ObservableObject {
     
     // MARK: - Properties
@@ -95,9 +96,7 @@ class EditLogViewModel: ObservableObject {
         weightStr = log.weight.clean
         reps = log.reps
         repsStr = String(log.reps)
-        if let bodyweightEntry = userViewModel.bodyweightEntries.first {
-            bodyweight = bodyweightEntry.bodyweight
-        }
+        bodyweight = log.bodyweight
     }
     
     func updateLog() {

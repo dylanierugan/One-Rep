@@ -59,12 +59,12 @@ struct LogSetButton: View {
     }
     
     private func logSet() async {
+        HapticManager.instance.impact(style: .soft)
         let newLog = await logViewModel.addLog(userId: userViewModel.userId,
                                          movement: movement, logViewModel: logViewModel,
                                          userViewModel: userViewModel,
                                          unit: logsViewModel.unit)
         guard let newLog = newLog else { return }
         logsViewModel.logs.append(newLog)
-        HapticManager.instance.impact(style: .light)
     }
 }

@@ -149,7 +149,7 @@ struct EditLogView: View {
     
     private func deleteLog() async {
         await editLogViewModel.deleteLog(userId: userViewModel.userId,
-                                   movement: movement) // TODO: Error handle
+                                         movement: movement)
         logsViewModel.deleteLogInLocalList(editLogViewModel.log)
         deleteLogViewModel()
         dismiss()

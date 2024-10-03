@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct DeleteLogTrashIconButton: View {
     
     // MARK: - Global Properties

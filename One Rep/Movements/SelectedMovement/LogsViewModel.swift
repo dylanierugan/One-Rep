@@ -121,8 +121,6 @@ class LogsViewModel: ObservableObject {
         listOfWeights = Array(Set(filteredLogs.map { convertWeightDoubleToString($0.weight) }))
         listOfWeights.sort { $0.localizedStandardCompare($1) == .orderedAscending }
         listOfWeights.insert(WeightSelection.All.rawValue, at: 0)
-        print(listOfWeights)
-        print(listOfWeights.count)
         if listOfWeights.count > 2 {
             showWeightSelection = true
         } else {
