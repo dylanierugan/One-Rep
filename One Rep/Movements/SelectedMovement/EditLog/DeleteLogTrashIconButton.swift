@@ -18,6 +18,11 @@ struct DeleteLogTrashIconButton: View {
     @EnvironmentObject var editLogViewModel: EditLogViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
+    
+    // MARK: - Public Properties
+    
+    @ObservedObject var selectedMovementViewModel: SelectedMovementViewModel
+    
     // MARK: - Public Properties
     
     var movement: Movement
@@ -53,5 +58,8 @@ struct DeleteLogTrashIconButton: View {
         logViewModel.setLastLog(logsViewModel.filteredLogs,
                                 isBodyweight: movement.movementType == .Bodyweight ? true : false)
         HapticManager.instance.impact(style: .light)
+        if logsViewModel.filteredLogs.isEmpty {
+            selectedMovementViewModel.isEditingLogs = false
+        }
     }
 }

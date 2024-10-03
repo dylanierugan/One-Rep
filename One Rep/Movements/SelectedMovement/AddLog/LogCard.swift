@@ -18,6 +18,7 @@ struct LogCard: View {
     
     // MARK: - Public Properties
     
+    @ObservedObject var selectedMovementViewModel: SelectedMovementViewModel
     var log: Log
     var movement: Movement
     @Binding var showDoneToolBar: Bool
@@ -55,7 +56,8 @@ struct LogCard: View {
         .sheet(isPresented: $showEditMovementPopup) {
             EditLogView(log: log,
                         movement: movement,
-                        logViewModel: logViewModel)
+                        logViewModel: logViewModel, 
+                        selectedMovementViewModel: selectedMovementViewModel)
                 .environment(\.sizeCategory, .extraSmall)
                 .environment(\.colorScheme, theme.colorScheme)
                 .onDisappear { showDoneToolBar = true }

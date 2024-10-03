@@ -19,6 +19,7 @@ struct EditLogView: View {
     
     // MARK: - Public Properties
     
+    @ObservedObject var selectedMovementViewModel: SelectedMovementViewModel
     var log: Log
     var movement: Movement
     @FocusState var isInputActive: Bool
@@ -33,9 +34,11 @@ struct EditLogView: View {
     
     init(log: Log,
          movement: Movement,
-         logViewModel: LogViewModel) {
+         logViewModel: LogViewModel,
+         selectedMovementViewModel: SelectedMovementViewModel) {
         self.log = log
         self.movement = movement
+        self.selectedMovementViewModel = selectedMovementViewModel
     }
     
     // MARK: - View
@@ -152,6 +155,9 @@ struct EditLogView: View {
                                          movement: movement)
         logsViewModel.deleteLogInLocalList(editLogViewModel.log)
         deleteLogViewModel()
+        if logsViewModel.filteredLogs.isEmpty {
+            selectedMovementViewModel.isEditingLogs = false
+        }
         dismiss()
     }
     

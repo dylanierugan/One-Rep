@@ -56,6 +56,7 @@ struct SelectedMovementView: View {
                     LogViewSubHeading(movement: movement)
                     LogListView(movement: movement,
                                 logsViewModel: logsViewModel,
+                                selectedMovementViewModel: selectedMovementViewModel,
                                 isEditingLogs: $selectedMovementViewModel.isEditingLogs,
                                 showLogSetView: $selectedMovementViewModel.showLogSetView,
                                 showDoneToolBar: $selectedMovementViewModel.showDoneToolBar,
@@ -85,6 +86,9 @@ struct SelectedMovementView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             setLogs()
+        }
+        .onDisappear {
+            selectedMovementViewModel.isEditingLogs = false
         }
     }
     

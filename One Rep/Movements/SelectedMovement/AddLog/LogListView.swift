@@ -17,6 +17,7 @@ struct LogListView: View {
     
     var movement: Movement
     @ObservedObject var logsViewModel: LogsViewModel
+    @ObservedObject var selectedMovementViewModel: SelectedMovementViewModel
     
     @Binding var isEditingLogs: Bool
     @Binding var showLogSetView: Bool
@@ -47,16 +48,18 @@ struct LogListView: View {
                             ForEach(Array(logs.reversed().enumerated()), id: \.element.id) { index, log in
                                 HStack {
                                     VStack {
-                                        LogCard(log: log,
+                                        LogCard(selectedMovementViewModel: selectedMovementViewModel,
+                                                log: log,
                                                 movement: movement,
                                                 showDoneToolBar: $showDoneToolBar,
                                                 index: index + 1)
                                     }
                                     if isEditingLogs {
-                                        DeleteLogTrashIconButton(movement: movement,
+                                        DeleteLogTrashIconButton(selectedMovementViewModel: selectedMovementViewModel,
+                                                                 movement: movement,
                                                                  log: log)
-                                            .padding(.horizontal, 8)
-                                            .padding(.vertical, 8)
+                                        .padding(.horizontal, 8)
+                                        .padding(.vertical, 8)
                                     }
                                 }
                             }
