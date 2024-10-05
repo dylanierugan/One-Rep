@@ -44,6 +44,9 @@ struct MutateRepsView: View {
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .onReceive(Just(logViewModel.reps)) { _ in logViewModel.limitRepsText(3) }
                     .focused($isInputActive)
+                    .onTapGesture {
+                        logViewModel.repsStr = ""
+                    }
                 
                 MutateRepsButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
             }

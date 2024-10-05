@@ -47,6 +47,9 @@ struct EditRepsTextField: View {
                         editLogViewModel.repsStr = String(log.reps)
                     }
                 }
+                .onTapGesture {
+                    editLogViewModel.repsStr = ""
+                }
             MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: 1)
         }
     }

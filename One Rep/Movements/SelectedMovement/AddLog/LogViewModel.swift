@@ -16,7 +16,7 @@ class LogViewModel: ObservableObject {
     
     @Published var reps: Int = 0
     @Published var repsStr = ""
-    @Published var weight: Double = 0
+    @Published var weight: Double? = nil
     @Published var weightStr = ""
     @Published var addWeightToBodyweight: Bool = false
     
@@ -46,6 +46,7 @@ class LogViewModel: ObservableObject {
     }
     
     func mutateWeight(_ mutatingValue: Double) {
+        guard var weight = weight else { return }
         if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
             weight += mutatingValue
             weightStr = weight.clean

@@ -44,6 +44,9 @@ struct EditWeightTextField: View {
                         logViewModel.weight = log.weight
                     }
                 }
+                .onTapGesture {
+                    editLogViewModel.weight = nil
+                }
             MutateWieghtButton(isEditing: true, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: movement.mutatingValue)
         }
     }

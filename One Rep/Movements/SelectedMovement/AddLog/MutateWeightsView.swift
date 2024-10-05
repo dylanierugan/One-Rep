@@ -5,7 +5,6 @@
 //  Created by Dylan Ierugan on 4/9/24.
 //
 
-import Combine
 import SwiftUI
 
 struct MutateWeightView: View {
@@ -71,6 +70,9 @@ struct MutateWeightView: View {
                     .cornerRadius(10)
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .focused($isInputActive)
+                    .onTapGesture {
+                        logViewModel.weight = nil
+                    }
                 
                 MutateWieghtButton(isEditing: false, color: .primary,
                                    icon: Icons.Plus.rawValue, mutatingValue: selectedMovementViewModel.movement.mutatingValue)
