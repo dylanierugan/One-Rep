@@ -5,6 +5,7 @@
 //  Created by Dylan Ierugan on 3/19/24.
 //
 
+import Combine
 import SwiftUI
 
 struct MovementNameTextField: View {
@@ -32,6 +33,7 @@ struct MovementNameTextField: View {
                 .textInputAutocapitalization(.words)
                 .accentColor(Color(theme.lightBaseColor))
                 .focused($isFocused)
+                .onReceive(Just(movementName)) { _ in limitText(30) }
                 .task {
                     if focus {
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(550)) {
@@ -47,6 +49,14 @@ struct MovementNameTextField: View {
                     .padding(10)
                     .background(.clear)
             }
+        }
+    }
+    
+    // MARK: - Functions
+    
+    private func limitText(_ upper: Int) {
+        if movementName.count > upper {
+            movementName = String(movementName.prefix(upper))
         }
     }
 }
