@@ -119,6 +119,7 @@ struct DataLabelReps: View {
     
     var body: some View {
         HStack {
+            Spacer()
             Text("\(log.reps)")
                 .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                 .foregroundStyle(.primary)
@@ -126,5 +127,6 @@ struct DataLabelReps: View {
                 .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                 .foregroundStyle(.secondary)
         }
+        .frame(width: 80)
     }
 }

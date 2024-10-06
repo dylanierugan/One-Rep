@@ -30,7 +30,7 @@ struct AddMovementView: View {
             ZStack {
                 Color(theme.backgroundColor)
                     .ignoresSafeArea()
-                VStack(spacing: 36) {
+                VStack(spacing: 24) {
                     
                     Text(AddMovementStrings.NewMovement.rawValue)
                         .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
