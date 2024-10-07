@@ -21,44 +21,57 @@ struct DeleteAccountView: View {
     @EnvironmentObject var viewRouter: ViewRouter
     @Environment(\.colorScheme) private var currentScheme
     
+    // MARK: - Private Properties
+    
+    @State private var viewState: ViewState = .view
+    
     // MARK: - View
     
     var body: some View {
         ZStack {
             Color(theme.backgroundColor)
                 .ignoresSafeArea()
-            VStack(spacing: 32) {
-                Text(DeleteAccountStrings.DeleteAccountInstructions.rawValue)
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.primary)
-                    .customFont(size: .body, weight: .semibold, design: .rounded)
-                Button {
-                    Task {
-                        do {
-                            _ = try await authenticationViewModel.signInWithApple()
-                            Task {
-                                await deleteUser()
+            switch viewState {
+            case .loading:
+                ProgressView("Deleting account and data")
+                    .foregroundStyle(.primary)
+                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+            case .view:
+                VStack(spacing: 32) {
+                    Text(DeleteAccountStrings.DeleteAccountInstructions.rawValue)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.primary)
+                        .customFont(size: .body, weight: .semibold, design: .rounded)
+                    Button {
+                        Task {
+                            do {
+                                _ = try await authenticationViewModel.signInWithApple()
+                                Task {
+                                    await deleteUser()
+                                }
+                            } catch {
+                                // TODO: Handle error
                             }
-                        } catch {
-                            // TODO: Handle error
                         }
+                    } label: {
+                        SignInWithAppleButtonViewRepresentable(type: .default, style: currentScheme == .light ? .black : .white)
+                            .allowsHitTesting(false)
+                            .frame(height: 32)
+                            .cornerRadius(16)
                     }
-                } label: {
-                    SignInWithAppleButtonViewRepresentable(type: .default, style: currentScheme == .light ? .black : .white)
-                        .allowsHitTesting(false)
-                        .frame(height: 32)
-                        .cornerRadius(16)
                 }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 48)
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 48)
         }
+        .onAppear { viewState = .view }
     }
     
     // MARK: - Functions
     
     private func deleteUser() async {
         do {
+            viewState = .loading
             try await AuthenticationManager.shared.deleteUser()
             await deleteAllData(userId: userViewModel.userId)
             clearData()
@@ -73,7 +86,7 @@ struct DeleteAccountView: View {
     private func deleteAllData(userId: String) async {
         await logsViewModel.deleteAllUserLogs(userId: userId, movements: movementsViewModel.movements)
         await movementsViewModel.deleteAllMovements(userId: userId)
-        // _ = await routinesViewModel.deleteAllUserRoutines(userId: userViewModel.userId)
+        await routinesViewModel.deleteAllRoutines(userId: userViewModel.userId)
         await userViewModel.deleteAllBodyweightEntries()
         await userViewModel.deleteUser()
     }

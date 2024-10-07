@@ -14,11 +14,12 @@ class RoutinesViewModel: ObservableObject {
     
     @Published var routines = [Routine]()
     
-    @Published var routinesLoading = false
+    @Published var routinesLoading = true
     
     // MARK: - Functions
 
     func loadRoutines(userId: String) async {
+        defer { routinesLoading = false }
         do {
             routines = try await RoutineNetworkManager.shared.getRoutines(userId: userId)
         } catch {
@@ -36,6 +37,14 @@ class RoutinesViewModel: ObservableObject {
     func deleteRoutineInList(_ updatedRoutine: Routine) {
         if let index = routines.firstIndex(where: { $0.id == updatedRoutine.id }) {
             routines.remove(at: index)
+        }
+    }
+    
+    func deleteAllRoutines(userId: String) async {
+        do {
+            try await RoutineNetworkManager.shared.deleteAllRoutines(userId: userId)
+        } catch {
+            // TODO: Handle error
         }
     }
     

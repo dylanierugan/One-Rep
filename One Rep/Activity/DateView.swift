@@ -29,7 +29,7 @@ struct DateView: View {
                     }
                 } label: {
                     HStack {
-                        Text("Go to Today")
+                        Text(DateStrings.GoToToday.rawValue)
                             .foregroundStyle(.reversePrimary)
                             .padding(.vertical, 8)
                             .padding(.horizontal, 12)

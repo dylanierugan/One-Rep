@@ -76,6 +76,7 @@ enum Colors: String {
 }
 
 enum DateStrings: String {
+    case GoToToday = "Go to Today"
     case monthDayFormat = "MMMM d"
 }
 
@@ -364,6 +365,11 @@ enum UnitSelection: String, Identifiable, Codable, CaseIterable {
     var id: UnitSelection { self }
     case lbs = "lbs"
     case kgs = "kgs"
+}
+
+enum ViewState {
+    case loading
+    case view
 }
 
 enum WeightSelection: String {
