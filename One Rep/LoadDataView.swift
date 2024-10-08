@@ -6,6 +6,7 @@
 //
 
 import Firebase
+import RevenueCat
 import SwiftUI
 
 struct LoadDataView: View {
@@ -50,6 +51,9 @@ struct LoadDataView: View {
         do {
             let userId = try AuthenticationManager.shared.getAuthenticatedUser().uid
             userViewModel.userId = userId
+            Purchases.shared.logIn(userId) { (customerInfo, created, error) in
+                // TODO: Handle error
+            }
         } catch {
             // TODO: Handle error - got back to login
         }

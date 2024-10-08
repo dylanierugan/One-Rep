@@ -6,6 +6,7 @@
 //
 
 import FirebaseCore
+import RevenueCat
 import SwiftUI
 
 @main
@@ -24,6 +25,8 @@ struct One_RepApp: SwiftUI.App {
     
     init() {
         FirebaseApp.configure()
+        Purchases.logLevel = .debug
+        Purchases.configure(withAPIKey: RevenueCat.PublicAPIKey.rawValue)
     }
     
     // MARK: - Scene

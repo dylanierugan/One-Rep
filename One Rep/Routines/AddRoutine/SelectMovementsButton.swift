@@ -29,10 +29,10 @@ struct SelectMovementsButton: View {
         } label: {
             HStack {
                 Text(AddRoutineStrings.SelectMovements.rawValue)
-                    .font(.body.weight(.regular))
                 Image(systemName: Icons.ArrowshapeForwardFill.rawValue)
             }
             .foregroundColor(addRoutineViewModel.isFormNameValid ? (colorScheme == .dark ? Color(theme.lightBaseColor) : Color(theme.darkBaseColor)) : Color.secondary)
+            .customFont(size: .body, weight: .bold, design: .rounded)
         }
         .disabled(addRoutineViewModel.isFormNameValid == false)
     }

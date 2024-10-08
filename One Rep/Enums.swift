@@ -150,6 +150,7 @@ enum Icons: String {
     case BookMarkFill = "bookmark.fill"
     case Calendar = "calendar"
     case ChartXYAxis = "chart.xyaxis.line"
+    case Checkmark = "checkmark"
     case ChevronCompactDown = "chevron.compact.down"
     case ChevronCompactUp = "chevron.compact.up"
     case ChevronForward = "chevron.forward"
@@ -319,6 +320,10 @@ enum RepType: String, Identifiable, Codable, CaseIterable {
     case WarmUp = "Warm Up"
     case WorkingSet = "Working Set"
     case PR = "PR"
+}
+
+enum RevenueCat: String {
+    case PublicAPIKey = "appl_dEAoEEQiwepqzIsKKqoKNPYZAKA"
 }
 
 enum RoutineAttributes: String {

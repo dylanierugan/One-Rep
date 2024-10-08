@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class AddRoutineViewModel: ObservableObject {
     
     // MARK: - Properties
@@ -33,6 +34,8 @@ class AddRoutineViewModel: ObservableObject {
     
     func addRoutine(userId: String, addRoutineViewModel: AddRoutineViewModel) async -> Routine? {
         selectedMovmentsIDs = []
+        showSecondAddingRoutineProgressView = true
+        defer { showSecondAddingRoutineProgressView = false }
         for movement in selectedMovments {
             selectedMovmentsIDs.append(movement.id)
         }

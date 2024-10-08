@@ -50,31 +50,45 @@ struct SelectMovementsView: View {
                                 }
                                 if let movements = addRoutineViewModel.muscleGroupMovementDict[muscle.rawValue]?.sorted(by: { $0.name < $1.name }) {
                                     ForEach(movements, id: \.id) { movement in
-                                        HStack {
+                                        HStack(spacing: 16) {
+                                            
                                             Button {
-                                                if addRoutineViewModel.selectedMovments.contains(where: { ($0.id == movement.id) }) {
-                                                    if let index = addRoutineViewModel.selectedMovments.firstIndex(of: movement) {
-                                                        addRoutineViewModel.selectedMovments.remove(at: index)
+                                                withAnimation {
+                                                    if addRoutineViewModel.selectedMovments.contains(where: { ($0.id == movement.id) }) {
+                                                        if let index = addRoutineViewModel.selectedMovments.firstIndex(of: movement) {
+                                                            addRoutineViewModel.selectedMovments.remove(at: index)
+                                                        }
+                                                    } else {
+                                                        addRoutineViewModel.selectedMovments.append(movement)
                                                     }
-                                                } else {
-                                                    addRoutineViewModel.selectedMovments.append(movement)
+                                                    HapticManager.instance.impact(style: .soft)
                                                 }
                                             } label: {
-                                                HStack {
-                                                    Text(movement.name)
+                                                if addRoutineViewModel.selectedMovments.contains(movement) {
+                                                    ZStack {
+                                                        Image(systemName: Icons.Checkmark.rawValue)
+                                                            .foregroundStyle(Color(.black))
+                                                            .font(.caption)
+                                                            .bold()
+                                                            .zIndex(1)
+                                                        Circle()
+                                                            .frame(width: 24, height: 24)
+                                                            .foregroundStyle(colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor))
+                                                    }
+                                                } else {
+                                                    ZStack {
+                                                        Image(systemName: Icons.Plus.rawValue)
+                                                            .foregroundStyle(colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor))
+                                                            .font(.caption)
+                                                            .bold()
+                                                        Circle()
+                                                            .frame(width: 24, height: 24)
+                                                            .foregroundStyle(colorScheme == .dark ? Color(theme.lightBaseColor).opacity(0.2) :  Color(theme.darkBaseColor).opacity(0.2))
+                                                    }
                                                 }
-                                                .padding(.vertical, 8)
-                                                .padding(.horizontal, 12)
-                                                .foregroundColor(addRoutineViewModel.selectedMovments.contains(movement) ? (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)) : (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)).opacity(0.5))
-                                                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                                                .background(.ultraThickMaterial)
-                                                .cornerRadius(12)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: 12)
-                                                        .stroke(addRoutineViewModel.selectedMovments.contains(movement) ? (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)) : (colorScheme == .dark ? Color(theme.lightBaseColor) :  Color(theme.darkBaseColor)).opacity(0.5), lineWidth: 4)
-                                                )
-                                                .cornerRadius(12)
                                             }
+                                            Text(movement.name)
+                                                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                                             Spacer()
                                         }
                                     }

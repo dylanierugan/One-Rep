@@ -35,7 +35,7 @@ struct AddRoutineView: View {
                         Text(AddRoutineStrings.RoutineName.rawValue)
                             .customFont(size: .caption, weight: .regular, kerning: 0, design: .rounded)
                             .foregroundColor(.secondary)
-                        RoutineNameTextfield(focus: false, routineName: $addRoutineViewModel.routineName, text: "")
+                        RoutineNameTextfield(focus: true, routineName: $addRoutineViewModel.routineName, text: "")
                     }
                     
                     VStack(alignment: .leading, spacing: 6) {

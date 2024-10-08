@@ -5,6 +5,7 @@
 //  Created by Dylan Ierugan on 5/11/24.
 //
 
+import RevenueCat
 import SwiftUI
 
 struct LogOutButton: View {
@@ -42,7 +43,10 @@ struct LogOutButton: View {
         do {
             try await AuthenticationManager.shared.signOut()
             withAnimation {
-                viewRouter.currentPage = .loginView
+                Purchases.shared.logOut { _, error in
+                    // TODO: Handle error
+                    viewRouter.currentPage = .loginView
+                }
             }
             clearData()
         } catch {

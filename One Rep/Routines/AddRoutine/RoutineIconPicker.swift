@@ -30,39 +30,40 @@ struct RoutineIconPicker: View {
                            Icons.TriangleFill.rawValue,
                            Icons.SquareFill.rawValue,
                            Icons.HeartFill.rawValue,
-                           Icons.CircleHexagongrid.rawValue,
                            Icons.Atom.rawValue]
     
     // MARK: - View
     
+    let columns = [
+        GridItem(.adaptive(minimum: 50, maximum: 100)) // Adjust sizes as needed
+    ]
+    
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(icons, id: \.self) { icon in
-                    Button {
-                        selectedIcon = icon
-                        HapticManager.instance.impact(style: .soft)
-                    } label: {
-                        HStack {
-                            if icon == Icons.Bench.rawValue {
-                                Image(Icons.Bench.rawValue)
-                                    .font(.caption.weight(.regular))
-                            } else {
-                                Image(systemName: icon)
-                                    .font(.body.weight(.regular))
-                            }
+        LazyVGrid(columns: columns, spacing: 12) {
+            ForEach(icons, id: \.self) { icon in
+                Button {
+                    selectedIcon = icon
+                    HapticManager.instance.impact(style: .soft)
+                } label: {
+                    HStack {
+                        if icon == Icons.Bench.rawValue {
+                            Image(Icons.Bench.rawValue)
+                                .font(.caption.weight(.regular))
+                        } else {
+                            Image(systemName: icon)
+                                .font(.body.weight(.regular))
                         }
-                        .frame(width: 40, height: 40)
-                        .foregroundStyle(selectedIcon == icon ? .linearGradient(colors: [Color(theme.lightBaseColor), Color(theme.darkBaseColor)], startPoint: .top, endPoint: .bottom) :
-                                .linearGradient(colors: [Color.primary], startPoint: .top, endPoint: .bottom))
-                        .background(.ultraThickMaterial)
-                        .cornerRadius(12)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(selectedIcon == icon ? .linearGradient(colors: [Color(theme.lightBaseColor), Color(theme.darkBaseColor)], startPoint: .top, endPoint: .bottom) : LinearGradient(colors: [Color.clear], startPoint: .top, endPoint: .bottom), lineWidth: 5)
-                        )
-                        .cornerRadius(12)
                     }
+                    .frame(width: 40, height: 40)
+                    .foregroundStyle(selectedIcon == icon ? .linearGradient(colors: [Color(theme.lightBaseColor), Color(theme.darkBaseColor)], startPoint: .top, endPoint: .bottom) :
+                            .linearGradient(colors: [Color.primary], startPoint: .top, endPoint: .bottom))
+                    .background(.ultraThickMaterial)
+                    .cornerRadius(12)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(selectedIcon == icon ? .linearGradient(colors: [Color(theme.lightBaseColor), Color(theme.darkBaseColor)], startPoint: .top, endPoint: .bottom) : LinearGradient(colors: [Color.clear], startPoint: .top, endPoint: .bottom), lineWidth: 5)
+                    )
+                    .cornerRadius(12)
                 }
             }
         }

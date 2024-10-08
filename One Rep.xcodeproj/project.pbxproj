@@ -154,6 +154,9 @@
 		37C70C2E2BD4504E00B0375A /* UpdateMovementButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */; };
 		37C70C322BDD52C200B0375A /* LogCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C312BDD52C200B0375A /* LogCard.swift */; };
 		37C70C342BE2806100B0375A /* WeightHorizontalScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */; };
+		37D01C8D2CB42EDE0002BFF7 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 37D01C8C2CB42EDE0002BFF7 /* ReceiptParser */; };
+		37D01C8F2CB42EDE0002BFF7 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 37D01C8E2CB42EDE0002BFF7 /* RevenueCat */; };
+		37D01C912CB42EDE0002BFF7 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 37D01C902CB42EDE0002BFF7 /* RevenueCatUI */; };
 		37FAB2632C3A187B00FDD05B /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2622C3A187B00FDD05B /* ResultHandler.swift */; };
 		37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */; };
 		37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2662C3B013C00FDD05B /* LogListView.swift */; };
@@ -304,12 +307,15 @@
 				37783A222CA8461A006BFDCC /* FirebaseAppCheck in Frameworks */,
 				37783A262CA8461A006BFDCC /* FirebaseAuth in Frameworks */,
 				37783A1C2CA8461A006BFDCC /* FirebaseAnalytics in Frameworks */,
+				37D01C8D2CB42EDE0002BFF7 /* ReceiptParser in Frameworks */,
+				37D01C8F2CB42EDE0002BFF7 /* RevenueCat in Frameworks */,
 				37783A242CA8461A006BFDCC /* FirebaseAppDistribution-Beta in Frameworks */,
 				37783A202CA8461A006BFDCC /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				37783A2A2CA8461A006BFDCC /* FirebaseCrashlytics in Frameworks */,
 				37783A2C2CA8461A006BFDCC /* FirebaseDatabase in Frameworks */,
 				37783A362CA8461A006BFDCC /* FirebaseFunctionsCombine-Community in Frameworks */,
 				37783A282CA8461A006BFDCC /* FirebaseAuthCombine-Community in Frameworks */,
+				37D01C912CB42EDE0002BFF7 /* RevenueCatUI in Frameworks */,
 				37783A442CA8461A006BFDCC /* FirebaseStorage in Frameworks */,
 				37783A1E2CA8461A006BFDCC /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				37783A342CA8461A006BFDCC /* FirebaseFunctions in Frameworks */,
@@ -792,6 +798,9 @@
 				37783A432CA8461A006BFDCC /* FirebaseStorage */,
 				37783A452CA8461A006BFDCC /* FirebaseStorageCombine-Community */,
 				37783A472CA8461A006BFDCC /* FirebaseVertexAI-Preview */,
+				37D01C8C2CB42EDE0002BFF7 /* ReceiptParser */,
+				37D01C8E2CB42EDE0002BFF7 /* RevenueCat */,
+				37D01C902CB42EDE0002BFF7 /* RevenueCatUI */,
 			);
 			productName = "One Rep";
 			productReference = 37A655062BA5385600B96BEB /* One Rep.app */;
@@ -823,6 +832,7 @@
 			mainGroup = 37A654FD2BA5385600B96BEB;
 			packageReferences = (
 				37783A1A2CA8461A006BFDCC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				37D01C8B2CB42EDE0002BFF7 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 			);
 			productRefGroup = 37A655072BA5385600B96BEB /* Products */;
 			projectDirPath = "";
@@ -1238,6 +1248,14 @@
 				minimumVersion = 11.2.0;
 			};
 		};
+		37D01C8B2CB42EDE0002BFF7 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1355,6 +1373,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 37783A1A2CA8461A006BFDCC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseVertexAI-Preview";
+		};
+		37D01C8C2CB42EDE0002BFF7 /* ReceiptParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37D01C8B2CB42EDE0002BFF7 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = ReceiptParser;
+		};
+		37D01C8E2CB42EDE0002BFF7 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37D01C8B2CB42EDE0002BFF7 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		37D01C902CB42EDE0002BFF7 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37D01C8B2CB42EDE0002BFF7 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

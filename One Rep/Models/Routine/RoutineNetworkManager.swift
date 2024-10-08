@@ -44,7 +44,7 @@ class RoutineNetworkManager {
     
     func addRoutine(userId: String, addRoutineViewModel: AddRoutineViewModel) async throws -> Routine {
         let document = routineCollection(userId: userId).document()
-        let newRoutine = Routine(id: document.documentID,
+        let newRoutine = await Routine(id: document.documentID,
                                  name: addRoutineViewModel.routineName,
                                  icon: addRoutineViewModel.selectedIcon,
                                  movementIDs: addRoutineViewModel.selectedMovmentsIDs,
