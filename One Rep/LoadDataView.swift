@@ -61,10 +61,12 @@ struct LoadDataView: View {
     
     private func loadAllData() async {
         setUserViewModelUserId()
-        await loadUser()
-        await loadMovements()
-        await loadLogs()
-        await loadRoutines()
+
+        // Start all async tasks concurrently
+        async let _ = loadUser()
+        async let _ = loadMovements()
+        async let _ = loadLogs()
+        async let _ = loadRoutines()
     }
     
     private func loadUser() async {
@@ -75,18 +77,24 @@ struct LoadDataView: View {
     private func loadMovements() async {
         if movementsViewModel.movements.isEmpty {
             await movementsViewModel.loadMovements(userId: userViewModel.userId)
+        } else {
+            movementsViewModel.movementsLoading = false
         }
     }
     
     private func loadLogs() async {
         if logsViewModel.logs.isEmpty {
             await logsViewModel.loadLogs(userId: userViewModel.userId, movements: movementsViewModel.movements)
+        } else {
+            logsViewModel.logsLoading = false
         }
     }
     
     private func loadRoutines() async {
         if routinesViewModel.routines.isEmpty {
             await routinesViewModel.loadRoutines(userId: userViewModel.userId)
+        } else {
+            routinesViewModel.routinesLoading = false
         }
     }
 }
