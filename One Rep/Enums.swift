@@ -370,6 +370,8 @@ enum UnitSelection: String, Identifiable, Codable, CaseIterable {
     var id: UnitSelection { self }
     case lbs = "lbs"
     case kgs = "kgs"
+    case lb = "lb"
+    case kg = "kg"
 }
 
 enum ViewState {

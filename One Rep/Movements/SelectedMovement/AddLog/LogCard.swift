@@ -106,10 +106,21 @@ struct DataLabelWeight: View {
                     .customFont(size: .title3, weight: .bold, kerning: 0, design: .rounded)
                     .foregroundStyle(.primary)
             }
-            Text(log.unit.rawValue)
-                .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
-                .foregroundStyle(.secondary)
+            if log.weight == 1 && log.unit == .lbs {
+                Text(UnitSelection.lb.rawValue)
+                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                    .foregroundStyle(.secondary)
+            } else if log.weight == 1 && log.unit == .kgs {
+                Text(UnitSelection.kg.rawValue)
+                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                    .foregroundStyle(.secondary)
+            } else {
+                Text(log.unit.rawValue)
+                    .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                    .foregroundStyle(.secondary)
+            }
         }
+        .frame(width: 80)
     }
 }
 

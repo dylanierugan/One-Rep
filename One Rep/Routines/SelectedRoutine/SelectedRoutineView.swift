@@ -107,8 +107,8 @@ struct SelectedRoutineView: View {
     
     private func onDelete(offsets: IndexSet) async {
         selectedRoutineViewModel.routine.movementIDs.remove(atOffsets: offsets)
-        await selectedRoutineViewModel.updateRoutineMovementsList(userId: userViewModel.userId)
         selectedRoutineViewModel.setMovements(userId: userViewModel.userId, movements: movementsViewModel.movements)
+        await selectedRoutineViewModel.updateRoutineMovementsList(userId: userViewModel.userId)
         routinesViewModel.updateRoutineInList(selectedRoutineViewModel.routine)
     }
 }

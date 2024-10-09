@@ -31,7 +31,7 @@ struct MutateRepsView: View {
             HStack(spacing: 0) {
                 MutateRepsButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
                 
-                TextField("", text: $logViewModel.repsStr)
+                TextField("Reps", text: $logViewModel.repsStr)
                     .onChange(of: logViewModel.repsStr) { newText, _ in
                         logViewModel.bindRepValues()
                     }

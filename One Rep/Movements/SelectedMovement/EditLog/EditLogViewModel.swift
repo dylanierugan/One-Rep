@@ -62,7 +62,7 @@ class EditLogViewModel: ObservableObject {
     func mutateEditWeight(_ mutatingValue: Double) {
         guard var weight = weight else { return }
         if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
-            weight += mutatingValue
+            self.weight! += mutatingValue
             weightStr = weight.clean
         }
     }

@@ -61,7 +61,8 @@ struct MutateWeightView: View {
                                    icon: Icons.Minus.rawValue,
                                    mutatingValue: -selectedMovementViewModel.movement.mutatingValue)
                 
-                TextField("", value: $logViewModel.weight, formatter: NumberFormatter.noDecimalUnlessNeeded)
+                TextField("Weight", value: $logViewModel.weight,
+                          formatter: NumberFormatter.noDecimalUnlessNeeded)
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)
@@ -75,10 +76,11 @@ struct MutateWeightView: View {
                     }
                 
                 MutateWieghtButton(isEditing: false, color: .primary,
-                                   icon: Icons.Plus.rawValue, mutatingValue: selectedMovementViewModel.movement.mutatingValue)
+                                   icon: Icons.Plus.rawValue, 
+                                   mutatingValue: selectedMovementViewModel.movement.mutatingValue)
             }
         }
-        .onAppear() { mutatingValue = selectedMovementViewModel.movement.mutatingValue }
+        .onAppear { mutatingValue = selectedMovementViewModel.movement.mutatingValue }
     }
     
     // MARK: - Functions

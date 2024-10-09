@@ -48,7 +48,7 @@ class LogViewModel: ObservableObject {
     func mutateWeight(_ mutatingValue: Double) {
         guard var weight = weight else { return }
         if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
-            weight += mutatingValue
+            self.weight! += mutatingValue
             weightStr = weight.clean
         }
     }

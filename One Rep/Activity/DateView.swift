@@ -27,15 +27,12 @@ struct DateView: View {
                         dateViewModel.selectedDate = Date()
                         dateViewModel.setDate()
                     }
+                    HapticManager().impact(style: .soft)
                 } label: {
                     HStack {
                         Text(DateStrings.GoToToday.rawValue)
-                            .foregroundStyle(.reversePrimary)
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 12)
-                            .background(.primary)
-                            .cornerRadius(12)
-                            .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
+                            .foregroundStyle(.primary)
+                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
                     }
                 }
             }
