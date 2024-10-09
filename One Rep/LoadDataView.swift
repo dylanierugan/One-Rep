@@ -61,12 +61,10 @@ struct LoadDataView: View {
     
     private func loadAllData() async {
         setUserViewModelUserId()
-
-        // Start all async tasks concurrently
-        async let _ = loadUser()
-        async let _ = loadMovements()
-        async let _ = loadLogs()
-        async let _ = loadRoutines()
+        await loadUser()
+        await loadMovements()
+        await loadLogs()
+        await loadRoutines()
     }
     
     private func loadUser() async {
