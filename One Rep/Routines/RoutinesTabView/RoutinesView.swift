@@ -47,9 +47,15 @@ struct RoutinesView: View {
                 }
             }
             .sheet(isPresented: $showAddRoutinePopup) {
-                AddRoutineView()
-                    .environment(\.sizeCategory, .extraSmall)
-                    .environment(\.colorScheme, theme.colorScheme)
+                if routinesViewModel.routineCapReached {
+                    SubscriptionView(subscriptionViewModel: SubscriptionViewModel(userCap: .routine,                 prompted: true, subscriptionChoice: .yearly))
+                        .environment(\.sizeCategory, .extraSmall)
+                        .environment(\.colorScheme, theme.colorScheme)
+                } else {
+                    AddRoutineView()
+                        .environment(\.sizeCategory, .extraSmall)
+                        .environment(\.colorScheme, theme.colorScheme)
+                }
             }
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {

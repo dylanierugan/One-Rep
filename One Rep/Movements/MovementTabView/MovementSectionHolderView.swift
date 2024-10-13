@@ -61,9 +61,15 @@ struct MovementSectionHolderView: View {
                 }
             }
             .sheet(isPresented: $showAddMovementPopup) {
-                AddMovementView()
-                    .environment(\.sizeCategory, .extraSmall)
-                    .environment(\.colorScheme, theme.colorScheme)
+                if movementsViewModel.movementCapReached {
+                    SubscriptionView(subscriptionViewModel: SubscriptionViewModel(userCap: .movement,                 prompted: true, subscriptionChoice: .yearly))
+                        .environment(\.sizeCategory, .extraSmall)
+                        .environment(\.colorScheme, theme.colorScheme)
+                } else {
+                    AddMovementView()
+                        .environment(\.sizeCategory, .extraSmall)
+                        .environment(\.colorScheme, theme.colorScheme)
+                }
             }
             .navigationTitle(navigationTitle)
             .toolbar(content: {

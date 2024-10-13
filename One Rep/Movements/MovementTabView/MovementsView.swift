@@ -19,7 +19,10 @@ struct MovementsView: View {
     
     var body: some View {
         VStack(spacing: 16) {
+            SearchBarView(searchText: $movementsViewModel.searchText)
+                .padding(.horizontal, 16)
             HorizontalScroller(muscleSelection: $movementsViewModel.currentMuscleSelection)
+                .padding(.horizontal, 16)
             ForEach(movementsViewModel.filteredMovements, id: \.id) { movement in
                 if (movement.muscleGroup == movementsViewModel.currentMuscleSelection) || (movementsViewModel.currentMuscleSelection == .All) {
                     MovementCardButton(movement: movement)

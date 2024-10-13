@@ -23,6 +23,7 @@ struct SettingsView: View {
                     .ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: 16) {
+                        SubscriptionSection()
                         AccountSection()
                         BodyweightSection()
                         ThemeSection()

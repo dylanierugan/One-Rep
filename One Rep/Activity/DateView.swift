@@ -31,8 +31,8 @@ struct DateView: View {
                 } label: {
                     HStack {
                         Text(DateStrings.GoToToday.rawValue)
-                            .foregroundStyle(.primary)
-                            .customFont(size: .body, weight: .bold, kerning: 0, design: .rounded)
+                            .foregroundStyle(.secondary)
+                            .customFont(size: .caption, weight: .bold, kerning: 0, design: .rounded)
                     }
                 }
             }

@@ -16,7 +16,7 @@ class EditLogViewModel: ObservableObject {
     
     @Published var reps: Int = 0
     @Published var repsStr = ""
-    @Published var weight: Double? = 0
+    @Published var weight: Double = 0
     @Published var weightStr = ""
     @Published var bodyweight: Double = 0
     
@@ -60,10 +60,9 @@ class EditLogViewModel: ObservableObject {
     // MARK: - Mutating Functions
     
     func mutateEditWeight(_ mutatingValue: Double) {
-        guard var weight = weight else { return }
         if weight + mutatingValue >= 0 && weight + mutatingValue <= 999 {
-            self.weight! += mutatingValue
-            weightStr = weight.clean
+            self.weight += mutatingValue
+            weightStr = self.weight.clean
         }
     }
     
@@ -74,6 +73,16 @@ class EditLogViewModel: ObservableObject {
         }
     }
     
+    func bindWeightValues() {
+        if weightStr.isEmpty {
+            weight = 0
+        } else if let value = Double(weightStr) {
+            weight = value
+        } else {
+            weightStr = weight.clean
+        }
+    }
+    
     func bindEditRepValues() {
         if repsStr.isEmpty {
             reps = 0
@@ -81,6 +90,12 @@ class EditLogViewModel: ObservableObject {
             reps = value
         } else {
             repsStr = String(reps)
+        }
+    }
+    
+    func limitWeightText(_ upper: Int) {
+        if weightStr.count > upper {
+            weightStr = String(weightStr.prefix(upper))
         }
     }
     
@@ -101,7 +116,7 @@ class EditLogViewModel: ObservableObject {
     }
     
     func updateLog() {
-        log.weight = weight ?? 0
+        log.weight = weight 
         log.reps = reps
         log.timeAdded = date
         log.bodyweight = bodyweight

@@ -13,11 +13,14 @@ class MovementsViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var movements = [Movement]()
+    var movementCapReached: Bool {
+        return movements.count >= 7
+    }
     
     @Published var movementsLoading = true
     @Published var currentMuscleSelection: MuscleGroup = .All
     
-    @Published private var searchText = ""
+    @Published var searchText = ""
     var filteredMovements: [Movement] {
         if searchText.isEmpty {
             return movements.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }

@@ -46,6 +46,7 @@ class UserViewModel: ObservableObject {
     func loadBodyweightEntries() async {
         do {
             bodyweightEntries = try await userManager.getBodyweightEntries(userId: userId)
+            bodyweightEntries.sort { $0.timeCreated > $1.timeCreated }
         } catch {
             // TODO: Handle error
         }

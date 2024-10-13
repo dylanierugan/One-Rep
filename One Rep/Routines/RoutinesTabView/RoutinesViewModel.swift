@@ -13,6 +13,9 @@ class RoutinesViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var routines = [Routine]()
+    var routineCapReached: Bool {
+        return routines.count >= 2
+    }
     
     @Published var routinesLoading = true
     

@@ -26,13 +26,13 @@ struct EditRepsTextField: View {
     var body: some View {
         HStack(spacing: 8) {
             MutateRepsButton(isEditing: true, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -1)
-            TextField("", text: $editLogViewModel.repsStr)
+            TextField("Reps", text: $editLogViewModel.repsStr)
                 .onChange(of: editLogViewModel.repsStr) { newText, _ in
                     editLogViewModel.bindEditRepValues()
                 }
                 .accentColor(Color(theme.darkBaseColor))
                 .multilineTextAlignment(.center)
-                .keyboardType(.decimalPad)
+                .keyboardType(.numberPad)
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
                 .background(.secondary.opacity(0.05))

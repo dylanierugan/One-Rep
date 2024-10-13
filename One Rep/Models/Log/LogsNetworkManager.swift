@@ -82,7 +82,7 @@ class LogsNetworkManager {
                     userId: userId,
                     movementId: movement.id,
                     reps: logViewModel.reps,
-                    weight: logViewModel.weight ?? 0,
+                    weight: logViewModel.weight ?? 2,
                     bodyweight: bodyWeightEntry.bodyweight,
                     isBodyWeight: movement.movementType == .Bodyweight,
                     timeAdded: Date(),

@@ -157,6 +157,19 @@
 		37D01C8D2CB42EDE0002BFF7 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 37D01C8C2CB42EDE0002BFF7 /* ReceiptParser */; };
 		37D01C8F2CB42EDE0002BFF7 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 37D01C8E2CB42EDE0002BFF7 /* RevenueCat */; };
 		37D01C912CB42EDE0002BFF7 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = 37D01C902CB42EDE0002BFF7 /* RevenueCatUI */; };
+		37D01C952CB6526F0002BFF7 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01C942CB6526F0002BFF7 /* SearchBarView.swift */; };
+		37D01C9A2CBAE5A50002BFF7 /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01C992CBAE5A50002BFF7 /* SubscriptionView.swift */; };
+		37D01C9C2CBAE6670002BFF7 /* SubscriptionEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01C9B2CBAE6670002BFF7 /* SubscriptionEnums.swift */; };
+		37D01C9E2CBAE9DE0002BFF7 /* SubscribeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01C9D2CBAE9DE0002BFF7 /* SubscribeButton.swift */; };
+		37D01CA02CBAEA830002BFF7 /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01C9F2CBAEA830002BFF7 /* FeatureView.swift */; };
+		37D01CA22CBAEB270002BFF7 /* CheckMarkSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CA12CBAEB270002BFF7 /* CheckMarkSubscriptionView.swift */; };
+		37D01CA42CBAEB930002BFF7 /* YearlySubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CA32CBAEB930002BFF7 /* YearlySubscriptionButton.swift */; };
+		37D01CA62CBAEC720002BFF7 /* MonthlySubscriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CA52CBAEC720002BFF7 /* MonthlySubscriptionButton.swift */; };
+		37D01CA82CBB66140002BFF7 /* SubscriptionTermsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CA72CBB66140002BFF7 /* SubscriptionTermsButton.swift */; };
+		37D01CAA2CBB680E0002BFF7 /* SubscriptionTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CA92CBB680E0002BFF7 /* SubscriptionTermsView.swift */; };
+		37D01CAC2CBB6A390002BFF7 /* SubscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CAB2CBB6A390002BFF7 /* SubscriptionViewModel.swift */; };
+		37D01CAE2CBC1BC50002BFF7 /* SubscriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CAD2CBC1BC50002BFF7 /* SubscriptionSection.swift */; };
+		37D01CB02CBC1E5B0002BFF7 /* SubscriptionStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D01CAF2CBC1E5B0002BFF7 /* SubscriptionStatusView.swift */; };
 		37FAB2632C3A187B00FDD05B /* ResultHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2622C3A187B00FDD05B /* ResultHandler.swift */; };
 		37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */; };
 		37FAB2672C3B013C00FDD05B /* LogListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB2662C3B013C00FDD05B /* LogListView.swift */; };
@@ -290,6 +303,19 @@
 		37C70C2D2BD4504E00B0375A /* UpdateMovementButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMovementButton.swift; sourceTree = "<group>"; };
 		37C70C312BDD52C200B0375A /* LogCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogCard.swift; sourceTree = "<group>"; };
 		37C70C332BE2806100B0375A /* WeightHorizontalScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightHorizontalScroller.swift; sourceTree = "<group>"; };
+		37D01C942CB6526F0002BFF7 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		37D01C992CBAE5A50002BFF7 /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
+		37D01C9B2CBAE6670002BFF7 /* SubscriptionEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEnums.swift; sourceTree = "<group>"; };
+		37D01C9D2CBAE9DE0002BFF7 /* SubscribeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeButton.swift; sourceTree = "<group>"; };
+		37D01C9F2CBAEA830002BFF7 /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
+		37D01CA12CBAEB270002BFF7 /* CheckMarkSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckMarkSubscriptionView.swift; sourceTree = "<group>"; };
+		37D01CA32CBAEB930002BFF7 /* YearlySubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlySubscriptionButton.swift; sourceTree = "<group>"; };
+		37D01CA52CBAEC720002BFF7 /* MonthlySubscriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySubscriptionButton.swift; sourceTree = "<group>"; };
+		37D01CA72CBB66140002BFF7 /* SubscriptionTermsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTermsButton.swift; sourceTree = "<group>"; };
+		37D01CA92CBB680E0002BFF7 /* SubscriptionTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTermsView.swift; sourceTree = "<group>"; };
+		37D01CAB2CBB6A390002BFF7 /* SubscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewModel.swift; sourceTree = "<group>"; };
+		37D01CAD2CBC1BC50002BFF7 /* SubscriptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSection.swift; sourceTree = "<group>"; };
+		37D01CAF2CBC1E5B0002BFF7 /* SubscriptionStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionStatusView.swift; sourceTree = "<group>"; };
 		37FAB2622C3A187B00FDD05B /* ResultHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHandler.swift; sourceTree = "<group>"; };
 		37FAB2642C3AFAB000FDD05B /* LogViewSubHeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewSubHeading.swift; sourceTree = "<group>"; };
 		37FAB2662C3B013C00FDD05B /* LogListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogListView.swift; sourceTree = "<group>"; };
@@ -450,6 +476,7 @@
 				37A655512BB30DDA00B96BEB /* HorizontalScroller.swift */,
 				37A655422BAA902300B96BEB /* AddMovementToolButton.swift */,
 				37A6554F2BB2830200B96BEB /* MovementCardButton.swift */,
+				37D01C942CB6526F0002BFF7 /* SearchBarView.swift */,
 			);
 			path = MovementTabView;
 			sourceTree = "<group>";
@@ -506,6 +533,8 @@
 		3753E5EC2C77E85B00182530 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				37D01CAD2CBC1BC50002BFF7 /* SubscriptionSection.swift */,
+				37D01CAF2CBC1E5B0002BFF7 /* SubscriptionStatusView.swift */,
 				3707305F2BF0679600E95989 /* AccountSection.swift */,
 				370730A42C01638D00E95989 /* AccountView.swift */,
 				370730612BF06A9E00E95989 /* LogOutButton.swift */,
@@ -618,6 +647,7 @@
 				376B58AA2C4D6535007C82E9 /* Routines */,
 				370730732BF7239D00E95989 /* Activity */,
 				37A655342BA745D400B96BEB /* Settings */,
+				37D01C982CBAE3F60002BFF7 /* Subscription */,
 				37A655322BA745C700B96BEB /* Models */,
 				373E8BEB2C96ACA0006DE161 /* Extensions */,
 				374069542C2E482500692ECD /* Utilities */,
@@ -709,6 +739,23 @@
 				370730992BFF719C00E95989 /* EditLog */,
 			);
 			path = SelectedMovement;
+			sourceTree = "<group>";
+		};
+		37D01C982CBAE3F60002BFF7 /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				37D01C992CBAE5A50002BFF7 /* SubscriptionView.swift */,
+				37D01C9F2CBAEA830002BFF7 /* FeatureView.swift */,
+				37D01CA12CBAEB270002BFF7 /* CheckMarkSubscriptionView.swift */,
+				37D01CA32CBAEB930002BFF7 /* YearlySubscriptionButton.swift */,
+				37D01CA52CBAEC720002BFF7 /* MonthlySubscriptionButton.swift */,
+				37D01CA72CBB66140002BFF7 /* SubscriptionTermsButton.swift */,
+				37D01CA92CBB680E0002BFF7 /* SubscriptionTermsView.swift */,
+				37D01C9D2CBAE9DE0002BFF7 /* SubscribeButton.swift */,
+				37D01C9B2CBAE6670002BFF7 /* SubscriptionEnums.swift */,
+				37D01CAB2CBB6A390002BFF7 /* SubscriptionViewModel.swift */,
+			);
+			path = Subscription;
 			sourceTree = "<group>";
 		};
 		37FAB26A2C442E2C00FDD05B /* Movement */ = {
@@ -895,9 +942,11 @@
 				3753E63C2C8523FF00182530 /* RoutineNetworkManager.swift in Sources */,
 				373E8BF12CA49881006DE161 /* EditMovementViewModel.swift in Sources */,
 				376B58AC2C4D659E007C82E9 /* RoutinesView.swift in Sources */,
+				37D01CAC2CBB6A390002BFF7 /* SubscriptionViewModel.swift in Sources */,
 				376B58A72C4C8D79007C82E9 /* EditBodyweightTextField.swift in Sources */,
 				3753E5AD2C5D399900182530 /* SelectedRoutineView.swift in Sources */,
 				376B58AE2C4D69CC007C82E9 /* AddRoutineView.swift in Sources */,
+				37D01C952CB6526F0002BFF7 /* SearchBarView.swift in Sources */,
 				37A655432BAA902300B96BEB /* AddMovementToolButton.swift in Sources */,
 				3740697C2C2FC26D00692ECD /* LogsViewModel.swift in Sources */,
 				37A6556D2BC60CD300B96BEB /* MutateRepsView.swift in Sources */,
@@ -953,6 +1002,7 @@
 				3753E5B92C6443C100182530 /* EditRoutineView.swift in Sources */,
 				373E8BED2C96ACD4006DE161 /* Query+EXT.swift in Sources */,
 				3707306A2BF083C300E95989 /* DeleteLogTrashIconButton.swift in Sources */,
+				37D01CA22CBAEB270002BFF7 /* CheckMarkSubscriptionView.swift in Sources */,
 				37881F662C1DF34D00ABBF42 /* BodyweightView.swift in Sources */,
 				37A6550A2BA5385600B96BEB /* One_RepApp.swift in Sources */,
 				370730802BF98D1A00E95989 /* DateView.swift in Sources */,
@@ -961,6 +1011,7 @@
 				37A655792BC60E5D00B96BEB /* LogSetButton.swift in Sources */,
 				3707308D2BFEBA2500E95989 /* UnitSection.swift in Sources */,
 				3753E62D2C813EFB00182530 /* MovementsView.swift in Sources */,
+				37D01CAE2CBC1BC50002BFF7 /* SubscriptionSection.swift in Sources */,
 				37A655452BAA965C00B96BEB /* MusclePicker.swift in Sources */,
 				370730A02BFF84B400E95989 /* DeleteLogButton.swift in Sources */,
 				37A655472BAA98AC00B96BEB /* AddMovementButton.swift in Sources */,
@@ -971,6 +1022,7 @@
 				370730622BF06A9E00E95989 /* LogOutButton.swift in Sources */,
 				37A655642BC1F00A00B96BEB /* ThemeModel.swift in Sources */,
 				3753E6352C850E9D00182530 /* MovementNetworkManager.swift in Sources */,
+				37D01CA62CBAEC720002BFF7 /* MonthlySubscriptionButton.swift in Sources */,
 				3707309E2BFF843400E95989 /* UpdateLogButton.swift in Sources */,
 				37881F5A2C0E950500ABBF42 /* BodyweightTextField.swift in Sources */,
 				373E8BEA2C9530BA006DE161 /* AppleSignInHelper.swift in Sources */,
@@ -985,19 +1037,24 @@
 				37A6555D2BBE3DF800B96BEB /* Demo.swift in Sources */,
 				37A655362BA7466300B96BEB /* Movement.swift in Sources */,
 				374069762C2E945700692ECD /* MovementsViewModel.swift in Sources */,
+				37D01C9A2CBAE5A50002BFF7 /* SubscriptionView.swift in Sources */,
 				3753E5C12C6BB40D00182530 /* HelpSection.swift in Sources */,
 				373E8BF32CA4A2E0006DE161 /* SelectedMovementViewModel.swift in Sources */,
 				3753E5F52C77EEEE00182530 /* EditLogViewModel.swift in Sources */,
+				37D01CA82CBB66140002BFF7 /* SubscriptionTermsButton.swift in Sources */,
 				370730A52C01638D00E95989 /* AccountView.swift in Sources */,
 				37A6556F2BC60D4700B96BEB /* MutateWeightsView.swift in Sources */,
 				37FAB2652C3AFAB000FDD05B /* LogViewSubHeading.swift in Sources */,
 				3707307C2BF88AE500E95989 /* DateViewModel.swift in Sources */,
+				37D01CAA2CBB680E0002BFF7 /* SubscriptionTermsView.swift in Sources */,
 				37A655672BC6025300B96BEB /* SelectedMovementView.swift in Sources */,
 				37A655502BB2830200B96BEB /* MovementCardButton.swift in Sources */,
+				37D01C9E2CBAE9DE0002BFF7 /* SubscribeButton.swift in Sources */,
 				370730702BF16ECD00E95989 /* MovementSelectionPicker.swift in Sources */,
 				37C70C322BDD52C200B0375A /* LogCard.swift in Sources */,
 				373E8BE12C92807F006DE161 /* DeleteAccountView.swift in Sources */,
 				370730872BF9D64F00E95989 /* ActivityMovementDataView.swift in Sources */,
+				37D01CA42CBAEB930002BFF7 /* YearlySubscriptionButton.swift in Sources */,
 				3753E5B52C61C3B000182530 /* AddMovementsToolButton.swift in Sources */,
 				3753E5A72C560DD000182530 /* AddRoutineButton.swift in Sources */,
 				3707305E2BF063CC00E95989 /* SelectedRoutineViewModel.swift in Sources */,
@@ -1006,13 +1063,16 @@
 				3753E5BB2C64442900182530 /* EditRoutineButton.swift in Sources */,
 				37A655562BBDAD4F00B96BEB /* EditMovementView.swift in Sources */,
 				370730A82C01668A00E95989 /* DeleteAccountNavLink.swift in Sources */,
+				37D01CA02CBAEA830002BFF7 /* FeatureView.swift in Sources */,
 				37A655522BB30DDA00B96BEB /* HorizontalScroller.swift in Sources */,
 				376B58B02C4D6B92007C82E9 /* AddRoutineToolButton.swift in Sources */,
 				374069742C2E664900692ECD /* LoginView.swift in Sources */,
 				376B58B82C50A3D7007C82E9 /* SelectMovementsView.swift in Sources */,
 				37A655222BA5F86600B96BEB /* MotherView.swift in Sources */,
 				37FAB2692C44278400FDD05B /* UserViewModel.swift in Sources */,
+				37D01CB02CBC1E5B0002BFF7 /* SubscriptionStatusView.swift in Sources */,
 				37783A4A2CA98F5B006BFDCC /* AddRoutineViewModel.swift in Sources */,
+				37D01C9C2CBAE6670002BFF7 /* SubscriptionEnums.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

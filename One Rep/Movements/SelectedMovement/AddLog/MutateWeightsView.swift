@@ -5,6 +5,7 @@
 //  Created by Dylan Ierugan on 4/9/24.
 //
 
+import Combine
 import SwiftUI
 
 struct MutateWeightView: View {
@@ -57,12 +58,12 @@ struct MutateWeightView: View {
             .padding(.bottom, 6)
             
             HStack {
-                MutateWieghtButton(isEditing: false, color: .primary,
-                                   icon: Icons.Minus.rawValue,
-                                   mutatingValue: -selectedMovementViewModel.movement.mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Minus.rawValue, mutatingValue: -selectedMovementViewModel.movement.mutatingValue)
                 
-                TextField("Weight", value: $logViewModel.weight,
-                          formatter: NumberFormatter.noDecimalUnlessNeeded)
+                TextField("Weight", text: $logViewModel.weightStr)
+                    .onChange(of: logViewModel.weightStr) { newText, _ in
+                        logViewModel.bindWeightValues()
+                    }
                     .accentColor(Color(theme.darkBaseColor))
                     .multilineTextAlignment(.center)
                     .keyboardType(.decimalPad)
@@ -71,13 +72,12 @@ struct MutateWeightView: View {
                     .cornerRadius(10)
                     .customFont(size: .title2, weight: .semibold, kerning: 0, design: .rounded)
                     .focused($isInputActive)
+                    .onReceive(Just(logViewModel.weight)) { _ in logViewModel.limitWeightText(5) }
                     .onTapGesture {
-                        logViewModel.weight = nil
+                        logViewModel.weightStr = ""
                     }
                 
-                MutateWieghtButton(isEditing: false, color: .primary,
-                                   icon: Icons.Plus.rawValue, 
-                                   mutatingValue: selectedMovementViewModel.movement.mutatingValue)
+                MutateWieghtButton(isEditing: false, color: .primary, icon: Icons.Plus.rawValue, mutatingValue: selectedMovementViewModel.movement.mutatingValue)
             }
         }
         .onAppear { mutatingValue = selectedMovementViewModel.movement.mutatingValue }

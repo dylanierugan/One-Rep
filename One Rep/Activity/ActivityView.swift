@@ -26,7 +26,7 @@ struct ActivityView: View {
     var body: some View {
         VStack {
             if !showCalendar {
-                HStack(spacing: 6) {
+                HStack(spacing: 4) {
                     DateView(dateViewModel: dateViewModel)
                     Spacer()
                     MoveWeekButtons(dateViewModel: dateViewModel)

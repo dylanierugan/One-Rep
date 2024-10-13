@@ -60,6 +60,5 @@ struct HorizontalScroller: View {
                 }
             }
         }
-        .padding(.horizontal, 16)
     }
 }

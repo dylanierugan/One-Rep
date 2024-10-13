@@ -160,6 +160,7 @@ enum Icons: String {
     case ChevronCompactRight = "chevron.compact.right"
     case CircleFill = "circle.fill"
     case CircleHexagongrid = "circle.hexagongrid"
+    case CrownFill = "crown.fill"
     case Dumbell = "dumbbell"
     case DumbellFill = "dumbbell.fill"
     case ErrorTriangle = "exclamationmark.triangle"
@@ -178,6 +179,7 @@ enum Icons: String {
     case HeartFill = "heart.fill"
     case Infinity = "infinity"
     case InfoCircle = "info.circle"
+    case MagnifyingGlass = "magnifyingglass"
     case Medal = "medal"
     case MedalFill = "medal.fill"
     case Minus = "minus"
@@ -205,6 +207,7 @@ enum Icons: String {
     case TrashFill = "trash.fill"
     case TrashCircleFill = "trash.circle.fill"
     case TriangleFill = "triangle.fill"
+    case XMarkCircleFill = "xmark.circle.fill"
 }
 
 enum InfoText: String {
@@ -264,6 +267,7 @@ enum MovementSelection: String, Identifiable {
 
 enum MovementsStrings: String {
     case Movements = "Movements"
+    case Search = "Search"
 }
 
 enum MovementType: String, Identifiable, Codable {
@@ -348,6 +352,9 @@ enum SettingsStrings: String {
     case Light = "Light"
     case Dark = "Dark"
     case Anonymous = "Anonymous Email"
+    case Subscription = "Subscription"
+    case Subscribe = "Subscribe"
+    case OneRepPremium = "One Rep Premium"
 }
 
 enum ToggleEditStrings: String {
